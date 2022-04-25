@@ -1,25 +1,13 @@
 class Game {
+    pointsCounter;
     livesCounter;
     levelsCounter;
     level;
     constructor(e, level, points) {
         this.level = level;
-        let background, pointsCounter, yellowBox, levelsCounter;
+        let background, yellowBox;
 
         background = new Background();
-
-        pointsCounter = new PointsCounter({
-            id: "points-counter",
-            points: 0,
-        });
-
-        this.levelsCounter = new LevelsCounter({
-            id: "levels-counter",
-        });
-        
-        this.livesCounter = new LivesCounter({
-            id: "vidas",
-        });
 
         yellowBox = new YellowBox({
             id: "yellow-box",
@@ -52,9 +40,25 @@ class Game {
         background.set("img/planicie.jpg");
     
         window.ball.build(window.ball.attributes);
+
+
+        this.pointsCounter = new PointsCounter({
+            id: "points-counter",
+            points: 0,
+        });
+
         if(points) {
-            pointsCounter.increaseCounter(points);
+            this.pointsCounter.increaseCounter(points);
         }
+
+        this.levelsCounter = new LevelsCounter({
+            id: "levels-counter",
+        });
+        
+        this.livesCounter = new LivesCounter({
+            id: "vidas",
+        });
+
         this.start = (e) => {
             let mouseMove = (e) => {
                 yellowBox.updatePosition(e, yellowBox);
@@ -66,9 +70,9 @@ class Game {
                 setInterval(() => {
                     if(document.onmousemove == mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
                         document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 120){
-                        pointsCounter.increaseCounter(5);
+                        window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
-                        window.game.levelsCounter.increaseCounter(pointsCounter.points);
+                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points);
                         return;
                     }
                     if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
@@ -77,7 +81,7 @@ class Game {
                         document.onmousemove = null;
                         
                         game.livesCounter.decreaseCounter(1);
-                        window.game = new Game(event, window.game.levelsCounter.level, pointsCounter.points);
+                        window.game = new Game(event, window.game.levelsCounter.level, window.game.pointsCounter.points);
                         window.onclick = window.game.start;
                         
                     }
