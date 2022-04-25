@@ -6,7 +6,7 @@ class YellowBox extends GameObject {
         document.getElementById(attributes.id).style.transform = "translateX(-16px)";
         this.updatePosition = function(event, gameObject = this) {
             const xOffset = (event.pageX - 30);
-            let positionX = xOffset < window.innerWidth - 92 ? xOffset : window.innerWidth - 92;
+            let positionX = xOffset < window.innerWidth - 60 ? xOffset : window.innerWidth - 60;
             positionX = xOffset > 8 ? positionX : 8;
             
             const styles = {

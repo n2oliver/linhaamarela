@@ -3,7 +3,7 @@ class Game {
     livesCounter;
     levelsCounter;
     level;
-    constructor(e, level, points) {
+    constructor(e, level, points, lives) {
         this.level = level;
         let background, yellowBox;
 
@@ -58,6 +58,9 @@ class Game {
         this.livesCounter = new LivesCounter({
             id: "vidas",
         });
+        if(lives) {
+            this.livesCounter.lives = lives;
+        }
 
         this.start = (e) => {
             let mouseMove = (e) => {
@@ -80,7 +83,7 @@ class Game {
                         document.onmousemove = null;
                         
                         game.livesCounter.decreaseCounter(1);
-                        window.game = new Game(event, window.game.levelsCounter.level, window.game.pointsCounter.points);
+                        window.game = new Game(event, window.game.levelsCounter.level, window.game.pointsCounter.points, window.game.livesCounter.lives);
                         window.onclick = window.game.start;
                         
                     }
