@@ -73,7 +73,6 @@ class Game {
                         window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
                         window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points);
-                        return;
                     }
                     if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                         clearInterval(ballInterval);
