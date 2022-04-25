@@ -4,11 +4,8 @@ class LevelsCounter extends Counter  {
         super(attributes);
         this.attributes = attributes;
         const styles = {
-            textAlign: "right",
+            textAlign: "left",
             textShadow: "3px 3px 3px #2e2e3e",
-            position: "fixed",
-            bottom: "136px",
-            right: "12px"
         }
         Object.assign(document.getElementById(attributes.id).style, styles);
 

@@ -9,10 +9,12 @@ class Ball extends GameObject {
             Object.assign(document.getElementById(attributes.id).style, styles);
         }
         this.init = function(attributes) {
-            let paraAEsquerda = true;
-            let paraADireita = false;
-            let paraCima = true;
-            let paraBaixo = false;
+            let estadoDaDirecao = {
+                paraAEsquerda: false,
+                paraADireita: true,
+                paraCima: true,
+                paraBaixo: false
+            }
             return setInterval(() => {
                 const objectStyle = document.getElementById(attributes.id).style;
                 const limiteHorizontalInferior = window.innerHeight - 120;
@@ -24,51 +26,51 @@ class Ball extends GameObject {
                 const height = parseInt(attributes.height) + 2;
 
                 if(left <= 0) {
-                    paraAEsquerda = false;
-                    paraADireita = true;
+                    estadoDaDirecao.paraAEsquerda = false;
+                    estadoDaDirecao.paraADireita = true;
                 }
-                if(!paraADireita){
-                    paraAEsquerda = true;
-                    paraADireita = false;
+                if(!estadoDaDirecao.paraADireita){
+                    estadoDaDirecao.paraAEsquerda = true;
+                    estadoDaDirecao.paraADireita = false;
                 }
 
                 if(top <= 0) {
-                    paraCima = false;
-                    paraBaixo = true;
+                    estadoDaDirecao.paraCima = false;
+                    estadoDaDirecao.paraBaixo = true;
                 }
-                if(!paraBaixo){
-                    paraCima = true;
-                    paraBaixo = false;
-                }
-
-                if(left >= (window.innerWidth - height)) {
-                    paraAEsquerda = true;
-                    paraADireita = false;
-                }
-                if(!paraAEsquerda){
-                    paraAEsquerda = false;
-                    paraADireita = true;
+                if(!estadoDaDirecao.paraBaixo){
+                    estadoDaDirecao.paraCima = true;
+                    estadoDaDirecao.paraBaixo = false;
                 }
 
-                if(top + height >= limiteHorizontalInferior && top <= limiteHorizontalInferior && right >= supportBarLeft && left <= supportBarRight) {
-                    paraCima = true;
-                    paraBaixo = false;
+                if(left >= window.innerWidth - 32) {
+                    estadoDaDirecao.paraAEsquerda = true;
+                    estadoDaDirecao.paraADireita = false;
+                }
+                if(!estadoDaDirecao.paraAEsquerda){
+                    estadoDaDirecao.paraAEsquerda = false;
+                    estadoDaDirecao.paraADireita = true;
+                }
+
+                if(top + height >= limiteHorizontalInferior && top <= limiteHorizontalInferior && right >= supportBarLeft - 32 && left <= supportBarRight) {
+                    estadoDaDirecao.paraCima = true;
+                    estadoDaDirecao.paraBaixo = false;
                 } 
-                if(!paraCima){
-                    paraCima = false;
-                    paraBaixo = true;
+                if(!estadoDaDirecao.paraCima){
+                    estadoDaDirecao.paraCima = false;
+                    estadoDaDirecao.paraBaixo = true;
                 }
 
                 let direction = 3;
-                if(paraAEsquerda) {
+                if(estadoDaDirecao.paraAEsquerda) {
                     direction = -3;
                 }
                 
                 objectStyle.left = (left + direction * attributes.velocity) + "px";
                 
-                if(paraCima) {
+                if(estadoDaDirecao.paraCima) {
                     objectStyle.top = (top - 2 * attributes.velocity) + "px";
-                } else if(paraBaixo) {
+                } else if(estadoDaDirecao.paraBaixo) {
                     objectStyle.top = (top + 2 * attributes.velocity) + "px";
                 }
             }, 50);
