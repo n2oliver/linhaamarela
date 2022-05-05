@@ -15,5 +15,9 @@ class YellowBox extends GameObject {
             }
             Object.assign(document.getElementById(gameObject.attributes.id).style, styles);
         }
+        
+        this.mouseMove = (e) => {
+            this.updatePosition(e, this);
+        }
     }
 }
