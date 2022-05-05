@@ -1,15 +1,12 @@
-class Game {
+class Game extends GameBase {
     pointsCounter;
     livesCounter;
     levelsCounter;
     level;
     constructor(e, level, points, lives) {
-        this.level = level;
-        let background, yellowBox;
+        super(e, level, points, lives);
 
-        background = new Background();
-
-        yellowBox = new YellowBox({
+        const yellowBox = new YellowBox({
             id: "yellow-box",
             width: 80,
             height: 8,
@@ -21,25 +18,6 @@ class Game {
             positionY: "120",
             positionX: "50%"
         });
-        
-        window.ball = new Ball({
-            id: "red-ball",
-            supportBarId: "yellow-box",
-            width: 16,
-            height: 16,
-            color: "red",
-            strokeColor: "#000",
-            strokeStyle: "solid",
-            strokeDepth: "1px",
-            position: "fixed",
-            positionY: "136",
-            positionX: "50%",
-            velocity: 1
-        });
-
-        background.set("img/planicie.jpg");
-    
-        window.ball.build(window.ball.attributes);
 
 
         this.pointsCounter = new PointsCounter({
@@ -63,15 +41,12 @@ class Game {
         }
 
         this.start = (e) => {
-            let mouseMove = (e) => {
-                yellowBox.updatePosition(e, yellowBox);
-            }
+            document.onmousemove = yellowBox.mouseMove;
             window.onclick = null;
             const ballInterval = window.ball.init(window.ball.attributes);
-            document.onmousemove = mouseMove;
             const interval = function () {
                 setInterval(() => {
-                    if(document.onmousemove == mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
+                    if(document.onmousemove == yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
                         document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 120){
                         window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
