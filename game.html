@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>MoveCube</title>
+        <script src="js/Background.js"></script>
+        <script src="js/Counter.js"></script>
+        <script src="js/PointsCounter.js"></script>
+        <script src="js/LevelsCounter.js"></script>
+        <script src="js/LivesCounter.js"></script>
+        <script src="js/GameObject.js"></script>
+        <script src="js/YellowBox.js"></script>
+        <script src="js/Ball.js"></script>
+        <script src="js/GameBase.js"></script>
+        <script src="js/Game.js"></script>
+        <script>
+            window.game;
+            if(!sessionStorage.getItem('session')) {
+                window.location = "index.html";
+            }
+            window.onload = (e) => {
+                level = 1;
+                game = new Game(e, level);
+                game.start(e);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="levels-counter">Nivel 1</div>
+        <div id="points-counter">0 pontos</div>
+        <div id="red-ball"></div>
+        <div id="yellow-box"></div>
+        <div id="vidas">3 vidas restantes</div>
+    </body>
+</html>
