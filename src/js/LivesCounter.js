@@ -1,10 +1,12 @@
 class LivesCounter extends Counter {
-    lives = 3;
+    lives = 2;
     constructor(attributes) {
         super(attributes);
         this.attributes = attributes;
         const styles = {
-            textShadow: "3px 3px 3px #2e2e3e"
+            textShadow: "3px 3px 3px #2e2e3e",
+            position: "fixed",
+            top: "96px"
         }
         Object.assign(document.getElementById(attributes.id).style, styles);
         
