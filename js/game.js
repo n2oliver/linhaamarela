@@ -3,10 +3,11 @@ class Game extends GameBase {
     livesCounter;
     levelsCounter;
     level;
+    yellowBox;
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
 
-        const yellowBox = new YellowBox({
+        this.yellowBox = new YellowBox({
             id: "yellow-box",
             width: 80,
             height: 8,
@@ -36,17 +37,17 @@ class Game extends GameBase {
         this.livesCounter = new LivesCounter({
             id: "vidas",
         });
-        if(lives) {
+        if(lives != null) {
             this.livesCounter.lives = lives;
         }
 
         this.start = (e) => {
-            document.onmousemove = yellowBox.mouseMove;
-            window.onclick = null;
+            document.onmousemove = window.game.yellowBox.mouseMove;
+            window.onmousedown = this.yellowBox.shot;
             const ballInterval = window.ball.init(window.ball.attributes);
             const interval = function () {
                 setInterval(() => {
-                    if(document.onmousemove == yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
+                    if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
                         document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 120){
                         window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
@@ -57,6 +58,10 @@ class Game extends GameBase {
                         clearInterval(interval);
                         document.onmousemove = null;
                         
+                        if(window.game.livesCounter.lives == 0) {
+                            window.location = "gameover.html";
+                            return;
+                        }
                         game.livesCounter.decreaseCounter(1);
                         window.game = new Game(event, window.game.levelsCounter.level, window.game.pointsCounter.points, window.game.livesCounter.lives);
                         window.onclick = window.game.start;

@@ -19,5 +19,28 @@ class YellowBox extends GameObject {
         this.mouseMove = (e) => {
             this.updatePosition(e, this);
         }
+        this.shot = (e) => {
+            let capsule = document.createElement("DIV");
+            capsule.id = "capsule";
+            capsule.classList.add("capsule");
+            Object.assign(capsule.style, {
+                width: "8px",
+                height: "20px",
+                "background-color": "purple",
+                position: "fixed",
+                left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
+                top: document.getElementById("yellow-box").offsetTop + "px"
+            });
+            document.body.appendChild(capsule);
+            let shoting = setInterval(()=>{
+                if(document.getElementById("capsule").offsetTop < 200) {
+                    clearInterval(shoting);
+                    document.getElementById("capsule").remove()
+                }
+                for(let item of document.getElementsByClassName("capsule")) {
+                    item.style.top = (item.offsetTop - 15) + "px";
+                }
+            }, 100)         
+        }
     }
 }

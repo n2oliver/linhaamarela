@@ -5,7 +5,9 @@ class PointsCounter extends Counter {
         this.attributes = attributes;
         const styles = {
             textAlign: "left",
-            textShadow: "3px 3px 3px #2e2e3e"
+            textShadow: "3px 3px 3px #2e2e3e",
+            position: "fixed",
+            top: "64px"
         }
         Object.assign(document.getElementById(attributes.id).style, styles);
 
