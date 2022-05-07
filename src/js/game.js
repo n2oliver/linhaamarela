@@ -44,6 +44,7 @@ class Game extends GameBase {
         this.start = (e) => {
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
+            window.onclick = null;
             const ballInterval = window.ball.init(window.ball.attributes);
             const interval = function () {
                 setInterval(() => {
