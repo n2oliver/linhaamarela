@@ -46,6 +46,17 @@ class Game extends GameBase {
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
             const ballInterval = window.ball.init(window.ball.attributes);
+
+            const enableGesture = function() {
+                var containerElement = document;
+                var activeRegion = ZingTouch.Region(containerElement);
+                var childElement = document.body;
+                activeRegion.bind(childElement, 'pan', function(event){
+                    console.log(event);
+                });
+            }
+            enableGesture();
+            
             const interval = function () {
                 setInterval(() => {
                     if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&

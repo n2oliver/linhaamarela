@@ -6,3 +6,9 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.presentation {
+    font-size: 40px;
+    color: yellow;
+    margin: 0 auto;
+}

@@ -7,7 +7,8 @@ class LevelsCounter extends Counter  {
             textAlign: "left",
             textShadow: "3px 3px 3px #2e2e3e",
             position: "fixed",
-            top: "32px"
+            top: "32px",
+            left: "32px"
         }
         Object.assign(document.getElementById(attributes.id).style, styles);
 

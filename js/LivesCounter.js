@@ -6,7 +6,8 @@ class LivesCounter extends Counter {
         const styles = {
             textShadow: "3px 3px 3px #2e2e3e",
             position: "fixed",
-            top: "96px"
+            top: "96px",
+            left: "32px"
         }
         Object.assign(document.getElementById(attributes.id).style, styles);
         
