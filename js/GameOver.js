@@ -5,6 +5,23 @@ class GameOver extends GameBase {
     level;
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
+        
+        window.ball = new BallNPC({
+            id: "red-ball",
+            supportBarId: "yellow-box",
+            width: 16,
+            height: 16,
+            color: "red",
+            strokeColor: "#000",
+            strokeStyle: "solid",
+            strokeDepth: "1px",
+            position: "fixed",
+            positionY: "136",
+            positionX: "50%",
+            velocity: 1
+        });
+
+        window.ball.build(window.ball.attributes);
 
         const yellowBox = new YellowBoxNPC({
             id: "yellow-box",
