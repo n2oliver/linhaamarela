@@ -22,7 +22,9 @@ class YellowBox extends GameObject {
         }
         
         this.mouseMove = (e) => {
-            this.updatePosition(e, this);
+            if(!window.pause) {  
+                this.updatePosition(e, this);
+            }
         }
         this.shot = (e) => {
             let capsule = document.createElement("DIV");

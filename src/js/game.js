@@ -58,6 +58,11 @@ class Game extends GameBase {
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
+            window.onkeyup = function(e) {
+                if(e.keyCode == 27) {
+                    window.pause = !window.pause;
+                }
+            }
             const ballInterval = window.ball.init(window.ball.attributes);
 
             const enableGesture = function() {
