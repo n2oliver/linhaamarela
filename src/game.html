@@ -11,6 +11,7 @@
         <script src="js/LivesCounter.js"></script>
         <script src="js/GameObject.js"></script>
         <script src="js/YellowBox.js"></script>
+        <script src="js/BallBase.js"></script>
         <script src="js/Ball.js"></script>
         <script src="js/GameBase.js"></script>
         <script src="js/Game.js"></script>
@@ -23,6 +24,8 @@
             window.onload = (e) => {
                 level = 1;
                 game = new Game(e, level);
+            }
+            window.onclick = (e) => {
                 game.start(e);
             }
         </script>
@@ -34,5 +37,6 @@
         <div id="logo" style="width: 10em; position: fixed; top: 32px; right: 32px"><img width="100%" src="img/logo-linhaamarela.png"/></div>
         <div id="red-ball"></div>
         <div id="yellow-box"></div>
+        <audio id="toque-linha-amarela" src="mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
     </body>
 </html>

@@ -1,14 +1,6 @@
-class Ball extends GameObject {
+class Ball extends BallBase {
     constructor(attributes){
         super(attributes);
-        this.build = function(attributes) {
-            const styles = {
-                borderRadius: attributes.width + "px",
-                transform: "translateX(16px)",
-                position: attributes.position,
-            }
-            Object.assign(document.getElementById(attributes.id).style, styles);
-        }
         this.init = function(attributes) {
             let estadoDaDirecao = {
                 paraAEsquerda: false,
@@ -56,6 +48,11 @@ class Ball extends GameObject {
                 if(top + height >= limiteHorizontalInferior && top <= limiteHorizontalInferior && right >= supportBarLeft - 32 && left <= supportBarRight) {
                     estadoDaDirecao.paraCima = true;
                     estadoDaDirecao.paraBaixo = false;
+                    const audio = document.getElementById("toque-linha-amarela");
+                    if(audio.readyState) {
+                        audio.play();
+                    }
+                 
                 } 
                 if(!estadoDaDirecao.paraCima){
                     estadoDaDirecao.paraCima = false;
