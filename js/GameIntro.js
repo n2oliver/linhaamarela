@@ -1,3 +1,4 @@
+require(['js/email-pattern']).pattern;
 class GameIntro extends GameBase {
     pointsCounter;
     livesCounter;
@@ -38,6 +39,24 @@ class GameIntro extends GameBase {
 
         this.start = (e) => {
             document.onmousemove = yellowBox.mouseMove;
+            const submitButton = document.getElementById("submit");
+            const emailField = document.getElementById("email");
+            emailField.value = "";
+            submitButton.disabled = true;
+            submitButton.onclick = (e) => {
+                if(pattern.test(emailField.value)) {
+                    window.location = "game.html";
+                } else {
+                    submitButton.disabled = true;
+                }
+            }
+            emailField.onkeyup = function(e){
+                if(pattern.test(emailField.value)) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            }
             window.ball.init(window.ball.attributes);
             const interval = function () {
                 setInterval(() => {

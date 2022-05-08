@@ -63,13 +63,15 @@ class Ball extends BallBase {
                 if(estadoDaDirecao.paraAEsquerda) {
                     direction = -3;
                 }
-                
-                objectStyle.left = (left + direction * attributes.velocity) + "px";
-                
-                if(estadoDaDirecao.paraCima) {
-                    objectStyle.top = (top - 2 * attributes.velocity) + "px";
-                } else if(estadoDaDirecao.paraBaixo) {
-                    objectStyle.top = (top + 2 * attributes.velocity) + "px";
+
+                if(!window.pause) {   
+                    objectStyle.left = (left + direction * attributes.velocity) + "px";
+                    
+                    if(estadoDaDirecao.paraCima) {
+                        objectStyle.top = (top - 2 * attributes.velocity) + "px";
+                    } else if(estadoDaDirecao.paraBaixo) {
+                        objectStyle.top = (top + 2 * attributes.velocity) + "px";
+                    }
                 }
             }, 50);
         }
