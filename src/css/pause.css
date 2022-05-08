@@ -1,0 +1,12 @@
+.pause {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    color: yellow;
+    border: 5px solid yellow;
+    border-radius: 20px;
+    font-family: Helvetica;
+    font-size: large;
+    display: none;
+}

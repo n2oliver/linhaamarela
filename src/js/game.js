@@ -58,22 +58,23 @@ class Game extends GameBase {
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
+            window.pause = false;
             window.onkeyup = function(e) {
                 if(e.keyCode == 27) {
-                    window.pause = !window.pause;
+                    if(window.pause) {
+                        window.pause = false;
+                    } else {
+                        window.pause = true
+                    }
+                    const pauseStyle = document.getElementById("pause").style;
+                    if(window.pause) {
+                        pauseStyle.display = "block";
+                    } else {
+                        pauseStyle.display = "none";
+                    }
                 }
             }
             const ballInterval = window.ball.init(window.ball.attributes);
-
-            const enableGesture = function() {
-                var containerElement = document;
-                var activeRegion = ZingTouch.Region(containerElement);
-                var childElement = document.body;
-                activeRegion.bind(childElement, 'pan', function(event){
-                    console.log(event);
-                });
-            }
-            enableGesture();
             
             const interval = function () {
                 setInterval(() => {

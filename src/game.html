@@ -3,6 +3,7 @@
     <head>
         <title>Linha Amarela</title>
         <link rel="shortcut icon" href="iconlinhaamarela.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="css/pause.css"/>
         <link rel="stylesheet" href="css/markers.css"/>
         <script src="js/Background.js"></script>
         <script src="js/Counter.js"></script>
@@ -15,7 +16,6 @@
         <script src="js/Ball.js"></script>
         <script src="js/GameBase.js"></script>
         <script src="js/Game.js"></script>
-        <script src='js/vendor/zingtouch.min.js'></script>
         <script>
             window.game;
             if(!sessionStorage.getItem('session')) {
@@ -35,6 +35,7 @@
         <div id="points-counter" class="unselectable">0 pontos</div>
         <div id="vidas" class="unselectable">2 vidas restantes</div>
         <div id="logo" style="width: 10em; position: fixed; top: 32px; right: 32px" class="unselectable"><img width="100%" src="img/logo-linhaamarela.png"/></div>
+        <div id="pause" class="pause unselectable">Pause</div>
         <div id="red-ball"></div>
         <div id="yellow-box"></div>
         <audio id="toque-linha-amarela" src="mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
