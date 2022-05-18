@@ -7,16 +7,12 @@
     border: 5px solid yellow;
     border-radius: 20px;
     font-family: Helvetica;
+    height: auto;
 }
 
-
-.info label[for="email"] {
-    font-size: 32px;
-    display: flex;
-    justify-content: left;
-}
-
-.info input[type="email"] {
+.info input[type="email"], 
+.info input[type="text"],
+.info input[type="password"] {
     height: 40px;
     width: 80%;
     line-height: 40px;
