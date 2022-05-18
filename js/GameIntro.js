@@ -1,4 +1,7 @@
-require(['js/email-pattern']).pattern;
+const patterns =  {
+    email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+    username: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/
+};
 class GameIntro extends GameBase {
     pointsCounter;
     livesCounter;
@@ -40,23 +43,41 @@ class GameIntro extends GameBase {
         this.start = (e) => {
             document.onmousemove = yellowBox.mouseMove;
             const submitButton = document.getElementById("submit");
+            const usernameField = document.getElementById("username");
             const emailField = document.getElementById("email");
             emailField.value = "";
             submitButton.disabled = true;
             submitButton.onclick = (e) => {
-                if(pattern.test(emailField.value)) {
+                if(patterns.email.test(emailField.value)) {
                     sessionStorage.setItem('ingame', true);
                     window.location = "game.html";
-                } else {
-                    submitButton.disabled = true;
                 }
+                submitButton.disabled = true;
+            }
+            const fieldPatterns = [
+                {
+                    field: usernameField, 
+                    pattern: patterns.username
+                },
+                {
+                    field: emailField,
+                    pattern: patterns.email
+                }
+            ]
+            function validateFieldPatterns(fieldPatterns) {
+                let invalid = false;
+                for(let item of fieldPatterns) {
+                    if(!item.pattern.test(item.field.value)) {
+                        invalid = true;
+                    }
+                }
+                return invalid;
+            }
+            usernameField.onkeyup = function(e){
+                submitButton.disabled = validateFieldPatterns(fieldPatterns);
             }
             emailField.onkeyup = function(e){
-                if(pattern.test(emailField.value)) {
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.disabled = true;
-                }
+                submitButton.disabled = validateFieldPatterns(fieldPatterns);
             }
             window.ball.init(window.ball.attributes);
             const interval = function () {
