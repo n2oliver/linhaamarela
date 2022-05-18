@@ -45,6 +45,7 @@ class GameIntro extends GameBase {
             submitButton.disabled = true;
             submitButton.onclick = (e) => {
                 if(pattern.test(emailField.value)) {
+                    sessionStorage.setItem('ingame', true);
                     window.location = "game.html";
                 } else {
                     submitButton.disabled = true;

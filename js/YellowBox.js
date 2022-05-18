@@ -6,7 +6,8 @@ class YellowBox extends GameObject {
         Object.assign(document.getElementById(attributes.id).style, { 
             transform: "translateX(-16px)",
             position: "fixed",
-            border: "#000 solid 2px"
+            border: "#000 solid 2px",
+            "border-radius": "20px"
         });
         this.updatePosition = function(event, gameObject = this) {
             const xOffset = (event.pageX - 30);
@@ -14,7 +15,7 @@ class YellowBox extends GameObject {
             positionX = xOffset > 8 ? positionX : 8;
             
             const styles = {
-                bottom: (window.innerHeight - gameObject.attributes.positionY) + "px",
+                top: (window.outerHeight - gameObject.attributes.positionY) + "px",
                 left: positionX + "px",
                 border: "#000 solid 2px"
             }

@@ -10,7 +10,7 @@ class BallNPC extends BallBase {
             }
             return setInterval(() => {
                 const objectStyle = document.getElementById(attributes.id).style;
-                const limiteHorizontalInferior = window.innerHeight - 120;
+                const limiteHorizontalInferior = window.outerHeight - 120;
                 const supportBarLeft = document.getElementById(attributes.supportBarId).offsetLeft;
                 const supportBarRight = supportBarLeft + parseInt(document.getElementById(attributes.supportBarId).style.width) + 2;
                 const top = parseInt(document.getElementById(attributes.id).offsetTop);
