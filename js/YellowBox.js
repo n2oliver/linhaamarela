@@ -15,7 +15,7 @@ class YellowBox extends GameObject {
             positionX = xOffset > 8 ? positionX : 8;
             
             const styles = {
-                top: (window.outerHeight - gameObject.attributes.positionY) + "px",
+                top: (window.innerHeight - gameObject.attributes.positionY) + "px",
                 left: positionX + "px",
                 border: "#000 solid 2px"
             }
@@ -44,7 +44,7 @@ class YellowBox extends GameObject {
                 document.body.appendChild(capsule);
                 let shoting = setInterval(()=>{
                     if(!window.pause) { 
-                        if(document.getElementById("capsule").offsetTop < 200) {
+                        if(document.getElementById("capsule") && document.getElementById("capsule").offsetTop < 20) {
                             clearInterval(shoting);
                             document.getElementById("capsule").remove()
                         }

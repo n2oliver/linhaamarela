@@ -11,7 +11,7 @@ class YellowBoxNPC extends GameObject {
         });
         this.updatePosition = function(gameObject = this) {
             const styles = {
-                bottom: (window.outerHeight - gameObject.attributes.positionY) + "px",
+                top: (window.innerHeight - gameObject.attributes.positionY) + "px",
                 left: document.getElementById(window.ball.attributes.id).offsetLeft + "px",
             }
             Object.assign(document.getElementById(gameObject.attributes.id).style, styles);

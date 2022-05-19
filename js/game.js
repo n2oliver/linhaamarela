@@ -55,10 +55,13 @@ class Game extends GameBase {
         }
 
         this.start = (e) => {
+            window.spaceInvader = new SpaceInvader();
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
             window.pause = false;
+
+            const invaderInterval = window.spaceInvader.init(parseInt((window.game.pointsCounter.points + 250) /250) * 5);
             window.onkeyup = function(e) {
                 if(e.keyCode == 27) {
                     if(window.pause) {
@@ -78,15 +81,19 @@ class Game extends GameBase {
             
             const interval = function () {
                 setInterval(() => {
-                    if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.outerHeight - 150 &&
-                        document.getElementById(window.ball.attributes.id).offsetTop <= window.outerHeight - 120){
+                    if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
+                        document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 120){
                         window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
                         window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points);
                     }
-                    if(document.getElementById(window.ball.attributes.id).offsetTop > window.outerHeight) {
+                    if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                         clearInterval(ballInterval);
+                        if(invaderInterval) {
+                            clearInterval(invaderInterval);
+                        }
                         clearInterval(interval);
+                        window.spaceInvader.destroy();
                         document.onmousemove = null;
                         
                         if(window.game.livesCounter.lives == 0) {

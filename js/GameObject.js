@@ -9,7 +9,7 @@ class GameObject {
             backgroundColor: attributes.color,
             border: attributes.strokeColor + " " + attributes.strokeStyle + " " + attributes.strokeDepth,
             position: attributes.position,
-            top: (window.outerHeight - attributes.positionY) + "px",
+            top: (window.innerHeight - attributes.positionY) + "px",
             left: attributes.positionX
         }
         Object.assign(document.getElementById(attributes.id).style, styles);

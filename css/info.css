@@ -1,10 +1,10 @@
 .info {
-    width: 400px;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
     background-color: white;
-    border: 5px solid yellow;
+    border: 5px dashed yellow;
     border-radius: 20px;
     font-family: Helvetica;
     height: auto;
