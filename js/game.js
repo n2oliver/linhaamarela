@@ -55,7 +55,9 @@ class Game extends GameBase {
         }
 
         this.start = (e) => {
+            var hammertime = new Hammer(document.body);
             window.spaceInvader = new SpaceInvader();
+            hammertime.on('panmove', window.game.yellowBox.mouseMove);
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
