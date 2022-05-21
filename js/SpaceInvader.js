@@ -1,9 +1,11 @@
 class SpaceInvader {
     init = function (level) {
+        const spaceInvaders = ['spaceinvaders-red','spaceinvaders-green', 'spaceinvaders-yellow', 'spaceinvaders-blue'];
         for(let i = 100/level; i < 100; i += (100/level)) {
             let invader = document.createElement('div');
             invader.classList.add("invader");
             invader.style.left = i + "%";
+            invader.style.backgroundImage = "url(../img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
             document.body.append(invader);
         }
 
