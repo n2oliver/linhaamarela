@@ -4,17 +4,14 @@ class PointsCounter extends Counter {
         super(attributes);
         this.attributes = attributes;
         const styles = {
-            textAlign: "left",
-            textShadow: "3px 3px 3px #2e2e3e",
-            position: "fixed",
             top: "64px",
             left: "32px"
         }
-        Object.assign(document.getElementById(attributes.id).style, styles);
+        Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
 
         this.increaseCounter = (points) => {
             this.points += parseInt(points);
-            document.getElementById(this.attributes.id).innerText = this.points + " pontos";
+            document.getElementById(this.attributes.id).innerText = this.points;
         }
     }
 }
