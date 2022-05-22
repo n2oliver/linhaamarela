@@ -7,13 +7,10 @@ class LevelsCounter extends Counter  {
         super(attributes);
         this.attributes = attributes;
         const styles = {
-            textAlign: "left",
-            textShadow: "3px 3px 3px #2e2e3e",
-            position: "fixed",
             top: "32px",
             left: "32px"
         }
-        Object.assign(document.getElementById(attributes.id).style, styles);
+        Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
 
         this.increaseCounter = (points, previousLevel) => {
             window.game.levelsCounter.level = parseInt((points + 250) / 250);
