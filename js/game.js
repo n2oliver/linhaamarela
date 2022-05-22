@@ -87,11 +87,11 @@ class Game extends GameBase {
             
             const interval = function () {
                 setInterval(() => {
-                    if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 150 &&
-                        document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 120){
+                    if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 90 &&
+                        document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 60){
                         window.game.pointsCounter.increaseCounter(5);
                         window.ball.attributes.velocity = window.game.levelsCounter.level;
-                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points);
+                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
                     }
                     if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                         clearInterval(ballInterval);
