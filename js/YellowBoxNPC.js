@@ -2,7 +2,7 @@ class YellowBoxNPC extends GameObject {
     constructor(attributes){
         super(attributes);
 
-        this.positionY = 120;
+        this.positionY = 60;
         Object.assign(document.getElementById(attributes.id).style, { 
             transform: "translateX(-16px)",
             position: "fixed",

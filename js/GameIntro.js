@@ -20,7 +20,7 @@ class GameIntro extends GameBase {
             strokeStyle: "solid",
             strokeDepth: "1px",
             position: "fixed",
-            positionY: "136",
+            positionY: "76",
             positionX: "50%",
             velocity: 1
         });
@@ -36,7 +36,7 @@ class GameIntro extends GameBase {
             strokeStyle: "solid",
             strokeDepth: "2px",
             position: "fixed",
-            positionY: "120",
+            positionY: "60",
             positionX: "50%"
         });
 

@@ -17,7 +17,7 @@ class Game extends GameBase {
             strokeStyle: "solid",
             strokeDepth: "1px",
             position: "fixed",
-            positionY: "136",
+            positionY: "76",
             positionX: "50%",
             velocity: 1
         });
@@ -29,7 +29,7 @@ class Game extends GameBase {
             width: 80,
             height: 8,
             color: "yellow",
-            positionY: "120",
+            positionY: "60",
             positionX: "50%"
         });
 
@@ -55,9 +55,13 @@ class Game extends GameBase {
         }
 
         this.start = (e) => {
-            var hammertime = new Hammer(document.body);
+            var hammerBg = new Hammer(document.getElementById("bg-transparent"));
+            var hammerYellowBox = new Hammer(document.getElementById("yellow-box"));
+
+            hammerBg.on('pan', window.game.yellowBox.mouseMove);
+            hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
+
             window.spaceInvader = new SpaceInvader();
-            hammertime.on('panmove', window.game.yellowBox.mouseMove);
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
