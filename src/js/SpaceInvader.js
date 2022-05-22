@@ -5,7 +5,8 @@ class SpaceInvader {
             let invader = document.createElement('div');
             invader.classList.add("invader");
             invader.style.left = i + "%";
-            invader.style.backgroundImage = "url(../img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
+            invader.style.top = "100px";
+            invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
             document.body.append(invader);
         }
 
