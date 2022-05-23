@@ -1,6 +1,7 @@
 class Ball extends BallBase {
     constructor(attributes){
         super(attributes);
+        this.build(attributes);
         this.init = function(attributes) {
             let estadoDaDirecao = {
                 paraAEsquerda: false,

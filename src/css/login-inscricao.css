@@ -1,0 +1,13 @@
+.login-inscricao a#login {
+    color: blue;
+}
+.login-inscricao a#inscricao {
+    font-size: 16px;
+    color: gray;
+}
+.info-inscricao {
+    display: none; 
+}
+.info-entrar {
+    display: block; 
+}

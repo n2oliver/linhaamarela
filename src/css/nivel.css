@@ -1,0 +1,17 @@
+.nivel {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    color: yellow;
+    border-radius: 20px;
+    font-weight: 500;
+    font-family: Big John;
+    font-size: 24px;
+    display: none;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

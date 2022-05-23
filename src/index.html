@@ -6,9 +6,10 @@
         <meta name="viewport" 
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link rel="shortcut icon" href="iconlinhaamarela.ico" type="image/x-icon"/>
-        <link rel="stylesheet" href="css/logo-intro.css"/>
+        <link rel="stylesheet" href="css/logo.css"/>
         <link rel="stylesheet" href="css/info.css"/>
         <link rel="stylesheet" href="css/markers.css"/>
+        <link rel="stylesheet" href="css/login-inscricao.css"/>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="js/vendor/require.js"></script>
@@ -29,20 +30,31 @@
         </script>
     </head>
     <body>
-        <div id="logo" style="width: 50%; margin-bottom: 40px;" class="presentation"><img width="100%" src="img/logo-linhaamarela.png"/></div>
+        <audio id="main-menu-sound" src="mp3/try-infraction-main-version.mp3" controls autoplay="true" style="display: none" preload="auto"></audio>
+        <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px;" class="presentation"><img width="100%" src="img/logo-linhaamarela.png"/></div>
         <div class="info">
             <div>
-                <h2>Inscrição</h2>
-                <label for="username">Nome de usuário:</label>
-                <div><input type="text" id="username" /></div>
+                <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Ainda não possuo conta</a></h2>
+                <label for="username" class="info-inscricao">Nome de usuário:</label>
+                <div class="info-inscricao"><input type="text" id="username" /></div>
 
-                <label for="email">Email:</label>
-                <div><input type="email" id="email" /></div>
+                <label for="email" class="info-inscricao">Email:</label>
+                <div class="info-inscricao"><input type="email" id="email" /></div>
 
-                <label for="senha">Senha:</label>
-                <div><input type="password" id="senha" /></div>
+                <label for="senha" class="info-inscricao">Senha:</label>
+                <div class="info-inscricao"><input type="password" id="senha" /></div>
 
-                <div><button id="submit">Continuar</button></div>
+                <div class="info-inscricao"><button id="submit">Inscrever-se</button></div>
+
+                <label for="username" class="info-entrar">Nome de usuário:</label>
+                <div class="info-entrar"><input type="text" id="username" /></div>
+
+                <label for="senha" class="info-entrar">Senha:</label>
+                <div class="info-entrar"><input type="password" id="senha" /></div>
+
+                <div class="info-entrar"><a href="#">Esqueci minha senha</a></div>
+
+                <div class="info-entrar"><button id="submit">Entrar</button></div>
             </div>
         </div>
         <div class="logo-intro"></div>
@@ -51,7 +63,31 @@
         <script>
             setTimeout(function() {
                 $( ".logo-intro" ).fadeOut( "slow");
-            }, 3000)
+                
+                document.body.addEventListener("click", function () {
+                    const audio = document.getElementById("main-menu-sound");
+                    if(audio.readyState) {
+                        audio.play();
+                        audio.onended = function() {
+                            audio.currentTime = 0;
+                            audio.play();
+                        }
+                    }
+                });
+            }, 3000);
+
+            $("#login").click((e)=>{
+                $(".info-inscricao").hide();
+                $(".info-entrar").show();
+                $("#inscricao").css("color", "gray");
+                $(e.target).css("color", "blue");
+            });
+            $("#inscricao").click((e)=>{
+                $(".info-entrar").hide();
+                $(".info-inscricao").show();
+                $("#login").css("color", "gray");
+                $(e.target).css("color", "blue");
+            });
         </script>
     </body>
 </html>

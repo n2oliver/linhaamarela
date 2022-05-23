@@ -4,6 +4,8 @@ class Game extends GameBase {
     levelsCounter;
     level;
     yellowBox;
+    invaderInterval;
+    interval;
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
         
@@ -21,8 +23,6 @@ class Game extends GameBase {
             positionX: "50%",
             velocity: 1
         });
-        
-        window.ball.build(window.ball.attributes);
 
         this.yellowBox = new YellowBox({
             id: "yellow-box",
@@ -60,14 +60,22 @@ class Game extends GameBase {
 
             hammerBg.on('pan', window.game.yellowBox.mouseMove);
             hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
-
-            window.spaceInvader = new SpaceInvader();
             document.onmousemove = window.game.yellowBox.mouseMove;
             window.onmousedown = this.yellowBox.shot;
             window.onclick = null;
             window.pause = false;
 
-            const invaderInterval = window.spaceInvader.init(parseInt((window.game.pointsCounter.points + 250) /250) * 5);
+
+            window.spaceInvader = new SpaceInvader();
+            
+            clearInterval(window.game.invaderInterval);
+            this.invaderInterval = window.spaceInvader.init(parseInt((window.game.pointsCounter.points + 250) /250) * 5);
+
+            $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
+            setTimeout(()=> {
+                $(".nivel").hide();
+            }, 3000);
+
             window.onkeyup = function(e) {
                 if(e.keyCode == 27) {
                     if(window.pause) {
@@ -85,8 +93,7 @@ class Game extends GameBase {
             }
             const ballInterval = window.ball.init(window.ball.attributes);
             
-            const interval = function () {
-                setInterval(() => {
+            this.interval = setInterval(() => {
                     if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 90 &&
                         document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 60){
                         window.game.pointsCounter.increaseCounter(5);
@@ -95,10 +102,10 @@ class Game extends GameBase {
                     }
                     if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                         clearInterval(ballInterval);
-                        if(invaderInterval) {
-                            clearInterval(invaderInterval);
+                        if(window.game.invaderInterval) {
+                            clearInterval(window.game.invaderInterval);
                         }
-                        clearInterval(interval);
+                        clearInterval(window.game.interval);
                         window.spaceInvader.destroy();
                         document.onmousemove = null;
                         
@@ -112,11 +119,6 @@ class Game extends GameBase {
                         
                     }
                 }, 25);
-            }
-            let gameInterval = interval;
-            
-            gameInterval();
-            
         }
     };
 }
