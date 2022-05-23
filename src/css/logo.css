@@ -1,9 +1,7 @@
-.logo-intro {
+.logo {
     width: 100%;
     height: auto;
-    background-image: url(../img/meio-dia-games-logo.svg);
     background-color: white;
-    background-size: 30%;
     background-repeat: no-repeat;
     background-position: center;
     position: fixed;
@@ -12,8 +10,15 @@
     left: 0;
     right: 0;
 }
+.logo-intro {
+    background-image: url(../img/planicie.jpg);
+}
+.logo-meiodia {
+    background-size: 30%;
+    background-image: url(../img/meio-dia-games-logo.svg);
+}
 .game-logo {
-    width: 6em; 
+    width: 12em; 
     position: fixed; 
     bottom: 32px; 
     right: 32px
