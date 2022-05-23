@@ -110,6 +110,7 @@ class Game extends GameBase {
                         document.onmousemove = null;
                         
                         if(window.game.livesCounter.lives == 0) {
+                            sessionStorage.setItem('ingame', false);
                             window.location = "gameover.html";
                             return;
                         }

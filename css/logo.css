@@ -10,7 +10,7 @@
     left: 0;
     right: 0;
 }
-.logo-intro {
+.intro-container {
     background-image: url(../img/planicie.jpg);
     background-size: cover;
 }
@@ -19,6 +19,12 @@
     background-image: url(../img/meio-dia-games-logo.svg);
 }
 .game-logo {
+    width: 12em; 
+    position: fixed; 
+    top: 32px; 
+    right: 32px
+}
+.intro-logo {
     width: 12em; 
     position: fixed; 
     bottom: 32px; 
