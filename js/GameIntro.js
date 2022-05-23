@@ -50,13 +50,6 @@ class GameIntro extends GameBase {
             const passwordField = document.getElementById("password");
             emailInscricaoField.value = "";
             submitInscricaoButton.disabled = true;
-            submitInscricaoButton.onclick = (e) => {
-                if(patterns.email.test(emailInscricaoField.value)) {
-                    sessionStorage.setItem('ingame', true);
-                    window.location = "game.html";
-                }
-                submitInscricaoButton.disabled = true;
-            }
             const fieldPatterns = [
                 {
                     field: usernameInscricaoField, 
@@ -67,6 +60,13 @@ class GameIntro extends GameBase {
                     pattern: patterns.email
                 }
             ]
+            submitInscricaoButton.onclick = (e) => {
+                if(!validateFieldPatterns(fieldPatterns)) {
+                    sessionStorage.setItem('ingame', true);
+                    window.location = "game.html";
+                }
+                submitInscricaoButton.disabled = true;
+            }
             function validateFieldPatterns(fieldPatterns) {
                 let invalid = false;
                 for(let item of fieldPatterns) {

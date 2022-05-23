@@ -12,6 +12,7 @@
 }
 .logo-intro {
     background-image: url(../img/planicie.jpg);
+    background-size: cover;
 }
 .logo-meiodia {
     background-size: 30%;
