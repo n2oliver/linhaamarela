@@ -9,8 +9,13 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = AppFactory::create();
 
 $app->get('/', function (Request $request, Response $response, $args) {
-
     $newStream = new LazyOpenStream('index.html', 'r');
+    $newResponse = $response->withBody($newStream);
+    return $newResponse;
+});
+
+$app->get('/game', function (Request $request, Response $response, $args) {
+    $newStream = new LazyOpenStream('game.html', 'r');
     $newResponse = $response->withBody($newStream);
     return $newResponse;
 });
