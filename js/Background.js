@@ -8,6 +8,7 @@ class Background {
                 position: "relative",
                 width: "100%",
                 height: "100%",
+                margin: "0 auto",
             }
             Object.assign(objectStyle, style);
         }

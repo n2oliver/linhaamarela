@@ -33,7 +33,8 @@ class SpaceInvader {
                             (elem.offsetTop < invader.offsetTop + invader.clientHeight) &&
                         (elem.offsetTop + elem.clientHeight > invader.offsetTop) 
                     ) {
-                        invader.remove()
+                        invader.remove();
+                        window.game.pointsCounter.increaseCounter(5);
                         }
                     });
                 }

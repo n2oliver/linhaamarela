@@ -9,7 +9,15 @@
 
 .presentation {
     font-weight: 500;
+    font-size: 40px;
+    font-family: Big John;
     color: yellow;
+    margin: 0 auto;
+    height: 100%;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
 }
 .presentation-container {
     font-weight: 500;
