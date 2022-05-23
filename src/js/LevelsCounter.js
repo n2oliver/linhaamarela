@@ -33,7 +33,7 @@ class LevelsCounter extends Counter  {
             
             window.spaceInvader.destroy();
             clearInterval(window.game.invaderInterval);
-            window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*5)
+            window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*2)
             console.log("Chamou!");
         }, false);
     }

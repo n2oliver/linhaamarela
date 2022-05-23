@@ -7,11 +7,10 @@
     border-radius: 20px;
     font-weight: 500;
     font-family: Big John;
-    font-size: 24px;
+    font-size: 40px;
     display: none;
-    position: relative;
-    top: 0;
-    bottom: 0;
+    position: fixed;
+    top: 50%;
     left: 0;
     right: 0;
 }
