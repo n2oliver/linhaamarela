@@ -1,7 +1,7 @@
 class SpaceInvader {
-    init = function (level) {
+    init = function (enemyLevel) {
         const spaceInvaders = ['spaceinvaders-red','spaceinvaders-green', 'spaceinvaders-yellow', 'spaceinvaders-blue'];
-        for(let i = 100/level; i < 100; i += (100/level)) {
+        for(let i = 100/enemyLevel; i < 100; i += (100/enemyLevel)) {
             let invader = document.createElement('div');
             invader.classList.add("invader");
             invader.style.left = i + "%";

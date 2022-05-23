@@ -12,3 +12,9 @@
     left: 0;
     right: 0;
 }
+.game-logo {
+    width: 6em; 
+    position: fixed; 
+    bottom: 32px; 
+    right: 32px
+}

@@ -12,6 +12,8 @@
     color: yellow;
 }
 .presentation-container {
+    font-weight: 500;
+    font-family: Big John;
     font-size: 24px;
     color: white;
     text-align: "left";
