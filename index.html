@@ -36,15 +36,15 @@
             <div>
                 <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Ainda não possuo conta</a></h2>
                 <label for="username" class="info-inscricao">Nome de usuário:</label>
-                <div class="info-inscricao"><input type="text" id="username" /></div>
+                <div class="info-inscricao"><input type="text" id="username-inscricao" /></div>
 
                 <label for="email" class="info-inscricao">Email:</label>
-                <div class="info-inscricao"><input type="email" id="email" /></div>
+                <div class="info-inscricao"><input type="email" id="email-inscricao" /></div>
 
                 <label for="senha" class="info-inscricao">Senha:</label>
-                <div class="info-inscricao"><input type="password" id="senha" /></div>
+                <div class="info-inscricao"><input type="password" id="senha-inscricao" /></div>
 
-                <div class="info-inscricao"><button id="submit">Inscrever-se</button></div>
+                <div class="info-inscricao"><button id="submit-inscricao">Inscrever-se</button></div>
 
                 <label for="username" class="info-entrar">Nome de usuário:</label>
                 <div class="info-entrar"><input type="text" id="username" /></div>
@@ -57,24 +57,26 @@
                 <div class="info-entrar"><button id="submit">Entrar</button></div>
             </div>
         </div>
-        <div class="logo-intro"></div>
+        <div id="logo-intro" class="logo-intro">
+            <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px; text-align: center; position: absolute; bottom: 40px; left: 0; right: 0;" class="presentation">
+                <img width="100%" src="img/logo-linhaamarela.png"/>
+                <button class="button">Toque aqui para iniciar</button>
+            </div>
+        </div>
         <div id="red-ball"></div>
         <div id="yellow-box"></div>
         <script>
-            setTimeout(function() {
+            document.querySelector(".logo-intro button").addEventListener("click", function () {
                 $( ".logo-intro" ).fadeOut( "slow");
-                
-                document.body.addEventListener("click", function () {
-                    const audio = document.getElementById("main-menu-sound");
-                    if(audio.readyState) {
+                const audio = document.getElementById("main-menu-sound");
+                if(audio.readyState) {
+                    audio.play();
+                    audio.onended = function() {
+                        audio.currentTime = 0;
                         audio.play();
-                        audio.onended = function() {
-                            audio.currentTime = 0;
-                            audio.play();
-                        }
                     }
-                });
-            }, 3000);
+                }
+            });
 
             $("#login").click((e)=>{
                 $(".info-inscricao").hide();

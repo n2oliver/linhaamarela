@@ -42,25 +42,28 @@ class GameIntro extends GameBase {
 
         this.start = (e) => {
             document.onmousemove = yellowBox.mouseMove;
-            const submitButton = document.getElementById("submit");
+            const submitInscricaoButton = document.getElementById("submit-inscricao");
+            const usernameInscricaoField = document.getElementById("username-inscricao");
+            const emailInscricaoField = document.getElementById("email-inscricao");
+            const submitButton = document.getElementById("submit-inscricao");
             const usernameField = document.getElementById("username");
-            const emailField = document.getElementById("email");
-            emailField.value = "";
-            submitButton.disabled = true;
-            submitButton.onclick = (e) => {
-                if(patterns.email.test(emailField.value)) {
+            const passwordField = document.getElementById("password");
+            emailInscricaoField.value = "";
+            submitInscricaoButton.disabled = true;
+            submitInscricaoButton.onclick = (e) => {
+                if(patterns.email.test(emailInscricaoField.value)) {
                     sessionStorage.setItem('ingame', true);
                     window.location = "game.html";
                 }
-                submitButton.disabled = true;
+                submitInscricaoButton.disabled = true;
             }
             const fieldPatterns = [
                 {
-                    field: usernameField, 
+                    field: usernameInscricaoField, 
                     pattern: patterns.username
                 },
                 {
-                    field: emailField,
+                    field: emailInscricaoField,
                     pattern: patterns.email
                 }
             ]
@@ -73,11 +76,11 @@ class GameIntro extends GameBase {
                 }
                 return invalid;
             }
-            usernameField.onkeyup = function(e){
-                submitButton.disabled = validateFieldPatterns(fieldPatterns);
+            usernameInscricaoField.onkeyup = function(e){
+                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
             }
-            emailField.onkeyup = function(e){
-                submitButton.disabled = validateFieldPatterns(fieldPatterns);
+            emailInscricaoField.onkeyup = function(e){
+                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
             }
             window.ball.init(window.ball.attributes);
             const interval = function () {
