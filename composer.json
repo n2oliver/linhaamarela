@@ -1,12 +1,16 @@
 {
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "LinhaAmarela\\": "src/"
+            "App\\": "src/",
+            "Db\\": "src/database/"
         }
     },
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
-        "guzzlehttp/guzzle": "7.0"
+        "guzzlehttp/guzzle": "7.0",
+        "illuminate/database": "^5.8",
+        "illuminate/events": "^5.8"
     }
 }
