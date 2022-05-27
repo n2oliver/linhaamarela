@@ -7,7 +7,7 @@ use Db\Eloquent\Models\Usuario;
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
-class UsuarioController {
+class UsuarioInscricaoController {
     public function postInscricao (Request $request, Response $response) {
         $usuarioValidator = new UsuarioValidator();
         $formData = $request->getParsedBody();
