@@ -1,14 +1,15 @@
 <?php
 namespace App\UseCases;
-
-use Db\Eloquent\Models\Usuario;
+use App\Repository\UsuarioRepository;
 
 class UsuarioInscreverUseCase {
+    private $repository;
+
+    public function __construct() {
+        $this->repository = new UsuarioRepository();
+    }
+
     public function execute($attributes) {
-        Usuario::create(array(
-            'nomedeusuario' => $attributes['nome-inscricao'],
-            'email' => $attributes['email-inscricao'],
-            'senha' => $attributes['senha-inscricao'],
-        ));
+        $this->repository->insert($attributes);
     }
 }
