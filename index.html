@@ -43,7 +43,7 @@
         <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px;" class="presentation"><img width="100%" src="img/logo-linhaamarela.png"/></div>
         <div class="info">
             <div>
-                <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Ainda não possuo conta</a></h2>
+                <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Inscrição</a></h2>
                 <label for="username" class="info-inscricao">Nome de usuário:</label>
                 <div class="info-inscricao"><input type="text" id="username-inscricao" /></div>
 
@@ -100,13 +100,17 @@
                 $(".info-inscricao").hide();
                 $(".info-entrar").show();
                 $("#inscricao").css("color", "gray");
+                $("#inscricao").css("font-size", "16px");
                 $(e.target).css("color", "blue");
+                $(e.target).css("font-size", "24px");
             });
             $("#inscricao").click((e)=>{
                 $(".info-entrar").hide();
                 $(".info-inscricao").show();
                 $("#login").css("color", "gray");
+                $("#login").css("font-size", "16px");
                 $(e.target).css("color", "blue");
+                $(e.target).css("font-size", "24px");
             });
         </script>
     </body>

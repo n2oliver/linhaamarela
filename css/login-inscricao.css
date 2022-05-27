@@ -1,9 +1,12 @@
 .login-inscricao a#login {
     color: blue;
+    text-decoration: none;
+    font-size: 24px;
 }
 .login-inscricao a#inscricao {
-    font-size: 16px;
     color: gray;
+    text-decoration: none;
+    font-size: 16px;
 }
 .info-inscricao {
     display: none; 
