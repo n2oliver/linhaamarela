@@ -6,17 +6,13 @@ use App\Routes;
 
 class App {
     private $app;
-    public function __construct () {
+    public function run() {
         $this->app = AppFactory::create();
-    }
-    private function build() {
+
         $container = $this->app->getContainer();
         $capsule = new Manager;
         require __DIR__ . '/../config/database.php';
-        return $this->app;
-    }
-    public function run() {
-        $this->app = $this->build();
+        
         $routes = new Routes;
         $this->app = $routes->run($this->app);
         $this->app->run();
