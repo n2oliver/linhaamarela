@@ -47,10 +47,11 @@ class GameIntro extends GameBase {
             const usernameInscricaoField = document.getElementById("username-inscricao");
             const emailInscricaoField = document.getElementById("email-inscricao");
             const senhaInscricaoField = document.getElementById("senha-inscricao");
+
             const submitButton = document.getElementById("submit-inscricao");
             const usernameField = document.getElementById("username");
             const passwordField = document.getElementById("password");
-            emailInscricaoField.value = "";
+
             submitInscricaoButton.disabled = true;
             const fieldPatterns = [
                 {
@@ -107,15 +108,21 @@ class GameIntro extends GameBase {
                 }
                 
                 submitInscricaoButton.disabled = true;
-                const message = fieldPatterns.filter(
+                const fieldError = fieldPatterns.filter(
                     (pattern) => { 
                         if(pattern.field.getAttribute('id') == id) { 
                             return pattern;
                         }
-                    })[0].message;
+                    }).map(
+                        (pattern) => {
+                        return {
+                            'field': pattern.field,
+                            'message': pattern.message
+                        };
+                    })[0];
                     
                 Toastify({
-                    text: message,
+                    text: fieldError.message,
                     duration: 3000,
                     style: {
                     background: "linear-gradient(to right, #b09b00, #ff0000)",
@@ -125,7 +132,9 @@ class GameIntro extends GameBase {
             function validateFieldPatterns(fieldPatterns) {
                 let invalid = false;
                 for(let item of fieldPatterns) {
+                    item.field.classList.remove("invalido");
                     if(!item.pattern.test(item.field.value)) {
+                        item.field.classList.add("invalido");
                         invalid = item.field.getAttribute('id');
                         break;
                     }

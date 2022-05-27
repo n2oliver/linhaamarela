@@ -11,3 +11,6 @@
 .info-entrar {
     display: block; 
 }
+.invalido {
+    border-color: red;
+}
