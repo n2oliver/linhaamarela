@@ -17,10 +17,20 @@ class UsuarioInscricaoController {
         if($validacao = $usuarioValidator->postValidarInscricao($response, $formData)) {
             return $validacao;
         }
+        $formData['senha-inscricao'] = md5($formData['senha-inscricao']);
+        $insertion = $this->inscreverUsuario->execute($formData);
         
-        $this->inscreverUsuario->execute($formData);
-        
-        $payload = json_encode(array('message' => 'Sucesso!', 'code' => 200));
+        $payload = json_encode(
+            array(
+                'message' => 'Sucesso!', 
+                'code' => 200, 
+                'body' => array(
+                    'insertion' => array(
+                        'id' => $insertion->id
+                    )
+                )
+            )
+        );
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json')
             ->withStatus(201);
