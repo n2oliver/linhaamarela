@@ -1,6 +1,7 @@
 const patterns =  {
     email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-    username: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/
+    username: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
+    senha: /.*\S.*/
 };
 class GameIntro extends GameBase {
     pointsCounter;
@@ -45,6 +46,7 @@ class GameIntro extends GameBase {
             const submitInscricaoButton = document.getElementById("submit-inscricao");
             const usernameInscricaoField = document.getElementById("username-inscricao");
             const emailInscricaoField = document.getElementById("email-inscricao");
+            const senhaInscricaoField = document.getElementById("senha-inscricao");
             const submitButton = document.getElementById("submit-inscricao");
             const usernameField = document.getElementById("username");
             const passwordField = document.getElementById("password");
@@ -53,25 +55,79 @@ class GameIntro extends GameBase {
             const fieldPatterns = [
                 {
                     field: usernameInscricaoField, 
-                    pattern: patterns.username
+                    pattern: patterns.username,
+                    message: "Informe o nome de usuário"
                 },
                 {
                     field: emailInscricaoField,
-                    pattern: patterns.email
+                    pattern: patterns.email,
+                    message: "Informe o email"
+                },
+                {
+                    field: senhaInscricaoField,
+                    pattern: patterns.senha,
+                    message: "Informe a senha"
                 }
             ]
             submitInscricaoButton.onclick = (e) => {
-                if(!validateFieldPatterns(fieldPatterns)) {
-                    sessionStorage.setItem('ingame', true);
-                    window.location = "game.html";
+                let id;
+                if(!(id = validateFieldPatterns(fieldPatterns))) {
+                    $.post(
+                        'http://localhost:8000/inscricao', 
+                        {
+                            "nome-inscricao": usernameInscricaoField.value, 
+                            "email-inscricao": emailInscricaoField.value, 
+                            "senha-inscricao": senhaInscricaoField.value
+                        }).done(
+                            function(data){
+                                console.log("Login realizado com sucesso!");
+                                Toastify({
+                                    text: "Inscrição realizada com sucesso!",
+                                    duration: 3000,
+                                    style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                    },
+                                }).showToast();
+                                setTimeout(function() {
+                                    sessionStorage.setItem('ingame', true);
+                                    window.location = "game.html";
+                                }, 3000);
+                            }
+                        ).fail(
+                            function(error) {
+                                Toastify({
+                                    text: error.responseText,
+                                    duration: 3000,
+                                    style: {
+                                    background: "linear-gradient(to right, #b09b00, #ff0000)",
+                                    },
+                                }).showToast();
+                            }
+                        );
                 }
+                
                 submitInscricaoButton.disabled = true;
+                const message = fieldPatterns.filter(
+                    (pattern) => { 
+                        if(pattern.field.getAttribute('id') == id) { 
+                            return pattern;
+                        }
+                    })[0].message;
+                    
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    style: {
+                    background: "linear-gradient(to right, #b09b00, #ff0000)",
+                    },
+                }).showToast();
             }
             function validateFieldPatterns(fieldPatterns) {
                 let invalid = false;
                 for(let item of fieldPatterns) {
                     if(!item.pattern.test(item.field.value)) {
-                        invalid = true;
+                        invalid = item.field.getAttribute('id');
+                        break;
                     }
                 }
                 return invalid;
@@ -80,6 +136,9 @@ class GameIntro extends GameBase {
                 submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
             }
             emailInscricaoField.onkeyup = function(e){
+                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
+            }
+            senhaInscricaoField.onkeyup = function(e){
                 submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
             }
             window.ball.init(window.ball.attributes);

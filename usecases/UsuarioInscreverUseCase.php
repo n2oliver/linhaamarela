@@ -10,6 +10,6 @@ class UsuarioInscreverUseCase {
     }
 
     public function execute($attributes) {
-        $this->repository->insert($attributes);
+        return $this->repository->insert($attributes);
     }
 }
