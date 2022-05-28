@@ -43,15 +43,26 @@ class GameIntro extends GameBase {
 
         this.start = (e) => {
             document.onmousemove = yellowBox.mouseMove;
-            const submitInscricaoButton = document.getElementById("submit-inscricao");
-            const usernameInscricaoField = document.getElementById("username-inscricao");
-            const emailInscricaoField = document.getElementById("email-inscricao");
-            const senhaInscricaoField = document.getElementById("senha-inscricao");
+            window.game.compilaInscricao();
 
             const submitButton = document.getElementById("submit-inscricao");
             const usernameField = document.getElementById("username");
             const passwordField = document.getElementById("password");
 
+            window.ball.init(window.ball.attributes);
+            const interval = function () {
+                setInterval(() => {
+                    yellowBox.updatePosition()
+                }, 25);
+            }
+            
+            interval();
+        }
+        this.compilaInscricao = function () {
+            const submitInscricaoButton = document.getElementById("submit-inscricao");
+            const usernameInscricaoField = document.getElementById("username-inscricao");
+            const emailInscricaoField = document.getElementById("email-inscricao");
+            const senhaInscricaoField = document.getElementById("senha-inscricao");
             submitInscricaoButton.disabled = true;
             const fieldPatterns = [
                 {
@@ -72,7 +83,7 @@ class GameIntro extends GameBase {
             ]
             submitInscricaoButton.onclick = (e) => {
                 let id;
-                if(!(id = validateFieldPatterns(fieldPatterns))) {
+                if(!(id = window.game.validateFieldPatterns(fieldPatterns))) {
                     $.post(
                         'http://localhost:8000/inscricao', 
                         {
@@ -129,36 +140,27 @@ class GameIntro extends GameBase {
                     },
                 }).showToast();
             }
-            function validateFieldPatterns(fieldPatterns) {
-                let invalid = false;
-                for(let item of fieldPatterns) {
-                    item.field.classList.remove("invalido");
-                    if(!item.pattern.test(item.field.value)) {
-                        item.field.classList.add("invalido");
-                        invalid = item.field.getAttribute('id');
-                        break;
-                    }
-                }
-                return invalid;
-            }
             usernameInscricaoField.onkeyup = function(e){
-                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
+                submitInscricaoButton.disabled = window.game.validateFieldPatterns(fieldPatterns);
             }
             emailInscricaoField.onkeyup = function(e){
-                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
+                submitInscricaoButton.disabled = window.game.validateFieldPatterns(fieldPatterns);
             }
             senhaInscricaoField.onkeyup = function(e){
-                submitInscricaoButton.disabled = validateFieldPatterns(fieldPatterns);
+                submitInscricaoButton.disabled = window.game.validateFieldPatterns(fieldPatterns);
             }
-            window.ball.init(window.ball.attributes);
-            const interval = function () {
-                setInterval(() => {
-                    yellowBox.updatePosition()
-                }, 25);
+        }
+        this.validateFieldPatterns = function (fieldPatterns) {
+            let invalid = false;
+            for(let item of fieldPatterns) {
+                item.field.classList.remove("invalido");
+                if(!item.pattern.test(item.field.value)) {
+                    item.field.classList.add("invalido");
+                    invalid = item.field.getAttribute('id');
+                    break;
+                }
             }
-            
-            interval();
-            
+            return invalid;
         }
     };
 }
