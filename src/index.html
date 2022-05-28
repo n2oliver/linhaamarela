@@ -30,10 +30,9 @@
         <script src="js/GameBase.js"></script>
         <script src="js/GameIntro.js"></script>
         <script>
-            window.game;
             window.onload = (e) => {
                 level = 1;
-                game = new GameIntro(e, level);
+                window.game = new GameIntro(e, level);
                 game.start(e);
             }
         </script>
