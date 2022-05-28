@@ -40,10 +40,13 @@ class GameIntro extends GameBase {
             document.onmousemove = yellowBox.mouseMove;
 
             const submitButton = document.getElementById("submit-inscricao");
-            const usernameField = document.getElementById("username");
+            const nomedeusuarioField = document.getElementById("nomedeusuario");
             const passwordField = document.getElementById("password");
 
+            const login = new Login();
             const inscricao = new Inscricao();
+
+            login.compilaLogin();
             inscricao.compilaInscricao();
 
             window.ball.init(window.ball.attributes);
