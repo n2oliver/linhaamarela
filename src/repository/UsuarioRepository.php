@@ -7,7 +7,7 @@ class UsuarioRepository {
     public function insert($attributes) {    
         return Usuario::create(
             array(
-                'nomedeusuario' => $attributes['nome-inscricao'],
+                'nomedeusuario' => $attributes['nomedeusuario-inscricao'],
                 'email' => $attributes['email-inscricao'],
                 'senha' => $attributes['senha-inscricao'],
             )

@@ -1,19 +1,19 @@
 class Inscricao {
     patterns =  {
         email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-        username: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
+        nomedeusuario: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
         senha: /.*\S.*/
     };
     compilaInscricao = function () {
         const submitInscricaoButton = document.getElementById("submit-inscricao");
-        const usernameInscricaoField = document.getElementById("username-inscricao");
+        const nomedeusuarioInscricaoField = document.getElementById("nomedeusuario-inscricao");
         const emailInscricaoField = document.getElementById("email-inscricao");
         const senhaInscricaoField = document.getElementById("senha-inscricao");
         submitInscricaoButton.disabled = true;
         const fieldPatterns = [
             {
-                field: usernameInscricaoField, 
-                pattern: this.patterns.username,
+                field: nomedeusuarioInscricaoField, 
+                pattern: this.patterns.nomedeusuario,
                 message: "Informe o nome de usuário"
             },
             {
@@ -28,17 +28,16 @@ class Inscricao {
             }
         ]
         submitInscricaoButton.onclick = (e) => {
-            let id;
-            if(!(id = new Inscricao().validateFieldPatterns(fieldPatterns))) {
+            let idCampoComErro;
+            if(!(idCampoComErro = new Inscricao().validateFieldPatterns(fieldPatterns))) {
                 $.post(
                     'http://localhost:8000/inscricao', 
                     {
-                        "nome-inscricao": usernameInscricaoField.value, 
+                        "nomedeusuario-inscricao": nomedeusuarioInscricaoField.value, 
                         "email-inscricao": emailInscricaoField.value, 
                         "senha-inscricao": senhaInscricaoField.value
                     }).done(
                         function(data){
-                            console.log("Login realizado com sucesso!");
                             Toastify({
                                 text: "Inscrição realizada com sucesso!",
                                 duration: 3000,
@@ -62,31 +61,31 @@ class Inscricao {
                             }).showToast();
                         }
                     );
+            } else {
+                submitInscricaoButton.disabled = true;
+                const fieldError = fieldPatterns.filter(
+                    (pattern) => { 
+                        if(pattern.field.getAttribute('id') == idCampoComErro) { 
+                            return pattern;
+                        }
+                    }).map(
+                        (pattern) => {
+                        return {
+                            'field': pattern.field,
+                            'message': pattern.message
+                        };
+                    })[0];
+                    
+                Toastify({
+                    text: fieldError.message,
+                    duration: 3000,
+                    style: {
+                    background: "linear-gradient(to right, #b09b00, #ff0000)",
+                    },
+                }).showToast();
             }
-            
-            submitInscricaoButton.disabled = true;
-            const fieldError = fieldPatterns.filter(
-                (pattern) => { 
-                    if(pattern.field.getAttribute('id') == id) { 
-                        return pattern;
-                    }
-                }).map(
-                    (pattern) => {
-                    return {
-                        'field': pattern.field,
-                        'message': pattern.message
-                    };
-                })[0];
-                
-            Toastify({
-                text: fieldError.message,
-                duration: 3000,
-                style: {
-                background: "linear-gradient(to right, #b09b00, #ff0000)",
-                },
-            }).showToast();
         }
-        usernameInscricaoField.onkeyup = function(e){
+        nomedeusuarioInscricaoField.onkeyup = function(e){
             submitInscricaoButton.disabled = new Inscricao().validateFieldPatterns(fieldPatterns);
         }
         emailInscricaoField.onkeyup = function(e){
