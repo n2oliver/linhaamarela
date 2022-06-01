@@ -3,17 +3,34 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Db\Eloquent\Models\Usuario;
+use Db\Eloquent\Models\Login;
 use \Firebase\JWT\JWT;
 
 class UsuarioLoginController {
     public function postLogin(Request $request, Response $response, $args) {
         $formData = $request->getParsedBody();
-        $usuarios = Usuario::select("nomedeusuario")->where('nomedeusuario', '=', $formData['nomedeusuario'])->where('senha', '=', md5($formData['senha']))->get();
+        $usuario = Usuario::select("id")->where('nomedeusuario', '=', $formData['nomedeusuario'])->where('senha', '=', md5($formData['senha']))->get()->first();
         
-        if($usuarios->count() > 0) {
-            $payload = json_encode($usuarios);
+        if($usuario != null) {
+            $hash = JWT::encode(array('id'=> $usuario->nomedeusuario, 'senha' => $usuario->senha), 'wyelow', 'HS256');
+            
+            date_default_timezone_set('America/Sao_Paulo');
+            $expirationTimestamp = time() + 28800;
+            $date = new \DateTime();
+            $date->setTimestamp($expirationTimestamp);
+            
+            Login::create(
+                array(
+                    'usuario_id' => $usuario->id,
+                    'expira_em' => $date->format('Y-m-d H:i:s'),
+                    'codigo_login' => $hash,
+                )
+            );
+            setcookie('session', $hash, $expirationTimestamp);
+            
+            $payload = json_encode($usuario);
             $response->getBody()->write($payload);
-            //echo '<pre>' . JWT::encode(array('nome'=> 'OK', 'senha' => '123456', 'token' => 'asdokasdkpasokdaspodkpaskdpk'), 'minha_chave_secreta', 'HS256'). "<br><pre>";
+            
             return $response
                     ->withHeader('Content-Type', 'application/json')
                     ->withStatus(201);
