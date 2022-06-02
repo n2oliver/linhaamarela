@@ -8,8 +8,8 @@ use App\UseCases\UsuarioInscreverUseCase;
 class UsuarioInscricaoController {
     private $inscreverUsuario;
     
-    public function __construct(?UsuarioInscreverUseCase $usuarioInscreverUseCase) {
-        $this->inscreverUsuario = $usuarioInscreverUseCase ?? new UsuarioInscreverUseCase();
+    public function __construct() {
+        $this->inscreverUsuario = new UsuarioInscreverUseCase();
     }
     public function postInscricao (Request $request, Response $response) {
         $usuarioValidator = new UsuarioValidator();

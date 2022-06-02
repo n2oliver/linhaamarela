@@ -54,29 +54,29 @@ class Login {
                             }).showToast();
                         }
                     );
+            } else {
+                submitButton.disabled = true;
+                const fieldError = fieldPatterns.filter(
+                    (pattern) => { 
+                        if(pattern.field.getAttribute('id') == id) { 
+                            return pattern;
+                        }
+                    }).map(
+                        (pattern) => {
+                        return {
+                            'field': pattern.field,
+                            'message': pattern.message
+                        };
+                    })[0];
+                    
+                Toastify({
+                    text: fieldError.message,
+                    duration: 3000,
+                    style: {
+                    background: "linear-gradient(to right, #b09b00, #ff0000)",
+                    },
+                }).showToast();
             }
-            
-            submitButton.disabled = true;
-            const fieldError = fieldPatterns.filter(
-                (pattern) => { 
-                    if(pattern.field.getAttribute('id') == id) { 
-                        return pattern;
-                    }
-                }).map(
-                    (pattern) => {
-                    return {
-                        'field': pattern.field,
-                        'message': pattern.message
-                    };
-                })[0];
-                
-            Toastify({
-                text: fieldError.message,
-                duration: 3000,
-                style: {
-                background: "linear-gradient(to right, #b09b00, #ff0000)",
-                },
-            }).showToast();
         }
         nomedeusuarioField.onkeyup = function(e){
             submitButton.disabled = new Login().validateFieldPatterns(fieldPatterns);

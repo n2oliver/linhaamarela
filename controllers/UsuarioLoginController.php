@@ -4,28 +4,47 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Db\Eloquent\Models\Usuario;
 use Db\Eloquent\Models\Login;
+use App\UseCases\UsuarioEncontrarUseCase;
+use App\UseCases\UsuarioLoginUseCase;
 use \Firebase\JWT\JWT;
 
 class UsuarioLoginController {
+    private $encontrarUsuario;
+    private $logarUsuario;
+    
+    public function __construct() {
+        $this->encontrarUsuario = new UsuarioEncontrarUseCase();
+        $this->logarUsuario = new UsuarioLoginUseCase();
+    }
     public function postLogin(Request $request, Response $response, $args) {
+        date_default_timezone_set('America/Sao_Paulo');
+
         $formData = $request->getParsedBody();
-        $usuario = Usuario::select("id")->where('nomedeusuario', '=', $formData['nomedeusuario'])->where('senha', '=', md5($formData['senha']))->get()->first();
+
+        $expirationTimestamp = time() + 28800;
+        $date = new \DateTime();
+        $date->setTimestamp($expirationTimestamp);
+        $formData['data_expiracao'] = $date->format('Y-m-d H:i:s');
+
+        $usuario = $this->encontrarUsuario->execute($formData);
         
         if($usuario != null) {
-            $hash = JWT::encode(array('id'=> $usuario->nomedeusuario, 'senha' => $usuario->senha), 'wyelow', 'HS256');
-            
-            date_default_timezone_set('America/Sao_Paulo');
-            $expirationTimestamp = time() + 28800;
-            $date = new \DateTime();
-            $date->setTimestamp($expirationTimestamp);
-            
-            Login::create(
-                array(
-                    'usuario_id' => $usuario->id,
-                    'expira_em' => $date->format('Y-m-d H:i:s'),
-                    'codigo_login' => $hash,
-                )
-            );
+
+            $hash = JWT::encode(array('id'=> $usuario->nomedeusuario, 'senha' => $usuario->senha, 'data_de_expiracao' => $expirationTimestamp), 'wyelow', 'HS256');
+            $formData['usuario_id'] = $usuario->id;
+            $formData['hash'] = $hash;
+
+            try {
+                $this->logarUsuario->execute($formData);
+            } catch (\Exception $error) {
+                echo $error;
+                if(strpos($error->getMessage(), "Duplicate entry")) {
+                    $response->getBody()->write("Login já realizado!");
+                    return $response
+                                ->withHeader('Content-Type', 'application/json')
+                                ->withStatus(400);
+                }
+            }
             setcookie('session', $hash, $expirationTimestamp);
             
             $payload = json_encode($usuario);
