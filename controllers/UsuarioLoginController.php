@@ -46,6 +46,8 @@ class UsuarioLoginController {
                 }
             }
             setcookie('session', $hash, $expirationTimestamp);
+            $usuario->_token = $hash;
+            $usuario->expiraEm = $expirationTimestamp;
             
             $payload = json_encode($usuario);
             $response->getBody()->write($payload);
