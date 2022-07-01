@@ -49,8 +49,55 @@ class Game extends GameBase {
     livesCounter = new LivesCounter({
         id: "vidas",
     });
+    pause = function(e) {
+        let validation;
+        if(e.type == "keyup") {
+            validation = e.keyCode == 27;
+        } else {
+            validation = true;
+        }
+        
+        if(validation) {
+            if(window.pause) {
+                window.pause = false;
+            } else {
+                window.pause = true
+            }
+            const qrCodeStyle = document.getElementById("qr-code").style;
+            const pauseStyle = document.getElementById("pause").style;
+            const playButtonStyle = document.getElementById("play-button").style;
+            const pauseButtonStyle = document.getElementById("pause-button").style;
+            if(window.pause) {
+                qrCodeStyle.display = "block";
+                pauseStyle.display = "block";
+                pauseButtonStyle.display = "none";
+                playButtonStyle.display = "block";
+            } else {
+                qrCodeStyle.display = "none";
+                pauseStyle.display = "none";
+                pauseButtonStyle.display = "block";
+                playButtonStyle.display = "none";
+            }
+        }
+    }
     start = (e) => {
+        const loggedUser = document.cookie.split(";").map((entry)=> {
+            const values = entry.split("=");
+            const key = values[0];
+            const value = values[1];
+            return {
+                key: key,
+                value: value
+            }
+        }).filter((entry) => { if(entry.key.trim() == "username") return entry });
+        if(loggedUser < 1) {
+            window.location = "index.html";
+        }
+
         window.game.setHammerEvents();
+        document.getElementById("pause").onclick = this.pause;
+        document.getElementById("pause-button").onclick = this.pause;
+        document.getElementById("play-button").onclick = this.pause;
         document.onmousemove = window.game.yellowBox.mouseMove;
         window.onmousedown = this.yellowBox.shot;
         window.onclick = null;
@@ -67,21 +114,7 @@ class Game extends GameBase {
             $(".nivel").hide();
         }, 3000);
 
-        window.onkeyup = function(e) {
-            if(e.keyCode == 27) {
-                if(window.pause) {
-                    window.pause = false;
-                } else {
-                    window.pause = true
-                }
-                const pauseStyle = document.getElementById("pause").style;
-                if(window.pause) {
-                    pauseStyle.display = "block";
-                } else {
-                    pauseStyle.display = "none";
-                }
-            }
-        }
+        window.onkeyup = this.pause;
         const ballInterval = window.ball.init(window.ball.attributes);
         
         this.interval = setInterval(() => {
