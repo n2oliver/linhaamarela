@@ -10,6 +10,12 @@
     left: 0;
     right: 0;
 }
+.intro-logo img {
+    background-image: radial-gradient(circle, white, transparent, transparent);
+    background-size: contain;
+    height: 200px;
+    border-radius: 10em;
+}
 .intro-container {
     background-image: url(../img/planicie.jpg);
     background-size: cover;
