@@ -31,7 +31,7 @@ class Inscricao {
             let idCampoComErro;
             if(!(idCampoComErro = new Inscricao().validateFieldPatterns(fieldPatterns))) {
                 $.post(
-                    'https://linhaamarela.herokuapp.com/src/inscricao', 
+                    'https://linhaamarela.herokuapp.com/inscricao', 
                     {
                         "nomedeusuario-inscricao": nomedeusuarioInscricaoField.value, 
                         "email-inscricao": emailInscricaoField.value, 
