@@ -25,7 +25,7 @@ class Login {
             let id;
             if(!(id = new Inscricao().validateFieldPatterns(fieldPatterns))) {
                 $.post(
-                    'http://localhost:8000/login', 
+                    'https://linhaamarela.herokuapp.com/src/login', 
                     {
                         "nomedeusuario": nomedeusuarioField.value, 
                         "senha": senhaField.value
