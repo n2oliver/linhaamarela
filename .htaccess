@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteCond %{HTTP_HOST} ^linhaamarela.orgfree.com$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^linhaamarela.orgfree.com$
+RewriteCond %{HTTP_HOST} ^linhaamarela.herokuapp.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^linhaamarela.herokuapp.com$
 RewriteCond %{REQUEST_URI} !src/
 RewriteRule ^(.*)$ /src/index.php [QSA,L]
