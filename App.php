@@ -12,7 +12,7 @@ class App {
 
         $container = $this->app->getContainer();
         $capsule = new Manager;
-        require __DIR__ . '/../config/database.php';
+        require __DIR__ . '/config/database.php';
         //$this->app->add(new Middleware());
 
         $routes = new Routes;
