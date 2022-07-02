@@ -20,8 +20,7 @@
         "firebase/php-jwt": "^6.2",
         "php-di/php-di": "^6.3",
         "php": "^7.4",
-        "phpmailer/phpmailer": "^6.6",
-        "vlucas/phpdotenv": "^5.4"
+        "phpmailer/phpmailer": "^6.6"
     },
     "post-install-cmd": [
         "chmod -R 777 ."
