@@ -1,0 +1,19 @@
+.login-inscricao a#login {
+    color: blue;
+    text-decoration: none;
+    font-size: 24px;
+}
+.login-inscricao a#inscricao {
+    color: gray;
+    text-decoration: none;
+    font-size: 16px;
+}
+.info-inscricao {
+    display: none; 
+}
+.info-entrar {
+    display: block; 
+}
+.invalido {
+    border-color: red;
+}
