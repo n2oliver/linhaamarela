@@ -7,7 +7,8 @@
             "App\\Validators\\": "app/validators/",
             "App\\Controllers\\": "app/controllers/",
             "App\\UseCases\\": "app/usecases/",
-            "App\\Repository\\": "app/repository/"
+            "App\\Repository\\": "app/repository/",
+            "Db\\Eloquent\\Models\\": "app/config/database/Eloquent/Models"
         }
     },
     "require": {
