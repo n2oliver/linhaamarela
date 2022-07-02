@@ -67,16 +67,19 @@ class Game extends GameBase {
             const pauseStyle = document.getElementById("pause").style;
             const playButtonStyle = document.getElementById("play-button").style;
             const pauseButtonStyle = document.getElementById("pause-button").style;
+            const audio = document.getElementById("game-sound");
             if(window.pause) {
                 qrCodeStyle.display = "block";
                 pauseStyle.display = "block";
                 pauseButtonStyle.display = "none";
                 playButtonStyle.display = "block";
+                audio.pause();
             } else {
                 qrCodeStyle.display = "none";
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
+                audio.play();
             }
         }
     }
