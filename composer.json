@@ -2,10 +2,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Db\\": "database/",
-            "App\\Validators\\": "validators/",
-            "App\\Controllers\\": "controllers/"
+            "App\\": "src/app/",
+            "Db\\": "src/app/database/",
+            "App\\Validators\\": "src/app/validators/",
+            "App\\Controllers\\": "src/app/controllers/"
         }
     },
     "require": {
