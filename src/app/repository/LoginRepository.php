@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository;
 
-use Db\Eloquent\Models\Login;
+use App\Models\Login;
 
 class LoginRepository {
     public function insert($attributes) {    
