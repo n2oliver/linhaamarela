@@ -5,7 +5,9 @@
             "App\\": "app/",
             "Db\\": "app/config/database/",
             "App\\Validators\\": "app/validators/",
-            "App\\Controllers\\": "app/controllers/"
+            "App\\Controllers\\": "app/controllers/",
+            "App\\UseCases\\": "app/usecases/",
+            "App\\Repository\\": "app/repository/"
         }
     },
     "require": {
