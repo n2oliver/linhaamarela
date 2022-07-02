@@ -8,7 +8,7 @@
             "App\\Controllers\\": "app/controllers/",
             "App\\UseCases\\": "app/usecases/",
             "App\\Repository\\": "app/repository/",
-            "Db\\Eloquent\\Models\\": "app/config/database/Eloquent/Models"
+            "App\\Models\\": "app/models/"
         }
     },
     "require": {

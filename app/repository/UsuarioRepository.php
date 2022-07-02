@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository;
 
-use Db\Eloquent\Models\Usuario;
+use App\Models\Usuario;
 
 class UsuarioRepository {
     public function insert($attributes) {    
