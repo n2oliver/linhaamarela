@@ -12,10 +12,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => 'localhost',
-    'username' => 'oliver',
-    'password' => '1234joe',
-    'database' => 'meiodia_games',
+    'hostname' => 'us-cdbr-east-06.cleardb.net',
+    'username' => 'b82864c072a3b9',
+    'password' => '059fe839',
+    'database' => 'heroku_666116a911a993f',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
