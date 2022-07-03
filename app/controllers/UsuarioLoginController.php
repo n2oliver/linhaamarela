@@ -19,6 +19,12 @@ class UsuarioLoginController {
     public function postLogin(Request $request, Response $response, $args) {
         date_default_timezone_set('America/Sao_Paulo');
 
+        $response->getBody()->write("OK");
+            
+        return $response
+                ->withHeader('Content-Type', 'text/html')
+                ->withStatus(201);
+
         $formData = $request->getParsedBody();
 
         $expirationTimestamp = time() + 28800;
