@@ -121,10 +121,13 @@
                                 audio.currentTime = 0;
                                 audio.play();
                             }
+                            sessionStorage.setItem("musica", "on");
                         }
                         prepareForm();
                         return;
                     }
+                    
+                    sessionStorage.setItem("musica", "off");
                     prepareForm();
                 }
             });
