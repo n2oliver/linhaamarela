@@ -73,13 +73,19 @@ class Game extends GameBase {
                 pauseStyle.display = "block";
                 pauseButtonStyle.display = "none";
                 playButtonStyle.display = "block";
-                audio.pause();
+                
+                if(sessionStorage.musica == 'on') {
+                    audio.pause();
+                }
             } else {
                 qrCodeStyle.display = "none";
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
-                audio.play();
+                
+                if(sessionStorage.musica == 'on') {
+                    audio.play();
+                }
             }
         }
     }
