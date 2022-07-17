@@ -3,7 +3,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Web\\": ".",
             "Db\\": "app/config/database/",
             "App\\Validators\\": "app/validators/",
             "App\\Controllers\\": "app/controllers/",
