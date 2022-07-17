@@ -3,7 +3,7 @@ namespace App;
 use Slim\Factory\AppFactory;
 use \Illuminate\Database\Capsule\Manager;
 use App\Middleware;
-use App\Routes;
+use Web\Routes;
 use Dotenv\Dotenv;
 
 class App {
