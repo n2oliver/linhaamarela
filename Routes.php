@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Web;
 use App\Controllers\HomeController;
 use App\Controllers\UsuarioInscricaoController;
 use App\Controllers\UsuarioLoginController;
