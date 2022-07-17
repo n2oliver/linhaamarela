@@ -75,10 +75,12 @@
             window.onclick = (e) => {
                 const audio = document.getElementById("game-sound");
                 if(audio.readyState) {
-                    audio.play();
-                    audio.onended = function() {
-                        audio.currentTime = 0;
+                    if(sessionStorage.musica == 'on') {
                         audio.play();
+                        audio.onended = function() {
+                            audio.currentTime = 0;
+                            audio.play();
+                        }
                     }
                 }
                 game.start(e);
@@ -86,7 +88,7 @@
         </script>
     </head>
     <body>
-        <audio id="game-sound" src="mp3/residence-tatami-main-version.mp3" controls autoplay="true" style="display: none" preload="auto"></audio>
+        <audio id="game-sound" src="mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed"></div>
         <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
         <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
