@@ -1,1 +1,1 @@
-worker: touch .env && echo $DB_HOST >> .env && echo $DB_USER >> .env && echo $DB_PASS >> .env && echo $DB_NAME >> .env
+worker: touch .env && echo $DB_HOST >> .env && echo $DB_USER >> .env && echo $DB_PASS >> .env && echo $DB_NAME >> .env && php -S localhost:8000
