@@ -1,1 +1,1 @@
-worker: bash && touch .env && echo $DB_HOST >> .env && echo $DB_USER >> .env && echo $DB_PASS >> .env && echo $DB_NAME >> .env
+worker: bash touch .env && bash echo $DB_HOST >> .env && bash echo $DB_USER >> .env && bash echo $DB_PASS >> .env && bash echo $DB_NAME >> .env
