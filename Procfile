@@ -1,1 +1,1 @@
-web: mkdir ~/.env & echo $DB_HOST >> .env & echo $DB_USER >> .env & echo $DB_PASS >> .env & echo $DB_NAME >> .env & php -S localhost:8000
+web: touch ~/.env & echo DB_HOST=$DB_HOST >> .env & echo DB_USER=$DB_USER >> .env & echo DB_PASS=$DB_PASS >> .env & echo DB_NAME=$DB_NAME >> .env & php -S localhost:8000
