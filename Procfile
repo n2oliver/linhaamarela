@@ -1,1 +1,1 @@
-web: touch ~/.env & echo $DB_HOST >> .env & echo $DB_USER >> .env & echo $DB_PASS >> .env & echo $DB_NAME >> .env & heroku-php-apache2
+web: mkdir ~/.env & echo $DB_HOST >> .env & echo $DB_USER >> .env & echo $DB_PASS >> .env & echo $DB_NAME >> .env & heroku-php-apache2
