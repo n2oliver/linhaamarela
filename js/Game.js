@@ -173,3 +173,35 @@ class Game extends GameBase {
         }
     }
 }
+
+window.game;
+            
+window.onload = (e) => {
+    const loggedUser = document.cookie.split(";").map((entry)=> {
+        const values = entry.split("=");
+        const key = values[0];
+        const value = values[1];
+        return {
+            key: key,
+            value: value
+        }
+    }).filter((entry) => { if(entry.key.trim() == "username") return entry });
+    if(loggedUser < 1) {
+        window.location = "index.html";
+    }
+    level = 1;
+    game = new Game(e, level);
+}
+window.onclick = (e) => {
+    const audio = document.getElementById("game-sound");
+    if(audio.readyState) {
+        if(sessionStorage.musica == 'on') {
+            audio.play();
+            audio.onended = function() {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }
+    }
+    game.start(e);
+}
