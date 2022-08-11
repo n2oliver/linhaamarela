@@ -87,13 +87,7 @@ class Game extends GameBase {
         }
     }
     start = (e) => {
-        window.game.setHammerEvents();
-        document.getElementById("pause").onclick = this.pause;
-        document.getElementById("pause-button").onclick = this.pause;
-        document.getElementById("play-button").onclick = this.pause;
-        document.onmousemove = window.game.yellowBox.mouseMove;
-        window.onmousedown = this.yellowBox.shot;
-        window.onclick = null;
+        window.game.setEvents();
         window.pause = false;
 
 
@@ -107,7 +101,6 @@ class Game extends GameBase {
             $(".nivel").hide();
         }, 3000);
 
-        window.onkeyup = this.pause;
         const ballInterval = window.ball.init(window.ball.attributes);
         
         this.interval = setInterval(() => {
@@ -138,16 +131,45 @@ class Game extends GameBase {
                 }
             }, 25);
     }
-    setHammerEvents = function () {
+    setEvents = function () {
         var hammerBg = new Hammer(document.getElementById("bg-transparent"));
         var hammerYellowBox = new Hammer(document.getElementById("yellow-box"));
+        var hammerAudio = new Hammer(document.getElementById("audio-button"));
         hammerBg.on('pan', window.game.yellowBox.mouseMove);
         hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
+        hammerAudio.on('tap', window.game.toggleAudio);
 
         var hammerPresentationElements = document.getElementsByClassName("unselectable");
         for(let presentation of hammerPresentationElements) {
             const hammerPresentation = new Hammer(presentation);
             hammerPresentation.on('pan', window.game.yellowBox.mouseMove);
+        }
+        document.getElementById("pause").onclick = this.pause;
+        document.getElementById("pause-button").onclick = this.pause;
+        document.getElementById("play-button").onclick = this.pause;
+        document.getElementById("audio-button").onclick = this.toggleAudio;
+        document.onmousemove = window.game.yellowBox.mouseMove;
+        window.onmousedown = this.yellowBox.shot;
+        window.onclick = null;
+        window.onkeyup = this.pause;
+    }
+    disableAudio = function () {
+        const audio = document.getElementById("game-sound");
+        audio.pause();
+        sessionStorage.setItem('musica', 'off');
+        document.getElementById("audio-button").querySelector("img").src = "img/icons8-mute-64.png";
+    }
+    enableAudio = function () {
+        const audio = document.getElementById("game-sound");
+        audio.play();
+        sessionStorage.setItem('musica', 'on');
+        document.getElementById("audio-button").querySelector("img").src = "img/icons8-alto-falante-100.png";
+    }
+    toggleAudio = function (e, game = window.game) {
+        if(sessionStorage.musica == 'on') {
+            game.disableAudio();
+        } else {
+            game.enableAudio();
         }
     }
 }

@@ -11,7 +11,7 @@ class SpaceInvader {
             document.body.append(invader);
         }
 
-        window.game.setHammerEvents();
+        window.game.setEvents();
         
         let left = true;
         return setInterval(function () {
