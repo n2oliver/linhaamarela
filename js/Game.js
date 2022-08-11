@@ -87,19 +87,6 @@ class Game extends GameBase {
         }
     }
     start = (e) => {
-        const loggedUser = document.cookie.split(";").map((entry)=> {
-            const values = entry.split("=");
-            const key = values[0];
-            const value = values[1];
-            return {
-                key: key,
-                value: value
-            }
-        }).filter((entry) => { if(entry.key.trim() == "username") return entry });
-        if(loggedUser < 1) {
-            window.location = "index.html";
-        }
-
         window.game.setHammerEvents();
         document.getElementById("pause").onclick = this.pause;
         document.getElementById("pause-button").onclick = this.pause;
