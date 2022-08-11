@@ -79,7 +79,10 @@ class Game extends GameBase {
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
-                audio.play();
+                
+                if(sessionStorage.musica == 'on') {
+                    audio.play();
+                }
             }
         }
     }
