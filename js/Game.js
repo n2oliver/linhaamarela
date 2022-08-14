@@ -186,9 +186,13 @@ window.onload = (e) => {
             value: value
         }
     }).filter((entry) => { if(entry.key.trim() == "username") return entry });
-    if(loggedUser < 1) {
+    if(loggedUser.length < 1) {
         window.location = "index.html";
+        return;
     }
+    sessionStorage.setItem('username', loggedUser[loggedUser.length - 1].value);
+    sessionStorage.setItem('ingame', true);
+    sessionStorage.setItem('userId', loggedUser[loggedUser.length - 1].id);
     level = 1;
     game = new Game(e, level);
 }
