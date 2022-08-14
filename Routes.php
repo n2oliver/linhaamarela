@@ -10,7 +10,8 @@ class Routes {
         $app->get('/', [HomeController::class, 'inicio']);
         $app->post('/inscricao', [UsuarioInscricaoController::class, 'postInscricao']);
         $app->post('/login', [UsuarioLoginController::class, 'postLogin']);
-        $app->post('/registrar-pontos', [ScoreController::class, 'handle']);
+        $app->post('/registrar-pontos', [ScoreController::class, 'postScores']);
+        $app->get('/obter-pontos', [ScoreController::class, 'getScores']);
         return $app;
     }
 }

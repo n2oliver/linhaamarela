@@ -4,14 +4,17 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use GuzzleHttp\Psr7\LazyOpenStream;
 use App\UseCases\UserHighScoreUseCase;
+use App\UseCases\HighScoresUseCase;
 
 class ScoreController {
-    private $highScoreUseCase;
+    private $userHighScoreUseCase;
+    private $highScoresUseCase;
     
     public function __construct() {
-        $this->highScoreUseCase = new UserHighScoreUseCase();
+        $this->userHighScoreUseCase = new UserHighScoreUseCase();
+        $this->highScoresUseCase = new HighScoresUseCase();
     }
-    public function handle(Request $request, Response $response, $args) {
+    public function postScores(Request $request, Response $response, $args) {
         $data = $request->getParsedBody();
         $response->getBody()->write(
             json_encode(
@@ -19,7 +22,23 @@ class ScoreController {
                     'message' => 'Sucesso!', 
                     'code' => 200, 
                     'body' => array(
-                        'insertion' => $this->highScoreUseCase->execute($data['userId'], $data['userPoints'])
+                        'insertion' => $this->userHighScoreUseCase->execute($data['userId'], $data['userPoints'])
+                    )
+                )
+            )
+        );
+        return $response->withHeader('Content-Type', 'application/json')
+            ->withStatus(201);
+    }
+    public function getScores(Request $request, Response $response, $args) {
+        $data = $request->getParsedBody();
+        $response->getBody()->write(
+            json_encode(
+                array(
+                    'message' => 'Sucesso!', 
+                    'code' => 200, 
+                    'body' => array(
+                        'scores' => $this->highScoresUseCase->execute($data['userId'])
                     )
                 )
             )

@@ -1,13 +1,15 @@
 class Counter {
     attributes;
     constructor(attributes){
-        this.attributes = attributes;
+        if(attributes){
+            this.attributes = attributes;
 
-        const styles = {
-            color: "yellow",
-            fontSize: "24px",
-            '-webkit-text-stroke': ".3px black"
+            const styles = {
+                color: "yellow",
+                fontSize: "24px",
+                '-webkit-text-stroke': ".3px black"
+            }
+            Object.assign(document.getElementById(attributes.id).style, styles);
         }
-        Object.assign(document.getElementById(attributes.id).style, styles);
     }
 }
