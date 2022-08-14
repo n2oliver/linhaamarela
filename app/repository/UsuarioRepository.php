@@ -2,6 +2,7 @@
 namespace App\Repository;
 
 use App\Models\Usuario;
+use Illuminate\Database\Capsule\Manager as DB;
 
 class UsuarioRepository {
     public function insert($attributes) {    
@@ -23,5 +24,11 @@ class UsuarioRepository {
             ->where('senha', '=', md5($attributes['senha']))
             ->orderBy('usuario.id')
             ->first();
+    }
+    public function getPreviousHighScore($userId, $userPoints) {
+        return DB::select('SELECT * FROM recordes WHERE usuario_id = :userId AND pontuacao > :userPoints', [$userId, $userPoints]);
+    }
+    public function setHighScore($userId, $userPoints) {
+        return DB::insert('REPLACE INTO recordes (usuario_id, pontuacao) VALUES (:userId, :userPoints)', [$userId, $userPoints]);
     }
 }

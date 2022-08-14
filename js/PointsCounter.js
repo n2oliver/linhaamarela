@@ -10,8 +10,23 @@ class PointsCounter extends Counter {
         Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
 
         this.increaseCounter = (points) => {
+            clearTimeout(this.timer);
             this.points += parseInt(points);
             document.getElementById(this.attributes.id).innerText = this.points;
+
+            this.timer = setTimeout(() => {
+                $.ajax({
+                    url: '/registrar-pontos',
+                    method: 'POST',
+                    type: 'json/application',
+                    data: { userId: sessionStorage.userId, userPoints: this.points},
+                }).done((data)=>{
+                    console.log(data);
+                }).fail((error)=>{
+                    console.log(error.responseText);
+                });
+            },3000);
+            
         }
     }
 }
