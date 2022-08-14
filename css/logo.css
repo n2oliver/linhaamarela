@@ -1,14 +1,16 @@
 .logo {
     width: 100%;
     height: auto;
-    background-color: white;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
-    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+}
+.logo-fixed {
+    position: fixed;
 }
 .intro-logo img {
     background-image: radial-gradient(circle, white, transparent, transparent);
@@ -33,6 +35,6 @@
 .intro-logo {
     width: 12em; 
     position: fixed; 
-    bottom: 32px; 
-    right: 32px
+    top: 0; 
+    left: 0;
 }
