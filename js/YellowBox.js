@@ -12,7 +12,7 @@ class YellowBox extends GameObject {
         this.updatePosition = function(event, gameObject = this) {
             let xOffset = event.pageX;
             if(isNaN(event.pageX) && event.center) {
-                event.center.x
+                xOffset = event.center.x
             }
             let positionX = xOffset < window.innerWidth - 60 ? xOffset : window.innerWidth - 60;
             positionX = xOffset > 8 ? positionX : 8;
