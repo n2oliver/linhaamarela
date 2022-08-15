@@ -102,3 +102,67 @@ class Login {
         return invalid;
     }
 }
+window.onload = (e) => {
+    level = 1;
+    window.game = new GameIntro(e, level);
+    game.start(e);
+    function prepareForm() {
+        document.querySelector(".intro-container button").addEventListener("click", function () {
+            $( ".intro-container" ).fadeOut( "slow");
+            $( ".intro-logo" ).fadeOut( "slow");
+        });
+    }
+    bootbox.confirm({
+        size: 'small',
+        message: 'Habilitar a música?', 
+        buttons: {
+            confirm: {
+                label: 'Sim',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'Não',
+                className: 'btn-danger'
+            }
+        },
+        callback: function(result) {
+            if(result) {
+                const audio = document.getElementById("main-menu-sound");
+                if(audio.readyState) {
+                    audio.play();
+                    audio.onended = function() {
+                        audio.currentTime = 0;
+                        audio.play();
+                    }
+                    sessionStorage.setItem("musica", "on");
+                }
+                prepareForm();
+                return;
+            }
+            
+            sessionStorage.setItem("musica", "off");
+            prepareForm();
+        }
+    });
+    
+    setTimeout(() => {
+        $( "#intro-logo" ).fadeOut( "slow");
+    }, 3000);
+
+    $("#login").click((e)=>{
+        $(".info-inscricao").hide();
+        $(".info-entrar").show();
+        $("#inscricao").css("color", "gray");
+        $("#inscricao").css("font-size", "16px");
+        $(e.target).css("color", "blue");
+        $(e.target).css("font-size", "24px");
+    });
+    $("#inscricao").click((e)=>{
+        $(".info-entrar").hide();
+        $(".info-inscricao").show();
+        $("#login").css("color", "gray");
+        $("#login").css("font-size", "16px");
+        $(e.target).css("color", "blue");
+        $(e.target).css("font-size", "24px");
+    });
+}
