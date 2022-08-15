@@ -185,7 +185,10 @@ window.onload = (e) => {
             key: key,
             value: value
         }
-    }).filter((entry) => { if(entry.key.trim() == "username") return entry });
+    }).filter((entry) => {
+        if(entry.key.trim() == "username") 
+            return entry;
+    });
     if(loggedUser.length < 1) {
         window.location = "index.html";
         return;

@@ -6,9 +6,9 @@ class SpaceInvaderNPC {
             invader.classList.add("invader");
             invader.classList.add("unselectable");
             invader.style.left = i + "%";
-            invader.style.top = "100px";
+            invader.style.top = "0px";
             invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
-            document.body.append(invader);
+            document.getElementById("invaders").append(invader);
         }
         
         let left = true;

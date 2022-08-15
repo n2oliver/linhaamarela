@@ -34,7 +34,7 @@ class Login {
                             window.sessionStorage.setItem('userId', data.id);
                             const expiraEm = new Date();
                             expiraEm.setTime(data.expiraEm * 1000);
-                            document.cookie = `id=${data.id}; username=${data.nomedeusuario}; expires=${expiraEm.toUTCString()}`;
+                            document.cookie = `username=${data.nomedeusuario}; expires=${expiraEm.toUTCString()}`;
                             Toastify({
                                 text: "Login realizado com sucesso!",
                                 duration: 3000,
