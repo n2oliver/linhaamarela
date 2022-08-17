@@ -6,11 +6,9 @@
     -ms-user-select: none;
     user-select: none;
 }
-
 .presentation {
     font-weight: 500;
     font-size: 40px;
-    font-family: Big John;
     margin: 0 auto;
     height: 100%;
     position: relative;
