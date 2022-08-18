@@ -31,14 +31,14 @@ class ScoreController {
             ->withStatus(201);
     }
     public function getScores(Request $request, Response $response, $args) {
-        $data = $request->getParsedBody();
+        $data = $request->getQueryParams();
         $response->getBody()->write(
             json_encode(
                 array(
                     'message' => 'Sucesso!', 
                     'code' => 200, 
                     'body' => array(
-                        'scores' => $this->highScoresUseCase->execute($data['userId'])
+                        'scores' => $this->highScoresUseCase->execute($data['userId'], $data['page'])
                     )
                 )
             )

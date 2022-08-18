@@ -10,7 +10,7 @@ class UserHighScoreUseCase {
     }
 
     public function execute($userId, $userPoints) {
-        if(count($this->repository->getPreviousHighScore($userId, $userPoints)) < 1) {
+        if(count($this->repository->getCurrentHighScore($userId)) == 0 || count($this->repository->getPreviousHighScore($userId, $userPoints)) < 1) {
             return $this->repository->setHighScore($userId, $userPoints);
         }
         return json_encode([]);

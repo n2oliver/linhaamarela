@@ -38,6 +38,11 @@ class Inscricao {
                         "senha-inscricao": senhaInscricaoField.value
                     }).done(
                         function(data){
+                            const usuario = data.body.insertion.usuario;
+                            window.sessionStorage.setItem('userId', usuario.id);
+                            const expiraEm = new Date();
+                            expiraEm.setTime(usuario.expiraEm * 1000);
+                            document.cookie = `username=${usuario.nomedeusuario}; expires=${expiraEm.toUTCString()}`;
                             Toastify({
                                 text: "Inscrição realizada com sucesso!",
                                 duration: 3000,

@@ -29,12 +29,16 @@ class PointsCounter extends Counter {
             },3000); 
         }
     }
-    static getHighScores = async () => {
+    static getHighScores = async (page) => {
+        const params = { userId: sessionStorage.userId };
+        if(page) {
+            params.page = page;
+        }
         return $.ajax({
             url: '/obter-pontos',
             method: 'GET',
             type: 'json/application',
-            data: { userId: sessionStorage.userId },
+            data: params,
         }).done((data)=>{
             return data;
         }).fail((error)=>{
