@@ -17,10 +17,12 @@ class GameOver extends GameBase {
 }
 function listScores (data) {
     const yourPoints = data.body.scores.userHighScore;
-    $('#your-points tbody').html("").append(
-        `<tr>
-            <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td>${sessionStorage.pontuacao || 0} pontos</td><td>${yourPoints.pontuacao} pontos</td>
-        </tr>`);
+    if(yourPoints) {
+        $('#your-points tbody').html("").append(
+            `<tr>
+                <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td>${sessionStorage.pontuacao || 0} pontos</td><td>${yourPoints.pontuacao} pontos</td>
+            </tr>`);
+    }
 
     $('#all-points tbody').html("");
     for(let index in data.body.scores.rows) {
