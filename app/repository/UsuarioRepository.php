@@ -38,7 +38,7 @@ class UsuarioRepository {
         return DB::select('SELECT * FROM recordes WHERE usuario_id = :userId AND pontuacao > :userPoints', [$userId, $userPoints]);
     }
     public function getCurrentHighScore($userId) {
-        return DB::select('SELECT * FROM (SELECT pontuacao, ROW_NUMBER() OVER () AS posicao, usuario_id FROM recordes ORDER BY pontuacao DESC) as c WHERE c.usuario_id = :userId', [$userId]);
+        return DB::select('SELECT * FROM (SELECT pontuacao, @rowid := @rowid + 1 AS posicao, usuario_id FROM recordes, (SELECT @rowid := 0) dummy ORDER BY pontuacao DESC) as c WHERE c.usuario_id = :userId', [$userId]);
     }
     public function setHighScore($userId, $userPoints) {
         return DB::insert('REPLACE INTO recordes (usuario_id, pontuacao) VALUES (:userId, :userPoints)', [$userId, $userPoints]);
