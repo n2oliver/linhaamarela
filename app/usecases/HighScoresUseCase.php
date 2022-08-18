@@ -16,7 +16,8 @@ class HighScoresUseCase {
         $previous = $page - 1;
         $next = $page + 1;
         return [
-            'rows' => $this->repository->getHighScores($userId, $page * 10, $limit),
+            'userHighScore' => $this->repository->getCurrentHighScore($userId)[0],
+            'rows' => $this->repository->getHighScores($page * 10, $limit),
             'pages' => $pages,
             'prev' => $previous,
             'next' => $next

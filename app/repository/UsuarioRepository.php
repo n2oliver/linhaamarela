@@ -25,17 +25,11 @@ class UsuarioRepository {
             ->orderBy('usuario.id')
             ->first();
     }
-    public function getHighScores($userId, $page, $limit) {
-        return DB::select('SELECT usuario.nomedeusuario, pontuacao.*
-                            FROM
-                            ((SELECT * FROM recordes 
-                                WHERE usuario_id = :userId 
-                                ORDER BY usuario_id DESC LIMIT 1) 
-                            UNION ALL 
-                            (SELECT * FROM recordes )) AS pontuacao 
+    public function getHighScores($page, $limit) {
+        return DB::select('SELECT * FROM recordes
                             JOIN usuario 
-                            ON usuario.id = pontuacao.usuario_id 
-                                ORDER BY pontuacao.pontuacao DESC LIMIT :page, :limit', [$userId, $page, $limit]);
+                            ON usuario.id = usuario_id 
+                                ORDER BY pontuacao DESC LIMIT :page, :limit', [$page, $limit]);
     }
     public function getTotalHighScores() {
         return DB::select('SELECT COUNT(*) as total FROM recordes JOIN usuario ON usuario.id = usuario_id ORDER BY pontuacao DESC');
@@ -44,7 +38,7 @@ class UsuarioRepository {
         return DB::select('SELECT * FROM recordes WHERE usuario_id = :userId AND pontuacao > :userPoints', [$userId, $userPoints]);
     }
     public function getCurrentHighScore($userId) {
-        return DB::select('SELECT * FROM recordes WHERE usuario_id = :userId', [$userId]);
+        return DB::select('SELECT * FROM (SELECT pontuacao, ROW_NUMBER() OVER () AS posicao, usuario_id FROM recordes ORDER BY pontuacao DESC) as c WHERE c.usuario_id = :userId', [$userId]);
     }
     public function setHighScore($userId, $userPoints) {
         return DB::insert('REPLACE INTO recordes (usuario_id, pontuacao) VALUES (:userId, :userPoints)', [$userId, $userPoints]);

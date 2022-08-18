@@ -16,18 +16,17 @@ class GameOver extends GameBase {
     };
 }
 function listScores (data) {
+    const yourPoints = data.body.scores.userHighScore;
+    $('#your-points tbody').html("").append(
+        `<tr>
+            <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td>${sessionStorage.pontuacao || 0} pontos</td><td>${yourPoints.pontuacao} pontos</td>
+        </tr>`);
+
     $('#all-points tbody').html("");
     for(let index in data.body.scores.rows) {
         const points = data.body.scores.rows[index];
         const page = data.page || 0;
         const position =parseInt((page*10)+parseInt(index)) + 1;
-        if(points.usuario_id == sessionStorage.userId) {
-            $('#your-points tbody').html("").append(
-                `<tr>
-                    <td class="presentation text-warning"><a href="#posicao">#${position}</a></td><td>${points.nomedeusuario}</td><td>${sessionStorage.pontuacao || 0} pontos</td><td>${points.pontuacao} pontos</td>
-                </tr>`);
-            console.log('YOU:', points);
-        }
         $('#all-points tbody').append(
             `<tr>
                 <td><a id="posicao" href="#posicao">#${position}</a></td><td>${points.nomedeusuario}</td><td>${points.pontuacao} pontos</td>
