@@ -30,17 +30,25 @@ class Ball extends GameObject {
 
                     if(left <= 0) estadoDaDirecao = Ball.moverParaADireita(estadoDaDirecao);
 
-                    if(!estadoDaDirecao.paraADireita) estadoDaDirecao = Ball.moverParaAEsquerda(estadoDaDirecao);
-
                     if(top <= 0) estadoDaDirecao = Ball.moverParaBaixo(estadoDaDirecao);
 
-                    if(!estadoDaDirecao.paraBaixo) estadoDaDirecao = Ball.moverParaCima(estadoDaDirecao);
-
                     if(left >= window.innerWidth - 32) estadoDaDirecao = Ball.moverParaAEsquerda(estadoDaDirecao);
+
+                    if(!estadoDaDirecao.paraADireita) estadoDaDirecao = Ball.moverParaAEsquerda(estadoDaDirecao);
  
                     if(!estadoDaDirecao.paraAEsquerda) estadoDaDirecao = Ball.moverParaADireita(estadoDaDirecao);
 
-                    if(top + height >= limiteHorizontalInferior && top <= limiteHorizontalInferior && right >= supportBar.offsetLeft - 32 && left <= supportBarRight) {
+                    if(!estadoDaDirecao.paraCima) estadoDaDirecao = Ball.moverParaBaixo(estadoDaDirecao);
+
+                    if(!estadoDaDirecao.paraBaixo) estadoDaDirecao = Ball.moverParaCima(estadoDaDirecao);
+
+                    const pisoDaBola = top + height;
+                    const passouDoLimiteInferior = pisoDaBola >= limiteHorizontalInferior;
+                    const topoDaBolaAcimaDolimiteInferior = top <= limiteHorizontalInferior;
+                    const colisaoDaBolaComALinhaAmarela = right >= supportBar.offsetLeft - 32 && left <= supportBarRight;
+                    const ocorreuColisao = passouDoLimiteInferior && topoDaBolaAcimaDolimiteInferior && colisaoDaBolaComALinhaAmarela;
+
+                    if(ocorreuColisao) {
                         estadoDaDirecao = Ball.moverParaCima(estadoDaDirecao);
                         const audio = document.getElementById("toque-linha-amarela");
                         if(audio && audio.readyState) {
@@ -48,10 +56,9 @@ class Ball extends GameObject {
                         }
                     }
 
-                    if(!estadoDaDirecao.paraCima) estadoDaDirecao = Ball.moverParaBaixo(estadoDaDirecao);
-
-                    let direction = 3;
-                    if(estadoDaDirecao.paraAEsquerda) direction = -3;
+                    let direction;
+                    if(estadoDaDirecao.paraAEsquerda) direction = -3
+                    else direction = 3;
 
                     objectStyle.left = (left + direction * attributes.velocity) + "px";
 
