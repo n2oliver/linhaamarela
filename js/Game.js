@@ -6,6 +6,8 @@ class Game extends GameBase {
     yellowBox;
     invaderInterval;
     interval;
+    audioManager;
+    backgroundMusic;
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
         
@@ -30,6 +32,8 @@ class Game extends GameBase {
         if(lives != null) {
             this.livesCounter.lives = lives;
         }
+        this.audioManager = new AudioManager();
+        this.backgroundMusic = document.getElementById("game-sound");
     };
     yellowBox = new YellowBox({
         id: "yellow-box",
@@ -137,7 +141,9 @@ class Game extends GameBase {
         var hammerAudio = new Hammer(document.getElementById("audio-button"));
         hammerBg.on('pan', window.game.yellowBox.mouseMove);
         hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
-        hammerAudio.on('tap', window.game.toggleAudio);
+        hammerAudio.on('tap', () => { 
+            window.game.audioManager.toggleAudio(window.game.backgroundMusic);
+        });
 
         var hammerPresentationElements = document.getElementsByClassName("unselectable");
         for(let presentation of hammerPresentationElements) {
@@ -152,25 +158,6 @@ class Game extends GameBase {
         window.onmousedown = this.yellowBox.shot;
         window.onclick = null;
         window.onkeyup = this.pause;
-    }
-    disableAudio = function () {
-        const audio = document.getElementById("game-sound");
-        audio.pause();
-        sessionStorage.setItem('musica', 'off');
-        document.getElementById("audio-button").querySelector("img").src = "img/icons8-mute-64.png";
-    }
-    enableAudio = function () {
-        const audio = document.getElementById("game-sound");
-        audio.play();
-        sessionStorage.setItem('musica', 'on');
-        document.getElementById("audio-button").querySelector("img").src = "img/icons8-alto-falante-100.png";
-    }
-    toggleAudio = function (e, game = window.game) {
-        if(sessionStorage.musica == 'on') {
-            game.disableAudio();
-        } else {
-            game.enableAudio();
-        }
     }
 }
 
@@ -199,15 +186,6 @@ window.onload = (e) => {
     game = new Game(e, level);
 }
 window.onclick = (e) => {
-    const audio = document.getElementById("game-sound");
-    if(audio.readyState) {
-        if(sessionStorage.musica == 'on') {
-            audio.play();
-            audio.onended = function() {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        }
-    }
+    window.game.audioManager.playAsBgMusic(window.game.backgroundMusic);
     game.start(e);
 }
