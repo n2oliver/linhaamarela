@@ -6,7 +6,7 @@ class GameIntro extends GameBase {
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
         
-        window.ball = new BallNPC({
+        window.ball = new Ball({
             id: "red-ball",
             supportBarId: "yellow-box",
             width: 16,
