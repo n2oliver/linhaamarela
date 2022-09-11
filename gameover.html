@@ -22,6 +22,8 @@
         <script src="js/SpaceInvaderNPC.js"></script>
         <script src="js/GameBase.js"></script>
         <script src="js/GameOver.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+        <script src="js/Share.js"></script>
         <script>
             window.game;
             window.onload = (e) => {
@@ -53,7 +55,7 @@
                 <table id="your-points" class="table table-center">
                     <thead>
                         <tr>
-                            <th>Posição</th><th>Nome</th><th>Pontos</th><th>Pontuação máxima</th>
+                            <th>Posição</th><th>Usuário</th><th>Pontuação</th><th>Recorde</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +63,8 @@
                 </table>
             </div>
             <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px; text-align: center; position: relative; left: 0; right: 0;" class="presentation text-warning">
-                <a href="/game.html"><button class="button">Novo jogo</button></a>
+                <a href="/game.html"><button class="button" style="background: limegreen">Novo jogo</button></a>
+                <button id="compartilhar" class="button" style="height: auto;">Baixe o resultado e compartilhe</button>
             </div>
         </div>
         <div class="row">
@@ -73,7 +76,7 @@
                 <table id="all-points" class="table">
                     <thead>
                         <tr>
-                            <th>Posição</th><th>Nome</th><th>Pontos</th>
+                            <th>Posição</th><th>Usuário</th><th>Pontuação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,6 +107,11 @@
             <div class="col-md-2"></div>
             <div id="invaders" class="col-md-8"></div>
             <div class="col-md-2"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2" id="output"></div>
         </div>
     </body>
 </html>

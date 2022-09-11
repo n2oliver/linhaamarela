@@ -20,7 +20,7 @@ function listScores (data) {
     if(yourPoints) {
         $('#your-points tbody').html("").append(
             `<tr>
-                <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td>${sessionStorage.pontuacao || 0} pontos</td><td>${yourPoints.pontuacao} pontos</td>
+                <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td class="pontuacao">${sessionStorage.pontuacao || 0} pontos</td><td class="recorde">${yourPoints.pontuacao} pontos</td>
             </tr>`);
     }
 
@@ -59,5 +59,8 @@ function listScores (data) {
         }).catch(error => {
             console.log(error);
         });
+    });
+    $('#compartilhar').click(function() {
+        share();
     });
 }
