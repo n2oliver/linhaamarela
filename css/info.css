@@ -1,5 +1,6 @@
 .info {
-    width: 80%;
+    width: 40%;
+    min-width: 280px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
