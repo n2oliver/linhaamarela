@@ -28,14 +28,38 @@
         <script src="js/GameBase.js"></script>
         <script src="js/Game.js"></script>
         <script type="text/javascript" src="https://apycdn.com/clundr/815/subaccount"></script>
+        <style>
+            .menu {
+                width: -webkit-fill-available;
+                height: 64px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            .menu .menu-item:not(.play-button) {
+                float: right;
+            }
+            .markers {
+                display: list-item !important;
+            }
+        </style>
     </head>
     <body>
         <audio id="game-sound" src="mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
-        <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed"></div>
-        <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
-        <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
-        <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
-        <div id="logo" class="unselectable game-logo"><img width="100%" src="img/logo-linhaamarela.png"/></div>
+        <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>
+        
+        <div class="menu">
+            <div class="menu-item markers">
+                <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
+                <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+                <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
+            </div>
+            <div id="logo" class="unselectable game-logo"><img src="img/logo-linhaamarela.png"/></div>
+            <div id="pause-button" class="unselectable pause-button menu-item"><img src="img/pause-icon-png-12.jpg"/></div>
+            <div id="play-button" class="unselectable play-button menu-item"><img src="img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
+            <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="img/icons8-alto-falante-100.png"/></div>
+
+        </div>
         <div id="qr-code" style="display: none; color: white;" class="qr-code rotate-center">
             <div>Aceitamos doações:</div>
             <div>Chave PIX:</div>
@@ -45,9 +69,6 @@
         <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
         <div id="red-ball"></div>
         <div id="yellow-box"></div>
-        <div id="pause-button" class="unselectable pause-button"><img width="100%" src="img/pause-icon-png-12.jpg"/></div>
-        <div id="play-button" class="unselectable play-button"><img width="100%" src="img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
-        <div id="audio-button" class="unselectable audio-button"><img width="100%" src="img/icons8-alto-falante-100.png"/></div>
         <div id="pause" class="pause unselectable rotate-center">Pause</div>
         <audio id="toque-linha-amarela" src="mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
     </body>

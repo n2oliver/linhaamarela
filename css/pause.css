@@ -22,9 +22,13 @@
 }
 .pause-button, .play-button {
     width: 4em; 
-    position: fixed; 
     top: 64px; 
-    right: 32px
+    right: 32px;
+}
+
+.pause-button img, .play-button img {
+    width: 64px;
+    height: auto;
 }
 .play-button {
     display: none;
