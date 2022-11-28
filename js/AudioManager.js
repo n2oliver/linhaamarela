@@ -1,6 +1,7 @@
 class AudioManager {
-    playAsBgMusic  = function (audio) {
-        if(audio.readyState && sessionStorage.musica == 'on') {
+    playAsBgMusic  = function () {
+        const audio = document.getElementById("game-sound");
+        if(!audio.paused) {
             audio.play();
             audio.onended = function() {
                 audio.currentTime = 0;
@@ -8,21 +9,26 @@ class AudioManager {
             }
         }
     }
-    toggleAudio = function (audio) {
-        if(sessionStorage.musica == 'on') {
+    toggleAudio = function () {
+        const audio = document.getElementById("game-sound");
+        if(window.pause) {
             window.game.audioManager.disableAudio(audio);
             return;
         }
-        window.game.audioManager.enableAudio(audio);
+        if(audio.paused) {
+            window.game.audioManager.enableAudio(audio);
+        } else {
+            window.game.audioManager.disableAudio(audio);
+        }
     }
-    disableAudio = function (audio) {
+    disableAudio = function () {
+        const audio = document.getElementById("game-sound");
         audio.pause();
-        sessionStorage.setItem('musica', 'off');
         document.getElementById("audio-button").querySelector("img").src = "img/icons8-mute-64.png";
     }
-    enableAudio = function (audio) {
+    enableAudio = function () {
+        const audio = document.getElementById("game-sound");
         audio.play();
-        sessionStorage.setItem('musica', 'on');
         document.getElementById("audio-button").querySelector("img").src = "img/icons8-alto-falante-100.png";
     }
 }

@@ -7,7 +7,6 @@ class Game extends GameBase {
     invaderInterval;
     interval;
     audioManager;
-    backgroundMusic;
     constructor(e, level, points, lives) {
         super(e, level, points, lives);
         
@@ -33,7 +32,6 @@ class Game extends GameBase {
             this.livesCounter.lives = lives;
         }
         this.audioManager = new AudioManager();
-        this.backgroundMusic = document.getElementById("game-sound");
     };
     yellowBox = new YellowBox({
         id: "yellow-box",
@@ -84,7 +82,7 @@ class Game extends GameBase {
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
                 
-                if(sessionStorage.musica == 'on') {
+                if(document.getElementById("audio-button").querySelector("img").src.includes("img/icons8-alto-falante-100.png")) {
                     audio.play();
                 }
             }
@@ -141,9 +139,9 @@ class Game extends GameBase {
         var hammerAudio = new Hammer(document.getElementById("audio-button"));
         hammerBg.on('pan', window.game.yellowBox.mouseMove);
         hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
-        hammerAudio.on('tap', () => { 
-            window.game.audioManager.toggleAudio(window.game.backgroundMusic);
-        });
+        document.getElementById("audio-button").onclick = () => { 
+            window.game.audioManager.toggleAudio();
+        };
 
         var hammerPresentationElements = document.getElementsByClassName("unselectable");
         for(let presentation of hammerPresentationElements) {
@@ -153,7 +151,6 @@ class Game extends GameBase {
         document.getElementById("pause").onclick = this.pause;
         document.getElementById("pause-button").onclick = this.pause;
         document.getElementById("play-button").onclick = this.pause;
-        document.getElementById("audio-button").onclick = this.toggleAudio;
         document.onmousemove = window.game.yellowBox.mouseMove;
         window.onmousedown = this.yellowBox.shot;
         window.onclick = null;
@@ -186,6 +183,6 @@ window.onload = (e) => {
     game = new Game(e, level);
 }
 window.onclick = (e) => {
-    window.game.audioManager.playAsBgMusic(window.game.backgroundMusic);
+    window.game.audioManager.playAsBgMusic();
     game.start(e);
 }
