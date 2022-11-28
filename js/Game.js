@@ -81,8 +81,8 @@ class Game extends GameBase {
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
-                
-                if(document.getElementById("audio-button").querySelector("img").src.includes("img/icons8-alto-falante-100.png")) {
+                const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("img/icons8-alto-falante-100.png");
+                if(audioIsEnabled) {
                     audio.play();
                 }
             }

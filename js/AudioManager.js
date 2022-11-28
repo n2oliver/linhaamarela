@@ -1,7 +1,8 @@
 class AudioManager {
     playAsBgMusic  = function () {
         const audio = document.getElementById("game-sound");
-        if(!audio.paused) {
+        const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("img/icons8-alto-falante-100.png");
+        if(audio.paused && audioIsEnabled) {
             audio.play();
             audio.onended = function() {
                 audio.currentTime = 0;
