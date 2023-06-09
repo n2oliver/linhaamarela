@@ -49,12 +49,17 @@ class Login {
                         }
                     ).fail(
                         function(error) {
+                            let destination = "#"
+                            if(error.responseText.includes('meiodiagames.herokuapp.com')) {
+                                destination = 'https://meiodiagames.herokuapp.com';
+                            }
                             Toastify({
                                 text: error.responseText,
                                 duration: 3000,
                                 style: {
                                 background: "linear-gradient(to right, #b09b00, #ff0000)",
                                 },
+                                destination
                             }).showToast();
                         }
                     );
