@@ -25,6 +25,15 @@ class UsuarioInscricaoController {
         $formData['nomedeusuario'] = $formData['nomedeusuario-inscricao'];
         $formData['senha'] = $formData['senha-inscricao'];
         $formData['senha-inscricao'] = md5($formData['senha-inscricao']);
+        
+        $usuario = $this->encontrarUsuario->execute($formData);
+        
+        if($usuario) {
+            $response->getBody()->write('Usuário já existente, clique em login para entrar!');
+            return $response->withHeader('Content-Type', 'application/json')
+                ->withStatus(400);
+        }
+        
         $insertion = $this->inscreverUsuario->execute($formData);
 
         $expirationTimestamp = time() + 28800;
