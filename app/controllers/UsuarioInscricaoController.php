@@ -7,6 +7,7 @@ use App\UseCases\UsuarioInscreverUseCase;
 use App\UseCases\UsuarioEncontrarUseCase;
 use App\UseCases\UsuarioLoginUseCase;
 use \Firebase\JWT\JWT;
+use \Stripe\StripeClient;
 
 class UsuarioInscricaoController {
     private $inscreverUsuario;
@@ -31,6 +32,16 @@ class UsuarioInscricaoController {
         if($usuario) {
             $response->getBody()->write('Usuário já existente, clique em login para entrar!');
             return $response->withHeader('Content-Type', 'application/json')
+                ->withStatus(400);
+        }
+
+        $stripe = new \Stripe\StripeClient('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');
+        $possuiOJogo = false;
+        $customer = $stripe->customers->search(['query' => 'email:"'. $formData['email-inscricao'] . '"']);
+        if (!isset($customer->data[0])) {
+            $response->getBody()->write("Você ainda não possui este jogo. Para obtê-lo visite https://meiodiagames.herokuapp.com");
+            return $response
+                ->withHeader('Content-Type', 'application/json')
                 ->withStatus(400);
         }
         
