@@ -39,30 +39,34 @@
         <style>
             .menu {
                 height: 64px;
-                display: flex;
-                flex-wrap: wrap;
+                display: inline-flex;
+                flex-wrap: nowrap;
                 justify-content: flex-start;
                 float: right;
+                padding: 20px 20px 0 20px;
             }
             .markers {
                 display: list-item !important;
+                padding: 20px 20px 0 20px;
             }
         </style>
     </head>
     <body>
         <audio id="game-sound" src="mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
+        
+        <div class="menu">
+            <div id="logo" class="unselectable game-logo"><img src="img/logo-linhaamarela.png"/></div>
+        </div>
+        <div class="menu">
+            <div id="pause-button" class="unselectable pause-button menu-item"><img src="img/pause-icon-png-12.jpg"/></div>
+            <div id="play-button" class="unselectable play-button menu-item"><img src="img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
+            <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="img/icons8-alto-falante-100.png"/></div>
+        </div>
         <div class="menu-item markers">
             <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
             <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
             <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
-        </div>
-        <div class="menu">
-            <div id="logo" class="unselectable game-logo"><img src="img/logo-linhaamarela.png"/></div>
-            <div id="pause-button" class="unselectable pause-button menu-item"><img src="img/pause-icon-png-12.jpg"/></div>
-            <div id="play-button" class="unselectable play-button menu-item"><img src="img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
-            <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="img/icons8-alto-falante-100.png"/></div>
-
         </div>
         <div id="qr-code" style="display: none; color: white;" class="qr-code rotate-center">
             <div>Aceitamos doações:</div>
