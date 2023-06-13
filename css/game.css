@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Big John;
+    src: url(fonts\big_john.otf);
+ }
 .rotate-center {
     -webkit-animation: rotate-center 0.6s ease-in-out both;
     animation: rotate-center 0.6s ease-in-out both;
