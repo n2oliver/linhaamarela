@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Linha Amarela</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+        <!-- Dependências de terceiros -->
+        <!-- CSS -->
+        <link rel="shortcut icon" href="iconlinhaamarela.ico" type="image/x-icon"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <!-- Javascript -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+        <script src="js/vendor/require.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+        <!-- Dependências do projeto -->
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/logo.css"/>
+        <link rel="stylesheet" href="css/pause.css"/>
+        <link rel="stylesheet" href="css/info.css"/>
+        <link rel="stylesheet" href="css/markers.css"/>
+        <link rel="stylesheet" href="css/login-inscricao.css"/>
+        <!-- Javascript -->
+        <script src="js/Login.js"></script>
+        <script src="js/Inscricao.js"></script>
+        <script src="js/Background.js"></script>
+        <script src="js/GameObject.js"></script>
+        <script src="js/YellowBoxNPC.js"></script>
+        <script src="js/Ball.js"></script>
+        <script src="js/GameBase.js"></script>
+        <script src="js/GameIntro.js"></script>
+        <script>
+            window.onload = (e) => {
+                level = 1;
+                window.game = new GameIntro(e, level);
+                game.start(e);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Linha Amarela</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="/">Página inicial <span class="sr-only">(página atual)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/login">Login/Registro</a>
+                    </li>
+                </ul>
+                </div>
+            </nav>
+        </div>
+        <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px;" class="presentation text-warning"><img width="100%" src="img/logo-linhaamarela.png"/></div>
+        <div class="info">
+            <div>
+                <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Registro</a></h2>
+                <label for="nomedeusuario-inscricao" class="info-inscricao">Nome de usuário:</label>
+                <div class="info-inscricao"><input type="text" id="nomedeusuario-inscricao" placeholder="usuario"/></div>
+
+                <label for="email-inscricao" class="info-inscricao">Email:</label>
+                <div class="info-inscricao"><input type="email" id="email-inscricao" placeholder="email@email.com"/></div>
+
+                <label for="senha-inscricao" class="info-inscricao">Senha:</label>
+                <div class="info-inscricao"><input type="password" id="senha-inscricao" placeholder="******"/></div>
+
+                <div class="info-inscricao"><button id="submit-inscricao">Registrar</button></div>
+
+                <label for="nomedeusuario" class="info-entrar">Nome de usuário:</label>
+                <div class="info-entrar"><input type="text" id="nomedeusuario" placeholder="usuario"/></div>
+
+                <label for="senha" class="info-entrar">Senha:</label>
+                <div class="info-entrar"><input type="password" id="senha" placeholder="******"/></div>
+
+                <div class="" style="display: none"><a href="#">Esqueci minha senha</a></div>
+
+                <div class="info-entrar"><button id="submit">Entrar</button></div>
+            </div>
+            <div id="qr-code" class="qr-code rotate-center">
+                <div>Aceitamos doações:</div>
+                <div>Chave PIX:</div>
+                <div><img src="img/qrcode-pix.png"/></div>
+                <div>silva.liver@gmail.com</div>
+            </div>
+        </div>
+        
+        </div>
+        <div id="red-ball"></div>
+        <div id="yellow-box"></div>
+        <script>
+            $("#login").click((e)=>{
+                $(".info-inscricao").hide();
+                $(".info-entrar").show();
+                $("#inscricao").css("color", "gray");
+                $("#inscricao").css("font-size", "16px");
+                $(e.target).css("color", "blue");
+                $(e.target).css("font-size", "24px");
+            });
+            $("#inscricao").click((e)=>{
+                $(".info-entrar").hide();
+                $(".info-inscricao").show();
+                $("#login").css("color", "gray");
+                $("#login").css("font-size", "16px");
+                $(e.target).css("color", "blue");
+                $(e.target).css("font-size", "24px");
+            });
+        </script>
+    </body>
+</html>

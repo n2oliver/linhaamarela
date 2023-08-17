@@ -5,9 +5,8 @@ class GameBase {
     level;
     background;
     backgroundImages = [
-        "img/planicie.jpg",
-        "img/eric-muhr-KrMhhUqdS-w-unsplash.jpg",
-        "img/island.jpg"
+        "img/upscaled-monsters.png",
+        "img/upscaled-monsters-2.png",
     ];
     constructor(e, level, points, lives) {
         this.level = level;

@@ -10,4 +10,9 @@ class HomeController {
         $newResponse = $response->withBody($newStream);
         return $newResponse;
     }
+    public function login(Request $request, Response $response, $args) {
+        $newStream = new LazyOpenStream('login.html', 'r');
+        $newResponse = $response->withBody($newStream);
+        return $newResponse;
+    }
 }
