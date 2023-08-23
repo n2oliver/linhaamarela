@@ -28,8 +28,8 @@ class UsuarioInscricaoController {
         $formData['senha-inscricao'] = md5($formData['senha-inscricao']);
         
         $usuario = $this->encontrarUsuario->execute($formData);
-        
-        if($usuario) {
+
+        if(isset($usuario)) {
             $response->getBody()->write('Usuário já existente, clique em login para entrar!');
             return $response->withHeader('Content-Type', 'application/json')
                 ->withStatus(400);

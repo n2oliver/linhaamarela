@@ -20,7 +20,10 @@ class UsuarioRepository {
                 $join->on('usuario.id', '=', 'l.usuario_id');
             })
             ->select(array('usuario.id', 'email', 'l.id as login_id', 'usuario.nomedeusuario'))
-            ->where('nomedeusuario', '=', $attributes['nomedeusuario'])
+            ->where(function($query) use ($attributes) {
+                $query->where('nomedeusuario', '=', $attributes['nomedeusuario'])
+                    ->orWhere('email', '=', $attributes['email-inscricao']);
+            })
             ->where('senha', '=', md5($attributes['senha']))
             ->orderBy('usuario.id')
             ->first();
