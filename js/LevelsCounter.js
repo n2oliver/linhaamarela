@@ -3,6 +3,7 @@
 class LevelsCounter extends Counter  {
     level = 1;
     levelUp = new Event("levelup");
+    demo = false;
     constructor(attributes) {
         super(attributes);
         this.attributes = attributes;
@@ -12,7 +13,8 @@ class LevelsCounter extends Counter  {
         }
         Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
 
-        this.increaseCounter = (points, previousLevel) => {
+        this.increaseCounter = (points, previousLevel, demo) => {
+            this.demo = demo;
             window.game.levelsCounter.level = parseInt((points + 250) / 250);
 
             if(previousLevel < parseInt((points + 250) / 250)) {
@@ -23,6 +25,11 @@ class LevelsCounter extends Counter  {
     }
     setLevelUp = function() {
         document.addEventListener('levelup', function (e) {
+            if(window.game.levelsCounter.demo) {
+                alert('Essa é apenas uma demonstração, para continuar jogando, você precisa estar logado. Você será redirecionado para a tela de login.')
+                window.location.href = '/';
+                return;
+            }
             document.getElementById(window.game.levelsCounter.attributes.id).innerText = window.game.levelsCounter.level;
             window.ball.attributes.velocity = window.game.levelsCounter.level;
             

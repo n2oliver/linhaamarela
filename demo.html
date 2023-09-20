@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Linha Amarela</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="preload" as="style" href="css/game.css" />
+        <link rel="preload" as="image" href="img/eric-muhr-KrMhhUqdS-w-unsplash.jpg" />
+        <link rel="preload" as="image" href="img/planicie.jpg" />
+        <link rel="preload" as="image" href="img/island.jpg" />
+        <link rel="preload" as="image" href="img/spaceinvaders-blue.png" />
+        <link rel="preload" as="image" href="img/spaceinvaders-green.png" />
+        <link rel="preload" as="image" href="img/spaceinvaders-red.png" />
+        <link rel="preload" as="image" href="img/spaceinvaders-yellow.png" />
+        <link rel="shortcut icon" href="iconlinhaamarela.ico" type="image/x-icon"/>
+        <link rel="stylesheet" href="css/logo.css"/>
+        <link rel="stylesheet" href="css/pause.css"/>
+        <link rel="stylesheet" href="css/audio.css"/>
+        <link rel="stylesheet" href="css/nivel.css"/>
+        <link rel="stylesheet" href="css/markers.css"/>
+        <link rel="stylesheet" href="css/enemies.css"/>
+        <link rel="stylesheet" href="css/game.css"></style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/vendor/hammer.min.js"></script>
+        <script src="js/Background.js"></script>
+        <script src="js/Counter.js"></script>
+        <script src="js/PointsCounter.js"></script>
+        <script src="js/LevelsCounter.js"></script>
+        <script src="js/LivesCounter.js"></script>
+        <script src="js/GameObject.js"></script>
+        <script src="js/YellowBox.js"></script>
+        <script src="js/Ball.js"></script>
+        <script src="js/SpaceInvader.js"></script>
+        <script src="js/AudioManager.js"></script>
+        <script src="js/GameBase.js"></script>
+        <script src="js/Demo.js"></script>
+        <script type="text/javascript" src="https://apycdn.com/clundr/815/subaccount"></script>
+        <style>
+            .menu {
+                height: 64px;
+                display: inline-flex;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                float: right;
+                padding: 20px 20px 0 20px;
+            }
+            .markers {
+                display: list-item !important;
+                padding: 20px 20px 0 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="game-sound" src="mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
+        <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
+        
+        <div class="menu">
+            <div id="logo" class="unselectable game-logo"><img src="img/logo-linhaamarela.png"/></div>
+        </div>
+        <div class="menu">
+            <div id="pause-button" class="unselectable pause-button menu-item"><img src="img/pause-icon-png-12.jpg"/></div>
+            <div id="play-button" class="unselectable play-button menu-item"><img src="img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
+            <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="img/icons8-alto-falante-100.png"/></div>
+        </div>
+        <div class="menu-item markers">
+            <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
+            <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+            <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
+        </div>
+        <div id="qr-code" style="display: none; color: white;" class="qr-code rotate-center">
+            <div>Aceitamos doações:</div>
+            <div>Chave PIX:</div>
+            <div><img src="img/qrcode-pix.png"/></div>
+            <div>silva.liver@gmail.com</div>
+        </div>
+        <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
+        <div id="red-ball"></div>
+        <div id="yellow-box"></div>
+        <div id="pause" class="pause unselectable rotate-center">Pause</div>
+        <audio id="toque-linha-amarela" src="mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
+    </body>
+</html>
