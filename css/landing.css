@@ -1,11 +1,12 @@
 .woman {
     position: relativa;
     right: 0px;
-    bottom: 0px" width="50%;
-    display: block;
+    bottom: 0px;
+    width: 50%;
+    display: none;
 }
-@media (max-width: 600px) {
+@media (min-width: 600px) {
     .woman {
-        display: none;
+        display: block;
     }
 }
