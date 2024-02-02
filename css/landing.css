@@ -1,7 +1,18 @@
+
+.jumbotron {
+    background-image: url('../img/spaceinvaders-red.png');
+    background-size: cover;
+    background-color: black;
+    color: white;
+    margin-bottom: 0;
+}
+.footer {
+    background-color: hsla(160, 60%, 6%, 0.8) !important;
+    color: white;
+    padding: 20px 0;
+}
 .woman {
-    position: relativa;
-    right: 0px;
-    bottom: 0px;
+    position: relative;
     width: 50%;
     display: none;
 }
