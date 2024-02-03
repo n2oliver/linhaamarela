@@ -19,6 +19,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
         <script src="js/vendor/require.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script async
+            src="https://js.stripe.com/v3/buy-button.js">
+            </script>
 
         <!-- Dependências do projeto -->
         <!-- CSS -->
@@ -67,12 +70,17 @@
         </div>
         <div id="logo" style="width: 50%; max-width: 400px; margin: 0 auto; margin-bottom: 40px;" class="presentation text-warning"><img width="100%" src="img/logo-linhaamarela.png"/></div>
         <div class="info">
+            <stripe-buy-button
+            buy-button-id="buy_btn_1NH6V3JizflrL7CSpIYiyofg"
+            publishable-key="pk_live_51NGjepJizflrL7CSzKgmQbjhYJQ1RSy3mlhgIGCu6OrmmKrT2TzPgGdIAVkyFqbjr1zsjKGDDMxhL9rb3F6dJvFK00NAm212Vy"
+            >
+            </stripe-buy-button>
             <div>
                 <h2 class="login-inscricao"><a href="#" id="login">Login</a> / <a href="#" id="inscricao">Registro</a></h2>
                 <label for="nomedeusuario-inscricao" class="info-inscricao">Nome de usuário:</label>
                 <div class="info-inscricao"><input type="text" id="nomedeusuario-inscricao" placeholder="usuario"/></div>
 
-                <label for="email-inscricao" class="info-inscricao">Email:</label>
+                <label for="email-inscricao" class="info-inscricao">Email utilizado na compra:</label>
                 <div class="info-inscricao"><input type="email" id="email-inscricao" placeholder="email@email.com"/></div>
 
                 <label for="senha-inscricao" class="info-inscricao">Senha:</label>
