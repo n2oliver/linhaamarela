@@ -39,6 +39,10 @@ class UsuarioLoginController {
                 $this->logarUsuario->execute($formData);
             } catch (\Exception $error) {
                 echo $error;
+                $response->getBody()->write($error);
+                return $response
+                            ->withHeader('Content-Type', 'application/json')
+                            ->withStatus(400);
                 if(strpos($error->getMessage(), "Duplicate entry")) {
                     $response->getBody()->write("Login já realizado!");
                     return $response
