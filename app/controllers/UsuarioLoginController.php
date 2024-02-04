@@ -36,13 +36,13 @@ class UsuarioLoginController {
             $formData['hash'] = $hash;
 
             try {
-                $this->logarUsuario->execute($formData);
-            } catch (\Exception $error) {
-                echo $error;
-                $response->getBody()->write($error);
+                $response->getBody()->write("Pre erro");
                 return $response
                             ->withHeader('Content-Type', 'application/json')
                             ->withStatus(400);
+                $this->logarUsuario->execute($formData);
+            } catch (\Exception $error) {
+                echo $error;
                 if(strpos($error->getMessage(), "Duplicate entry")) {
                     $response->getBody()->write("Login já realizado!");
                     return $response
