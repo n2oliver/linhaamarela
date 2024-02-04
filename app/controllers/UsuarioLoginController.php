@@ -18,6 +18,7 @@ class UsuarioLoginController {
         $this->logarUsuario = new UsuarioLoginUseCase();
     }
     public function postLogin(Request $request, Response $response, $args) {
+        try {
         date_default_timezone_set('America/Sao_Paulo');
 
         $formData = $request->getParsedBody();
@@ -90,5 +91,8 @@ class UsuarioLoginController {
         return $response
                     ->withHeader('Content-Type', 'application/json')
                     ->withStatus(400);
-    }
+        } catch (Exception $e) {
+            var_dump($e);
+        }
+}
 }
