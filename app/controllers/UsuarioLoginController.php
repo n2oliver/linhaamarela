@@ -47,7 +47,7 @@ class UsuarioLoginController {
                 }
             }
 
-            $stripe = new \Stripe\StripeClient('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');
+            $stripe = new \Stripe\StripeClient('pk_live_51NGjepJizflrL7CSzKgmQbjhYJQ1RSy3mlhgIGCu6OrmmKrT2TzPgGdIAVkyFqbjr1zsjKGDDMxhL9rb3F6dJvFK00NAm212Vy');
             $possuiOJogo = false;
             $customer = $stripe->customers->search(['query' => 'email:"'. $usuario->email . '"']);
             if (!isset($customer->data[0])) {
