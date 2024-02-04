@@ -92,7 +92,7 @@ class UsuarioLoginController {
                     ->withHeader('Content-Type', 'application/json')
                     ->withStatus(400);
         } catch (Exception $e) {
-            var_dump($e);
+            return $response->getBody()->write($e->getMessage())->withHeader('Content-Type', 'application/json')->withStatus(200);
         }
 }
 }
