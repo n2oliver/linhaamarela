@@ -31,15 +31,15 @@ class UsuarioLoginController {
         
         if($usuario != null) {
 
+            $response->getBody()->write($usuario->nomedeusuario);
+            return $response
+                        ->withHeader('Content-Type', 'application/json')
+                        ->withStatus(400);
             $hash = JWT::encode(array('id'=> $usuario->nomedeusuario, 'senha' => $usuario->senha, 'data_de_expiracao' => $expirationTimestamp), 'wyelow', 'HS256');
             $formData['usuario_id'] = $usuario->id;
             $formData['hash'] = $hash;
 
             try {
-                $response->getBody()->write("Pre erro");
-                return $response
-                            ->withHeader('Content-Type', 'application/json')
-                            ->withStatus(400);
                 $this->logarUsuario->execute($formData);
             } catch (\Exception $error) {
                 echo $error;
