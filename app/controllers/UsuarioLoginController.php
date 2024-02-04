@@ -27,12 +27,15 @@ class UsuarioLoginController {
         $date->setTimestamp($expirationTimestamp);
         $formData['data_expiracao'] = $date->format('Y-m-d H:i:s');
 
-        $response->getBody()->write($formData['data_expiracao']);
-        return $response
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withStatus(400);
-        $usuario = $this->encontrarUsuario->execute($formData);
-        
+                    
+        try {
+            $usuario = $this->encontrarUsuario->execute($formData);
+        } catch(\Exception $error) {
+            $response->getBody()->write($error);
+            return $response
+                        ->withHeader('Content-Type', 'application/json')
+                        ->withStatus(400);
+        }
         if($usuario != null) {
 
             $hash = JWT::encode(array('id'=> $usuario->nomedeusuario, 'senha' => $usuario->senha, 'data_de_expiracao' => $expirationTimestamp), 'wyelow', 'HS256');
