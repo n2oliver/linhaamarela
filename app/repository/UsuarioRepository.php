@@ -14,15 +14,28 @@ class UsuarioRepository {
             )
         );
     }
-    public function find($attributes) {    
+    public function findLogin($attributes) {  
         return Usuario::leftJoin('login as l', 
             function($join) {
                 $join->on('usuario.id', '=', 'l.usuario_id');
             })
             ->select(array('usuario.id', 'email', 'l.id as login_id', 'usuario.nomedeusuario'))
             ->where(function($query) use ($attributes) {
-                $query->where('nomedeusuario', '=', $attributes['nomedeusuario'])
-                    ->orWhere('email', '=', $attributes['email-inscricao']);
+                $query->where('nomedeusuario', '=', $attributes['nomedeusuario']);
+            })
+            ->where('senha', '=', md5($attributes['senha']))
+            ->orderBy('usuario.id')
+            ->first();
+    }
+    public function findInscricao($attributes) {  
+        return Usuario::leftJoin('login as l', 
+            function($join) {
+                $join->on('usuario.id', '=', 'l.usuario_id');
+            })
+            ->select(array('usuario.id', 'email', 'l.id as login_id', 'usuario.nomedeusuario'))
+            ->where(function($query) use ($attributes) {
+                $query->where('email', '=', $attributes['email-inscricao'])
+                    ->orWhere('nomedeusuario', '=', $attributes['nomedeusuario']);
             })
             ->where('senha', '=', md5($attributes['senha']))
             ->orderBy('usuario.id')

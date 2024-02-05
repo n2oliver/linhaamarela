@@ -4,7 +4,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Validators\UsuarioValidator;
 use App\UseCases\UsuarioInscreverUseCase;
-use App\UseCases\UsuarioEncontrarUseCase;
+use App\UseCases\UsuarioEncontrarInscricaoUseCase;
 use App\UseCases\UsuarioLoginUseCase;
 use \Firebase\JWT\JWT;
 use \Stripe\StripeClient;
@@ -14,7 +14,7 @@ class UsuarioInscricaoController {
     
     public function __construct() {
         $this->inscreverUsuario = new UsuarioInscreverUseCase();
-        $this->encontrarUsuario = new UsuarioEncontrarUseCase();
+        $this->encontrarUsuario = new UsuarioEncontrarInscricaoUseCase();
         $this->logarUsuario = new UsuarioLoginUseCase();
     }
     public function postInscricao (Request $request, Response $response) {
@@ -39,7 +39,7 @@ class UsuarioInscricaoController {
         $possuiOJogo = false;
         $customer = $stripe->customers->search(['query' => 'email:"'. $formData['email-inscricao'] . '"']);
         if (!isset($customer->data[0])) {
-            $response->getBody()->write("Você ainda não possui este jogo. Para obtê-lo visite https://meiodiagames.herokuapp.com");
+            $response->getBody()->write("Você ainda não possui este jogo. Realize a compra antes de se cadastrar.");
             return $response
                 ->withHeader('Content-Type', 'application/json')
                 ->withStatus(400);

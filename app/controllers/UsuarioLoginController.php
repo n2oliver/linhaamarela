@@ -4,7 +4,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Db\Eloquent\Models\Usuario;
 use Db\Eloquent\Models\Login;
-use App\UseCases\UsuarioEncontrarUseCase;
+use App\UseCases\UsuarioEncontrarLoginUseCase;
 use App\UseCases\UsuarioLoginUseCase;
 use \Firebase\JWT\JWT;
 use \Stripe\StripeClient;
@@ -14,7 +14,7 @@ class UsuarioLoginController {
     private $logarUsuario;
     
     public function __construct() {
-        $this->encontrarUsuario = new UsuarioEncontrarUseCase();
+        $this->encontrarUsuario = new UsuarioEncontrarLoginUseCase();
         $this->logarUsuario = new UsuarioLoginUseCase();
     }
     public function postLogin(Request $request, Response $response, $args) {
@@ -58,7 +58,7 @@ class UsuarioLoginController {
             $possuiOJogo = false;
             $customer = $stripe->customers->search(['query' => 'email:"'. $usuario->email . '"']);
             if (!isset($customer->data[0])) {
-                $response->getBody()->write("Você ainda não possui este jogo. Para obtê-lo visite https://meiodiagames.herokuapp.com");
+                $response->getBody()->write("Você ainda não possui este jogo. Realize a compra antes de se cadastrar.");
                 return $response
                     ->withHeader('Content-Type', 'application/json')
                     ->withStatus(400);
@@ -76,7 +76,7 @@ class UsuarioLoginController {
                 }
             }
             if(!$possuiOJogo) {
-                $response->getBody()->write("Você ainda não possui este jogo. Para obtê-lo visite https://meiodiagames.herokuapp.com");
+                $response->getBody()->write("Você ainda não possui este jogo. Realize a compra antes de se cadastrar.");
                 return $response
                     ->withHeader('Content-Type', 'application/json')
                     ->withStatus(400);

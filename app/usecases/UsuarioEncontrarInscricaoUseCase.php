@@ -2,7 +2,7 @@
 namespace App\UseCases;
 use App\Repository\UsuarioRepository;
 
-class UsuarioEncontrarUseCase {
+class UsuarioEncontrarInscricaoUseCase {
     private $repository;
 
     public function __construct() {
@@ -10,6 +10,6 @@ class UsuarioEncontrarUseCase {
     }
 
     public function execute($attributes) {
-        return $this->repository->find($attributes);
+        return $this->repository->findInscricao($attributes);
     }
 }
