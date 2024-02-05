@@ -31,7 +31,7 @@ class UsuarioLoginController {
         try {
             $usuario = $this->encontrarUsuario->execute($formData);
         } catch(\Exception $error) {
-            $response->getBody()->write($error);
+            $response->getBody()->write($error->getMessage());
             return $response
                         ->withHeader('Content-Type', 'application/json')
                         ->withStatus(400);
