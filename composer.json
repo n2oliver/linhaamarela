@@ -20,7 +20,7 @@
         "illuminate/events": "^10.43",
         "firebase/php-jwt": "^6.2",
         "php-di/php-di": "^6.3",
-        "php": "^8.1",
+        "php": "^8.0",
         "phpmailer/phpmailer": "^6.6",
         "vlucas/phpdotenv": "^5.4",
         "stripe/stripe-php": "^10.14"
