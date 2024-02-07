@@ -15,12 +15,12 @@
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
-        "guzzlehttp/guzzle": "7.0",
-        "illuminate/database": "^5.8",
-        "illuminate/events": "^5.8",
+        "guzzlehttp/guzzle": "7.4",
+        "illuminate/database": "^10.43",
+        "illuminate/events": "^10.43",
         "firebase/php-jwt": "^6.2",
         "php-di/php-di": "^6.3",
-        "php": "^8.0",
+        "php": "^8.1",
         "phpmailer/phpmailer": "^6.6",
         "vlucas/phpdotenv": "^5.4",
         "stripe/stripe-php": "^10.14"
