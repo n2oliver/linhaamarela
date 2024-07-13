@@ -5,7 +5,7 @@ class GameBase {
     level;
     background;
     backgroundImages = [
-        "img/upscaled-monsters.png",
+        "/linhaamarela/img/upscaled-monsters.png",
     ];
     constructor(e, level, points, lives) {
         this.level = level;

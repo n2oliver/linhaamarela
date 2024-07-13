@@ -11,6 +11,8 @@ use \Stripe\StripeClient;
 
 class UsuarioInscricaoController {
     private $inscreverUsuario;
+    private $encontrarUsuario;
+    private $logarUsuario;
     
     public function __construct() {
         $this->inscreverUsuario = new UsuarioInscreverUseCase();

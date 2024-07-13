@@ -8,13 +8,20 @@ use App\Controllers\ScoreController;
 
 class Routes {
     public function run($app) {
-        $app->get('/', [HomeController::class, 'inicio']);
-        $app->get('/login', [HomeController::class, 'login']);
-        $app->post('/inscricao', [UsuarioInscricaoController::class, 'postInscricao']);
-        $app->post('/login', [UsuarioLoginController::class, 'postLogin']);
-        $app->post('/registrar-pontos', [ScoreController::class, 'postScores']);
-        $app->get('/obter-pontos', [ScoreController::class, 'getScores']);
-        $app->get('/demo', [DemoController::class, 'inicio']);
+        $app->get('/linhaamarela', [HomeController::class, 'inicio']);
+        $app->get('/linhaamarela/', [HomeController::class, 'inicio']);
+        $app->get('/linhaamarela/login', [HomeController::class, 'login']);
+        $app->get('/linhaamarela/login/', [HomeController::class, 'login']);
+        $app->post('/linhaamarela/inscricao', [UsuarioInscricaoController::class, 'postInscricao']);
+        $app->post('/linhaamarela/inscricao/', [UsuarioInscricaoController::class, 'postInscricao']);
+        $app->post('/linhaamarela/login', [UsuarioLoginController::class, 'postLogin']);
+        $app->post('/linhaamarela/login/', [UsuarioLoginController::class, 'postLogin']);
+        $app->post('/linhaamarela/registrar-pontos', [ScoreController::class, 'postScores']);
+        $app->post('/linhaamarela/registrar-pontos/', [ScoreController::class, 'postScores']);
+        $app->get('/linhaamarela/obter-pontos', [ScoreController::class, 'getScores']);
+        $app->get('/linhaamarela/obter-pontos/', [ScoreController::class, 'getScores']);
+        $app->get('/linhaamarela/demo', [DemoController::class, 'inicio']);
+        $app->get('/linhaamarela/demo/', [DemoController::class, 'inicio']);
         return $app;
     }
 }
