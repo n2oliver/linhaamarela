@@ -1,6 +1,6 @@
 <?php 
 
-define('BASEPATH', '/linhaamarela/');
+define('BASEPATH', '/jogos/linhaamarela/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 use Illuminate\Events\Dispatcher;
@@ -11,10 +11,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => 'u720403867_oliv3rstore',
-    'username' => 'u720403867_oliv3rstore',
-    'password' => 'V3rstor3',
-    'database' => 'linhaamarela',
+    'hostname' => env('DB_HOST'),
+    'username' => env('DB_USER'),
+    'password' => env('DB_PASS'),
+    'database' => env('DB_NAME'),
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,

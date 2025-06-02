@@ -1,5 +1,9 @@
 <?php
 namespace App;
+
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
 use Slim\Factory\AppFactory;
 use \Illuminate\Database\Capsule\Manager;
 use App\Middleware;
@@ -12,7 +16,13 @@ class App {
         $this->app = AppFactory::create();
 
         $container = $this->app->getContainer();
+        try {
         $capsule = new Manager;
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            exit();
+            die;
+        }
         
         $dotenv = Dotenv::createImmutable(__DIR__.'/../.');
         $dotenv->load();
