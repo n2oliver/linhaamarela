@@ -1,9 +1,10 @@
 .pause, .qr-code {
     margin: 0 auto;
     padding: 20px;
+
+    background-color: rgba(0,0,0, 80%);
 }
 .pause {
-    width: 200px;
     color: yellow;
     border-radius: 20px;
     font-family: Helvetica;
@@ -15,7 +16,6 @@
 .qr-code {
     font-size: large;
     text-align: center;
-    width: 200px;
 }
 .qr-code img {
     width: 100px;

@@ -44,7 +44,7 @@ class Login {
                             }).showToast();
                             setTimeout(function() {
                                 sessionStorage.setItem('ingame', true);
-                                window.location = "game.html";
+                                window.location = "game.php";
                             }, 3000);
                         }
                     ).fail(

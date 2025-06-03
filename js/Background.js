@@ -6,10 +6,10 @@ class Background {
                 background: "url(" + image + ") no-repeat center center fixed",
                 'background-size': "cover",
                 position: "relative",
-                width: "100%",
-                height: "100%",
+                width: "100vw",
+                height: "100vh",
                 margin: "0 auto",
-                "z-index": "-1"
+                "z-index": "-1",
             }
             Object.assign(objectStyle, style);
         }

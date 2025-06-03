@@ -81,7 +81,7 @@ class Game extends GameBase {
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "block";
                 playButtonStyle.display = "none";
-                const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("/linhaamarela/img/icons8-alto-falante-100.png");
+                const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("/jogos/linhaamarela/img/icons8-alto-falante-100.png");
                 if(audioIsEnabled) {
                     audio.play();
                 }
@@ -161,23 +161,6 @@ class Game extends GameBase {
 window.game;
             
 window.onload = (e) => {
-    const loggedUser = document.cookie.split(";").map((entry)=> {
-        const values = entry.split("=");
-        const key = values[0];
-        const value = values[1];
-        return {
-            key: key,
-            value: value
-        }
-    }).filter((entry) => {
-        if(entry.key.trim() == "username") 
-            return entry;
-    });
-    if(loggedUser.length < 1) {
-        window.location = "index.html";
-        return;
-    }
-    sessionStorage.setItem('username', loggedUser[loggedUser.length - 1].value);
     sessionStorage.setItem('ingame', true);
     level = 1;
     game = new Game(e, level);
