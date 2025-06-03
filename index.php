@@ -28,7 +28,7 @@
 </head>
 <body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
     <audio id="main-menu-sound" src="/jogos/linhaamarela/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
-    < class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
+    <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/jogos/linhaamarela">Linha Amarela</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
