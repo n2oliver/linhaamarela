@@ -33,7 +33,7 @@ class YellowBox extends GameObject {
 
         this.positionY = 60;
         Object.assign(document.getElementById(attributes.id).style, { 
-            transform: "translateX(-16px)",
+            transform: "translateX(-36px)",
             position: "fixed",
             "border-radius": "20px",
             border: "solid 2px #000"

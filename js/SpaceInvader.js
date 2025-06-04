@@ -21,7 +21,7 @@ class SpaceInvader {
             document.body.append(invader);
         }
         spaceInvader.totalDeMonstros = document.querySelectorAll('.invader').length;
-        window.game.setEvents();
+        window.game.setEvents(event);
 
         let left = true;
         return setInterval(function () {

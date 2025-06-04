@@ -32,6 +32,7 @@
         <script src="/jogos/linhaamarela/js/LevelsCounter.js"></script>
         <script src="/jogos/linhaamarela/js/LivesCounter.js"></script>
         <script src="/jogos/linhaamarela/js/GameObject.js"></script>
+        <script src="/jogos/linhaamarela/js/Platform.js"></script>
         <script src="/jogos/linhaamarela/js/YellowBox.js"></script>
         <script src="/jogos/linhaamarela/js/Ball.js"></script>
         <script src="/jogos/linhaamarela/js/SpaceInvader.js"></script>
@@ -85,8 +86,9 @@
             </div>
         </div>
         <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
-        <div id="red-ball"></div>
+        <div id="platform"></div>
         <div id="yellow-box"></div>
+        <div id="red-ball"></div>
         <div id="pause" class="pause unselectable rotate-center">Pause</div>
         <audio id="toque-linha-amarela" src="/jogos/linhaamarela/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
         <div class="mt-2" style="display: block; width: 100vw; position: absolute; bottom: -114px; text-align: center; color: white; padding: 24px; background-image: linear-gradient(transparent,#000000, #000000, #000000);">

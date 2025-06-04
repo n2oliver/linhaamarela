@@ -36,10 +36,17 @@ class Game extends GameBase {
     yellowBox = new YellowBox({
         id: "yellow-box",
         width: 80,
-        height: 8,
+        height: 20,
         color: "yellow",
         positionY: "60",
         positionX: "50%"
+    });
+    platform = new Platform({
+        id: "platform",
+        width: "100vw",
+        height: 80,
+        positionY: 90,
+        positionX: "0", 
     });
     pointsCounter = new PointsCounter({
         id: "points-counter",
@@ -89,7 +96,7 @@ class Game extends GameBase {
         }
     }
     start = (e) => {
-        window.game.setEvents();
+        window.game.setEvents(e);
         window.pause = false;
 
 
@@ -133,7 +140,8 @@ class Game extends GameBase {
                 }
             }, 25);
     }
-    setEvents = function () {
+    setEvents = function (event) {
+        window.game.yellowBox.updatePosition(event)
         var hammerBg = new Hammer(document.getElementById("bg-transparent"));
         var hammerYellowBox = new Hammer(document.getElementById("yellow-box"));
         var hammerAudio = new Hammer(document.getElementById("audio-button"));
