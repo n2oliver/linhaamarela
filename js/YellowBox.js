@@ -1,4 +1,15 @@
 class YellowBox extends GameObject {
+    
+    shotType = {
+        width: "8px",
+        height: "20px",
+        "background-color": "lightyellow",
+        "border-radius": "100%",
+        "box-shadow": "#ffffff 0px 0px 10px 10px",
+        position: "fixed",
+        left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
+        top: document.getElementById("yellow-box").offsetTop + "px"
+    };
     constructor(attributes){
         super(attributes);
 
@@ -6,8 +17,8 @@ class YellowBox extends GameObject {
         Object.assign(document.getElementById(attributes.id).style, { 
             transform: "translateX(-16px)",
             position: "fixed",
-            border: "#000 solid 2px",
-            "border-radius": "20px"
+            "border-radius": "20px",
+            border: "solid 2px #000"
         });
         this.updatePosition = function(event, gameObject = this) {
             let xOffset = event.pageX;
@@ -20,9 +31,10 @@ class YellowBox extends GameObject {
             const styles = {
                 top: (window.innerHeight - gameObject.attributes.positionY) + "px",
                 left: positionX + "px",
-                border: "#000 solid 2px"
             }
-            Object.assign(document.getElementById(gameObject.attributes.id).style, styles);
+            Object.assign(document.getElementById(gameObject.attributes.id).style, {...styles, border: "solid 2px #000" });
+            Object.assign(this.shotType, styles);
+            
         }
         
         this.mouseMove = (e) => {
@@ -30,20 +42,13 @@ class YellowBox extends GameObject {
                 this.updatePosition(e, this);
             }
         }
-        this.shot = (e) => {
+        this.shot = (e, shotType) => {
             
             if(!window.pause) { 
                 let capsule = document.createElement("DIV");
                 capsule.id = "capsule";
                 capsule.classList.add("capsule");
-                Object.assign(capsule.style, {
-                    width: "8px",
-                    height: "20px",
-                    "background-color": "purple",
-                    position: "fixed",
-                    left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
-                    top: document.getElementById("yellow-box").offsetTop + "px"
-                });
+                Object.assign(capsule.style, shotType);
                 document.body.appendChild(capsule);
                 let shoting = setInterval(()=>{
                     if(!window.pause) { 

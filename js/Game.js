@@ -152,7 +152,7 @@ class Game extends GameBase {
         document.getElementById("pause-button").onclick = this.pause;
         document.getElementById("play-button").onclick = this.pause;
         document.onmousemove = window.game.yellowBox.mouseMove;
-        window.onmousedown = this.yellowBox.shot;
+        window.onmousedown = (event) => this.yellowBox.shot(event, this.yellowBox.shotType);
         window.onclick = null;
         window.onkeyup = this.pause;
     }
