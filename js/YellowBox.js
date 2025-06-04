@@ -1,5 +1,16 @@
 class YellowBox extends GameObject {
     
+    defaultShotType = {
+        width: "8px",
+        height: "20px",
+        "background-color": "lightyellow",
+        "border-radius": "100%",
+        "box-shadow": "#ffffff 0px 0px 10px 10px",
+        position: "fixed",
+        left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
+        top: document.getElementById("yellow-box").offsetTop + "px",
+        "background": "white"
+    };
     shotType = {
         width: "8px",
         height: "20px",
@@ -8,8 +19,15 @@ class YellowBox extends GameObject {
         "box-shadow": "#ffffff 0px 0px 10px 10px",
         position: "fixed",
         left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
-        top: document.getElementById("yellow-box").offsetTop + "px"
+        top: document.getElementById("yellow-box").offsetTop + "px",
+        "background": "white"
     };
+    greatShotType = {
+        width: "50px",
+        height: "50px",
+        background: "radial-gradient(#fff, transparent, #fff, transparent, #fff)"
+    }
+
     constructor(attributes){
         super(attributes);
 
@@ -62,6 +80,9 @@ class YellowBox extends GameObject {
                     }
                 }, 100)         
             }
+        }
+        this.updateShot = (shotType) => {
+            Object.assign(window.game.yellowBox.shotType, shotType);
         }
     }
 }

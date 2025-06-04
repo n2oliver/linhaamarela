@@ -1,4 +1,4 @@
-.invader {
+.invader, .help-box {
     width: 64px;
     height: 32px;
     background: url(../img/spaceinvaders.png);

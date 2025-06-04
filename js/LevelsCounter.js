@@ -25,11 +25,6 @@ class LevelsCounter extends Counter  {
     }
     setLevelUp = function() {
         document.addEventListener('levelup', function (e) {
-            if(window.game.levelsCounter.demo) {
-                alert('Essa é apenas uma demonstração, para continuar jogando, você precisa estar logado. Você será redirecionado para a tela de login.')
-                window.location.href = '/';
-                return;
-            }
             document.getElementById(window.game.levelsCounter.attributes.id).innerText = window.game.levelsCounter.level;
             window.ball.attributes.velocity = window.game.levelsCounter.level;
             

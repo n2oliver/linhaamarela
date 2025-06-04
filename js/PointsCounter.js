@@ -22,7 +22,6 @@ class PointsCounter extends Counter {
                     data: { userId: sessionStorage.userId, userPoints: this.points},
                 }).done((data)=>{
                     sessionStorage.setItem('pontuacao', this.points);
-                    console.log(data);
                 }).fail((error)=>{
                     console.log(error.responseText);
                 });
