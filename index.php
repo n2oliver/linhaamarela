@@ -25,9 +25,14 @@
     <!-- CSS -->
         <link rel="stylesheet" href="/jogos/linhaamarela/css/logo.css"/>
         <link rel="stylesheet" href="/jogos/linhaamarela/css/landing.css"/>
+        <link rel="stylesheet" href="/jogos/linhaamarela/css/audio.css"/>
+        <link rel="stylesheet" href="/jogos/linhaamarela/css/pause.css"/>
+        <script src="/jogos/linhaamarela/js/AudioManager.js"></script>
 </head>
 <body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
     <audio id="main-menu-sound" src="/jogos/linhaamarela/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
+    <audio id="game-sound" src="/jogos/linhaamarela/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
+
     <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/jogos/linhaamarela">Linha Amarela</a>
@@ -44,6 +49,9 @@
                         <a class="nav-link" href="/jogos/linhaamarela/game.php">Jogar</a>
                     </li>
                 </ul>
+                <div class="menu">
+                    <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="/jogos/linhaamarela/img/icons8-alto-falante-100.png"/></div>
+                </div>
             </div>
         </nav>
         <div class="jumbotron text-center">
@@ -52,10 +60,18 @@
             <a href="/jogos/linhaamarela/game.php" class="btn btn-primary btn-lg">Jogar</a><br><br>
 
         </div>
-        <?php include("../../footer.php"); ?>
+        <?php include("../../noads-footer.php"); ?>
     </div>
     <script>
-        new Background().set('/jogos/linhaamarela/img/upscaled-monsters.png');
+        document.getElementById("audio-button").onclick = () => {
+            if(localStorage.mute == 'on') {
+                localStorage.setItem('mute', 'off');
+                document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-alto-falante-100.png";
+                return;
+            }
+            localStorage.setItem('mute', 'on');
+            document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
+        }
     </script>
 </body>
 </html>

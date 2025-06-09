@@ -1,8 +1,13 @@
 class AudioManager {
+    constructor() {
+        if(localStorage.mute == 'on') {
+                document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
+        }
+    }
     playAsBgMusic  = function () {
         const audio = document.getElementById("game-sound");
         const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("/jogos/linhaamarela/img/icons8-alto-falante-100.png");
-        if(audio.paused && audioIsEnabled) {
+        if(audio.paused && audioIsEnabled && localStorage.mute != 'on') {
             audio.play();
             audio.onended = function() {
                 audio.currentTime = 0;
@@ -14,7 +19,6 @@ class AudioManager {
         const audio = document.getElementById("game-sound");
         if(window.pause) {
             window.game.audioManager.disableAudio(audio);
-            return;
         }
         if(audio.paused) {
             window.game.audioManager.enableAudio(audio);
@@ -26,10 +30,12 @@ class AudioManager {
         const audio = document.getElementById("game-sound");
         audio.pause();
         document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
+        localStorage.setItem('mute', 'on');
     }
     enableAudio = function () {
         const audio = document.getElementById("game-sound");
         audio.play();
         document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-alto-falante-100.png";
+        localStorage.setItem('mute', 'off');
     }
 }
