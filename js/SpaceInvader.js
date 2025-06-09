@@ -51,8 +51,10 @@ class SpaceInvader {
 
                             if(invader.classList.contains('help-box')) {
                                 Object.assign(window.game.yellowBox.shotType, window.game.yellowBox.greatShotType);
+                                game.audioManager.mudarParaLaser(game.audioManager.tipoLaser.forte);
                                 setTimeout(()=>{
                                     Object.assign(window.game.yellowBox.shotType, window.game.yellowBox.defaultShotType);
+                                    game.audioManager.mudarParaLaser(game.audioManager.tipoLaser.fraco);
                                 }, 15000)
                             }
                             if ((document.querySelectorAll('.invader').length == 0 || document.querySelectorAll('.invader').length == spaceInvader.totalDeMonstros/2) && spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA) {

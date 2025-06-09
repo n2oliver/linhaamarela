@@ -3,6 +3,23 @@ class AudioManager {
         if(localStorage.mute == 'on') {
                 document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
         }
+        this.shotAudio = document.getElementById("shot-audio")
+        this.mudarParaLaser(this.tipoLaser.fraco)
+    }
+    shotAudio;
+    tipoLaser = {
+        forte: 'forte',
+        fraco: 'fraco'
+    }
+    playShot = function () {
+        if(localStorage.mute != 'on') {
+            this.shotAudio.pause();
+            this.shotAudio.currentTime = 0;
+            this.shotAudio.play();
+        }
+    }
+    mudarParaLaser(tipo) {
+        this.shotAudio.src = `/jogos/linhaamarela/mp3/laser-${tipo}.mp3`;
     }
     playAsBgMusic  = function () {
         const audio = document.getElementById("game-sound");

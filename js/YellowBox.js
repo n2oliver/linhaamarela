@@ -68,6 +68,7 @@ class YellowBox extends GameObject {
                 capsule.classList.add("capsule");
                 Object.assign(capsule.style, shotType);
                 document.body.appendChild(capsule);
+                window.game.audioManager.playShot();
                 let shoting = setInterval(()=>{
                     if(!window.pause) { 
                         if(document.getElementById("capsule") && document.getElementById("capsule").offsetTop < 20) {

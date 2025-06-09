@@ -91,7 +91,8 @@
         <div id="red-ball"></div>
         <div id="pause" class="pause unselectable rotate-center">Pause</div>
         <audio id="toque-linha-amarela" src="/jogos/linhaamarela/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
-        <div class="mt-2" style="display: block; width: 100vw; position: absolute; bottom: -114px; text-align: center; color: white; padding: 24px; background-image: linear-gradient(transparent,#000000, #000000, #000000);">
+        <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
+        <div class="mt-2" style="display: block; width: 100%; position: absolute; bottom: -114px; text-align: center; color: white; background-image: linear-gradient(transparent,#000000, #000000, #000000);">
             <div style="margin: 0 auto">
                 <script type="text/javascript">
                     atOptions = {
