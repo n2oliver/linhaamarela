@@ -46,7 +46,11 @@ class SpaceInvader {
                             (elem.offsetTop < invader.offsetTop + invader.clientHeight) &&
                             (elem.offsetTop + elem.clientHeight > invader.offsetTop)
                         ) {
-                            invader.remove();
+                            invader.classList.add('anim-alien-die');
+                            setTimeout(()=>{
+                                invader.remove();
+                            }, 3000)
+                            
                             window.game.pointsCounter.increaseCounter(5);
 
                             if(invader.classList.contains('help-box')) {

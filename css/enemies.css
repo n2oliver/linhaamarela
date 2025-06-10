@@ -8,3 +8,12 @@
     left: 50%;
     transform: translateX(16px);
 }
+.anim-alien-die {
+    animation: explode 3s forwards;
+}
+
+@keyframes explode {
+    0% { opacity: 1; transform: translateY(0px); filter: contrast(-175%) brightness(100%); }
+    5% { opacity: .8; transform: translateY(-100px); filter: contrast(50%) brightness(1000%); }
+    100% { opacity: 0; transform: translateY(600px) }
+}
