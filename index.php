@@ -1,4 +1,12 @@
-<?php $APP_URL = '/jogos/linhaamarela'; ?>
+<?php 
+include('./database/connectdb.php');
+include('./models/Usuario.php');
+$APP_URL = '/jogos/linhaamarela';
+if(isset($_SESSION['usuario_id'])) {
+    $usuarioModel = new Usuario($pdo);
+    $usuario = $usuarioModel->obterUsuarioPorId($_SESSION['usuario_id']);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -44,27 +52,37 @@
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= $APP_URL ?>">Página inicial</a>
+                        <a class="nav-link" href="/">Sobre o Desenvolvedor</a>
                     </li>
-                    <li class="nav-item">
-                        <small class="d-flex justify-content-between text-left">
-                        <div class="px-2">
-                            <strong>E-mail:</strong>
-                            <input id="email" type="text" class="form-control w-auto" placeholder="E-mail" />
-                        </div>    
-                        <div class="px-2">
-                            <strong>Senha:</strong>
-                            <input id="senha" type="text" class="form-control w-auto" placeholder="Senha" />
-                        </div>
-                        <div class="px-2 align-content-end">
-                            <button class="btn btn-primary" id="login">Login</button>
-                        </div>
-                        </small>    
-                    </li>
+                    
                 </ul>
-                <div class="menu">
-                    <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
-                </div>
+                <div class="menu d-flex align-content-center justify-content-center">
+                    <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+                    <?php
+                    if(!isset($usuario['email'])) {
+                    ?>
+                        <l class="nav-item">
+                            <small class="d-flex justify-content-between text-left">
+                            <div class="px-2">
+                                <strong>E-mail:</strong>
+                                <input id="email" type="text" class="form-control w-auto" placeholder="E-mail" />
+                            </div>    
+                            <div class="px-2">
+                                <strong>Senha:</strong>
+                                <input id="senha" type="text" class="form-control w-auto" placeholder="Senha" />
+                            </div>
+                            <div class="px-2 align-content-end">
+                                <button class="btn btn-primary" id="login">Login</button>
+                            </div>
+                            </small>    
+                    </div>
+                    <?php } else { ?>
+                        <div class="nav-item align-content-center">
+                            <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
+                            <small><?= $usuario['email'] ?></small> <br>
+                            <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
+                        </div>
+                    <?php } ?>
             </div>
         </nav>
         <div class="jumbotron text-center">
@@ -77,14 +95,19 @@
     </div>
     <script>
         const audioManager = new AudioManager();
-        document.getElementById("audio-button").onclick = () => {
+        const audioButton = document.getElementById("audio-button");
+        const mainMenuSound = document.getElementById("main-menu-sound");
+
+        audioButton.onclick = () => {
             if(localStorage.mute == 'on') {
                 localStorage.setItem('mute', 'off');
-                document.getElementById("audio-button").querySelector("img").src = "<?= $APP_URL ?>/img/icons8-alto-falante-100.png";
+                audioButton.querySelector("img").src = "<?= $APP_URL ?>/img/icons8-alto-falante-100.png";
+                mainMenuSound.play();
                 return;
             }
             localStorage.setItem('mute', 'on');
-            document.getElementById("audio-button").querySelector("img").src = "<?= $APP_URL ?>/img/icons8-mute-64.png";
+            audioButton.querySelector("img").src = "<?= $APP_URL ?>/img/icons8-mute-64.png";
+            mainMenuSound.pause();
         }
         $(document).ready(()=>{
             $('#login').click(()=>{
@@ -95,21 +118,28 @@
                     data: { email, senha },
                     type: 'POST',
                     success: (response) => {
-                        sessionStorage.setItem('userId', response);
-
                         Toastify({
                             text: "Você já pode começar!",
                             duration: 3000
                         }).showToast();
                         setTimeout(()=>{
                             window.location.href='<?= $APP_URL ?>/game.php';
-                        }, 3000)
+                        }, 3000);
 
                     },
                     error: (xhr) => {
-                        console.log(xhr.responseText)
+                        Toastify({
+                            text: JSON.parse(xhr.responseText).error,
+                            duration: 3000,
+                            className: 'error'
+                        }).showToast();
                     }
                 })
+            });
+            $('#sair').click(()=>{
+                $.get('<?= $APP_URL ?>/sair.php',() => {
+                    window.location.href = '<?= $APP_URL ?>';
+                });
             });
         })
     </script>

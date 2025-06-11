@@ -1,4 +1,8 @@
-<?php $APP_URL = '/jogos/linhaamarela'; ?>
+<?php 
+$APP_URL = '/jogos/linhaamarela';
+require('./database/connectdb.php');
+require('./verifica-login.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -55,7 +59,7 @@
             }
         </style>
     </head>
-    <body>
+    <vr>
         <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
         
@@ -66,6 +70,7 @@
             <div id="pause-button" class="unselectable pause-button menu-item"><img src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg"/></div>
             <div id="play-button" class="unselectable play-button menu-item"><img src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
             <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+            <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
         </div>
         <div class="menu-item markers">
             <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
@@ -77,12 +82,16 @@
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
-                    <div><img src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
+                    <div><img id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
                     <div>silva.liver@gmail.com</div>
                 </div>
                 <div>
                     <script async="async" data-cfasync="false" src="//pl26829990.profitableratecpm.com/c36f214a2069f40ccd2d3e53c3c624b7/invoke.js"></script>
                     <div id="container-c36f214a2069f40ccd2d3e53c3c624b7"></div>
+                </div>
+                <div>
+                    <div>Para sair clique no<br>botão abaixo</div>
+                    <img src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" />
                 </div>
             </div>
         </div>
@@ -113,5 +122,14 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(()=>{
+                $('.sair').click(()=>{
+                    $.get('<?= $APP_URL ?>/sair.php',() => {
+                        window.location.href = '<?= $APP_URL ?>';
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

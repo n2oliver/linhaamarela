@@ -1,9 +1,8 @@
 .audio-button {
-    width: 4em; 
     top: 128px; 
     right: 32px
 }
 .audio-button img {
-    width: 64px;
+    width: 32px;
     height: auto;
 }

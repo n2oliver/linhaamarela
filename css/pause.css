@@ -17,7 +17,7 @@
     font-size: large;
     text-align: center;
 }
-.qr-code img {
+.qr-code #qr-code {
     width: 100px;
 }
 .pause-button, .play-button {
