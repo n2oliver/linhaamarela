@@ -1,11 +1,30 @@
 class AudioManager {
     constructor() {
         if(localStorage.mute == 'on') {
-                document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
+            document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
         }
-        this.shotAudio = document.getElementById("shot-audio")
-        this.mudarParaLaser(this.tipoLaser.fraco)
+        this.mainMenuAudio = document.getElementById('main-menu-sound');
+        if(this.mainMenuAudio) {
+
+            document.body.onclick = () => {
+                if(localStorage.mute != 'on') {
+                    this.mainMenuAudio.play();
+                }
+                this.mainMenuAudio.onended = () => {
+                    if(localStorage.mute != 'on') {
+                        this.mainMenuAudio.play();
+                    }
+                }
+                document.body.onclick = () => {}
+            }
+        } else {
+            this.shotAudio = document.getElementById("shot-audio");
+            this.mudarParaLaser(this.tipoLaser.fraco);
+            this.creatureDieAudio = document.getElementById("creature-die");
+        }
     }
+    mainMenuAudio;
+    creatureDieAudio;
     shotAudio;
     tipoLaser = {
         forte: 'forte',
@@ -17,6 +36,11 @@ class AudioManager {
             this.shotAudio.currentTime = 0;
             this.shotAudio.play();
         }
+    }
+    playCreatureDie = function() {
+        this.creatureDieAudio.pause();
+        this.creatureDieAudio.currentTime = .25;
+        this.creatureDieAudio.play();
     }
     mudarParaLaser(tipo) {
         this.shotAudio.src = `/jogos/linhaamarela/mp3/laser-${tipo}.mp3`;

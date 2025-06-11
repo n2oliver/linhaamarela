@@ -9,11 +9,40 @@
     transform: translateX(16px);
 }
 .anim-alien-die {
-    animation: explode 3s forwards;
+    animation: explode 2s forwards;
 }
 
 @keyframes explode {
-    0% { opacity: 1; transform: translateY(0px); filter: contrast(-175%) brightness(100%); }
-    5% { opacity: .8; transform: translateY(-100px); filter: contrast(50%) brightness(1000%); }
-    100% { opacity: 0; transform: translateY(600px) }
+    0% {
+        opacity: 1;
+        transform: translateY(0px);
+        filter: contrast(-175%) brightness(100%);
+    }
+    5% {
+        opacity: .8;
+        filter: contrast(50%) brightness(1000%);
+        box-shadow: 0px 0px 30px 15px #fff;
+        background-color: rgba(255,255,255,.75);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+    }
+    10% {
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(300px);
+        box-shadow: 0px 0px 4px 2px #fff;
+        background-color: rgba(255,255,255,.25);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+    }
 }

@@ -46,10 +46,16 @@ class SpaceInvader {
                             (elem.offsetTop < invader.offsetTop + invader.clientHeight) &&
                             (elem.offsetTop + elem.clientHeight > invader.offsetTop)
                         ) {
-                            invader.classList.add('anim-alien-die');
-                            setTimeout(()=>{
+                            if(!invader.classList.contains('help-box')) {
+                                invader.classList.add('anim-alien-die');
+                                invader.classList.add('anim-alien-fall');
+                                setTimeout(()=>{
+                                    invader.remove();
+                                    game.audioManager.playCreatureDie();
+                                }, 1000);
+                            } else {
                                 invader.remove();
-                            }, 3000)
+                            }
                             
                             window.game.pointsCounter.increaseCounter(5);
 

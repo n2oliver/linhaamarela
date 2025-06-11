@@ -1,3 +1,4 @@
+<?php $APP_URL = '/jogos/linhaamarela'; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,7 +8,7 @@
 
     <!-- Dependências de terceiros -->
     <!-- CSS -->
-    <link rel="shortcut icon" href="/jogos/linhaamarela/iconlinhaamarela.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="<?= $APP_URL ?>/iconlinhaamarela.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -18,24 +19,24 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
-    <script src="/jogos/linhaamarela/js/vendor/require.js"></script>
+    <script src="<?= $APP_URL ?>/js/vendor/require.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- Dependências do projeto -->
     <!-- CSS -->
-        <link rel="stylesheet" href="/jogos/linhaamarela/css/logo.css"/>
-        <link rel="stylesheet" href="/jogos/linhaamarela/css/landing.css"/>
-        <link rel="stylesheet" href="/jogos/linhaamarela/css/audio.css"/>
-        <link rel="stylesheet" href="/jogos/linhaamarela/css/pause.css"/>
-        <script src="/jogos/linhaamarela/js/AudioManager.js"></script>
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/logo.css"/>
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/landing.css"/>
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css"/>
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
+        <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
 </head>
 <body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
-    <audio id="main-menu-sound" src="/jogos/linhaamarela/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
-    <audio id="game-sound" src="/jogos/linhaamarela/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
+    <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
+    <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
 
     <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/jogos/linhaamarela">Linha Amarela</a>
+            <a class="navbar-brand" href="<?= $APP_URL ?>">Linha Amarela</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,35 +44,74 @@
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/jogos/linhaamarela">Página inicial</a>
+                        <a class="nav-link" href="<?= $APP_URL ?>">Página inicial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/jogos/linhaamarela/game.php">Jogar</a>
+                        <small class="d-flex justify-content-between text-left">
+                        <div class="px-2">
+                            <strong>E-mail:</strong>
+                            <input id="email" type="text" class="form-control w-auto" placeholder="E-mail" />
+                        </div>    
+                        <div class="px-2">
+                            <strong>Senha:</strong>
+                            <input id="senha" type="text" class="form-control w-auto" placeholder="Senha" />
+                        </div>
+                        <div class="px-2 align-content-end">
+                            <button class="btn btn-primary" id="login">Login</button>
+                        </div>
+                        </small>    
                     </li>
                 </ul>
                 <div class="menu">
-                    <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="/jogos/linhaamarela/img/icons8-alto-falante-100.png"/></div>
+                    <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
                 </div>
             </div>
         </nav>
         <div class="jumbotron text-center">
             <h1 class="display-4" style="color: white">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <a href="/jogos/linhaamarela/game.php" class="btn btn-primary btn-lg">Jogar</a><br><br>
+            <a href="<?= $APP_URL ?>/game.php" class="btn btn-primary btn-lg">Jogar</a><br><br>
 
         </div>
         <?php include("../../noads-footer.php"); ?>
     </div>
     <script>
+        const audioManager = new AudioManager();
         document.getElementById("audio-button").onclick = () => {
             if(localStorage.mute == 'on') {
                 localStorage.setItem('mute', 'off');
-                document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-alto-falante-100.png";
+                document.getElementById("audio-button").querySelector("img").src = "<?= $APP_URL ?>/img/icons8-alto-falante-100.png";
                 return;
             }
             localStorage.setItem('mute', 'on');
-            document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
+            document.getElementById("audio-button").querySelector("img").src = "<?= $APP_URL ?>/img/icons8-mute-64.png";
         }
+        $(document).ready(()=>{
+            $('#login').click(()=>{
+                const email = $('#email').val();
+                const senha = $('#senha').val();
+                $.ajax({
+                    url: '<?= $APP_URL ?>/login.php',
+                    data: { email, senha },
+                    type: 'POST',
+                    success: (response) => {
+                        sessionStorage.setItem('userId', response);
+
+                        Toastify({
+                            text: "Você já pode começar!",
+                            duration: 3000
+                        }).showToast();
+                        setTimeout(()=>{
+                            window.location.href='<?= $APP_URL ?>/game.php';
+                        }, 3000)
+
+                    },
+                    error: (xhr) => {
+                        console.log(xhr.responseText)
+                    }
+                })
+            });
+        })
     </script>
 </body>
 </html>

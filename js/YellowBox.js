@@ -43,21 +43,24 @@ class YellowBox extends GameObject {
             if(isNaN(event.pageX) && event.center) {
                 xOffset = event.center.x
             }
-            let positionX = xOffset < window.innerWidth - 60 ? xOffset : window.innerWidth - 60;
-            positionX = xOffset > 8 ? positionX : 8;
-            
-            const styles = {
-                top: (window.innerHeight - gameObject.attributes.positionY) + "px",
-                left: positionX + "px",
+            if(xOffset) {
+                let positionX = xOffset;
+                positionX = xOffset > 8 ? positionX : 8;
+                
+                const styles = {
+                    top: (window.innerHeight - gameObject.attributes.positionY) + "px",
+                    left: positionX + "px",
+                }
+                Object.assign(document.getElementById(gameObject.attributes.id).style, {...styles, border: "solid 2px #000" });
+                Object.assign(this.shotType, styles);
             }
-            Object.assign(document.getElementById(gameObject.attributes.id).style, {...styles, border: "solid 2px #000" });
-            Object.assign(this.shotType, styles);
             
         }
         
         this.mouseMove = (e) => {
             if(!window.pause) {  
                 this.updatePosition(e, this);
+                document.getElementById('platform').style.top = parseInt(document.getElementById('yellow-box').style.top) - 24 + 'px';
             }
         }
         this.shot = (e, shotType) => {
