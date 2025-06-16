@@ -32,11 +32,12 @@ if(isset($_SESSION['usuario_id'])) {
 
     <!-- Dependências do projeto -->
     <!-- CSS -->
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/logo.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/landing.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
-        <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/logo.css"/>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/landing.css"/>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css"/>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
+    <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
+    <script src="<?= $APP_URL ?>/js/Login.js"></script>
 </head>
 <body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
@@ -69,7 +70,7 @@ if(isset($_SESSION['usuario_id'])) {
                             </div>    
                             <div class="px-2">
                                 <strong>Senha:</strong>
-                                <input id="senha" type="text" class="form-control w-auto" placeholder="Senha" />
+                                <input id="senha" type="password" class="form-control w-auto" placeholder="Senha" />
                             </div>
                             <div class="px-2 align-content-end">
                                 <button class="btn btn-primary" id="login">Login</button>
@@ -97,48 +98,25 @@ if(isset($_SESSION['usuario_id'])) {
         const audioManager = new AudioManager();
         const audioButton = document.getElementById("audio-button");
         const mainMenuSound = document.getElementById("main-menu-sound");
-
+        const login = new Login();
+        const appUrl = '<?= $APP_URL ?>';
         audioButton.onclick = () => {
             if(localStorage.mute == 'on') {
                 localStorage.setItem('mute', 'off');
-                audioButton.querySelector("img").src = "<?= $APP_URL ?>/img/icons8-alto-falante-100.png";
+                audioButton.querySelector("img").src = `${appUrl}/img/icons8-alto-falante-100.png`;
                 mainMenuSound.play();
                 return;
             }
             localStorage.setItem('mute', 'on');
-            audioButton.querySelector("img").src = "<?= $APP_URL ?>/img/icons8-mute-64.png";
+            audioButton.querySelector("img").src = `${appUrl}/img/icons8-mute-64.png`;
             mainMenuSound.pause();
         }
         $(document).ready(()=>{
-            $('#login').click(()=>{
-                const email = $('#email').val();
-                const senha = $('#senha').val();
-                $.ajax({
-                    url: '<?= $APP_URL ?>/login.php',
-                    data: { email, senha },
-                    type: 'POST',
-                    success: (response) => {
-                        Toastify({
-                            text: "Você já pode começar!",
-                            duration: 3000
-                        }).showToast();
-                        setTimeout(()=>{
-                            window.location.href='<?= $APP_URL ?>/game.php';
-                        }, 3000);
-
-                    },
-                    error: (xhr) => {
-                        Toastify({
-                            text: JSON.parse(xhr.responseText).error,
-                            duration: 3000,
-                            className: 'error'
-                        }).showToast();
-                    }
-                })
-            });
+            $('#login').click(login.login);
+            
             $('#sair').click(()=>{
-                $.get('<?= $APP_URL ?>/sair.php',() => {
-                    window.location.href = '<?= $APP_URL ?>';
+                $.get(`${appUrl}/sair.php`,() => {
+                    window.location.href = appUrl;
                 });
             });
         })
