@@ -22,7 +22,7 @@ class Game extends GameBase {
             position: "fixed",
             positionY: "76",
             positionX: "50%",
-            velocity: 1
+            velocity: window.ball ? window.ball.attributes.velocity : 1
         });
 
         if(points) {
@@ -118,7 +118,7 @@ class Game extends GameBase {
                     window.game.pointsCounter.increaseCounter(5);
 
                     if(document.querySelectorAll('.invader').length == 0 && !document.querySelector('.help-box')) {
-                        window.ball.attributes.velocity = window.game.levelsCounter.level;
+                        window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
                         window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
                     }
                 }

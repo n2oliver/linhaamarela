@@ -26,7 +26,7 @@ class LevelsCounter extends Counter  {
     setLevelUp = function() {
         document.addEventListener('levelup', function (e) {
             document.getElementById(window.game.levelsCounter.attributes.id).innerText = window.game.levelsCounter.level;
-            window.ball.attributes.velocity = window.game.levelsCounter.level;
+            window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
             
             $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
             setTimeout(()=> {
