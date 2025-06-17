@@ -7,10 +7,13 @@ class GameBase {
     backgroundImages = [
         "/jogos/linhaamarela/img/upscaled-monsters.png",
     ];
-    constructor(e, level, points, lives) {
+    constructor(e, level, totalDeMonstros, top) {
         this.level = level;
         this.background = new Background();
         const random = Math.floor(Math.random() * this.backgroundImages.length);
         this.background.set(this.backgroundImages[random]);
+        this.top = top;
+        this.totalDeMonstros = totalDeMonstros;
+        this.level = level;
     };
 }

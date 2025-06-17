@@ -14,6 +14,9 @@ class SpaceInvader {
         const spaceInvaders = ['spaceinvaders-red', 'spaceinvaders-green', 'spaceinvaders-yellow', 'spaceinvaders-blue'];
         spaceInvader.destruiuHelperBox = spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA
         let levelTop = 1;
+
+
+        let left = true;
         for (let i = 100 / enemyLevel; i < 100; i += (100 / enemyLevel)) {
             if((i == 100 / enemyLevel) || 
                 ((spaceInvader.totalDeMonstros * (100 / enemyLevel))
@@ -31,15 +34,13 @@ class SpaceInvader {
             let invader = document.createElement('div');
             invader.classList.add("invader");
             invader.classList.add("unselectable");
-            invader.style.left = i + "%";
+            invader.style.left = (left ? '-' : '') + i + "%";
             invader.style.top = spaceInvader.top + "px";
             invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
             document.body.append(invader);
         }
         spaceInvader.totalDeMonstros = document.querySelectorAll('.invader').length;
         window.game.setEvents(event);
-
-        let left = true;
         setInterval(()=>{       
             if (left == true) {
                 left = false;

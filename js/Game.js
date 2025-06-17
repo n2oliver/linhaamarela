@@ -2,14 +2,14 @@ class Game extends GameBase {
     pointsCounter;
     livesCounter;
     levelsCounter;
-    level;
+    level = 1;
     yellowBox;
     invaderInterval;
     interval;
     audioManager;
     top = 100;
-    constructor(e, level, points, lives, totalDeMonstros, top) {
-        super(e, level, points, lives);
+    constructor(e, level, totalDeMonstros, top, points, lives) {
+        super(e, level, totalDeMonstros, top, points, lives);
         
         window.ball = new Ball({
             id: "red-ball",
@@ -32,9 +32,8 @@ class Game extends GameBase {
         if(lives != null) {
             this.livesCounter.lives = lives;
         }
+
         this.audioManager = new AudioManager();
-        this.top = top;
-        this.totalDeMonstros = totalDeMonstros;
     };
     yellowBox = new YellowBox({
         id: "yellow-box",
@@ -108,7 +107,7 @@ class Game extends GameBase {
         window.spaceInvader.totalDeMonstros = window.game.totalDeMonstros;
         
         clearInterval(window.game.invaderInterval);
-        this.invaderInterval = window.spaceInvader.init(parseInt((window.game.pointsCounter.points + 250) /250) * 5);
+        this.invaderInterval = window.spaceInvader.init(parseInt(window.game.level)*5);
 
         $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
         setTimeout(()=> {
@@ -142,7 +141,7 @@ class Game extends GameBase {
                         return;
                     }
                     game.livesCounter.decreaseCounter(1);
-                    window.game = new Game(event, window.game.levelsCounter.level, window.game.pointsCounter.points, window.game.livesCounter.lives, window.spaceInvader.top);
+                    window.game = new Game(event, window.game.levelsCounter.level, window.spaceInvader.totalDeMonstros, window.spaceInvader.top, window.game.pointsCounter.points, window.game.livesCounter.lives);
                     window.onclick = window.game.start;
                     
                 }
