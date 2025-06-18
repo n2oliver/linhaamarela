@@ -11,13 +11,7 @@
     color: white;
     padding: 20px 0;
 }
-.woman {
-    position: relative;
-    width: 50%;
-    display: none;
-}
-@media (min-width: 600px) {
-    .woman {
-        display: block;
-    }
+.recovery-link:hover {
+    color: #9c006c;
+    cursor: pointer;
 }

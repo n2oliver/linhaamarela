@@ -30,4 +30,42 @@ class Login {
             }
         })
     }
+    passwordRecovery = (appUrl) => {
+        const email = $('#email').val();
+        const campoSenha = $('#campo-senha');
+        const codigoEmail = $('#codigo-email');
+
+        if(!email.trim()) {
+            Toastify({
+                text: "Preencha primeiro o campo email!",
+                duration: 3000,
+                className: 'error'
+            }).showToast();
+            return;
+        }
+        campoSenha.addClass('d-none');
+        codigoEmail.removeClass('d-none');
+
+        $.ajax({
+            url: `/jogos/linhaamarela/password-recovery.php`,
+            data: { email },
+            type: 'POST',
+            success: (response) => {
+                Toastify({
+                    text: response,
+                    duration: 3000,
+                    className: 'success'
+                }).showToast();
+                console.log(response);
+
+            },
+            error: (xhr) => {
+                Toastify({
+                    text: JSON.parse(xhr.responseText).error,
+                    duration: 3000,
+                    className: 'error'
+                }).showToast();
+            }
+        })
+    }
 }

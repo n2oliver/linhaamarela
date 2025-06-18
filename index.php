@@ -63,16 +63,23 @@ if(isset($_SESSION['usuario_id'])) {
                     if(!isset($usuario['email'])) {
                     ?>
                         <l class="nav-item">
-                            <small class="d-flex justify-content-between text-left">
-                            <div class="px-2">
+                            <small class="row text-left">
+                            <div class="col-md-4 px-2">
                                 <strong>E-mail:</strong>
-                                <input id="email" type="text" class="form-control w-auto" placeholder="E-mail" />
+                                <input id="email" type="text" class="form-control" placeholder="E-mail" />
+                                <small class="recovery-link m-1">Não tenho uma conta</small>
                             </div>    
-                            <div class="px-2">
+                            <div id="campo-senha" class="col-md-4 px-2">
                                 <strong>Senha:</strong>
-                                <input id="senha" type="password" class="form-control w-auto" placeholder="Senha" />
+                                <input id="senha" type="password" class="form-control" placeholder="Senha" />
+                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small>
                             </div>
-                            <div class="px-2 align-content-end">
+                            <div id="codigo-email" class="col-md-4 px-2 d-none">
+                                <strong>Código enviado:</strong>
+                                <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
+                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small>
+                            </div>
+                            <div class="col-md-4 px-2 align-content-end">
                                 <button class="btn btn-primary" id="login">Login</button>
                             </div>
                             </small>    
@@ -119,6 +126,7 @@ if(isset($_SESSION['usuario_id'])) {
                     window.location.href = appUrl;
                 });
             });
+            $('#esqueci-senha').click(login.passwordRecovery);
         })
     </script>
 </body>
