@@ -13,7 +13,6 @@ require_once(__DIR__."/lib/phpmailer/Exception.php");
 $email = $_POST['email'];
 
 $mailService = new PHPMailer(true);
-$_SESSION['code'] = generate_secure_id();
 
 try {
     loadEnv(__DIR__ . '/.env');
@@ -32,7 +31,7 @@ try {
     $mailService->CharSet = "UTF-8";
 
     $mailService->isHTML(true);
-    $mailService->Subject = 'Seu Código Linha Amarela';
+    $mailService->Subject = 'Seu Código - Linha Amarela';
     $mailService->Body    = 'Seu código é: <b>'.$_SESSION['code'].'</b>';
     $mailService->AltBody = '<b>'.$_SESSION['code'].'</b>Copie ou digite este código e insira no campo Código do Email!';
 

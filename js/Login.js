@@ -30,10 +30,12 @@ class Login {
             }
         })
     }
-    passwordRecovery = (appUrl) => {
+    passwordRecovery = () => {
+        const appUrl = '/jogos/linhaamarela'
         const email = $('#email').val();
         const campoSenha = $('#campo-senha');
         const codigoEmail = $('#codigo-email');
+        const naoRecebiEmail = $('#nao-recebi');
 
         if(!email.trim()) {
             Toastify({
@@ -45,18 +47,43 @@ class Login {
         }
         campoSenha.addClass('d-none');
         codigoEmail.removeClass('d-none');
+        naoRecebiEmail.removeClass('d-none');
+        naoRecebiEmail.click(()=>{
+            $.ajax({
+                url: `${appUrl}/retry-password-recovery.php`,
+                data: { email },
+                type: 'POST',
+                success: (response) => {
+                    Toastify({
+                        text: JSON.parse(response).data,
+                        duration: 3000,
+                        className: 'success'
+                    }).showToast();
+                    console.log(JSON.parse(response).message);
+
+                },
+                error: (xhr) => {
+                    Toastify({
+                        text: JSON.parse(xhr.responseText).error,
+                        duration: 3000,
+                        className: 'error'
+                    }).showToast();
+                }
+            })
+
+        })
 
         $.ajax({
-            url: `/jogos/linhaamarela/password-recovery.php`,
+            url: `${appUrl}/password-recovery.php`,
             data: { email },
             type: 'POST',
             success: (response) => {
                 Toastify({
-                    text: response,
+                    text: JSON.parse(response).data,
                     duration: 3000,
                     className: 'success'
                 }).showToast();
-                console.log(response);
+                console.log(JSON.parse(response).message);
 
             },
             error: (xhr) => {

@@ -26,7 +26,9 @@ require('./verifica-login.php');
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/markers.css"/>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/enemies.css"/>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/game.css"></style>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/styles-index.css" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -116,8 +118,8 @@ require('./verifica-login.php');
                 </script>
                 <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
             </div>
-            <a href="/"><span style="font-family: Montserrat">Oliv3r Dev</span></a>
-            <span style="font-size: 9px">Todos os direitos reservados - Oliv3r Dev -  2025</span>
+            <a href="/"><span style="font-family: Ubuntu">n2oliver</span></a>
+            <span style="font-size: 9px">Todos os direitos reservados - n2oliver -  2025</span>
             <span style="font-size: 9px">CNPJ 60.407.027/0001-25</span>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

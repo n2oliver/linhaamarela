@@ -19,7 +19,9 @@ if(isset($_SESSION['usuario_id'])) {
     <link rel="shortcut icon" href="<?= $APP_URL ?>/iconlinhaamarela.ico" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles-index.css" />
 
     <!-- Javascript -->
@@ -77,7 +79,8 @@ if(isset($_SESSION['usuario_id'])) {
                             <div id="codigo-email" class="col-md-4 px-2 d-none">
                                 <strong>Código enviado:</strong>
                                 <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
-                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small>
+                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small> | 
+                                <small id="nao-recebi" class="recovery-link m-1 d-none">Não recebi o código</small>
                             </div>
                             <div class="col-md-4 px-2 align-content-end">
                                 <button class="btn btn-primary" id="login">Login</button>
