@@ -18,8 +18,7 @@ $usuarioModel = new Usuario($pdo);
 $usuarioExiste = $usuarioModel->usuarioExiste($email);
 
 $mailService = new PHPMailer(true);
-if(!isset($_SESSION['code']))
-    $_SESSION['code'] = generate_secure_id();
+$_SESSION['code'] = generate_secure_id();
 
 try {
     loadEnv(__DIR__ . '/.env');

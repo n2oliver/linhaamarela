@@ -14,9 +14,8 @@ try {
     }
 
     http_response_code(401);
-    echo json_encode(['error'=>"Código inválido! Tente novamente!"], true);
+    echo json_encode(['error'=>"Código inválido! Tente novamente!".$_SESSION['code']], true);
 } catch (Exception $e) {
     http_response_code(401);
     echo json_encode(['error'=>"Erro ao verificar código!"], true);
 }
-session_destroy();
