@@ -23,6 +23,7 @@ if(isset($_SESSION['usuario_id'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles-index.css" />
+    <link rel="stylesheet" href="/sobre-mim.css" />
 
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -47,7 +48,7 @@ if(isset($_SESSION['usuario_id'])) {
 
     <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="<?= $APP_URL ?>">Linha Amarela</a>
+            <a href="<?= $APP_URL ?>" style="text-decoration: none; color: yellow !important; -webkit-text-stroke: 1px black">Linha Amarela</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -64,28 +65,38 @@ if(isset($_SESSION['usuario_id'])) {
                     <?php
                     if(!isset($usuario['email'])) {
                     ?>
-                        <l class="nav-item">
-                            <small class="row text-left">
-                            <div class="col-md-4 px-2">
-                                <strong>E-mail:</strong>
-                                <input id="email" type="text" class="form-control" placeholder="E-mail" />
-                                <small class="recovery-link m-1">Não tenho uma conta</small>
-                            </div>    
-                            <div id="campo-senha" class="col-md-4 px-2">
-                                <strong>Senha:</strong>
-                                <input id="senha" type="password" class="form-control" placeholder="Senha" />
-                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small>
+                        <small class="row text-left">
+                        <div class="col-md-6 px-2">
+                            <strong>E-mail:</strong>
+                            <input id="email" type="text" class="form-control" placeholder="E-mail" />
+                            <small class="recovery-link m-1 text-nowrap">Não tenho uma conta</small>
+                        </div>    
+                        <div id="campo-senha" class="col-md-6 px-2">
+                            <strong>Senha:</strong>
+                            <div class="row align-items-start">
+                                <div class="col-6 pl-0 py-0">
+                                    <input id="senha" type="password" class="form-control" placeholder="Senha" />
+                                    <small id="esqueci-senha" class="recovery-link m-1 text-nowrap">Esqueci minha senha</small>
+                                </div>
+                                <div class="col-6 px-0 py-0">
+                                    <button class="btn btn-primary" id="login">Login</button>
+                                </div>
                             </div>
-                            <div id="codigo-email" class="col-md-4 px-2 d-none">
-                                <strong>Código enviado:</strong>
-                                <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
-                                <small id="esqueci-senha" class="recovery-link m-1">Esqueci minha senha</small> | 
-                                <small id="nao-recebi" class="recovery-link m-1 d-none">Não recebi o código</small>
+                        </div>
+                        <div id="codigo-email" class="col-md-6 px-2 d-none">
+                            <strong>Código enviado:</strong>
+                            <div class="row align-items-start">
+                                <div class="col-6 px-0 py-0">
+                                    <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
+                                </div>
+                                <div class="col-6 pr-0 py-0">
+                                    <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>
+                                </div>
                             </div>
-                            <div class="col-md-4 px-2 align-content-end">
-                                <button class="btn btn-primary" id="login">Login</button>
-                            </div>
-                            </small>    
+                            <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small> |
+                            <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-danger">Cancelar</small>
+                        </div>
+                        </small>  
                     </div>
                     <?php } else { ?>
                         <div class="nav-item align-content-center">
