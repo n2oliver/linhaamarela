@@ -69,7 +69,7 @@ if(isset($_SESSION['usuario_id'])) {
                         <div class="col-md-6 px-2">
                             <strong>E-mail:</strong>
                             <input id="email" type="text" class="form-control" placeholder="E-mail" />
-                            <small class="recovery-link m-1 text-nowrap">Não tenho uma conta</small>
+                            <small id="nao-tenho-conta" class="recovery-link m-1 text-nowrap">Não tenho uma conta</small>
                         </div>    
                         <div id="campo-senha" class="col-md-6 px-2">
                             <strong>Senha:</strong>
@@ -83,6 +83,18 @@ if(isset($_SESSION['usuario_id'])) {
                                 </div>
                             </div>
                         </div>
+                        <div id="cadastrar-senha" class="col-md-6 px-2 d-none">
+                            <strong>Criar nova senha:</strong>
+                            <div class="row align-items-start">
+                                <div class="col-6 pl-0 py-0">
+                                    <input id="cadastro-senha" type="password" class="form-control" placeholder="Senha" />
+                                    <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-danger">Cancelar</small>
+                                </div>
+                                <div class="col-6 px-0 py-0">
+                                    <button class="btn btn-success" id="cadastrar">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
                         <div id="codigo-email" class="col-md-6 px-2 d-none">
                             <strong>Código enviado:</strong>
                             <div class="row align-items-start">
@@ -93,7 +105,7 @@ if(isset($_SESSION['usuario_id'])) {
                                     <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>
                                 </div>
                             </div>
-                            <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small> |
+                            <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small>
                             <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-danger">Cancelar</small>
                         </div>
                         </small>  
@@ -140,6 +152,13 @@ if(isset($_SESSION['usuario_id'])) {
                     window.location.href = appUrl;
                 });
             });
+
+            $('#nao-tenho-conta').click(login.criarSenha);
+
+            $('#cadastrar').click(login.cadastrar);
+
+            $('#sair-cadastro').click(login.sairCadastro);
+
             $('#esqueci-senha').click(login.passwordRecovery);
         })
     </script>

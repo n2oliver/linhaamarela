@@ -4,7 +4,8 @@ try {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT NOT NULL,
         email TEXT NOT NULL,
-        senha TEXT NOT NULL
+        senha TEXT NOT NULL,
+        ativacao TINYINT(1)
     )";
     $pdo->exec($sql);
 

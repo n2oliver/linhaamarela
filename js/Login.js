@@ -4,6 +4,7 @@ class Login {
         nomedeusuario: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/,
         senha: /.*\S.*/
     }
+
     login = () => {
         const email = $('#email').val();
         const senha = $('#senha').val();
@@ -32,8 +33,88 @@ class Login {
             }
         })
     }
+
+    criarSenha = () => {
+        const email = $('#email').val();
+
+        if(!email.trim()) {
+            Toastify({
+                text: "Preencha primeiro o campo email!",
+                duration: 5000,
+                className: 'error',
+                close: true
+            }).showToast();
+            return;
+        }
+
+        const campoSenha = $('#campo-senha');
+        const cadastrarSenha = $('#cadastrar-senha');
+        const codigoEmail = $('#codigo-email');
+        const naoRecebiEmail = $('#nao-recebi');
+        const cancelarEsqueciSenhaEmail = $('#cancelar');
+
+        campoSenha.addClass('d-none');
+        cadastrarSenha.addClass('d-none');
+        codigoEmail.removeClass('d-none');
+        naoRecebiEmail.removeClass('d-none');
+        cancelarEsqueciSenhaEmail.removeClass('d-none');
+
+        naoRecebiEmail.click(()=>{
+            $.ajax({
+                url: `${appUrl}/retry-email-verify.php`,
+                data: { email },
+                type: 'POST',
+                success: (response) => {
+                    Toastify({
+                        text: JSON.parse(response).data,
+                        duration: 5000,
+                        className: 'success',
+                        close: true
+                    }).showToast();
+                    console.log(JSON.parse(response).message);
+
+                },
+                error: (xhr) => {
+                    Toastify({
+                        text: JSON.parse(xhr.responseText).error,
+                        duration: 5000,
+                        className: 'error',
+                        close: true
+                    }).showToast();
+                }
+            })
+
+        });
+        
+        $(document).ready(()=>{  
+            $.ajax({
+                url: `${appUrl}/password-create.php`,
+                data: { email },
+                type: 'POST',
+                success: (response) => {
+                    Toastify({
+                        text: JSON.parse(response).data,
+                        duration: 5000,
+                        className: 'success',
+                        close: true
+                    }).showToast();
+                    console.log(JSON.parse(response).message);
+
+                },
+                error: (xhr) => {
+                    Toastify({
+                        text: JSON.parse(xhr.responseText).error,
+                        duration: 5000,
+                        className: 'error',
+                        close: true
+                    }).showToast();
+                }
+            })
+        })
+    }
+
     passwordRecovery = () => {
-        const appUrl = '/jogos/linhaamarela'
+        const appUrl = '/jogos/linhaamarela';
         const email = $('#email').val();
         const campoSenha = $('#campo-senha');
         const codigoEmail = $('#codigo-email');
@@ -41,6 +122,7 @@ class Login {
         const naoRecebiEmail = $('#nao-recebi');
         const cancelarEsqueciSenhaEmail = $('#cancelar');
         const verificar = $('#verificar');
+        const cadastrarSenha = $('#cadastrar-senha');
 
         if(!email.trim()) {
             Toastify({
@@ -55,11 +137,13 @@ class Login {
         codigoEmail.removeClass('d-none');
         naoRecebiEmail.removeClass('d-none');
         cancelarEsqueciSenhaEmail.removeClass('d-none');
+        cadastrarSenha.addClass('d-none');
         
         cancelarEsqueciSenhaEmail.click(()=> {
             campoSenha.removeClass('d-none');
             codigoEmail.addClass('d-none');
             naoRecebiEmail.addClass('d-none');
+            cadastrarSenha.addClass('d-none');
             cancelarEsqueciSenhaEmail.addClass('d-none');
         });
 
@@ -141,5 +225,31 @@ class Login {
                 }
             })
         })
+    }
+    cadastrar = () => {
+        this.validarEmail();
+    }
+    
+    validarEmail = () => {
+        const email = $('#email').val();
+        
+        const campoSenha = $('#campo-senha');
+        const codigoEmail = $('#codigo-email');
+        const cadastrarSenha = $('#cadastrar-senha');
+        campoSenha.addClass('d-none');
+        codigoEmail.addClass('d-none');
+        cadastrarSenha.removeClass('d-none');
+    }
+
+    sairCadastro = () => {
+        const cadastrarSenha = $('#cadastrar-senha');
+        const codigoEmail = $('#codigo-email');
+        const cancelarEsqueciSenhaEmail = $('#cancelar');
+        const campoSenha = $('#campo-senha');
+
+        campoSenha.removeClass('d-none');
+        codigoEmail.addClass('d-none');
+        cancelarEsqueciSenhaEmail.addClass('d-none');
+        cadastrarSenha.addClass('d-none');
     }
 }
