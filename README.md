@@ -35,20 +35,35 @@
 ## 📁 Estrutura
 
 linhaamarela/
+
 ├── css/
+
 │ └── game.css, logo.css, pause.css, etc.
+
 ├── img/
+
 │ └── assets do jogo (invasores, fundo, ícones)
+
 ├── js/
+
 │ └── Game.js, GameObject.js, Ball.js, etc.
+
 ├── mp3/
+
 │ └── Áudios do jogo
+
 ├── database/
+
 │ └── connectdb.php
+
 ├── verifica-login.php
+
 ├── sair.php
+
 ├── game.php
+
 ├── gameover.html
+
 └── README.md
 
 ## 🧑‍💻 Instalação local
