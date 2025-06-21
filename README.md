@@ -60,8 +60,8 @@ linhaamarela/
 2. Configure seu ambiente local com PHP (Apache, XAMPP ou similar).
 
 3. Certifique-se de que a pasta linhaamarela/ está acessível via navegador, ex.:
-
-http://localhost/linhaamarela/game.php
+   ```bash
+   http://localhost/linhaamarela/game.php
 
 4. Para ativar o controle de login, edite os arquivos verifica-login.php e connectdb.php com seus dados.
 
