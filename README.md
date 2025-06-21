@@ -1,40 +1,36 @@
-# Linha Amarela
-Jogo de concentração da pílula vermelha
+# 🎮 Linha Amarela
 
-## Início rápido:
-### Inscrição:
-#### Preenhimento do formulário de inscrição:
-1. Clique no botão azul "Toque aqui para iniciar";
-2. Clique em "Inscrição";
-3. Preenha os campos "Nome de usuário", "Email" e "Senha";
-4. Clique em "Inscrever-se";
-5. Pronto, a entrada será iniciada e o jogo irá iniciar
+**Linha Amarela** é um jogo de navegador no estilo arcade onde o jogador controla uma "linha amarela" para rebater uma bola e destruir invasores espaciais. O jogo é totalmente desenvolvido em **JavaScript Vanilla**, com backend em **PHP**, e traz um estilo retrô moderno com progressão de níveis, sons, efeitos e colisões.
 
-### Entrada:
-#### Preenhimento do formulário de entrada:
-1. Use o seu nome de usuário criado na inscrição para preencher o campo "Nome de usuário";
-2. Utilize a sua senha criada na inscrição para preencher o campo "Senha";
-3. Clique no botão azul com o texto "Entrar";
+![screenshot](./img/logo-linhaamarela.png)
 
-### Como jogar:
-- Mova o ponteiro do mouse ou arraste com o dedo na tela touchscreen para a esquerda ou para a direita para mover a nave amarela para um dos lados;
-- Clique com o botão esquerdo do mouse ou toque na tela para realizar um disparo contra os inimigos;
-- Utilize a tecla Esc ou clique ou toque no botão de Pause para pausar durante o jogo;
-- Sua pontuação aumenta conforme a bola vermelha toca a nave amarela e quando um dos inimigos é atingido;
-- A velocidade da bola vermelha e o número de inimigos aumenta conforme você passa de nível;
-- O jogo termina quando suas vidas restantes acabam
+## 🚀 Demonstração
 
-## Registro de mudanças:
+👉 [Jogue agora](https://oliver.liveblog365.com/jogos/linhaamarela/)  
+🕹️ Requer navegador moderno com JavaScript habilitado.
 
-### v0.1 - Versão inicial do jogo
-#### Principais características:
-- Inscrição e entrada de usuários;
-- Animação de personagens não jogáveis durante início e fim de jogo;
-- Pontuação e progressão de níveis do jogo, com aumento da dificuldade durante o progresso;
-- Inclusão de combate a inimigos espaciais;
-- Possibilidade de doação via PIX
+---
 
-#### Defeitos conhecidos:
-- Esqueci minha senha não permite alterar a senha;
-- Inscrição não impede duplicidade de usuários;
-- Não há indicador de versão do jogo
+## 📦 Funcionalidades
+
+- ✅ Detecção de colisões (borda, barra, inimigos)
+- ✅ Movimento responsivo com mouse e toque (Hammer.js)
+- ✅ Progressão de níveis com aumento de dificuldade
+- ✅ Sistema de vidas e pontuação
+- ✅ Efeitos sonoros e música de fundo
+- ✅ Pausar e retomar o jogo
+- ✅ Inimigos animados e caixa de ajuda com power-up
+
+---
+
+## 🛠️ Tecnologias
+
+- **Frontend:** HTML5, CSS3, JavaScript (ES6)
+- **Backend:** PHP (para login/session/logout)
+- **Bibliotecas:** [Hammer.js](https://hammerjs.github.io/)
+- **Design:** Estilo retrô com sprites personalizados
+
+---
+
+## 📁 Estrutura
+
