@@ -109,10 +109,10 @@ if(isset($_SESSION['usuario_id'])) {
                             </div>
                         </div>
                         <div id="codigo-email" class="col-md-6 px-2 d-none">
-                            <strong>Código enviado: <?= $_SESSION['code'] ?></strong>
+                            <strong>Código: <?= $_SESSION['code'] ?></strong>
                             <div class="row align-items-start">
                                 <div class="col-6 px-0 py-0">
-                                    <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
+                                    <input id="codigo-enviado" type="text" class="form-control" placeholder="Cole aqui" />
                                 </div>
                                 <div class="col-6 pr-0 py-0">
                                     <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>

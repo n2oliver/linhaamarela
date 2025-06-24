@@ -26,7 +26,7 @@ class Login {
             success: (response) => {
                 Toastify({
                     text: "Você já pode começar!",
-                    duration: 15000,
+                    duration: 10000,
                     close: true
                 }).showToast();
                 setTimeout(()=>{
@@ -37,7 +37,7 @@ class Login {
             error: (xhr) => {
                 Toastify({
                     text: JSON.parse(xhr.responseText).error,
-                    duration: 15000,
+                    duration: 10000,
                     className: 'error',
                     close: true
                 }).showToast();
@@ -46,7 +46,6 @@ class Login {
     }
 
     naoTenhoConta = () => {
-        console.log(document.cookie);
         this.removeNotifications();
         const email = this.campoEmail.val();
         this.codigoEnviado.val('');
@@ -54,7 +53,7 @@ class Login {
         if(!email.trim()) {
             Toastify({
                 text: "Preencha primeiro o campo email!",
-                duration: 15000,
+                duration: 10000,
                 className: 'error',
                 close: true
             }).showToast();
@@ -79,17 +78,15 @@ class Login {
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 0,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
-                    console.log(JSON.parse(response).message);
-
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
@@ -99,7 +96,6 @@ class Login {
         });
         
         this.verificar.click(()=>{
-            console.log(document.cookie);
             this.removeNotifications();
 
             $.ajax({
@@ -112,21 +108,36 @@ class Login {
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 0,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
                     this.codigoEnviado.val('');
-                    console.log(JSON.parse(response).message);
+                    this.liberarCampoCadastrarSenha();
+                    this.cadastrarSenha.click(()=>{
+                        $.ajax({
+                            url: `${this.appUrl}/password-create.php`,
+                            data: { email, senha },
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            type: 'POST',
+                            success: (response) => {
+                            },
+                            error: (xhr) => {
 
+                            }
+                        });
+                    });
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
+                    window.location.reload();
                 }
             })
         });
@@ -134,27 +145,25 @@ class Login {
         $(document).ready(()=>{
             Toastify({
                 text: 'Enviando código de verificação...',
-                duration: 15000,
+                duration: 10000,
                 close: true
             }).showToast();
             $.ajax({
-                url: `${this.appUrl}/password-create.php`,
+                url: `${this.appUrl}/password-create-mail.php`,
                 data: { email },
                 type: 'POST',
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 0,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
-                    console.log(JSON.parse(response).message);
-
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
@@ -173,7 +182,7 @@ class Login {
         if(!this.campoEmail.val().trim()) {
             Toastify({
                 text: "Preencha primeiro o campo email!",
-                duration: 15000,
+                duration: 10000,
                 className: 'error',
                 close: true
             }).showToast();
@@ -203,7 +212,7 @@ class Login {
             this.codigoEnviado.val('');
             Toastify({
                 text: 'Enviando código de verificação...',
-                duration: 15000,
+                duration: 10000,
                 close: true
             }).showToast();
             $.ajax({
@@ -213,17 +222,15 @@ class Login {
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 0,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
-                    console.log(JSON.parse(response).message);
-
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
@@ -237,7 +244,7 @@ class Login {
             
             Toastify({
                 text: 'Validando código de verificação...',
-                duration: 15000,
+                duration: 10000,
                 close: true
             }).showToast();
 
@@ -248,18 +255,16 @@ class Login {
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
                     this.codigoEnviado.val('');
-                    console.log(JSON.parse(response).message);
-
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
@@ -270,7 +275,7 @@ class Login {
         $(document).ready(()=>{
             Toastify({
                 text: 'Enviando código de verificação...',
-                duration: 15000,
+                duration: 10000,
                 close: true
             }).showToast();
             $.ajax({
@@ -280,17 +285,15 @@ class Login {
                 success: (response) => {
                     Toastify({
                         text: JSON.parse(response).data,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'success',
                         close: true
                     }).showToast();
-                    console.log(JSON.parse(response).message);
-
                 },
                 error: (xhr) => {
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
-                        duration: 15000,
+                        duration: 10000,
                         className: 'error',
                         close: true
                     }).showToast();
@@ -324,5 +327,10 @@ class Login {
         for(let toast of document.querySelectorAll('.toastify')) {
             toast.remove();
         }
+    }
+    liberarCampoCadastrarSenha = () => {
+        this.cadastrarSenha.removeClass('d-none');
+        this.campoSenha.addClass('d-none');
+        this.codigoEmail.addClass('d-none');
     }
 }

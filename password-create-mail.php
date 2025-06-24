@@ -48,7 +48,7 @@ try {
     $mailService->send();
     
     http_response_code(200);
-    echo json_encode(['data'=>'Você receberá em instantes um e-mail contendo o código de verificação de email. Copie e cole o código enviado para a caixa de entrada!'], true);
+    echo json_encode(['data'=>'Copie o código que enviamos para sua caixa de entrada!'], true);
 } catch (Exception $e) {
     http_response_code(401);
     echo json_encode(['error'=>"Erro ao enviar: {$mailService->ErrorInfo}"], true);

@@ -13,6 +13,7 @@ try {
         $usuarioRepository = new UsuarioRepository($pdo);
         /* TODO Adicionar usuario ao validar o email */
         /* TODO Abrir etapa de criação de senha */
+        $_SESSION['email_validado'] = 1;
         http_response_code(200);
         echo json_encode(['data'=>'Código validado com sucesso! Crie sua senha!'], true);
         exit;
