@@ -66,7 +66,7 @@ class Login {
         this.naoRecebiEmail.removeClass('d-none');
         this.cancelarEsqueciSenhaEmail.removeClass('d-none');
 
-        this.naoRecebiEmail.click(()=>{
+        this.naoRecebiEmail.unbind('click').click(()=>{
             this.removeNotifications();
             
             this.codigoEnviado.val('');
@@ -82,6 +82,9 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
+                    setTimeout(()=>{
+                        window.open(`https://${email}`)
+                    }, 4000);
                 },
                 error: (xhr) => {
                     Toastify({
@@ -95,7 +98,7 @@ class Login {
 
         });
         
-        this.verificar.click(()=>{
+        this.verificar.unbind('click').click(()=>{
             this.removeNotifications();
 
             $.ajax({
@@ -137,11 +140,22 @@ class Login {
                         className: 'error',
                         close: true
                     }).showToast();
-                    window.location.reload();
                 }
             })
         });
         
+        this.cancelarEsqueciSenhaEmail.unbind('click').click(()=> {
+            this.removeNotifications();
+
+            this.codigoEnviado.val('');
+
+            this.campoSenha.removeClass('d-none');
+            this.codigoEmail.addClass('d-none');
+            this.naoRecebiEmail.addClass('d-none');
+            this.cadastrarSenha.addClass('d-none');
+            this.cancelarEsqueciSenhaEmail.addClass('d-none');
+        });
+
         $(document).ready(()=>{
             Toastify({
                 text: 'Enviando código de verificação...',
@@ -159,6 +173,9 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
+                    setTimeout(()=>{
+                        window.open(`https://${email}`)
+                    }, 4000);
                 },
                 error: (xhr) => {
                     Toastify({
@@ -194,7 +211,7 @@ class Login {
         this.cancelarEsqueciSenhaEmail.removeClass('d-none');
         this.cadastrarSenha.addClass('d-none');
         
-        this.cancelarEsqueciSenhaEmail.click(()=> {
+        this.cancelarEsqueciSenhaEmail.unbind('click').click(()=> {
             this.removeNotifications();
 
             this.codigoEnviado.val('');
@@ -206,7 +223,7 @@ class Login {
             this.cancelarEsqueciSenhaEmail.addClass('d-none');
         });
 
-        this.naoRecebiEmail.click(()=>{
+        this.naoRecebiEmail.unbind('click').click(()=>{
             this.removeNotifications();
 
             this.codigoEnviado.val('');
@@ -226,6 +243,9 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
+                    setTimeout(()=>{
+                        window.open(`https://${email}`)
+                    }, 4000);
                 },
                 error: (xhr) => {
                     Toastify({
@@ -239,7 +259,7 @@ class Login {
 
         });
         
-        this.verificar.click(()=>{
+        this.verificar.unbind('click').click(()=>{
             this.removeNotifications();
             
             Toastify({
@@ -289,6 +309,9 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
+                    setTimeout(()=>{
+                        window.open(`https://${email}`)
+                    }, 4000);
                 },
                 error: (xhr) => {
                     Toastify({

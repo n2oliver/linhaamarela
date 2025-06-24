@@ -4,6 +4,7 @@ include('./database/connectdb.php');
 include('./repositories/LoginRepository.php');
 include('./repositories/UsuarioRepository.php');
 $APP_URL = '/jogos/linhaamarela';
+$_SESSION['email_validado'] = null;
 if(isset($_SESSION['usuario_id'])) {
     $usuarioModel = new UsuarioRepository($pdo);
     $usuarioRepository = $usuarioModel->obterUsuarioPorId($_SESSION['usuario_id']);

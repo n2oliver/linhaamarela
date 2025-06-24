@@ -19,6 +19,7 @@ $usuarioExiste = $usuarioModel->usuarioExiste($email);
 
 $mailService = new PHPMailer(true);
 $_SESSION['code'] = generate_secure_id();
+$_SESSION['email'] = $email;
 try {
     $mailService->isSMTP();
     $mailService->Host       = getenv('SMTP_HOST');
