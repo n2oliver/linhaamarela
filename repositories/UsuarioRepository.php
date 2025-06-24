@@ -1,19 +1,18 @@
 <?php
 try {
     $sql = "CREATE TABLE IF NOT EXISTS usuario (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL,
-        email TEXT NOT NULL,
-        senha TEXT NOT NULL,
-        ativacao TINYINT(1)
-    )";
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        senha VARCHAR(255) NOT NULL
+    );";
     $pdo->exec($sql);
 
 } catch (Exception $e) {
     echo "Erro ao obter o modelo de usuarios!";
 }
 
-class Usuario {
+class UsuarioRepository {
     private $pdo;
     function __construct(PDO $pdo) {
         $this->pdo = $pdo;
@@ -39,5 +38,9 @@ class Usuario {
         $sql = "SELECT nome, email FROM usuario WHERE id = '$id' ORDER BY id DESC LIMIT 1";
         $result = $this->pdo->query($sql)->fetch();
         return $result;
+    }
+
+    public function inserirUsuario($usuarioRepository) {
+        
     }
 }

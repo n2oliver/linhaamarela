@@ -219,8 +219,8 @@ class POP3
         //Connect
         $result = $this->connect($this->host, $this->port, $this->tval);
         if ($result) {
-            $login_result = $this->login($this->username, $this->password);
-            if ($login_result) {
+            $loginRepository_result = $this->login($this->username, $this->password);
+            if ($loginRepository_result) {
                 $this->disconnect();
 
                 return true;

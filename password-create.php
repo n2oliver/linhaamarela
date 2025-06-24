@@ -5,23 +5,21 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once(__DIR__."/load-env.php");
-require_once(__DIR__."/database/connectdb.php");
-require_once(__DIR__."/models/Usuario.php");
-require_once(__DIR__."/generate-secure-id.php");
-require_once(__DIR__."/lib/phpmailer/PHPMailer.php");
-require_once(__DIR__."/lib/phpmailer/SMTP.php");
-require_once(__DIR__."/lib/phpmailer/Exception.php");
+require_once('./load-env.php');
+require_once("./database/connectdb.php");
+require_once("./repositories/UsuarioRepository.php");
+require_once("./generate-secure-id.php");
+require_once("./lib/phpmailer/PHPMailer.php");
+require_once("./lib/phpmailer/SMTP.php");
+require_once("./lib/phpmailer/Exception.php");
 
 $email = $_POST['email'];
-$usuarioModel = new Usuario($pdo);
+$usuarioModel = new UsuarioRepository($pdo);
 $usuarioExiste = $usuarioModel->usuarioExiste($email);
 
 $mailService = new PHPMailer(true);
 $_SESSION['code'] = generate_secure_id();
-
 try {
-    loadEnv(__DIR__ . '/.env');
     $mailService->isSMTP();
     $mailService->Host       = getenv('SMTP_HOST');
     $mailService->SMTPAuth   = getenv('SMTP_AUTH');
@@ -42,8 +40,8 @@ try {
     $mailService->AltBody = '<b>'.$_SESSION['code'].'</b>Copie ou digite este código e insira no campo Código do Email!';
 
     if($usuarioExiste) {
-        http_response_code(302);
-        echo json_encode(['data'=>'Usuário já existente! Tente fazer o login ou recuperar a senha!'], true);
+        http_response_code(200);
+        echo json_encode(['status'=>'user_exists','data'=>'Usuário já existente! Tente fazer o login ou recuperar a senha!'], true);
         return;
     }
     

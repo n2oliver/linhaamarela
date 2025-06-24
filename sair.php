@@ -1,7 +1,7 @@
 <?php
 include('./database/connectdb.php');
-include('./models/Usuario.php');
-include('./models/Login.php');
-$usuario = new Usuario($pdo);
-$login = new Login($usuario);
-$login->sair();
+include('./repositories/UsuarioRepository.php');
+include('./repositories/LoginRepository.php');
+$usuarioRepository = new UsuarioRepository($pdo);
+$loginRepository = new LoginRepository($usuarioRepository);
+$loginRepository->sair();

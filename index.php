@@ -1,10 +1,12 @@
 <?php 
+include('./load-env.php');
 include('./database/connectdb.php');
-include('./models/Usuario.php');
+include('./repositories/LoginRepository.php');
+include('./repositories/UsuarioRepository.php');
 $APP_URL = '/jogos/linhaamarela';
 if(isset($_SESSION['usuario_id'])) {
-    $usuarioModel = new Usuario($pdo);
-    $usuario = $usuarioModel->obterUsuarioPorId($_SESSION['usuario_id']);
+    $usuarioModel = new UsuarioRepository($pdo);
+    $usuarioRepository = $usuarioModel->obterUsuarioPorId($_SESSION['usuario_id']);
 }
 ?>
 <!DOCTYPE html>
@@ -41,6 +43,17 @@ if(isset($_SESSION['usuario_id'])) {
     <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
     <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
     <script src="<?= $APP_URL ?>/js/Login.js"></script>
+    <style>
+        .error {
+            background: linear-gradient(135deg,#ffa573,#f57754);
+        }
+        .warning {
+            background: linear-gradient(135deg,#ffff73,#ffa554);
+        }
+        .success {
+            background: linear-gradient(135deg,#54a554,#77f554);
+        }
+    </style>
 </head>
 <body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
@@ -63,7 +76,7 @@ if(isset($_SESSION['usuario_id'])) {
                 <div class="menu d-flex align-content-center justify-content-center">
                     <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
                     <?php
-                    if(!isset($usuario['email'])) {
+                    if(!isset($usuarioRepository['email'])) {
                     ?>
                         <small class="row text-left">
                         <div class="col-md-6 px-2">
@@ -96,7 +109,7 @@ if(isset($_SESSION['usuario_id'])) {
                             </div>
                         </div>
                         <div id="codigo-email" class="col-md-6 px-2 d-none">
-                            <strong>Código enviado:</strong>
+                            <strong>Código enviado: <?= $_SESSION['code'] ?></strong>
                             <div class="row align-items-start">
                                 <div class="col-6 px-0 py-0">
                                     <input id="codigo-enviado" type="text" class="form-control" placeholder="Digite o cógigo" />
@@ -112,8 +125,8 @@ if(isset($_SESSION['usuario_id'])) {
                     </div>
                     <?php } else { ?>
                         <div class="nav-item align-content-center">
-                            <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
-                            <small><?= $usuario['email'] ?></small> <br>
+                            <small><strong>Bem vindo de volta, <?= $usuarioRepository['nome'] ?>!</strong></small> <br>
+                            <small><?= $usuarioRepository['email'] ?></small> <br>
                             <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
                         </div>
                     <?php } ?>
@@ -153,7 +166,7 @@ if(isset($_SESSION['usuario_id'])) {
                 });
             });
 
-            $('#nao-tenho-conta').click(login.criarSenha);
+            $('#nao-tenho-conta').click(login.naoTenhoConta);
 
             $('#cadastrar').click(login.cadastrar);
 

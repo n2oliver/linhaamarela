@@ -4,8 +4,8 @@ function loadEnv($path) {
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (str_starts_with(trim($line), '#')) continue;
-
+        if (substr(trim($line), 0, 1) === '#') continue;
+        
         list($name, $value) = explode('=', $line, 2);
         $name = trim($name);
         $value = trim($value);
@@ -19,3 +19,4 @@ function loadEnv($path) {
         $_SERVER[$name] = $value;
     }
 }
+loadEnv('./.env_local');

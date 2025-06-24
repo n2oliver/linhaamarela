@@ -7,7 +7,7 @@ class GameIntro extends GameBase {
         super(e, level, points, lives);
         
         this.start = (e) => {
-            const login = new Login();
+            const login = new LoginRepository();
             const inscricao = new Inscricao();
 
             login.compilaLogin();

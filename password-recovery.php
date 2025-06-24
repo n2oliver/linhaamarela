@@ -5,16 +5,16 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once(__DIR__."/load-env.php");
-require_once(__DIR__."/database/connectdb.php");
-require_once(__DIR__."/models/Usuario.php");
-require_once(__DIR__."/generate-secure-id.php");
-require_once(__DIR__."/lib/phpmailer/PHPMailer.php");
-require_once(__DIR__."/lib/phpmailer/SMTP.php");
-require_once(__DIR__."/lib/phpmailer/Exception.php");
+require_once('./load-env.php');
+require_once("./database/connectdb.php");
+require_once("./repositories/UsuarioRepository.php");
+require_once("./generate-secure-id.php");
+require_once("./lib/phpmailer/PHPMailer.php");
+require_once("./lib/phpmailer/SMTP.php");
+require_once("./lib/phpmailer/Exception.php");
 
 $email = $_POST['email'];
-$usuarioModel = new Usuario($pdo);
+$usuarioModel = new UsuarioRepository($pdo);
 $usuarioExiste = $usuarioModel->usuarioExiste($email);
 
 $mailService = new PHPMailer(true);
