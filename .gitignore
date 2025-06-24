@@ -1,3 +1,4 @@
 .env
 vendor
 database/usuario.db
+.env_local
