@@ -12,12 +12,14 @@ require_once("./lib/phpmailer/PHPMailer.php");
 require_once("./lib/phpmailer/SMTP.php");
 require_once("./lib/phpmailer/Exception.php");
 
+$nome = $_POST['nome'];
 $email = $_SESSION['email'];
-$senha = $_SESSION['password'];
+$senha = $_POST['senha'];
 $emailValidado = $_SESSION['email_validado'];
-if($emailValidado) {
-    $usuarioModel = new UsuarioRepository($pdo);
-    $usuarioExiste = $usuarioModel->usuarioExiste($email);
+
+if($emailValidado && !empty($nome) && !empty($email) && !empty($senha)) {
+    $usuarioRepository = new UsuarioRepository($pdo);
+    $usuarioExiste = $usuarioRepository->usuarioExiste($email);
 
     if(!$usuarioExiste) {
         $mailService = new PHPMailer(true);
@@ -37,10 +39,31 @@ if($emailValidado) {
             $mailService->CharSet = "UTF-8";
 
             $mailService->isHTML(true);
-            $mailService->Subject = 'Seu Código Linha Amarela';
-            $mailService->Body    = 'Seu código é: <b>'.$_SESSION['code'].'</b>';
-            $mailService->AltBody = '<b>'.$_SESSION['code'].'</b>Copie ou digite este código e insira no campo Código do Email!';
-
+            $mailService->Subject = 'Bem-vindo ao Linha Amarela!';
+            $mailService->Body = '
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 2px solid #f8c300; border-radius: 12px; overflow: hidden; background-color: #fff;">
+                    <div style="background-color: #f8c300; padding: 20px; text-align: center;">
+                        <h1 style="color: #000; margin: 0;">🎉 Bem-vindo ao Linha Amarela!</h1>
+                    </div>
+                    <div style="padding: 20px; color: #333;">
+                        <p style="font-size: 16px;">
+                            Prepare-se para uma experiência divertida, cheia de desafios e jogadas rápidas!
+                        </p>
+                        <p style="font-size: 16px;">
+                            Você acaba de entrar no mundo do <strong>Linha Amarela</strong>, um jogo onde cada segundo conta e cada movimento importa.
+                        </p>
+                        <p style="font-size: 16px;">
+                            Agradecemos por fazer parte da nossa comunidade. Bons jogos!
+                        </p>
+                        <p style="font-size: 14px; color: #999; margin-top: 40px;">
+                            Dica: agora você já pode fazer o login com a senha cadastrada. 🚀
+                        </p>
+                    </div>
+                    <div style="background-color: #f8c300; padding: 10px; text-align: center;">
+                        <small style="color: #000;">&copy; '.date('Y').' Linha Amarela – Jogue com inteligência.</small>
+                    </div>
+                </div>';
+            $mailService->AltBody = 'Bem-vindo ao Linha Amarela! Você acaba de entrar em um jogo cheio de desafios e diversão. Obrigado por se juntar a nós!';
             if($usuarioExiste) {
                 http_response_code(200);
                 echo json_encode(['status'=>'user_exists','data'=>'Usuário já existente! Tente fazer o login ou recuperar a senha!'], true);
@@ -48,9 +71,12 @@ if($emailValidado) {
             }
             
             $mailService->send();
+            $usuarioRepository->inserirUsuario($nome, $email, $senha);
+            $usuario = $usuarioRepository->obterUsuario($email);
+            $_SESSION['usuario_id'] = $usuario['id'];
             
             http_response_code(200);
-            echo json_encode(['data'=>'Copie o código que enviamos para sua caixa de entrada!'], true);
+            echo json_encode(['data' => 'Boas-vindas enviadas! Agora é só entrar no jogo e se divertir! 😄'], true);
         } catch (Exception $e) {
             http_response_code(401);
             echo json_encode(['error'=>"Erro ao cadastrar usuário!"], true);
@@ -60,6 +86,12 @@ if($emailValidado) {
         echo json_encode(['error'=>"Usuário já existe! Faça o login, ou clique em 'Esqueci minha senha'."], true);
     }
 } else {
+    if(!$emailValidado) {
+        http_response_code(401);
+        echo json_encode(['error'=>"E-mail não validado!"], true);
+        return;
+    }
+
     http_response_code(401);
-    echo json_encode(['error'=>"E-mail não validado!"], true);
+    echo json_encode(['error'=>"Preencha todos os campos!"], true);
 }

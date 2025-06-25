@@ -1,5 +1,6 @@
 <?php 
 $APP_URL = '/jogos/linhaamarela';
+include('./load-env.php');
 require('./database/connectdb.php');
 require('./verifica-login.php');
 ?>

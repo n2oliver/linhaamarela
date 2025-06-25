@@ -6,8 +6,8 @@ include('./repositories/UsuarioRepository.php');
 $APP_URL = '/jogos/linhaamarela';
 $_SESSION['email_validado'] = null;
 if(isset($_SESSION['usuario_id'])) {
-    $usuarioModel = new UsuarioRepository($pdo);
-    $usuarioRepository = $usuarioModel->obterUsuarioPorId($_SESSION['usuario_id']);
+    $usuarioRepository = new UsuarioRepository($pdo);
+    $usuario = $usuarioRepository->obterUsuarioPorId($_SESSION['usuario_id']);
 }
 ?>
 <!DOCTYPE html>
@@ -54,9 +54,25 @@ if(isset($_SESSION['usuario_id'])) {
         .success {
             background: linear-gradient(135deg,#54a554,#77f554);
         }
+        .spinner {
+            height: 4px;
+            width: 100vw;
+            background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #00ff00, #ff0000);
+            background-size: 300% 100%;
+            animation: rolling 5s linear infinite;
+            position: sticky;
+            top: 0px;
+            z-index: 10000;
+        }
+
+        @keyframes rolling {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 </head>
-<body style="background: url(/jogos/linhaamarela/img/upscaled-monsters.png)">
+<body style="background: url(/jogos/linhaamarela/img/upscaled-monsters-night.png)">
+    <div class="spinner d-none"></div>
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
 
@@ -77,15 +93,19 @@ if(isset($_SESSION['usuario_id'])) {
                 <div class="menu d-flex align-content-center justify-content-center">
                     <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
                     <?php
-                    if(!isset($usuarioRepository['email'])) {
+                    if(!isset($usuario['email'])) {
                     ?>
                         <small class="row text-left">
-                        <div class="col-md-6 px-2">
+                        <div id="camada-email" class="col-md-6 px-2">
                             <strong>E-mail:</strong>
                             <input id="email" type="text" class="form-control" placeholder="E-mail" />
                             <small id="nao-tenho-conta" class="recovery-link m-1 text-nowrap">Não tenho uma conta</small>
+                        </div>
+                        <div id="camada-nome" class="col-md-6 px-2 d-none">
+                            <strong>Nome:</strong>
+                            <input id="nome" type="text" class="form-control" placeholder="Nome" />
                         </div>    
-                        <div id="campo-senha" class="col-md-6 px-2">
+                        <div id="camada-senha" class="col-md-6 px-2">
                             <strong>Senha:</strong>
                             <div class="row align-items-start">
                                 <div class="col-6 pl-0 py-0">
@@ -126,8 +146,8 @@ if(isset($_SESSION['usuario_id'])) {
                     </div>
                     <?php } else { ?>
                         <div class="nav-item align-content-center">
-                            <small><strong>Bem vindo de volta, <?= $usuarioRepository['nome'] ?>!</strong></small> <br>
-                            <small><?= $usuarioRepository['email'] ?></small> <br>
+                            <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
+                            <small><?= $usuario['email'] ?></small> <br>
                             <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
                         </div>
                     <?php } ?>
@@ -168,8 +188,6 @@ if(isset($_SESSION['usuario_id'])) {
             });
 
             $('#nao-tenho-conta').click(login.naoTenhoConta);
-
-            $('#cadastrar').click(login.cadastrar);
 
             $('#sair-cadastro').click(login.sairCadastro);
 

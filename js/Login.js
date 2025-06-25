@@ -6,24 +6,33 @@ class Login {
     }
 
     appUrl = '/jogos/linhaamarela';
+    camadaNome = $('#camada-nome');
+    camadaEmail = $('#camada-email');
+
+    campoNome = $('#nome');
     campoEmail = $('#email');
-    campoSenha = $('#campo-senha');
+    campoSenha = $('#senha');
+    camadaSenha = $('#camada-senha');
     codigoEmail = $('#codigo-email');
     codigoEnviado = $('#codigo-enviado');
     naoRecebiEmail = $('#nao-recebi');
     cancelarEsqueciSenhaEmail = $('#cancelar');
     verificar = $('#verificar');
+    btnCadastrar = $('#cadastrar');
     cadastrarSenha = $('#cadastrar-senha');
+    cadastroSenha = $('#cadastro-senha');
 
     login = () => {
         this.removeNotifications();
+        this.showSpinner();
         const email = this.campoEmail.val();
-        const senha = this.campoSenha.val();
+        const senha = this.camadaSenha.val();
         $.ajax({
             url: `${this.appUrl}/login.php`,
             data: { email, senha },
             type: 'POST',
             success: (response) => {
+                this.showSpinner('hide');
                 Toastify({
                     text: "Você já pode começar!",
                     duration: 10000,
@@ -35,6 +44,7 @@ class Login {
 
             },
             error: (xhr) => {
+                this.showSpinner('hide');
                 Toastify({
                     text: JSON.parse(xhr.responseText).error,
                     duration: 10000,
@@ -47,10 +57,12 @@ class Login {
 
     naoTenhoConta = () => {
         this.removeNotifications();
+        this.showSpinner();
         const email = this.campoEmail.val();
         this.codigoEnviado.val('');
 
         if(!email.trim()) {
+            this.showSpinner('hide');
             Toastify({
                 text: "Preencha primeiro o campo email!",
                 duration: 10000,
@@ -60,22 +72,30 @@ class Login {
             return;
         }
 
-        this.campoSenha.addClass('d-none');
+        this.camadaSenha.addClass('d-none');
         this.cadastrarSenha.addClass('d-none');
         this.codigoEmail.removeClass('d-none');
         this.naoRecebiEmail.removeClass('d-none');
         this.cancelarEsqueciSenhaEmail.removeClass('d-none');
 
         this.naoRecebiEmail.unbind('click').click(()=>{
-            this.removeNotifications();
-            
             this.codigoEnviado.val('');
-            
+
+            this.removeNotifications();
+            this.showSpinner();
+            Toastify({
+                text: 'Enviando código de verificação...',
+                duration: 10000,
+                close: true
+            }).showToast();
+                        
             $.ajax({
                 url: `${this.appUrl}/retry-email-verify.php`,
                 data: { email },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -87,6 +107,8 @@ class Login {
                     }, 4000);
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -100,6 +122,12 @@ class Login {
         
         this.verificar.unbind('click').click(()=>{
             this.removeNotifications();
+            this.showSpinner();
+            Toastify({
+                text: 'Verificando código...',
+                duration: 10000,
+                close: true
+            }).showToast();
 
             $.ajax({
                 url: `${this.appUrl}/check-recovery.php`,
@@ -109,6 +137,8 @@ class Login {
                 },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -117,23 +147,65 @@ class Login {
                     }).showToast();
                     this.codigoEnviado.val('');
                     this.liberarCampoCadastrarSenha();
-                    this.cadastrarSenha.click(()=>{
+
+                    this.camadaNome.removeClass('d-none');
+                    this.camadaEmail.addClass('d-none');
+
+                    this.btnCadastrar.unbind('click').click(()=>{
+                        this.removeNotifications();
+                        this.showSpinner();
+                        Toastify({
+                            text: 'Aguarde a conclusão do cadatro...',
+                            duration: 10000,
+                            className: 'success',
+                            close: true
+                        }).showToast();
+                        const nome = this.campoNome.val();
+                        const senha = this.cadastroSenha.val();
+                        if(!nome.trim() || !senha.trim()) {
+                            this.removeNotifications();
+                            this.showSpinner('hide');
+                            Toastify({
+                                text: 'Preencha todos os campos!',
+                                duration: 10000,
+                                className: 'warning',
+                                close: true
+                            }).showToast();
+                            return;
+                        }
                         $.ajax({
                             url: `${this.appUrl}/password-create.php`,
-                            data: { email, senha },
+                            data: { nome, senha },
                             xhrFields: {
                                 withCredentials: true
                             },
                             type: 'POST',
                             success: (response) => {
+                                this.removeNotifications();
+                                this.showSpinner('hide');
+                                Toastify({
+                                    text: JSON.parse(response).data,
+                                    duration: 10000,
+                                    className: 'success',
+                                    close: true
+                                }).showToast();
                             },
                             error: (xhr) => {
-
+                                this.removeNotifications();
+                                this.showSpinner('hide');
+                                Toastify({
+                                    text: JSON.parse(xhr.responseText).error,
+                                    duration: 10000,
+                                    className: 'error',
+                                    close: true
+                                }).showToast();
                             }
                         });
                     });
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -146,17 +218,23 @@ class Login {
         
         this.cancelarEsqueciSenhaEmail.unbind('click').click(()=> {
             this.removeNotifications();
+            this.showSpinner('hide');
 
             this.codigoEnviado.val('');
 
-            this.campoSenha.removeClass('d-none');
+            this.camadaSenha.removeClass('d-none');
             this.codigoEmail.addClass('d-none');
             this.naoRecebiEmail.addClass('d-none');
             this.cadastrarSenha.addClass('d-none');
             this.cancelarEsqueciSenhaEmail.addClass('d-none');
+
+            this.campoEmail.prop('disabled', false);
         });
 
         $(document).ready(()=>{
+            this.campoEmail.prop('disabled', true);
+            this.removeNotifications();
+            this.showSpinner();
             Toastify({
                 text: 'Enviando código de verificação...',
                 duration: 10000,
@@ -167,6 +245,8 @@ class Login {
                 data: { email },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -178,6 +258,8 @@ class Login {
                     }, 4000);
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -189,14 +271,17 @@ class Login {
         })
     }
 
-    passwordRecovery = () => {    
+    passwordRecovery = () => {          
+        this.removeNotifications();
+        this.showSpinner();  
         const email = this.campoEmail.val();
 
-        this.removeNotifications();
 
         this.codigoEnviado.val('');
 
         if(!this.campoEmail.val().trim()) {
+            this.removeNotifications();
+            this.showSpinner('hide');
             Toastify({
                 text: "Preencha primeiro o campo email!",
                 duration: 10000,
@@ -205,7 +290,7 @@ class Login {
             }).showToast();
             return;
         }
-        this.campoSenha.addClass('d-none');
+        this.camadaSenha.addClass('d-none');
         this.codigoEmail.removeClass('d-none');
         this.naoRecebiEmail.removeClass('d-none');
         this.cancelarEsqueciSenhaEmail.removeClass('d-none');
@@ -213,20 +298,24 @@ class Login {
         
         this.cancelarEsqueciSenhaEmail.unbind('click').click(()=> {
             this.removeNotifications();
+            this.showSpinner('hide');
 
             this.codigoEnviado.val('');
 
-            this.campoSenha.removeClass('d-none');
+            this.camadaSenha.removeClass('d-none');
             this.codigoEmail.addClass('d-none');
             this.naoRecebiEmail.addClass('d-none');
             this.cadastrarSenha.addClass('d-none');
             this.cancelarEsqueciSenhaEmail.addClass('d-none');
+
+            this.campoEmail.prop('disemailabled', false);
         });
 
         this.naoRecebiEmail.unbind('click').click(()=>{
-            this.removeNotifications();
-
             this.codigoEnviado.val('');
+
+            this.removeNotifications();
+            this.showSpinner();
             Toastify({
                 text: 'Enviando código de verificação...',
                 duration: 10000,
@@ -237,6 +326,8 @@ class Login {
                 data: { email },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -248,6 +339,8 @@ class Login {
                     }, 4000);
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -261,7 +354,7 @@ class Login {
         
         this.verificar.unbind('click').click(()=>{
             this.removeNotifications();
-            
+            this.showSpinner();
             Toastify({
                 text: 'Validando código de verificação...',
                 duration: 10000,
@@ -273,6 +366,8 @@ class Login {
                 data: { codigo: this.codigoEnviado.val() },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -282,6 +377,8 @@ class Login {
                     this.codigoEnviado.val('');
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -293,6 +390,9 @@ class Login {
         });
 
         $(document).ready(()=>{
+            this.campoEmail.prop('disabled', true);
+            this.removeNotifications();
+            this.showSpinner();
             Toastify({
                 text: 'Enviando código de verificação...',
                 duration: 10000,
@@ -303,6 +403,8 @@ class Login {
                 data: { email },
                 type: 'POST',
                 success: (response) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,
@@ -314,6 +416,8 @@ class Login {
                     }, 4000);
                 },
                 error: (xhr) => {
+                    this.removeNotifications();
+                    this.showSpinner('hide');
                     Toastify({
                         text: JSON.parse(xhr.responseText).error,
                         duration: 10000,
@@ -324,24 +428,14 @@ class Login {
             })
         })
     }
-    cadastrar = () => {
-        this.validarEmail();
-    }
-    
-    validarEmail = () => {
-        this.removeNotifications();
-        
-        this.campoSenha.addClass('d-none');
-        this.codigoEmail.addClass('d-none');
-        this.cadastrarSenha.removeClass('d-none');
-    }
 
     sairCadastro = () => {
         this.removeNotifications();
+        this.showSpinner('hide');
         
         this.codigoEnviado.val('');
 
-        this.campoSenha.removeClass('d-none');
+        this.camadaSenha.removeClass('d-none');
         this.codigoEmail.addClass('d-none');
         this.cancelarEsqueciSenhaEmail.addClass('d-none');
         this.cadastrarSenha.addClass('d-none');
@@ -353,7 +447,14 @@ class Login {
     }
     liberarCampoCadastrarSenha = () => {
         this.cadastrarSenha.removeClass('d-none');
-        this.campoSenha.addClass('d-none');
+        this.camadaSenha.addClass('d-none');
         this.codigoEmail.addClass('d-none');
+    }
+    showSpinner = (state) => {
+        if(!state) {
+            $('.spinner').removeClass('d-none');
+            return;
+        }
+        $('.spinner').addClass('d-none');
     }
 }

@@ -18,8 +18,8 @@
             $this->usuario = $usuarioRepository;
         }
         public function credenciaisValidas($email, $senha) {
-            return $this->usuario->usuarioExiste($email) && 
-                    $this->usuario->senhaExiste($senha);
+            $usuario = $this->usuario->obterUsuario($email);
+            return md5($usuario['senha']) == md5($senha);
         }
         public function sair() {
             unset($_SESSION['usuario_id']);

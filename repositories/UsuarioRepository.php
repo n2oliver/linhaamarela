@@ -40,7 +40,9 @@ class UsuarioRepository {
         return $result;
     }
 
-    public function inserirUsuario($usuarioRepository) {
-        
+    public function inserirUsuario($nome, $email, $senha) {
+        $sql = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', '" . md5($senha) . "');";
+        $result = $this->pdo->exec($sql);
+        return $result;
     }
 }

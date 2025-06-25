@@ -1,6 +1,7 @@
 .audio-button {
     top: 128px; 
-    right: 32px
+    right: 32px;
+    height: fit-content;
 }
 .audio-button img {
     width: 32px;

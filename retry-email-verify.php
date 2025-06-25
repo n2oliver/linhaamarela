@@ -13,13 +13,12 @@ include("./lib/phpmailer/PHPMailer.php");
 include("./lib/phpmailer/SMTP.php");
 include("./lib/phpmailer/Exception.php");
 
-$email = $_POST['email'];
 $usuarioModel = new UsuarioRepository($pdo);
-$usuarioExiste = $usuarioModel->usuarioExiste($email);
+$usuarioExiste = $usuarioModel->usuarioExiste($_SESSION['email']);
 
 $mailService = new PHPMailer(true);
-$_SESSION['code'] = generate_secure_id();
-$_SESSION['email'] = $email;
+echo $_SESSION['code'];
+exit;
 
 try {
     loadEnv(__DIR__ . '/.env');
@@ -32,7 +31,7 @@ try {
     $mailService->Port       = getenv('SMTP_PORT');
 
     $mailService->setFrom(getenv('SMTP_USER'), 'Linha Amarela');
-    $mailService->addAddress($email, $email);
+    $mailService->addAddress($_SESSION['email'], $_SESSION['email']);
     $mailService->addReplyTo(getenv('SMTP_USER'), 'Information');
 
     $mailService->CharSet = "UTF-8";

@@ -14,12 +14,14 @@ require_once("./lib/phpmailer/SMTP.php");
 require_once("./lib/phpmailer/Exception.php");
 
 $email = $_POST['email'];
+
 $usuarioModel = new UsuarioRepository($pdo);
 $usuarioExiste = $usuarioModel->usuarioExiste($email);
 
 $mailService = new PHPMailer(true);
-$_SESSION['code'] = generate_secure_id();
+
 $_SESSION['email'] = $email;
+$_SESSION['code'] = generate_secure_id();
 try {
     $mailService->isSMTP();
     $mailService->Host       = getenv('SMTP_HOST');

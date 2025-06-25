@@ -11,13 +11,12 @@
     $loginRepository = new LoginRepository($usuarioModel);
 
     if($loginRepository->credenciaisValidas($email, $senha)) {
-        $usuarioRepository = $usuarioModel->obterUsuario($email);
+        $usuario = $usuarioModel->obterUsuario($email);
         
-        $_SESSION['usuario_id'] = $usuarioRepository['id'];
-        var_dump($_SESSION['usuario_id']);
+        $_SESSION['usuario_id'] = $usuario['id'];
         http_response_code(200);
 
-        echo json_encode(['data'=>json_encode($usuarioRepository)]);
+        echo json_encode(['data'=>json_encode($usuario)]);
     } else {
         http_response_code(401);
         echo json_encode(['error'=> 'Credenciais inválidas!']);
