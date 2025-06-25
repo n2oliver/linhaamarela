@@ -3,6 +3,7 @@ $APP_URL = '/jogos/linhaamarela';
 include('./load-env.php');
 require('./database/connectdb.php');
 require('./verifica-login.php');
+require('./repositories/PontoRepository.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -61,6 +62,9 @@ require('./verifica-login.php');
                 padding: 20px 20px 0 20px;
             }
         </style>
+        <script>
+            sessionStorage.userId = <?= $_SESSION['usuario_id'] ?>;
+        </script> 
     </head>
     <vr>
         <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>

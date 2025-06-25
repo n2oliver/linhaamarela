@@ -16,14 +16,17 @@ class PointsCounter extends Counter {
 
             this.timer = setTimeout(() => {
                 $.ajax({
-                    url: '/registrar-pontos',
+                    url: './registrar-pontos.php',
                     method: 'POST',
                     type: 'json/application',
-                    data: { userId: sessionStorage.userId, userPoints: this.points},
-                }).done((data)=>{
-                    sessionStorage.setItem('pontuacao', this.points);
-                }).fail((error)=>{
-                    console.log(error.responseText);
+                    data: { pontos: this.points, nivel: window.game.level },
+                    success: (data)=>{
+                        sessionStorage.setItem('pontuacao', this.points);
+                        sessionStorage.setItem('nivel', window.game.level);
+                    },
+                    error: (error)=>{
+                        console.log(error.responseText);
+                    }
                 });
             },3000); 
         }

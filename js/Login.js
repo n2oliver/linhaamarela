@@ -34,7 +34,7 @@ class Login {
             success: (response) => {
                 this.showSpinner('hide');
                 Toastify({
-                    text: "Você já pode começar!",
+                    text: JSON.parse(response).data,
                     duration: 10000,
                     close: true
                 }).showToast();
@@ -157,7 +157,6 @@ class Login {
                         Toastify({
                             text: 'Aguarde a conclusão do cadatro...',
                             duration: 10000,
-                            className: 'success',
                             close: true
                         }).showToast();
                         const nome = this.campoNome.val();
@@ -189,6 +188,10 @@ class Login {
                                     className: 'success',
                                     close: true
                                 }).showToast();
+                                this.camadaNome.addClass('d-none');
+                                this.cadastrarSenha.addClass('d-none');
+                                this.camadaEmail.removeClass('d-none');
+                                this.camadaSenha.removeClass('d-none');
                             },
                             error: (xhr) => {
                                 this.removeNotifications();

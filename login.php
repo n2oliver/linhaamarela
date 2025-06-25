@@ -10,13 +10,13 @@
     $usuarioModel = new UsuarioRepository($pdo);
     $loginRepository = new LoginRepository($usuarioModel);
 
-    if($loginRepository->credenciaisValidas($email, $senha)) {
-        $usuario = $usuarioModel->obterUsuario($email);
+    $usuario = $usuarioModel->obterUsuario($email);
+    if($usuario && $loginRepository->credenciaisValidas($email, $senha)) {
         
         $_SESSION['usuario_id'] = $usuario['id'];
         http_response_code(200);
 
-        echo json_encode(['data'=>json_encode($usuario)]);
+        echo json_encode(['data'=>'Você já pode começar!']);
     } else {
         http_response_code(401);
         echo json_encode(['error'=> 'Credenciais inválidas!']);

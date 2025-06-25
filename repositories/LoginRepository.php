@@ -5,7 +5,7 @@
             id VARCHAR(128) NOT NULL PRIMARY KEY,
             data TEXT,
             timestamp INT(11) NOT NULL
-        );";
+        ) ENGINE=InnoDB;";
         $pdo->exec($sql);
 
     } catch (Exception $e) {
