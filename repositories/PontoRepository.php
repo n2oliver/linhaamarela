@@ -60,7 +60,7 @@
             $posicao = $resultado ? $resultado['posicao'] : null;
 
             return ($posicao == 1
-                ? "<div style=\"display: flex; justify-content: center\"><div class=\"trofeu\"></div>$posicao</div>"
+                ? "<div style=\"display: flex; justify-content: center\"><div class=\"trofeu\"></div>$posicao"."º</div>"
                 : $posicao);
         }
         public function obterPontuacoes($page, $userId = null) {
@@ -72,8 +72,8 @@
                 $posicao = $start;
                 $posicao++;
                 if($userId) {
-                    $result = $this->obterPosicaoUsuario($page);
-                    $points[0]['posicao'] = $result . "º";
+                    $result = $this->obterPosicaoUsuario($userId);
+                    $points[0]['posicao'] = $result;
                 } else {
                     foreach($points as $key => $point) {
                         $points[$key]['posicao'] = ($posicao == 1 ? "<div style=\"display: flex; justify-content: center\"><div class=\"trofeu\"></div>" : "") . $posicao . "º</div>";
