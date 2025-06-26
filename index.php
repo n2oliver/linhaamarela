@@ -71,7 +71,7 @@ if(isset($_SESSION['usuario_id'])) {
         }
     </style>
 </head>
-<body style="background: url(/jogos/linhaamarela/img/upscaled-monsters-night.png)">
+<body style="background: url(/jogos/linhaamarela/img/fundo.png)">
     <div class="spinner d-none"></div>
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>

@@ -77,7 +77,10 @@ class SpaceInvader {
                                 invader.classList.add('anim-alien-fall');
                                 setTimeout(()=>{
                                     invader.remove();
-                                    game.audioManager.playCreatureDie();
+
+                                    if(localStorage.mute == 'off') {
+                                        game.audioManager.playCreatureDie();
+                                    }
                                 }, 1000);
                             } else {
                                 window.game.livesCounter.lives += 1;
