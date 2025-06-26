@@ -1,7 +1,9 @@
 
 .jumbotron {
     background-image: url('../img/spaceinvaders-red.png');
-    background-size: contain;
+    background-size: 50vw auto;
+    background-repeat: repeat-x;
+    background-position-y: center;
     background-color: black;
     color: white;
     margin-bottom: 0;

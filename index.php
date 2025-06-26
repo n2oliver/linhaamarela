@@ -56,6 +56,47 @@ if(isset($_SESSION['usuario_id'])) {
         .success {
             background: linear-gradient(135deg,#54a554,#77f554);
         }
+        .jumbotron {
+            position: relative;
+            z-index: 0;
+            padding: 100px;
+            color: white;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+
+        .jumbotron::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: inherit; /* herda a imagem de fundo */
+            z-index: -1;
+            animation: enemymoves 15s linear infinite;
+            filter: brightness(1) hue-rotate(0deg);
+        }
+
+        @keyframes enemymoves {
+            0% {
+                background-position-x: 0vw;
+                filter: brightness(1) hue-rotate(0deg);
+            }
+            15%, 25% {
+                filter: brightness(0.2) hue-rotate(72deg);
+            }
+            35%, 50% {
+                filter: brightness(1.2) hue-rotate(144deg);
+            }
+            65%, 75% {
+                filter: brightness(0.5) hue-rotate(216deg);
+            }
+            85%, 100% {
+                filter: brightness(1) hue-rotate(360deg);
+            }
+            100% {
+                background-position-x: 100vw;
+            }
+        }
+
     </style>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
