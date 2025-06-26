@@ -72,12 +72,6 @@ class Login {
             return;
         }
 
-        this.camadaSenha.addClass('d-none');
-        this.cadastrarSenha.addClass('d-none');
-        this.codigoEmail.removeClass('d-none');
-        this.naoRecebiEmail.removeClass('d-none');
-        this.cancelarEsqueciSenhaEmail.removeClass('d-none');
-
         this.naoRecebiEmail.unbind('click').click(()=>{
             this.codigoEnviado.val('');
 
@@ -235,7 +229,6 @@ class Login {
         });
 
         $(document).ready(()=>{
-            this.campoEmail.prop('disabled', true);
             this.removeNotifications();
             this.showSpinner();
             Toastify({
@@ -250,6 +243,22 @@ class Login {
                 success: (response) => {
                     this.removeNotifications();
                     this.showSpinner('hide');
+                    if(JSON.parse(response).status == "user_exists") {
+                        Toastify({
+                            text: JSON.parse(response).data,
+                            duration: 10000,
+                            className: 'warning',
+                            close: true
+                        }).showToast();
+                        return;
+                    }
+                    this.campoEmail.prop('disabled', true);
+                    this.camadaSenha.addClass('d-none');
+                    this.cadastrarSenha.addClass('d-none');
+                    this.codigoEmail.removeClass('d-none');
+                    this.naoRecebiEmail.removeClass('d-none');
+                    this.cancelarEsqueciSenhaEmail.removeClass('d-none');
+                    
                     Toastify({
                         text: JSON.parse(response).data,
                         duration: 10000,

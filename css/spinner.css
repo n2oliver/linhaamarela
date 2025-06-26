@@ -1,0 +1,15 @@
+.spinner {
+    height: 4px;
+    width: 100vw;
+    background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #00ff00, #ff0000);
+    background-size: 300% 100%;
+    animation: rolling 5s linear infinite;
+    position: sticky;
+    top: 0px;
+    z-index: 10000;
+}
+
+@keyframes rolling {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}

@@ -20,7 +20,7 @@ function saveImage(canvas) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    window.location = '/gameover.html';
+    window.location = '/gameover.php';
 }
 async function share() {
     takeshot().then((canvas)=>{

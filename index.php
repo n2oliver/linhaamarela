@@ -42,6 +42,8 @@ if(isset($_SESSION['usuario_id'])) {
     <link rel="stylesheet" href="<?= $APP_URL ?>/css/landing.css"/>
     <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css"/>
     <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/spinner.css" />
+
     <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
     <script src="<?= $APP_URL ?>/js/Login.js"></script>
     <style>
@@ -54,24 +56,9 @@ if(isset($_SESSION['usuario_id'])) {
         .success {
             background: linear-gradient(135deg,#54a554,#77f554);
         }
-        .spinner {
-            height: 4px;
-            width: 100vw;
-            background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #00ff00, #ff0000);
-            background-size: 300% 100%;
-            animation: rolling 5s linear infinite;
-            position: sticky;
-            top: 0px;
-            z-index: 10000;
-        }
-
-        @keyframes rolling {
-            0% { background-position: 0% 0; }
-            100% { background-position: 200% 0; }
-        }
     </style>
 </head>
-<body style="background: url(/jogos/linhaamarela/img/fundo.png)">
+<body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <div class="spinner d-none"></div>
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
@@ -156,7 +143,7 @@ if(isset($_SESSION['usuario_id'])) {
         <div class="jumbotron text-center">
             <h1 class="display-4" style="color: white">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <a href="<?= $APP_URL ?>/game.php" class="btn btn-primary btn-lg">Jogar</a><br><br>
+            <button id="jogar" class="btn btn-primary btn-lg">Jogar</button><br><br>
 
         </div>
         <?php include("../../noads-footer.php"); ?>
@@ -192,6 +179,22 @@ if(isset($_SESSION['usuario_id'])) {
             $('#sair-cadastro').click(login.sairCadastro);
 
             $('#esqueci-senha').click(login.passwordRecovery);
+
+            $('#jogar').click(()=>{
+                if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $_SESSION['usuario_id'] ?>')) {
+                    document.querySelector('.navbar-toggler').click();
+                } else if(Boolean('<?= $_SESSION['usuario_id'] ?>')) {
+                    window.location.href = `${appUrl}/game.php`;
+                } else {
+                    Toastify({
+                        text: 'Você precisa entrar primeiro!',
+                        duration: 3000,
+                        style: {
+                        background: "linear-gradient(to right, #b09b00, #ff0000)",
+                        },
+                    }).showToast();
+                }
+            })
         })
     </script>
 </body>

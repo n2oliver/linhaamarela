@@ -1,4 +1,5 @@
 <?php
+include('./load-env.php');
 include('./database/connectdb.php');
 include('./repositories/UsuarioRepository.php');
 include('./repositories/LoginRepository.php');

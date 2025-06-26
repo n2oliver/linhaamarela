@@ -137,7 +137,7 @@ class Game extends GameBase {
                     
                     if(window.game.livesCounter.lives == 0) {
                         sessionStorage.setItem('ingame', false);
-                        window.location = "gameover.html";
+                        window.location = "gameover.php";
                         return;
                     }
                     game.livesCounter.decreaseCounter(1);

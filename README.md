@@ -62,7 +62,7 @@ linhaamarela/
 
 ├── game.php
 
-├── gameover.html
+├── gameover.php
 
 └── README.md
 

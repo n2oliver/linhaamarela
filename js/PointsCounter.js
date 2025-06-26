@@ -23,6 +23,19 @@ class PointsCounter extends Counter {
                     success: (data)=>{
                         sessionStorage.setItem('pontuacao', this.points);
                         sessionStorage.setItem('nivel', window.game.level);
+                        $.ajax({
+                            url: './obter-pontos.php',
+                            method: 'POST',
+                            type: 'json/application',
+                            data: { page: 1 },
+                            success: (data)=>{
+                                sessionStorage.setItem('pontuacao', this.points);
+                                sessionStorage.setItem('nivel', window.game.level);
+                            },
+                            error: (error)=>{
+                                console.log(error.responseText);
+                            }
+                        });
                     },
                     error: (error)=>{
                         console.log(error.responseText);

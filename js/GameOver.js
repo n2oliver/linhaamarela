@@ -7,9 +7,9 @@ class GameOver extends GameBase {
         super(e, level, points, lives);
 
         this.start = async (e) => {
-            PointsCounter.getHighScores().then(listScores).catch(error => {
-                console.log(error);
-            });
+            // PointsCounter.getHighScores().then(listScores).catch(error => {
+            //     console.log(error);
+            // });
             window.spaceInvaderNpc = new SpaceInvaderNPC();
             this.invaderInterval = window.spaceInvaderNpc.init();
         }
@@ -55,7 +55,7 @@ function listScores (data) {
         const page = $(e.target).data("page");
         PointsCounter.getHighScores(page).then((data) => {
             data.page = page;
-            listScores(data);
+            // listScores(data);
         }).catch(error => {
             console.log(error);
         });

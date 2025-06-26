@@ -19,12 +19,7 @@
     border-radius: 10em;
 }
 .intro-container {
-    background-image: url(../img/planicie.jpg);
     background-size: cover;
-}
-.logo-meiodia {
-    background-size: 30%;
-    background-image: url(../img/meio-dia-games-logo.svg);
 }
 .game-logo {
     width: 4em;

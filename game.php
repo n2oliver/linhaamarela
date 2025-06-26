@@ -13,9 +13,6 @@ require('./repositories/PontoRepository.php');
         <meta name="viewport" 
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link rel="preload" as="style" href="<?= $APP_URL ?>/css/game.css" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/eric-muhr-KrMhhUqdS-w-unsplash.jpg" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/planicie.jpg" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/island.jpg" />
         <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-blue.png" />
         <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-green.png" />
         <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-red.png" />

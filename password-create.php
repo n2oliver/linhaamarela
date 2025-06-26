@@ -20,6 +20,12 @@ $emailValidado = $_SESSION['email_validado'];
 if($emailValidado && !empty($nome) && !empty($email) && !empty($senha)) {
     $usuarioRepository = new UsuarioRepository($pdo);
     $usuarioExiste = $usuarioRepository->usuarioExiste($email);
+    $nomeJaEmUso = $usuarioRepository->nomeJaEmUso($nome);
+    if($nomeJaEmUso) {
+        http_response_code(302);
+        echo json_encode(['error'=>"Esse nome já está em uso, por favor, utilize outro nome!"], true);
+        return;
+    }
 
     if(!$usuarioExiste) {
         $mailService = new PHPMailer(true);

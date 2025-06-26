@@ -22,6 +22,11 @@ class UsuarioRepository {
         $result = $this->pdo->query($sql)->fetch();
         return $result['total'] > 0;
     }
+    public function nomeJaEmUso($nome) {
+        $sql = "SELECT COUNT(*) total FROM usuario WHERE nome LIKE '$nome'";
+        $result = $this->pdo->query($sql)->fetch();
+        return $result['total'] > 0;
+    }
     public function senhaExiste($senha) {
         $sql = "SELECT COUNT(*) total FROM usuario WHERE senha LIKE '$senha'";
         $result = $this->pdo->query($sql)->fetch();
