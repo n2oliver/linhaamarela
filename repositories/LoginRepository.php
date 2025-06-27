@@ -19,7 +19,8 @@
         }
         public function credenciaisValidas($email, $senha) {
             $usuario = $this->usuarioRepository->obterUsuario($email);
-            return md5($usuario['senha']) == md5($senha);
+            $usuarioSenha = isset($usuario['senha']) ? $usuario['senha'] : '';
+            return md5($usuarioSenha) == md5($senha);
         }
         public function sair() {
             unset($_SESSION['usuario_id']);

@@ -5,9 +5,10 @@ include('./repositories/LoginRepository.php');
 include('./repositories/UsuarioRepository.php');
 $APP_URL = '/jogos/linhaamarela';
 $_SESSION['email_validado'] = null;
-if(isset($_SESSION['usuario_id'])) {
+$usuario_id = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
+if(isset($usuario_id)) {
     $usuarioRepository = new UsuarioRepository($pdo);
-    $usuario = $usuarioRepository->obterUsuarioPorId($_SESSION['usuario_id']);
+    $usuario = $usuarioRepository->obterUsuarioPorId($usuario_id);
 }
 ?>
 <!DOCTYPE html>
@@ -158,7 +159,7 @@ if(isset($_SESSION['usuario_id'])) {
                             </div>
                         </div>
                         <div id="codigo-email" class="col-md-6 px-2 d-none">
-                            <strong>Código: <?= $_SESSION['code'] ?></strong>
+                            <strong>Código:</strong>
                             <div class="row align-items-start">
                                 <div class="col-6 px-0 py-0">
                                     <input id="codigo-enviado" type="text" class="form-control" placeholder="Cole aqui" />
@@ -222,9 +223,9 @@ if(isset($_SESSION['usuario_id'])) {
             $('#esqueci-senha').click(login.passwordRecovery);
 
             $('#jogar').click(()=>{
-                if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $_SESSION['usuario_id'] ?>')) {
+                if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $usuario_id ?>')) {
                     document.querySelector('.navbar-toggler').click();
-                } else if(Boolean('<?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'false' ?>')) {
+                } else if(Boolean('<?= isset($usuario_id) ? $usuario_id : 'false' ?>')) {
                     window.location.href = `${appUrl}/game.php`;
                 } else {
                     Toastify({

@@ -23,25 +23,35 @@ class DBSessionHandler implements SessionHandlerInterface
     }
 
     public function read($id) {
-        $stmt = $this->pdo->prepare("SELECT data FROM sessions WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            return $row['data'];
+        try {
+            $stmt = $this->pdo->prepare("SELECT data FROM sessions WHERE id = :id");
+            $stmt->execute(['id' => $id]);
+            if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                return $row['data'];
+            }
+            return '';
+        } catch (PDOException $e) {
+            error_log("Erro DBSessionHandler::read - " . $e->getMessage());
+            return '';
         }
-        return '';
     }
 
     public function write($id, $data) {
-        $timestamp = time();
-        $stmt = $this->pdo->prepare("
-            REPLACE INTO sessions (id, data, timestamp)
-            VALUES (:id, :data, :timestamp)
-        ");
-        return $stmt->execute([
-            'id' => $id,
-            'data' => $data,
-            'timestamp' => $timestamp
-        ]);
+        try {
+            $timestamp = time();
+            $stmt = $this->pdo->prepare("
+                REPLACE INTO sessions (id, data, timestamp)
+                VALUES (:id, :data, :timestamp)
+            ");
+            return $stmt->execute([
+                'id' => $id,
+                'data' => $data,
+                'timestamp' => $timestamp
+            ]);
+        } catch (PDOException $e) {
+            error_log("Erro DBSessionHandler::write - " . $e->getMessage());
+            return false;
+        }
     }
 
     public function destroy($id) {

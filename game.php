@@ -8,6 +8,17 @@ require('./repositories/PontoRepository.php');
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
+        
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-687386749"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-687386749');
+        </script>
+
         <title>Linha Amarela</title>
         <meta charset="utf-8" />
         <meta name="viewport" 
