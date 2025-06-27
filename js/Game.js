@@ -80,15 +80,15 @@ class Game extends GameBase {
             const pauseButtonStyle = document.getElementById("pause-button").style;
             const audio = document.getElementById("game-sound");
             if(window.pause) {
-                qrCodeStyle.display = "block";
-                pauseStyle.display = "block";
+                qrCodeStyle.display = "contents";
+                pauseStyle.display = "contents";
                 pauseButtonStyle.display = "none";
-                playButtonStyle.display = "block";
+                playButtonStyle.display = "contents";
                 audio.pause();
             } else {
                 qrCodeStyle.display = "none";
                 pauseStyle.display = "none";
-                pauseButtonStyle.display = "block";
+                pauseButtonStyle.display = "contents";
                 playButtonStyle.display = "none";
                 const audioIsEnabled = document.getElementById("audio-button").querySelector("img").src.includes("/jogos/linhaamarela/img/icons8-alto-falante-100.png");
                 if(audioIsEnabled) {
@@ -151,9 +151,11 @@ class Game extends GameBase {
         window.game.yellowBox.updatePosition(event)
         var hammerBg = new Hammer(document.getElementById("bg-transparent"));
         var hammerYellowBox = new Hammer(document.getElementById("yellow-box"));
+        var hammerPlatform = new Hammer(document.getElementById("platform"));
         var hammerAudio = new Hammer(document.getElementById("audio-button"));
         hammerBg.on('pan', window.game.yellowBox.mouseMove);
         hammerYellowBox.on('pan', window.game.yellowBox.mouseMove);
+        hammerPlatform.on('pan', window.game.yellowBox.mouseMove);
         document.getElementById("audio-button").onclick = () => { 
             window.game.audioManager.toggleAudio();
         };

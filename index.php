@@ -182,7 +182,7 @@ if(isset($_SESSION['usuario_id'])) {
             </div>
         </nav>
         <div class="jumbotron text-center">
-            <h1 class="display-4" style="color: white">Eles iniciaram, a invasão começou!</h1>
+            <h1 class="display-4" style="color: white; word-wrap: break-word;">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
             <button id="jogar" class="btn btn-primary btn-lg">Jogar</button><br><br>
 
@@ -224,7 +224,7 @@ if(isset($_SESSION['usuario_id'])) {
             $('#jogar').click(()=>{
                 if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $_SESSION['usuario_id'] ?>')) {
                     document.querySelector('.navbar-toggler').click();
-                } else if(Boolean('<?= $_SESSION['usuario_id'] ?>')) {
+                } else if(Boolean('<?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'false' ?>')) {
                     window.location.href = `${appUrl}/game.php`;
                 } else {
                     Toastify({

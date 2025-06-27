@@ -81,7 +81,7 @@ require('./repositories/PontoRepository.php');
             <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
             <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
         </div>
-        <div id="qr-code" style="display: none; color: white;" class="qr-code rotate-center">
+        <div id="qr-code" style="display: none; color: white; z-index: 9999;" class="qr-code rotate-center">
             <div style="display: flex; justify-content: space-around; align-content: center;">
                 <div>
                     <div>Aceitamos doações:</div>
@@ -90,6 +90,16 @@ require('./repositories/PontoRepository.php');
                     <div>silva.liver@gmail.com</div>
                 </div>
                 <div>
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : '36908cd1702faba6c183fb82dc5a6c78',
+                            'format' : 'iframe',
+                            'height' : 60,
+                            'width' : 468,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
                     <script async="async" data-cfasync="false" src="//pl26829990.profitableratecpm.com/c36f214a2069f40ccd2d3e53c3c624b7/invoke.js"></script>
                     <div id="container-c36f214a2069f40ccd2d3e53c3c624b7"></div>
                 </div>
@@ -107,23 +117,6 @@ require('./repositories/PontoRepository.php');
         <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
         <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
         <audio id="creature-die" src="<?= $APP_URL ?>/mp3/creature-die.mp3" controls autoplay="false" style="display: none"></audio>
-        <div class="mt-2" style="display: block; width: 100%; position: absolute; bottom: -114px; text-align: center; color: white; background-image: linear-gradient(transparent,#000000, #000000, #000000);">
-            <div style="margin: 0 auto">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '36908cd1702faba6c183fb82dc5a6c78',
-                        'format' : 'iframe',
-                        'height' : 60,
-                        'width' : 468,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
-            </div>
-            <a href="/"><span style="font-family: Ubuntu">n2oliver</span></a>
-            <span style="font-size: 9px">Todos os direitos reservados - n2oliver -  2025</span>
-            <span style="font-size: 9px">CNPJ 60.407.027/0001-25</span>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script>
