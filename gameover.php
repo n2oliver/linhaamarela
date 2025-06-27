@@ -31,14 +31,6 @@ $APP_URL = "/jogos/linhaamarela";
         <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
         <script src="<?= $APP_URL ?>/js/Share.js"></script>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/spinner.css" />
-        <style>
-            .trofeu {
-                width: 24px;
-                height: 24px;
-                background-image: url(<?=$APP_URL?>/img/trofeu.png);
-                background-size: cover;
-            }
-        </style>
         <script>
             window.game;
             window.onload = (e) => {
