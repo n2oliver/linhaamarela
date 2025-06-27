@@ -15,10 +15,10 @@
     class LoginRepository {
         private $usuarioRepository;
         function __construct(UsuarioRepository $usuarioRepository) {
-            $this->usuario = $usuarioRepository;
+            $this->usuarioRepository = $usuarioRepository;
         }
         public function credenciaisValidas($email, $senha) {
-            $usuario = $this->usuario->obterUsuario($email);
+            $usuario = $this->usuarioRepository->obterUsuario($email);
             return md5($usuario['senha']) == md5($senha);
         }
         public function sair() {

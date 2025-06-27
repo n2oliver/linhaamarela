@@ -45,36 +45,36 @@ require('./repositories/PontoRepository.php');
         <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
         <script src="<?= $APP_URL ?>/js/GameBase.js"></script>
         <script src="<?= $APP_URL ?>/js/Game.js"></script>
-        <style>
-            .menu {
-                height: 64px;
-                display: inline-flex;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                float: right;
-                padding: 20px 20px 0 20px;
-            }
-            .markers {
-                display: list-item !important;
-                padding: 20px 20px 0 20px;
-            }
-        </style>
         <script>
             sessionStorage.userId = <?= $_SESSION['usuario_id'] ?>;
         </script> 
     </head>
-    <vr>
+    <body>
+        <div class="spinner d-none"></div>
         <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
         
         <div class="menu">
-            <div id="logo" class="unselectable game-logo"><img src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>
-        </div>
-        <div class="menu">
             <div id="pause-button" class="unselectable pause-button menu-item"><img src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg"/></div>
             <div id="play-button" class="unselectable play-button menu-item"><img src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
             <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+            <div id="logo" class="unselectable game-logo"><img src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>      
             <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
+            <hr>
+            <div>
+                <h1>Ranking</h1>
+                <div>
+                    <table id="all-points" class="table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th><th>Usuário</th><th>Pontuação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div class="menu-item markers">
             <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
@@ -127,13 +127,36 @@ require('./repositories/PontoRepository.php');
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script>
+            const usuarioId = <?= $_SESSION['usuario_id'] ?>;
             $(document).ready(()=>{
                 $('.sair').click(()=>{
                     $.get('<?= $APP_URL ?>/sair.php',() => {
                         window.location.href = '<?= $APP_URL ?>';
                     });
                 });
+                obterRanking(usuarioId);
             });
+            function obterRanking(idUsuario) {
+                $('.spinner').removeClass('d-none');
+                $.ajax({
+                    url: './obter-ranking.php',
+                    method: 'POST',
+                    type: 'json/application',
+                    data: { id_usuario: idUsuario },
+                    success: (data) => {
+                        $('.spinner').addClass('d-none');
+                        const pontuacoes = data;
+                        const ranking = $('#ranking');
+                        ranking.html(pontuacoes);
+                    },
+                    error: (error) => {
+                        $('.spinner').addClass('d-none');
+                        console.log(error.responseText);
+                    }
+                });
+            }
         </script>
+
+        <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
     </body>
 </html>

@@ -52,6 +52,7 @@ function listScores (data) {
         $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${data.body.scores.next}">Próximo</a></li>`);
     }
     $('.page-link').on('click', (e) => {
+        e.preventDefault();
         const page = $(e.target).data("page");
         PointsCounter.getHighScores(page).then((data) => {
             data.page = page;

@@ -31,6 +31,7 @@ class PointsCounter extends Counter {
                             success: (data)=>{
                                 sessionStorage.setItem('pontuacao', this.points);
                                 sessionStorage.setItem('nivel', window.game.level);
+                                obterRanking(usuarioId);
                             },
                             error: (error)=>{
                                 console.log(error.responseText);
@@ -41,7 +42,7 @@ class PointsCounter extends Counter {
                         console.log(error.responseText);
                     }
                 });
-            },3000); 
+            },1000); 
         }
     }
     static getHighScores = async (page) => {

@@ -34,11 +34,11 @@ $(document).ready(() => {
         });
     }
     function paginar(event) {
+        if(event) event.preventDefault();
         let timer;
         clearTimeout(timer);
+        $('.spinner').removeClass('d-none');
         timer = setTimeout(() => {
-            $('.spinner').removeClass('d-none');
-            if (event) event.preventDefault();
             if (event && event.target && event.target.innerText == 'Próximo') {
                 if (page < totalPaginas) {
                     page++;
@@ -93,6 +93,6 @@ $(document).ready(() => {
                     console.log(error.responseText);
                 }
             });
-        }, 3000);
+        }, 200);
     }
 });
