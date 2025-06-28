@@ -76,6 +76,10 @@ class AudioManager {
     enableAudio = function () {
         const audio = document.getElementById("game-sound");
         audio.play();
+        audio.onended = function() {
+            audio.currentTime = 0;
+            audio.play();
+        }
         document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-alto-falante-100.png";
         localStorage.setItem('mute', 'off');
     }
