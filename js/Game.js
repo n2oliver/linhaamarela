@@ -136,11 +136,16 @@ class Game extends GameBase {
                     document.onmousemove = null;
                     
                     if(window.game.livesCounter.lives == 0) {
+                        window.game.pointsCounter.points = 0;
+                        window.game.levelsCounter.level = 0;
                         sessionStorage.setItem('ingame', false);
-                        window.location = "gameover.php";
-                        return;
+                        if(typeof window.usuarioId !== 'undefined') {
+                            window.location = "gameover.php";
+                            return;
+                        }
+                        $('#game-over').removeClass('d-none');
                     }
-                    game.livesCounter.decreaseCounter(1);
+                    game.livesCounter.decreaseCounter();
                     window.game = new Game(event, window.game.levelsCounter.level, window.spaceInvader.totalDeMonstros, window.spaceInvader.top, window.game.pointsCounter.points, window.game.livesCounter.lives);
                     window.onclick = window.game.start;
                     

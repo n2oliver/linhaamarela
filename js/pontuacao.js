@@ -3,8 +3,9 @@ $(document).ready(() => {
     const urlParams = new URLSearchParams(queryString);
     let page = urlParams.get('page');
     let totalPaginas = 0;
-
-    obterPontuacaoUsuario(page, usuarioId);
+    if(typeof usuarioId !== 'undefined') {
+        obterPontuacaoUsuario(page, usuarioId);
+    }
     paginar();
 
     function obterPontuacaoUsuario(page, idUsuario) {

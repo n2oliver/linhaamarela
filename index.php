@@ -185,10 +185,10 @@ if(isset($usuario_id)) {
         <div class="jumbotron text-center">
             <h1 class="display-4" style="color: white; word-wrap: break-word;">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <button id="jogar" class="btn btn-primary btn-lg">Jogar</button><br><br>
+            <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br>ou<br><button id="partida" class="btn btn-danger btn-lg">Partida rápida</button><br><br>
 
         </div>
-        <?php include("../../noads-footer.php"); ?>
+        <?php include("../../footer.php"); ?>
     </div>
     <script>
         const audioManager = new AudioManager();
@@ -236,6 +236,9 @@ if(isset($usuario_id)) {
                         },
                     }).showToast();
                 }
+            });
+            $('#partida').click(()=>{
+                window.location.href = `${appUrl}/fast-game.php`;
             })
         })
     </script>

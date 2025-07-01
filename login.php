@@ -4,6 +4,8 @@
     include('./repositories/LoginRepository.php');
     include('./repositories/UsuarioRepository.php');
     
+    $_SESSION['partida_rapida'] = null;
+    
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     

@@ -83,9 +83,7 @@ class SpaceInvader {
                                     }
                                 }, 1000);
                             } else {
-                                window.game.livesCounter.lives += 1;
-                                document.getElementById(game.livesCounter.attributes.id).innerText = window.game.livesCounter.lives;
-
+                                window.game.livesCounter.increaseCounter();
                                 invader.remove();
                             }
                             
@@ -99,7 +97,7 @@ class SpaceInvader {
                                     game.audioManager.mudarParaLaser(game.audioManager.tipoLaser.fraco);
                                 }, 15000)
                             }
-                            if ((document.querySelectorAll('.invader').length == 0 || document.querySelectorAll('.invader').length == spaceInvader.totalDeMonstros/2) && spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA) {
+                            if ((document.querySelectorAll('.invader').length == 0 || document.querySelectorAll('.invader').length == parseInt(spaceInvader.totalDeMonstros/2)) && spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA) {
                                 spaceInvader.exibirHelpBox = true;
                                 spaceInvader.destruiuHelperBox = spaceInvader.DestruiuHelperBoxOptions.NAO;
 
