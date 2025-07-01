@@ -1,17 +1,1 @@
-class GameObject {
-    attributes;
-    constructor(attributes){
-        this.attributes = attributes;
-
-        const styles = {
-            width: attributes.width + "px",
-            height: attributes.height + "px",
-            backgroundColor: attributes.color,
-            border: attributes.strokeColor + " " + attributes.strokeStyle + " " + attributes.strokeDepth,
-            position: attributes.position,
-            top: (window.innerHeight - attributes.positionY) + "px",
-            left: attributes.positionX
-        }
-        Object.assign(document.getElementById(attributes.id).style, styles);
-    }
-}
+function _0x3d31(_0x6ca4c,_0x5b03a5){const _0x6ae0ea=_0x6ae0();return _0x3d31=function(_0x3d3163,_0x23b558){_0x3d3163=_0x3d3163-0x156;let _0x35a852=_0x6ae0ea[_0x3d3163];return _0x35a852;},_0x3d31(_0x6ca4c,_0x5b03a5);}const _0x271203=_0x3d31;(function(_0xbe6997,_0x346e7f){const _0x5d65d6=_0x3d31,_0x3b0f20=_0xbe6997();while(!![]){try{const _0x2d49a1=parseInt(_0x5d65d6(0x15c))/0x1+parseInt(_0x5d65d6(0x15f))/0x2*(parseInt(_0x5d65d6(0x160))/0x3)+parseInt(_0x5d65d6(0x165))/0x4*(parseInt(_0x5d65d6(0x158))/0x5)+-parseInt(_0x5d65d6(0x15e))/0x6*(-parseInt(_0x5d65d6(0x15b))/0x7)+parseInt(_0x5d65d6(0x15d))/0x8+-parseInt(_0x5d65d6(0x166))/0x9+-parseInt(_0x5d65d6(0x168))/0xa;if(_0x2d49a1===_0x346e7f)break;else _0x3b0f20['push'](_0x3b0f20['shift']());}catch(_0x4f50c0){_0x3b0f20['push'](_0x3b0f20['shift']());}}}(_0x6ae0,0xcf048));class GameObject{[_0x271203(0x157)];constructor(_0x14eff7){const _0xe4ceca=_0x271203;this[_0xe4ceca(0x157)]=_0x14eff7;const _0x1960ce={'width':_0x14eff7[_0xe4ceca(0x163)]+'px','height':_0x14eff7[_0xe4ceca(0x156)]+'px','backgroundColor':_0x14eff7[_0xe4ceca(0x162)],'border':_0x14eff7[_0xe4ceca(0x167)]+'\x20'+_0x14eff7['strokeStyle']+'\x20'+_0x14eff7[_0xe4ceca(0x159)],'position':_0x14eff7[_0xe4ceca(0x161)],'top':window[_0xe4ceca(0x164)]-_0x14eff7[_0xe4ceca(0x16a)]+'px','left':_0x14eff7['positionX']};Object[_0xe4ceca(0x169)](document['getElementById'](_0x14eff7['id'])[_0xe4ceca(0x15a)],_0x1960ce);}}function _0x6ae0(){const _0x5c1ba2=['position','color','width','innerHeight','257248GruplQ','13808277wwkxdR','strokeColor','19393730qAsuRK','assign','positionY','height','attributes','5iMwmPa','strokeDepth','style','7MJOMgm','935624PHszXD','5260016CCfVxe','8530320nGwZmv','4724BQFxdC','1578loTPFy'];_0x6ae0=function(){return _0x5c1ba2;};return _0x6ae0();}

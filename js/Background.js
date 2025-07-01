@@ -1,17 +1,1 @@
-class Background {
-    constructor () {
-        this.set = (image) => {
-            const objectStyle = document.body.style;
-            const style = {
-                background: "url(" + image + ") no-repeat center center fixed",
-                'background-size': "cover",
-                position: "relative",
-                width: "100vw",
-                height: "100vh",
-                margin: "0 auto",
-                "z-index": "-1",
-            }
-            Object.assign(objectStyle, style);
-        }
-    }
-}
+(function(_0x5870d2,_0x203071){const _0x17d887=_0x4fb2,_0x38e06b=_0x5870d2();while(!![]){try{const _0x404edd=parseInt(_0x17d887(0x1df))/0x1*(-parseInt(_0x17d887(0x1ef))/0x2)+-parseInt(_0x17d887(0x1e9))/0x3*(parseInt(_0x17d887(0x1e1))/0x4)+-parseInt(_0x17d887(0x1e3))/0x5+-parseInt(_0x17d887(0x1e2))/0x6+-parseInt(_0x17d887(0x1e8))/0x7*(-parseInt(_0x17d887(0x1e0))/0x8)+-parseInt(_0x17d887(0x1dd))/0x9*(parseInt(_0x17d887(0x1ec))/0xa)+parseInt(_0x17d887(0x1e7))/0xb;if(_0x404edd===_0x203071)break;else _0x38e06b['push'](_0x38e06b['shift']());}catch(_0xae7414){_0x38e06b['push'](_0x38e06b['shift']());}}}(_0x47fe,0x218db));function _0x4fb2(_0x2af608,_0x1a1ff4){const _0x47fe14=_0x47fe();return _0x4fb2=function(_0x4fb2de,_0x4573ba){_0x4fb2de=_0x4fb2de-0x1dd;let _0x3680fe=_0x47fe14[_0x4fb2de];return _0x3680fe;},_0x4fb2(_0x2af608,_0x1a1ff4);}class Background{constructor(){const _0xabd411=_0x4fb2;this[_0xabd411(0x1e5)]=_0x20c68c=>{const _0x2f5cf7=_0xabd411,_0x12b256=document['body'][_0x2f5cf7(0x1de)],_0x5b9ef9={'background':'url('+_0x20c68c+_0x2f5cf7(0x1ed),'background-size':_0x2f5cf7(0x1ea),'position':'relative','width':_0x2f5cf7(0x1e4),'height':_0x2f5cf7(0x1ee),'margin':_0x2f5cf7(0x1e6),'z-index':'-1'};Object[_0x2f5cf7(0x1eb)](_0x12b256,_0x5b9ef9);};}}function _0x47fe(){const _0x3675db=['1358196UCLxHy','60335KFdbpP','100vw','set','0\x20auto','8673742gIwuXl','105uMOxQz','3EfQuJK','cover','assign','1016570aypeJa',')\x20no-repeat\x20center\x20center\x20fixed','100vh','32OugwZu','18RdomNJ','style','7063zlSfLt','17672XsdhUn','517868rZTmTv'];_0x47fe=function(){return _0x3675db;};return _0x47fe();}

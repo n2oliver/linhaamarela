@@ -1,12 +1,1 @@
-class Platform extends GameObject {
-    constructor(attributes){
-        super(attributes);
-
-        Object.assign(document.getElementById(attributes.id).style, { 
-            position: "fixed",
-            ...attributes,
-            "background-image": "url(/jogos/linhaamarela/img/trail.png)",
-            "background-size": "auto 100%", 
-        });
-    }
-}
+function _0x45d8(){var _0x59c632=['2292016UYTlkx','1673833MKJvDz','auto\x20100%','872oBZlDU','assign','2lJrwZJ','64589LmWRVd','fixed','270663cTRqXa','2318990tsLPju','17827420remRBN','6DlkpIu','54342PwPLTX'];_0x45d8=function(){return _0x59c632;};return _0x45d8();}function _0x1027(_0x224e53,_0x18e059){var _0x45d89d=_0x45d8();return _0x1027=function(_0x10272c,_0x42b9f1){_0x10272c=_0x10272c-0x128;var _0x12ea07=_0x45d89d[_0x10272c];return _0x12ea07;},_0x1027(_0x224e53,_0x18e059);}(function(_0xf3c9c6,_0x103824){var _0x409441=_0x1027,_0x5a92f5=_0xf3c9c6();while(!![]){try{var _0x2580ec=parseInt(_0x409441(0x12f))/0x1*(-parseInt(_0x409441(0x12e))/0x2)+parseInt(_0x409441(0x131))/0x3+-parseInt(_0x409441(0x129))/0x4+parseInt(_0x409441(0x132))/0x5*(-parseInt(_0x409441(0x134))/0x6)+parseInt(_0x409441(0x12a))/0x7+parseInt(_0x409441(0x12c))/0x8*(-parseInt(_0x409441(0x128))/0x9)+parseInt(_0x409441(0x133))/0xa;if(_0x2580ec===_0x103824)break;else _0x5a92f5['push'](_0x5a92f5['shift']());}catch(_0x288dfd){_0x5a92f5['push'](_0x5a92f5['shift']());}}}(_0x45d8,0x56125));class Platform extends GameObject{constructor(_0x33c624){var _0x451aae=_0x1027;super(_0x33c624),Object[_0x451aae(0x12d)](document['getElementById'](_0x33c624['id'])['style'],{'position':_0x451aae(0x130),..._0x33c624,'background-image':'url(/jogos/linhaamarela/img/trail.png)','background-size':_0x451aae(0x12b)});}}

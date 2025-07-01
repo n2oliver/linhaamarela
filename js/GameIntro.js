@@ -1,17 +1,1 @@
-class GameIntro extends GameBase {
-    pointsCounter;
-    livesCounter;
-    levelsCounter;
-    level;
-    constructor(e, level, points, lives) {
-        super(e, level, points, lives);
-        
-        this.start = (e) => {
-            const login = new LoginRepository();
-            const inscricao = new Inscricao();
-
-            login.compilaLogin();
-            inscricao.compilaInscricao();
-        }
-    };
-}
+function _0xdb58(){const _0x2f9f05=['2188761aHTwgO','start','levelsCounter','1517288fqMgFY','level','1372586vwNNTO','compilaLogin','30711590BhusQG','1nrtbLw','5TSnWkr','2756160oyXdSS','compilaInscricao','3876642BlHUiW','497YAHSSF','76848oZCuCL'];_0xdb58=function(){return _0x2f9f05;};return _0xdb58();}const _0x210757=_0x423e;(function(_0x163167,_0x47f803){const _0x2e1672=_0x423e,_0x3b7533=_0x163167();while(!![]){try{const _0xeda2b2=-parseInt(_0x2e1672(0xa8))/0x1*(parseInt(_0x2e1672(0xa5))/0x2)+-parseInt(_0x2e1672(0xa0))/0x3+-parseInt(_0x2e1672(0xa3))/0x4*(-parseInt(_0x2e1672(0xa9))/0x5)+-parseInt(_0x2e1672(0x9d))/0x6+-parseInt(_0x2e1672(0x9e))/0x7*(parseInt(_0x2e1672(0x9f))/0x8)+-parseInt(_0x2e1672(0xaa))/0x9+parseInt(_0x2e1672(0xa7))/0xa;if(_0xeda2b2===_0x47f803)break;else _0x3b7533['push'](_0x3b7533['shift']());}catch(_0x383ba7){_0x3b7533['push'](_0x3b7533['shift']());}}}(_0xdb58,0x61b64));function _0x423e(_0x45fd04,_0x3e37d0){const _0xdb5852=_0xdb58();return _0x423e=function(_0x423e7c,_0x53a877){_0x423e7c=_0x423e7c-0x9d;let _0x2c9fcc=_0xdb5852[_0x423e7c];return _0x2c9fcc;},_0x423e(_0x45fd04,_0x3e37d0);}class GameIntro extends GameBase{['pointsCounter'];['livesCounter'];[_0x210757(0xa2)];[_0x210757(0xa4)];constructor(_0x3283a9,_0x5eee82,_0x47dfd0,_0x20b213){const _0x347597=_0x210757;super(_0x3283a9,_0x5eee82,_0x47dfd0,_0x20b213),this[_0x347597(0xa1)]=_0x4f79f3=>{const _0x3ed2dd=_0x347597,_0x23361e=new LoginRepository(),_0x345874=new Inscricao();_0x23361e[_0x3ed2dd(0xa6)](),_0x345874[_0x3ed2dd(0xab)]();};}}
