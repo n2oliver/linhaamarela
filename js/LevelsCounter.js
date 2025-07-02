@@ -1,1 +1,43 @@
-const _0x467243=_0x3a43;function _0x3a43(_0x3cbbb7,_0x5c0164){const _0x2b8d81=_0x2b8d();return _0x3a43=function(_0x3a43ef,_0x419497){_0x3a43ef=_0x3a43ef-0xb8;let _0x2463e8=_0x2b8d81[_0x3a43ef];return _0x2463e8;},_0x3a43(_0x3cbbb7,_0x5c0164);}(function(_0x3e632a,_0x12c7a2){const _0x4d1174=_0x3a43,_0x5cf6c2=_0x3e632a();while(!![]){try{const _0x6ea33d=-parseInt(_0x4d1174(0xd2))/0x1*(-parseInt(_0x4d1174(0xc0))/0x2)+parseInt(_0x4d1174(0xd9))/0x3*(parseInt(_0x4d1174(0xc5))/0x4)+parseInt(_0x4d1174(0xdd))/0x5*(parseInt(_0x4d1174(0xba))/0x6)+parseInt(_0x4d1174(0xbe))/0x7*(parseInt(_0x4d1174(0xbd))/0x8)+parseInt(_0x4d1174(0xd3))/0x9+parseInt(_0x4d1174(0xde))/0xa*(-parseInt(_0x4d1174(0xbb))/0xb)+-parseInt(_0x4d1174(0xd5))/0xc*(parseInt(_0x4d1174(0xd4))/0xd);if(_0x6ea33d===_0x12c7a2)break;else _0x5cf6c2['push'](_0x5cf6c2['shift']());}catch(_0x15ca9c){_0x5cf6c2['push'](_0x5cf6c2['shift']());}}}(_0x2b8d,0xaa6ef));class LevelsCounter extends Counter{[_0x467243(0xb8)]=0x1;['levelUp']=new Event(_0x467243(0xca));['demo']=![];constructor(_0x5365b8){const _0x109c6d=_0x467243;super(_0x5365b8),this['attributes']=_0x5365b8;const _0x354451={'top':'32px','left':'32px'};Object[_0x109c6d(0xb9)](document[_0x109c6d(0xd8)](_0x5365b8['id'])['parentElement']['style'],_0x354451),this[_0x109c6d(0xcc)]=(_0x2a7dcc,_0x41b573,_0x2eb910)=>{const _0x37d2e0=_0x109c6d;this[_0x37d2e0(0xc4)]=_0x2eb910,window['game'][_0x37d2e0(0xd6)][_0x37d2e0(0xb8)]=parseInt((_0x2a7dcc+0xfa)/0xfa),_0x41b573<parseInt((_0x2a7dcc+0xfa)/0xfa)&&document[_0x37d2e0(0xcf)](this['levelUp']);},this[_0x109c6d(0xc9)]();}['setLevelUp']=function(){const _0x3aaae4=_0x467243;document[_0x3aaae4(0xdb)]('levelup',function(_0x467831){const _0x5e889e=_0x3aaae4;document[_0x5e889e(0xd8)](window[_0x5e889e(0xcb)][_0x5e889e(0xd6)][_0x5e889e(0xc7)]['id'])[_0x5e889e(0xbc)]=window[_0x5e889e(0xcb)][_0x5e889e(0xd6)][_0x5e889e(0xb8)],window[_0x5e889e(0xbf)]['attributes'][_0x5e889e(0xcd)]=window[_0x5e889e(0xcb)]['levelsCounter'][_0x5e889e(0xb8)]<=0xb?window['game']['levelsCounter']['level']:0xb,$('.nivel')[_0x5e889e(0xc2)](_0x5e889e(0xc8)+window[_0x5e889e(0xcb)]['levelsCounter'][_0x5e889e(0xb8)])[_0x5e889e(0xda)](),setTimeout(()=>{const _0x4cdd16=_0x5e889e;$(_0x4cdd16(0xdc))['hide']();},0xbb8),window[_0x5e889e(0xc1)][_0x5e889e(0xd7)](),clearInterval(window[_0x5e889e(0xcb)]['invaderInterval']),window[_0x5e889e(0xcb)]['invaderInterval']=new SpaceInvader()[_0x5e889e(0xc3)](window['game'][_0x5e889e(0xd6)][_0x5e889e(0xb8)]*0x2);const _0x295887=Math[_0x5e889e(0xd1)](Math[_0x5e889e(0xce)]()*window[_0x5e889e(0xcb)][_0x5e889e(0xc6)]['length']);window[_0x5e889e(0xcb)]['background'][_0x5e889e(0xd0)](window['game'][_0x5e889e(0xc6)][_0x295887]);},![]);};}function _0x2b8d(){const _0x5f0661=['game','increaseCounter','velocity','random','dispatchEvent','set','floor','37bHvxef','6345621KYKLZx','10093317cosYUn','12kCpzUb','levelsCounter','destroy','getElementById','12fGsVaM','show','addEventListener','.nivel','5GOYmYS','170QUTQdQ','level','assign','5189406rraNfY','853589piLfEi','innerText','540504RQXLgt','84ocJhyG','ball','12114FesRJu','spaceInvader','text','init','demo','188852AumUuh','backgroundImages','attributes','Nivel\x20','setLevelUp','levelup'];_0x2b8d=function(){return _0x5f0661;};return _0x2b8d();}
+
+
+class LevelsCounter extends Counter  {
+    level = 1;
+    levelUp = new Event("levelup");
+    demo = false;
+    constructor(attributes) {
+        super(attributes);
+        this.attributes = attributes;
+        const styles = {
+            top: "32px",
+            left: "32px"
+        }
+        Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
+
+        this.increaseCounter = (points, previousLevel, demo) => {
+            this.demo = demo;
+            window.game.levelsCounter.level = parseInt((points + 250) / 250);
+
+            if(previousLevel < parseInt((points + 250) / 250)) {
+                document.dispatchEvent(this.levelUp);
+            }
+        }
+        this.setLevelUp();
+    }
+    setLevelUp = function() {
+        document.addEventListener('levelup', function (e) {
+            document.getElementById(window.game.levelsCounter.attributes.id).innerText = window.game.levelsCounter.level;
+            window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
+            
+            $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
+            setTimeout(()=> {
+                $(".nivel").hide();
+            }, 3000);
+            
+            window.spaceInvader.destroy();
+            clearInterval(window.game.invaderInterval);
+            window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*2)
+            const random = Math.floor(Math.random() * window.game.backgroundImages.length);
+            window.game.background.set(window.game.backgroundImages[random]);
+        }, false);
+    }
+}

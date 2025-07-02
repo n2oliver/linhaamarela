@@ -1,1 +1,15 @@
-const _0x2128fb=_0xb443;(function(_0x25e417,_0x5ed7e9){const _0x58656a=_0xb443,_0x46b1bf=_0x25e417();while(!![]){try{const _0x17e0db=parseInt(_0x58656a(0xa3))/0x1+parseInt(_0x58656a(0x98))/0x2*(parseInt(_0x58656a(0x9a))/0x3)+-parseInt(_0x58656a(0x95))/0x4+-parseInt(_0x58656a(0x9e))/0x5*(-parseInt(_0x58656a(0xa1))/0x6)+-parseInt(_0x58656a(0x9c))/0x7*(-parseInt(_0x58656a(0x97))/0x8)+parseInt(_0x58656a(0x9b))/0x9+-parseInt(_0x58656a(0x9f))/0xa;if(_0x17e0db===_0x5ed7e9)break;else _0x46b1bf['push'](_0x46b1bf['shift']());}catch(_0x5108bb){_0x46b1bf['push'](_0x46b1bf['shift']());}}}(_0x4f88,0x8a75e));class Counter{[_0x2128fb(0x96)];constructor(_0x262e11){const _0x2c5d28=_0x2128fb;if(_0x262e11){this[_0x2c5d28(0x96)]=_0x262e11;const _0x2cef6f={'color':_0x2c5d28(0xa4),'fontSize':_0x2c5d28(0x99),'-webkit-text-stroke':_0x2c5d28(0xa0)};Object[_0x2c5d28(0x9d)](document['getElementById'](_0x262e11['id'])[_0x2c5d28(0xa2)],_0x2cef6f);}}}function _0xb443(_0x1a1d34,_0x4219fb){const _0x4f8802=_0x4f88();return _0xb443=function(_0xb4438b,_0x8daecc){_0xb4438b=_0xb4438b-0x95;let _0x144346=_0x4f8802[_0xb4438b];return _0x144346;},_0xb443(_0x1a1d34,_0x4219fb);}function _0x4f88(){const _0x41c79a=['.3px\x20black','222mQqKZe','style','754270syqpKs','yellow','835424chRNLB','attributes','2519464gSRhDR','694066QuWXBb','24px','3sOPemS','2873988UuuSiG','21kOXTMv','assign','80375ynmjIW','21842190IjmTON'];_0x4f88=function(){return _0x41c79a;};return _0x4f88();}
+class Counter {
+    attributes;
+    constructor(attributes){
+        if(attributes){
+            this.attributes = attributes;
+
+            const styles = {
+                color: "yellow",
+                fontSize: "24px",
+                '-webkit-text-stroke': ".3px black"
+            }
+            Object.assign(document.getElementById(attributes.id).style, styles);
+        }
+    }
+}

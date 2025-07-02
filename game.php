@@ -157,8 +157,9 @@ require('./repositories/PontoRepository.php');
 
         <div id="game-over" class="d-none">
             <h1>Game Over</h1>
-            <div class="col-md-8 box-title game-over-ending mt-3">Ah, não!</div>
-            <div class="col-md-8 box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
+            <div class="box-title game-over-ending mt-3">Ah, não!</div>
+            <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
+            <div><button id="restart" class="btn" style="background: darkorange">Reiniciar</button></div>
         </div>
 
         <div id="platform"></div>

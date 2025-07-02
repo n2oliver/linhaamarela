@@ -1,1 +1,67 @@
-function _0x1cf0(){const _0x1b1a5d=['#all-points\x20tbody','pages','#your-points\x20tbody','username','spaceInvaderNpc','nomedeusuario','\x20pontos</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','then','pointsCounter','page','6205770gJGLgR','998DETQrQ','append','log','userHighScore','data','</a></td><td>','</td><td\x20class=\x22pontuacao\x22>','#pagination','1768znLpXm','target','next','init','pontuacao','1231FqiYUK','\x22>Anterior</a></li>','click','start','125340ytTCxu','html','<li\x20class=\x22page-item\x22><a\x20class=\x22page-link\x22\x20href=\x22#\x22\x20data-page=\x22','levelsCounter','</a></li>','3500tEwsEb','27566oNJepK','1111GtDvUd','#compartilhar','3336hLvpit','441666mmXGkb','prev','scores','level','livesCounter','5219928aPyoFB','catch','body'];_0x1cf0=function(){return _0x1b1a5d;};return _0x1cf0();}const _0x576d27=_0x4545;(function(_0x2e6fc5,_0x35d117){const _0x139479=_0x4545,_0x53561f=_0x2e6fc5();while(!![]){try{const _0x465275=-parseInt(_0x139479(0x14a))/0x1*(parseInt(_0x139479(0x13d))/0x2)+-parseInt(_0x139479(0x158))/0x3+parseInt(_0x139479(0x157))/0x4*(-parseInt(_0x139479(0x153))/0x5)+-parseInt(_0x139479(0x15d))/0x6+-parseInt(_0x139479(0x154))/0x7*(-parseInt(_0x139479(0x145))/0x8)+parseInt(_0x139479(0x13c))/0x9+-parseInt(_0x139479(0x14e))/0xa*(-parseInt(_0x139479(0x155))/0xb);if(_0x465275===_0x35d117)break;else _0x53561f['push'](_0x53561f['shift']());}catch(_0x44f90e){_0x53561f['push'](_0x53561f['shift']());}}}(_0x1cf0,0x950b3));function _0x4545(_0x2986f8,_0x27b20d){const _0x1cf050=_0x1cf0();return _0x4545=function(_0x45458b,_0x5aa384){_0x45458b=_0x45458b-0x13b;let _0x40d72a=_0x1cf050[_0x45458b];return _0x40d72a;},_0x4545(_0x2986f8,_0x27b20d);}class GameOver extends GameBase{[_0x576d27(0x168)];[_0x576d27(0x15c)];[_0x576d27(0x151)];[_0x576d27(0x15b)];constructor(_0x34d750,_0x5b18d0,_0x464cac,_0x2f71dc){const _0x2ad7cf=_0x576d27;super(_0x34d750,_0x5b18d0,_0x464cac,_0x2f71dc),this[_0x2ad7cf(0x14d)]=async _0x547a32=>{const _0x415be1=_0x2ad7cf;window[_0x415be1(0x164)]=new SpaceInvaderNPC(),this['invaderInterval']=window[_0x415be1(0x164)][_0x415be1(0x148)]();};}}function listScores(_0x330220){const _0x39f0e8=_0x576d27,_0x456d4c=_0x330220['body'][_0x39f0e8(0x15a)][_0x39f0e8(0x140)];_0x456d4c&&$(_0x39f0e8(0x162))[_0x39f0e8(0x14f)]('')[_0x39f0e8(0x13e)]('<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22presentation\x20text-warning\x22><a\x20href=\x22#posicao\x22>#'+_0x456d4c['posicao']+_0x39f0e8(0x142)+sessionStorage[_0x39f0e8(0x163)]+_0x39f0e8(0x143)+(sessionStorage['pontuacao']||0x0)+'\x20pontos</td><td\x20class=\x22recorde\x22>'+_0x456d4c[_0x39f0e8(0x149)]+'\x20pontos</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>');$(_0x39f0e8(0x160))[_0x39f0e8(0x14f)]('');for(let _0x24a52f in _0x330220[_0x39f0e8(0x15f)][_0x39f0e8(0x15a)]['rows']){const _0xefa6f1=_0x330220['body']['scores']['rows'][_0x24a52f],_0x54b866=_0x330220['page']||0x0,_0x297a33=parseInt(_0x54b866*0xa+parseInt(_0x24a52f))+0x1;$(_0x39f0e8(0x160))[_0x39f0e8(0x13e)]('<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><a\x20id=\x22posicao\x22\x20href=\x22#posicao\x22>#'+_0x297a33+'</a></td><td>'+_0xefa6f1[_0x39f0e8(0x165)]+'</td><td>'+_0xefa6f1[_0x39f0e8(0x149)]+_0x39f0e8(0x166)),console[_0x39f0e8(0x13f)](_0xefa6f1);}$(_0x39f0e8(0x144))['html']('');_0x330220[_0x39f0e8(0x15f)][_0x39f0e8(0x15a)]['prev']!=-0x1&&$(_0x39f0e8(0x144))[_0x39f0e8(0x13e)](_0x39f0e8(0x150)+_0x330220[_0x39f0e8(0x15f)][_0x39f0e8(0x15a)][_0x39f0e8(0x159)]+_0x39f0e8(0x14b));for(let _0x2d723c=0x0;_0x2d723c<_0x330220['body']['scores'][_0x39f0e8(0x161)];_0x2d723c++){_0x2d723c>0x1&&$('#pagination')[_0x39f0e8(0x13e)](_0x39f0e8(0x150)+(_0x2d723c-0x1)+'\x22>'+_0x2d723c+'</a></li>'),$(_0x39f0e8(0x144))[_0x39f0e8(0x13e)](_0x39f0e8(0x150)+_0x2d723c+'\x22>'+(_0x2d723c+0x1)+_0x39f0e8(0x152)),_0x2d723c+0x2<_0x330220[_0x39f0e8(0x15f)][_0x39f0e8(0x15a)][_0x39f0e8(0x161)]&&$(_0x39f0e8(0x144))[_0x39f0e8(0x13e)]('<li\x20class=\x22page-item\x22><a\x20class=\x22page-link\x22\x20href=\x22#\x22\x20data-page=\x22'+(_0x2d723c+0x1)+'\x22>'+(_0x2d723c+0x2)+_0x39f0e8(0x152));}_0x330220[_0x39f0e8(0x15f)]['scores'][_0x39f0e8(0x147)]!=_0x330220['body'][_0x39f0e8(0x15a)][_0x39f0e8(0x161)]&&$(_0x39f0e8(0x144))[_0x39f0e8(0x13e)]('<li\x20class=\x22page-item\x22><a\x20class=\x22page-link\x22\x20href=\x22#\x22\x20data-page=\x22'+_0x330220[_0x39f0e8(0x15f)]['scores']['next']+'\x22>Próximo</a></li>'),$('.page-link')['on'](_0x39f0e8(0x14c),_0x4e41d2=>{const _0x44c02a=_0x39f0e8;_0x4e41d2['preventDefault']();const _0x23f5da=$(_0x4e41d2[_0x44c02a(0x146)])[_0x44c02a(0x141)](_0x44c02a(0x13b));PointsCounter['getHighScores'](_0x23f5da)[_0x44c02a(0x167)](_0xd49d8c=>{_0xd49d8c['page']=_0x23f5da;})[_0x44c02a(0x15e)](_0xa97e95=>{const _0x31fd58=_0x44c02a;console[_0x31fd58(0x13f)](_0xa97e95);});}),$(_0x39f0e8(0x156))[_0x39f0e8(0x14c)](function(){share();});}
+class GameOver extends GameBase {
+    pointsCounter;
+    livesCounter;
+    levelsCounter;
+    level;
+    constructor(e, level, points, lives) {
+        super(e, level, points, lives);
+
+        this.start = async (e) => {
+            // PointsCounter.getHighScores().then(listScores).catch(error => {
+            //     console.log(error);
+            // });
+            window.spaceInvaderNpc = new SpaceInvaderNPC();
+            this.invaderInterval = window.spaceInvaderNpc.init();
+        }
+    };
+}
+function listScores (data) {
+    const yourPoints = data.body.scores.userHighScore;
+    if(yourPoints) {
+        $('#your-points tbody').html("").append(
+            `<tr>
+                <td class="presentation text-warning"><a href="#posicao">#${yourPoints.posicao}</a></td><td>${sessionStorage.username}</td><td class="pontuacao">${sessionStorage.pontuacao || 0} pontos</td><td class="recorde">${yourPoints.pontuacao} pontos</td>
+            </tr>`);
+    }
+
+    $('#all-points tbody').html("");
+    for(let index in data.body.scores.rows) {
+        const points = data.body.scores.rows[index];
+        const page = data.page || 0;
+        const position =parseInt((page*10)+parseInt(index)) + 1;
+        $('#all-points tbody').append(
+            `<tr>
+                <td><a id="posicao" href="#posicao">#${position}</a></td><td>${points.nomedeusuario}</td><td>${points.pontuacao} pontos</td>
+            </tr>`);
+        console.log(points);
+    }
+    $('#pagination').html("");
+    if(data.body.scores.prev != -1) {
+        $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${data.body.scores.prev}">Anterior</a></li>`);
+    }
+    for(let i=0; i < data.body.scores.pages; i++) {
+        if(i > 1) {
+            $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${i-1}">${i}</a></li>`);
+        }
+        $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i+1}</a></li>`);
+        if(i+2 < data.body.scores.pages) {
+            $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${i+1}">${i+2}</a></li>`);
+        }
+    }
+    if(data.body.scores.next != data.body.scores.pages) {
+        $('#pagination').append(`<li class="page-item"><a class="page-link" href="#" data-page="${data.body.scores.next}">Próximo</a></li>`);
+    }
+    $('.page-link').on('click', (e) => {
+        e.preventDefault();
+        const page = $(e.target).data("page");
+        PointsCounter.getHighScores(page).then((data) => {
+            data.page = page;
+            // listScores(data);
+        }).catch(error => {
+            console.log(error);
+        });
+    });
+    $('#compartilhar').click(function() {
+        share();
+    });
+}

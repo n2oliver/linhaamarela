@@ -1,1 +1,92 @@
-const _0x549a5b=_0x4dbd;(function(_0x246d82,_0x385320){const _0x381d74=_0x4dbd,_0x316baf=_0x246d82();while(!![]){try{const _0x2ebb96=-parseInt(_0x381d74(0x13f))/0x1*(parseInt(_0x381d74(0x140))/0x2)+-parseInt(_0x381d74(0x13a))/0x3*(-parseInt(_0x381d74(0x129))/0x4)+parseInt(_0x381d74(0x136))/0x5+-parseInt(_0x381d74(0x139))/0x6*(parseInt(_0x381d74(0x144))/0x7)+parseInt(_0x381d74(0x12e))/0x8+-parseInt(_0x381d74(0x13c))/0x9*(parseInt(_0x381d74(0x149))/0xa)+parseInt(_0x381d74(0x13e))/0xb*(parseInt(_0x381d74(0x12c))/0xc);if(_0x2ebb96===_0x385320)break;else _0x316baf['push'](_0x316baf['shift']());}catch(_0x1b450b){_0x316baf['push'](_0x316baf['shift']());}}}(_0x467b,0xaab83));function _0x4dbd(_0x1ee51c,_0x63b816){const _0x467bb4=_0x467b();return _0x4dbd=function(_0x4dbdb5,_0x7f4342){_0x4dbdb5=_0x4dbdb5-0x126;let _0x5d10c5=_0x467bb4[_0x4dbdb5];return _0x5d10c5;},_0x4dbd(_0x1ee51c,_0x63b816);}class YellowBox extends GameObject{['defaultShotType']={'width':'8px','height':_0x549a5b(0x14e),'background-color':_0x549a5b(0x131),'border-radius':'100%','box-shadow':_0x549a5b(0x138),'position':_0x549a5b(0x148),'left':document[_0x549a5b(0x155)](_0x549a5b(0x133))[_0x549a5b(0x134)]+0x18+'px','top':document['getElementById'](_0x549a5b(0x133))[_0x549a5b(0x151)]+'px','background':_0x549a5b(0x142)};[_0x549a5b(0x12a)]={'width':_0x549a5b(0x143),'height':_0x549a5b(0x14e),'background-color':_0x549a5b(0x131),'border-radius':'100%','box-shadow':_0x549a5b(0x138),'position':_0x549a5b(0x148),'left':document['getElementById']('yellow-box')[_0x549a5b(0x134)]+0x18+'px','top':document[_0x549a5b(0x155)]('yellow-box')['offsetTop']+'px','background':_0x549a5b(0x142)};[_0x549a5b(0x12f)]={'width':_0x549a5b(0x130),'height':_0x549a5b(0x130),'background':_0x549a5b(0x126)};constructor(_0x5b0fdb){const _0x1780c8=_0x549a5b;super(_0x5b0fdb),this[_0x1780c8(0x127)]=0x3c,Object[_0x1780c8(0x152)](document[_0x1780c8(0x155)](_0x5b0fdb['id'])[_0x1780c8(0x12d)],{'transform':'translateX(-36px)','position':_0x1780c8(0x148),'border-radius':'20px','border':_0x1780c8(0x128)}),this[_0x1780c8(0x156)]=function(_0x391110,_0x13285c=this){const _0x2e52dc=_0x1780c8;let _0x38f209=_0x391110[_0x2e52dc(0x14b)];isNaN(_0x391110[_0x2e52dc(0x14b)])&&_0x391110['center']&&(_0x38f209=_0x391110[_0x2e52dc(0x153)]['x']);if(_0x38f209){let _0x23fd4d=_0x38f209;_0x23fd4d=_0x38f209>0x8?_0x23fd4d:0x8;const _0x5c1698={'top':window[_0x2e52dc(0x12b)]-_0x13285c[_0x2e52dc(0x13d)][_0x2e52dc(0x127)]+'px','left':_0x23fd4d+'px'};Object[_0x2e52dc(0x152)](document['getElementById'](_0x13285c['attributes']['id'])[_0x2e52dc(0x12d)],{..._0x5c1698,'border':'solid\x202px\x20#000'}),Object['assign'](this['shotType'],_0x5c1698);}},this['mouseMove']=_0x583f5a=>{const _0x8693d2=_0x1780c8;!window[_0x8693d2(0x14c)]&&(this[_0x8693d2(0x156)](_0x583f5a,this),document[_0x8693d2(0x155)](_0x8693d2(0x132))[_0x8693d2(0x12d)]['top']=parseInt(document[_0x8693d2(0x155)](_0x8693d2(0x133))[_0x8693d2(0x12d)][_0x8693d2(0x147)])-0x18+'px');},this[_0x1780c8(0x14d)]=(_0x1cd90e,_0x59fb51)=>{const _0xaf09ea=_0x1780c8;if(!window[_0xaf09ea(0x14c)]){let _0x5e9cea=document[_0xaf09ea(0x141)](_0xaf09ea(0x13b));_0x5e9cea['id']=_0xaf09ea(0x145),_0x5e9cea[_0xaf09ea(0x137)]['add'](_0xaf09ea(0x145)),Object[_0xaf09ea(0x152)](_0x5e9cea['style'],_0x59fb51),document['body'][_0xaf09ea(0x14a)](_0x5e9cea),window[_0xaf09ea(0x14f)]['audioManager'][_0xaf09ea(0x146)]();let _0x2607f5=setInterval(()=>{const _0x5331d3=_0xaf09ea;if(!window['pause']){document[_0x5331d3(0x155)](_0x5331d3(0x145))&&document[_0x5331d3(0x155)]('capsule')[_0x5331d3(0x151)]<0x14&&(clearInterval(_0x2607f5),document[_0x5331d3(0x155)](_0x5331d3(0x145))['remove']());for(let _0x465ba5 of document[_0x5331d3(0x154)](_0x5331d3(0x145))){_0x465ba5['style']['top']=_0x465ba5[_0x5331d3(0x151)]-0xf+'px';}}},0x64);}},this[_0x1780c8(0x135)]=_0x15c693=>{const _0x4035ea=_0x1780c8;Object[_0x4035ea(0x152)](window[_0x4035ea(0x14f)][_0x4035ea(0x150)][_0x4035ea(0x12a)],_0x15c693);};}}function _0x467b(){const _0x49b154=['#ffffff\x200px\x200px\x2010px\x2010px','7315134ZTcAYd','3ekmtqR','DIV','1469457IQgelK','attributes','11bKUXSN','487nHVILf','5122bqsoBq','createElement','white','8px','7NrhERQ','capsule','playShot','top','fixed','30DiTlCZ','appendChild','pageX','pause','shot','20px','game','yellowBox','offsetTop','assign','center','getElementsByClassName','getElementById','updatePosition','radial-gradient(#fff,\x20transparent,\x20#fff,\x20transparent,\x20#fff)','positionY','solid\x202px\x20#000','3270652uiyrfA','shotType','innerHeight','16731828EiCWKJ','style','586112iVvEXU','greatShotType','50px','lightyellow','platform','yellow-box','offsetLeft','updateShot','6851180wGrFqW','classList'];_0x467b=function(){return _0x49b154;};return _0x467b();}
+class YellowBox extends GameObject {
+    
+    defaultShotType = {
+        width: "8px",
+        height: "20px",
+        "background-color": "lightyellow",
+        "border-radius": "100%",
+        "box-shadow": "#ffffff 0px 0px 10px 10px",
+        position: "fixed",
+        left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
+        top: document.getElementById("yellow-box").offsetTop + "px",
+        "background": "white"
+    };
+    shotType = {
+        width: "8px",
+        height: "20px",
+        "background-color": "lightyellow",
+        "border-radius": "100%",
+        "box-shadow": "#ffffff 0px 0px 10px 10px",
+        position: "fixed",
+        left: document.getElementById("yellow-box").offsetLeft + 24 + "px",
+        top: document.getElementById("yellow-box").offsetTop + "px",
+        "background": "white"
+    };
+    greatShotType = {
+        width: "50px",
+        height: "50px",
+        background: "radial-gradient(#fff, transparent, #fff, transparent, #fff)"
+    }
+
+    constructor(attributes){
+        super(attributes);
+
+        this.positionY = 60;
+        Object.assign(document.getElementById(attributes.id).style, { 
+            transform: "translateX(-36px)",
+            position: "fixed",
+            "border-radius": "20px",
+            border: "solid 2px #000"
+        });
+        this.updatePosition = function(event, gameObject = this) {
+            let xOffset = event.pageX;
+            if(isNaN(event.pageX) && event.center) {
+                xOffset = event.center.x
+            }
+            if(xOffset) {
+                let positionX = xOffset;
+                positionX = xOffset > 8 ? positionX : 8;
+                
+                const styles = {
+                    top: (window.innerHeight - gameObject.attributes.positionY) + "px",
+                    left: positionX + "px",
+                }
+                Object.assign(document.getElementById(gameObject.attributes.id).style, {...styles, border: "solid 2px #000" });
+                Object.assign(this.shotType, styles);
+            }
+            
+        }
+        
+        this.mouseMove = (e) => {
+            if(!window.pause && !window.gameOver) {  
+                this.updatePosition(e, this);
+                document.getElementById('platform').style.top = parseInt(document.getElementById('yellow-box').style.top) - 24 + 'px';
+            }
+        }
+        this.shot = (e, shotType) => {
+            
+            if(!window.pause && !window.gameOver) { 
+                let capsule = document.createElement("DIV");
+                capsule.id = "capsule";
+                capsule.classList.add("capsule");
+                Object.assign(capsule.style, shotType);
+                document.body.appendChild(capsule);
+                window.game.audioManager.playShot();
+                let shoting = setInterval(()=>{
+                    if(!window.pause) { 
+                        if(document.getElementById("capsule") && document.getElementById("capsule").offsetTop < 20) {
+                            clearInterval(shoting);
+                            document.getElementById("capsule").remove()
+                        }
+                        for(let item of document.getElementsByClassName("capsule")) {
+                            item.style.top = (item.offsetTop - 15) + "px";
+                        }
+                    }
+                }, 100)         
+            }
+        }
+        this.updateShot = (shotType) => {
+            Object.assign(window.game.yellowBox.shotType, shotType);
+        }
+    }
+}

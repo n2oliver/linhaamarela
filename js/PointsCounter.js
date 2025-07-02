@@ -1,1 +1,65 @@
-const _0x28ee4f=_0x5008;(function(_0x5aa669,_0x1a6314){const _0x2114ae=_0x5008,_0x5c56fc=_0x5aa669();while(!![]){try{const _0x5a0246=parseInt(_0x2114ae(0x191))/0x1*(parseInt(_0x2114ae(0x187))/0x2)+-parseInt(_0x2114ae(0x185))/0x3+-parseInt(_0x2114ae(0x186))/0x4*(parseInt(_0x2114ae(0x1a6))/0x5)+parseInt(_0x2114ae(0x19c))/0x6+-parseInt(_0x2114ae(0x1a2))/0x7+-parseInt(_0x2114ae(0x19a))/0x8+parseInt(_0x2114ae(0x19d))/0x9;if(_0x5a0246===_0x1a6314)break;else _0x5c56fc['push'](_0x5c56fc['shift']());}catch(_0x4973be){_0x5c56fc['push'](_0x5c56fc['shift']());}}}(_0x38d3,0x4dbce));class PointsCounter extends Counter{[_0x28ee4f(0x18b)]=0x0;constructor(_0x4d5770){const _0x4800f9=_0x28ee4f;super(_0x4d5770),this['attributes']=_0x4d5770;const _0x1855f6={'top':_0x4800f9(0x190),'left':_0x4800f9(0x1a0)};Object[_0x4800f9(0x1a5)](document[_0x4800f9(0x192)](_0x4d5770['id'])[_0x4800f9(0x196)][_0x4800f9(0x19f)],_0x1855f6),this[_0x4800f9(0x18f)]=_0x3fc751=>{const _0x41687b=_0x4800f9;clearTimeout(this[_0x41687b(0x199)]),this[_0x41687b(0x18b)]+=parseInt(_0x3fc751),document[_0x41687b(0x192)](this['attributes']['id'])['innerText']=this[_0x41687b(0x18b)],typeof usuarioId!==_0x41687b(0x1a4)&&(this[_0x41687b(0x199)]=setTimeout(()=>{const _0x2e0206=_0x41687b;$['ajax']({'url':_0x2e0206(0x18d),'method':_0x2e0206(0x184),'type':_0x2e0206(0x188),'data':{'pontos':this[_0x2e0206(0x18b)],'nivel':window[_0x2e0206(0x1a3)][_0x2e0206(0x18a)]},'success':_0x348e0b=>{const _0xdd16c=_0x2e0206;sessionStorage[_0xdd16c(0x193)](_0xdd16c(0x197),this['points']),sessionStorage[_0xdd16c(0x193)](_0xdd16c(0x189),window[_0xdd16c(0x1a3)][_0xdd16c(0x18a)]),$[_0xdd16c(0x18c)]({'url':_0xdd16c(0x18e),'method':_0xdd16c(0x184),'type':_0xdd16c(0x188),'data':{'page':0x1},'success':_0x363941=>{const _0x49425e=_0xdd16c;sessionStorage[_0x49425e(0x193)](_0x49425e(0x197),this['points']),sessionStorage[_0x49425e(0x193)]('nivel',window[_0x49425e(0x1a3)][_0x49425e(0x18a)]),obterRanking(usuarioId);},'error':_0x1f510f=>{const _0x2503e2=_0xdd16c;console[_0x2503e2(0x19b)](_0x1f510f['responseText']);}});},'error':_0x12d887=>{const _0xf5021c=_0x2e0206;console[_0xf5021c(0x19b)](_0x12d887[_0xf5021c(0x198)]);}});},0x3e8));};}static ['getHighScores']=async _0x60f3e5=>{const _0x3b10ae=_0x28ee4f,_0x3c0672={'userId':sessionStorage[_0x3b10ae(0x195)]};return _0x60f3e5&&(_0x3c0672['page']=_0x60f3e5),$[_0x3b10ae(0x18c)]({'url':_0x3b10ae(0x194),'method':_0x3b10ae(0x1a1),'type':_0x3b10ae(0x188),'data':_0x3c0672})[_0x3b10ae(0x19e)](_0x4c7ca8=>{return _0x4c7ca8;})['fail'](_0x16a697=>{return _0x16a697;});};}function _0x5008(_0xeb40ee,_0x652a56){const _0x38d362=_0x38d3();return _0x5008=function(_0x5008f8,_0x47f883){_0x5008f8=_0x5008f8-0x184;let _0x4508a9=_0x38d362[_0x5008f8];return _0x4508a9;},_0x5008(_0xeb40ee,_0x652a56);}function _0x38d3(){const _0x2f6e13=['455182HsxJlp','game','undefined','assign','276855gWXyMp','POST','1056204fThvkj','12ZeuEwp','4734PIEUeK','json/application','nivel','level','points','ajax','./registrar-pontos.php','./obter-pontos.php','increaseCounter','64px','89BGBxdL','getElementById','setItem','/obter-pontos','userId','parentElement','pontuacao','responseText','timer','1883712etFTnc','log','70194nwaHyq','8232507PPmlgK','done','style','32px','GET'];_0x38d3=function(){return _0x2f6e13;};return _0x38d3();}
+class PointsCounter extends Counter {
+    points = 0;
+    constructor(attributes) {
+        super(attributes);
+        this.attributes = attributes;
+        const styles = {
+            top: "64px",
+            left: "32px"
+        }
+        Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
+
+        this.increaseCounter = (points) => {
+            clearTimeout(this.timer);
+            this.points += parseInt(points);
+            document.getElementById(this.attributes.id).innerText = this.points;
+            if(typeof usuarioId !== 'undefined') {
+                this.timer = setTimeout(() => {
+                    $.ajax({
+                        url: './registrar-pontos.php',
+                        method: 'POST',
+                        type: 'json/application',
+                        data: { pontos: this.points, nivel: window.game.level },
+                        success: (data)=>{
+                            sessionStorage.setItem('pontuacao', this.points);
+                            sessionStorage.setItem('nivel', window.game.level);
+                            $.ajax({
+                                url: './obter-pontos.php',
+                                method: 'POST',
+                                type: 'json/application',
+                                data: { page: 1 },
+                                success: (data)=>{
+                                    sessionStorage.setItem('pontuacao', this.points);
+                                    sessionStorage.setItem('nivel', window.game.level);
+                                    obterRanking(usuarioId);
+                                },
+                                error: (error)=>{
+                                    console.log(error.responseText);
+                                }
+                            });
+                        },
+                        error: (error)=>{
+                            console.log(error.responseText);
+                        }
+                    });
+                },1000); 
+            }
+        }
+    }
+    static getHighScores = async (page) => {
+        const params = { userId: sessionStorage.userId };
+        if(page) {
+            params.page = page;
+        }
+        return $.ajax({
+            url: '/obter-pontos',
+            method: 'GET',
+            type: 'json/application',
+            data: params,
+        }).done((data)=>{
+            return data;
+        }).fail((error)=>{
+            return error;
+        });
+    }
+}
