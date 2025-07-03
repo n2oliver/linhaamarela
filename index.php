@@ -60,7 +60,7 @@ if(isset($usuario_id)) {
         .jumbotron {
             position: relative;
             z-index: 0;
-            padding: 100px;
+            padding: 50px;
             color: white;
             font-size: 2rem;
             overflow: hidden;
@@ -183,9 +183,11 @@ if(isset($usuario_id)) {
             </div>
         </nav>
         <div class="jumbotron text-center">
-            <h1 class="display-4" style="color: white; word-wrap: break-word;">Eles iniciaram, a invasão começou!</h1>
+            <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br>ou<br><button id="partida" class="btn btn-danger btn-lg">Partida rápida</button><br><br>
+            <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
+            <br>ou<br>
+            <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br><br>
 
         </div>
         <?php include("../../footer.php"); ?>

@@ -44,8 +44,7 @@ class Game extends GameBase {
     yellowBox = new YellowBox({
         id: "yellow-box",
         width: 80,
-        height: 20,
-        color: "yellow",
+        height: 40,
         positionY: "60",
         positionX: "50%"
     });
@@ -220,6 +219,8 @@ window.onload = (e) => {
     });
 }
 window.onclick = (e) => {
-    window.game.audioManager.playAsBgMusic();
-    game.start(e);
+    if(window.game) {
+        window.game.audioManager.playAsBgMusic();
+        game.start(e);
+    }
 }

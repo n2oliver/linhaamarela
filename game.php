@@ -94,13 +94,15 @@ require('./repositories/PontoRepository.php');
             <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
             <div id="logo" class="unselectable game-logo"><img src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>      
             <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
-            <?php if(isset($_SESSION['usuario_id'])) { ?>
+            <?php if(isset($_SESSION['usuario_id']) && !isset($_SESSION['partida_rapida'])) { ?>
                 <script>
-                    window.usuarioId = $_SESSION['usuario_id'];
+                    window.usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'null' ?>;
+                    window.partidaRapida = <?= isset($_SESSION['partida_rapida']) ? $_SESSION['partida_rapida'] : 'null' ?>;
                 </script>
                 <hr>
                 <div>
                     <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+                    
                     <h1>Ranking</h1>
                     <div>
                         <table id="all-points" class="table">
@@ -159,7 +161,8 @@ require('./repositories/PontoRepository.php');
             <h1>Game Over</h1>
             <div class="box-title game-over-ending mt-3">Ah, não!</div>
             <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
-            <div><button id="restart" class="btn" style="background: darkorange">Reiniciar</button></div>
+            <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
+            <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
         </div>
 
         <div id="platform"></div>
@@ -174,9 +177,7 @@ require('./repositories/PontoRepository.php');
         <script>
             $(document).ready(()=>{
                 $('.sair').click(()=>{
-                    $.get('<?= $APP_URL ?>/sair.php',() => {
-                        window.location.href = '<?= $APP_URL ?>';
-                    });
+                    window.location.href = '<?= $APP_URL ?>/sair.php';
                 });
                 if(typeof usuarioId !== 'undefined') obterRanking(usuarioId);
             });

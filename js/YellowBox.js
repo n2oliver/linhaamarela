@@ -33,10 +33,11 @@ class YellowBox extends GameObject {
 
         this.positionY = 60;
         Object.assign(document.getElementById(attributes.id).style, { 
-            transform: "translateX(-36px)",
+            transform: "translateX(-40px)",
             position: "fixed",
-            "border-radius": "20px",
-            border: "solid 2px #000"
+            "background-size": "contain",
+            "background-repeat": "no-repeat",
+            "background-image": "url(/jogos/linhaamarela/img/linha.png)"
         });
         this.updatePosition = function(event, gameObject = this) {
             let xOffset = event.pageX;
@@ -51,7 +52,7 @@ class YellowBox extends GameObject {
                     top: (window.innerHeight - gameObject.attributes.positionY) + "px",
                     left: positionX + "px",
                 }
-                Object.assign(document.getElementById(gameObject.attributes.id).style, {...styles, border: "solid 2px #000" });
+                Object.assign(document.getElementById(gameObject.attributes.id).style, styles);
                 Object.assign(this.shotType, styles);
             }
             
