@@ -9,9 +9,21 @@ class LivesCounter extends Counter {
         }
         Object.assign(document.getElementById(attributes.id).parentElement.style, styles);
         
-        this.decreaseCounter = (lives) => {
-            window.game.livesCounter.lives -= parseInt(lives);
-            document.getElementById(game.livesCounter.attributes.id).innerText = this.lives;
+        this.decreaseCounter = () => {
+            window.game.livesCounter.lives -= 1;
+            let lifeDisplay = '<div class="heart"></div>';
+            for(let i=0; i < this.lives; i++) {
+                lifeDisplay += '<div class="heart"></div>';
+            }
+            document.getElementById(game.livesCounter.attributes.id).innerHTML = lifeDisplay;
+        }
+        this.increaseCounter = () => {
+            window.game.livesCounter.lives += 1;
+            let lifeDisplay = '<div class="heart"></div>';
+            for(let i=0; i < this.lives; i++) {
+                lifeDisplay += '<div class="heart"></div>';
+            }
+            document.getElementById(game.livesCounter.attributes.id).innerHTML = lifeDisplay;
         }
     }
 }

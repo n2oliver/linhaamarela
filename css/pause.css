@@ -27,7 +27,7 @@
 
 .pause-button img, .play-button img {
     width: 64px;
-    height: auto;
+    height: 64px;
 }
 .play-button {
     display: none;

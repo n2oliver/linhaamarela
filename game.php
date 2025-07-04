@@ -8,18 +8,9 @@ require('./repositories/PontoRepository.php');
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-687386749"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        <?php include('/g-tags.php'); ?>
 
-        gtag('config', 'AW-687386749');
-        </script>
-
-        <title>Linha Amarela</title>
+        <title>Linha Amarela | n2oliver</title>
         <meta charset="utf-8" />
         <meta name="viewport" 
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -36,6 +27,7 @@ require('./repositories/PontoRepository.php');
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/markers.css"/>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/enemies.css"/>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/game.css"></style>
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/game-over.css"></style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -56,9 +48,31 @@ require('./repositories/PontoRepository.php');
         <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
         <script src="<?= $APP_URL ?>/js/GameBase.js"></script>
         <script src="<?= $APP_URL ?>/js/Game.js"></script>
-        <script>
-            sessionStorage.userId = <?= $_SESSION['usuario_id'] ?>;
-        </script> 
+
+        <style>
+            .d-none {
+                display: none !important;
+            }
+            #game-over {
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                margin: 0 auto;
+                position: fixed;
+                left: 0;
+                right: 0;
+            }
+            #game-over h1 {
+                font-size: 64px;
+                color: yellow;
+                -webkit-text-stroke: gray 2px;
+            }
+            #game-over .box-title {
+                font-size: 42px
+            }
+        </style>
     </head>
     <body>
         <div class="spinner d-none"></div>
@@ -71,26 +85,38 @@ require('./repositories/PontoRepository.php');
             <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
             <div id="logo" class="unselectable game-logo"><img src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>      
             <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
-            <hr>
-            <div>
-                <h1>Ranking</h1>
+            <?php if(isset($_SESSION['usuario_id']) && !isset($_SESSION['partida_rapida'])) { ?>
+                <script>
+                    window.usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'null' ?>;
+                    window.partidaRapida = <?= isset($_SESSION['partida_rapida']) ? $_SESSION['partida_rapida'] : 'null' ?>;
+                </script>
+                <hr>
                 <div>
-                    <table id="all-points" class="table">
-                        <thead>
-                            <tr>
-                                <th>Posição</th><th>Usuário</th><th>Pontuação</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ranking">
-                        </tbody>
-                    </table>
+                    <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+                    
+                    <h1>Ranking</h1>
+                    <div>
+                        <table id="all-points" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Posição</th><th>Usuário</th><th>Pontuação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ranking">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            <?php } else { ?>
+                <hr>
+                <div>
+                    <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+                </div>
+            <?php } ?> 
         </div>
         <div class="menu-item markers">
             <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
-            <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
-            <div class="presentation-container unselectable">Vidas restantes: <span id="vidas">2</span></div>
+            <div class="presentation-container unselectable"><span id="vidas"><div class="heart"></div><div class="heart"></div><div class="heart"></div></span></div>
         </div>
         <div id="qr-code" style="display: none; color: white; z-index: 9999;" class="qr-code rotate-center">
             <div style="display: flex; justify-content: space-around; align-content: center;">
@@ -121,6 +147,15 @@ require('./repositories/PontoRepository.php');
             </div>
         </div>
         <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
+
+        <div id="game-over" class="d-none">
+            <h1>Game Over</h1>
+            <div class="box-title game-over-ending mt-3">Ah, não!</div>
+            <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
+            <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
+            <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
+        </div>
+
         <div id="platform"></div>
         <div id="yellow-box"></div>
         <div id="red-ball"></div>
@@ -131,14 +166,11 @@ require('./repositories/PontoRepository.php');
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script>
-            const usuarioId = <?= $_SESSION['usuario_id'] ?>;
             $(document).ready(()=>{
                 $('.sair').click(()=>{
-                    $.get('<?= $APP_URL ?>/sair.php',() => {
-                        window.location.href = '<?= $APP_URL ?>';
-                    });
+                    window.location.href = '<?= $APP_URL ?>/sair.php';
                 });
-                obterRanking(usuarioId);
+                if(typeof usuarioId !== 'undefined') obterRanking(usuarioId);
             });
             function obterRanking(idUsuario) {
                 $('.spinner').removeClass('d-none');

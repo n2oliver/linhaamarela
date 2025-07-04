@@ -14,7 +14,8 @@ if(isset($usuario_id)) {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Linha Amarela</title>
+    <?php include('/g-tags.php'); ?>
+    <title>Linha Amarela | n2oliver</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -60,7 +61,7 @@ if(isset($usuario_id)) {
         .jumbotron {
             position: relative;
             z-index: 0;
-            padding: 100px;
+            padding: 50px;
             color: white;
             font-size: 2rem;
             overflow: hidden;
@@ -183,12 +184,14 @@ if(isset($usuario_id)) {
             </div>
         </nav>
         <div class="jumbotron text-center">
-            <h1 class="display-4" style="color: white; word-wrap: break-word;">Eles iniciaram, a invasão começou!</h1>
+            <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <button id="jogar" class="btn btn-primary btn-lg">Jogar</button><br><br>
+            <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
+            <br>ou<br>
+            <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br><br>
 
         </div>
-        <?php include("../../noads-footer.php"); ?>
+        <?php include("../../footer.php"); ?>
     </div>
     <script>
         const audioManager = new AudioManager();
@@ -236,6 +239,9 @@ if(isset($usuario_id)) {
                         },
                     }).showToast();
                 }
+            });
+            $('#partida').click(()=>{
+                window.location.href = `${appUrl}/fast-game.php`;
             })
         })
     </script>
