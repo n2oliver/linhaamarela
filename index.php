@@ -14,6 +14,7 @@ if(isset($usuario_id)) {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <?php include('/g-tags.php'); ?>
     <title>Linha Amarela</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
