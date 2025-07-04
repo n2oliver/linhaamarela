@@ -53,6 +53,12 @@ require('./repositories/PontoRepository.php');
             .d-none {
                 display: none !important;
             }
+            .d-flex {
+                display: flex !important;
+            }
+            .mb-3 {
+                margin-bottom: 15px;
+            }
             #game-over {
                 color: white;
                 display: flex;
@@ -137,8 +143,6 @@ require('./repositories/PontoRepository.php');
                         };
                     </script>
                     <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
-                    <script async="async" data-cfasync="false" src="//pl26829990.profitableratecpm.com/c36f214a2069f40ccd2d3e53c3c624b7/invoke.js"></script>
-                    <div id="container-c36f214a2069f40ccd2d3e53c3c624b7"></div>
                 </div>
                 <div>
                     <div>Para sair clique no<br>botão abaixo</div>
@@ -152,8 +156,20 @@ require('./repositories/PontoRepository.php');
             <h1>Game Over</h1>
             <div class="box-title game-over-ending mt-3">Ah, não!</div>
             <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
-            <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
-            <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
+            <div class="d-flex mb-3">
+                <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
+                <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
+            </div>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '36908cd1702faba6c183fb82dc5a6c78',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
         </div>
 
         <div id="platform"></div>

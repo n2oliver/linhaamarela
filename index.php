@@ -49,6 +49,10 @@ if(isset($usuario_id)) {
     <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
     <script src="<?= $APP_URL ?>/js/Login.js"></script>
     <style>
+        iframe {
+            width: 100%;
+            max-width: 468px;
+        }
         .error {
             background: linear-gradient(135deg,#ffa573,#f57754);
         }
@@ -189,7 +193,16 @@ if(isset($usuario_id)) {
             <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
             <br>ou<br>
             <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br><br>
-
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '36908cd1702faba6c183fb82dc5a6c78',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {},
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
         </div>
         <?php include("../../footer.php"); ?>
     </div>
