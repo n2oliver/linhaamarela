@@ -8,7 +8,7 @@ require('./repositories/PontoRepository.php');
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <?php include('/g-tags.php'); ?>
+        <?php include('../../g-tags.php'); ?>
 
         <title>Linha Amarela | n2oliver</title>
         <meta charset="utf-8" />
@@ -131,6 +131,7 @@ require('./repositories/PontoRepository.php');
                     <div>Chave PIX:</div>
                     <div><img id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
                     <div>silva.liver@gmail.com</div>
+                    <div>BTC (segwit): bc1q69y8wuwm0xxwdtnuxttddha9nj460l6tc52vjn</div>
                 </div>
                 <div>
                     <script type="text/javascript">

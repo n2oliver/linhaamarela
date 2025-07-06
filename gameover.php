@@ -7,7 +7,7 @@ $APP_URL = "/jogos/linhaamarela";
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <?php include('/g-tags.php'); ?>
+        <?php include('../../g-tags.php'); ?>
         <title>Linha Amarela | n2oliver</title>
         <meta charset="utf-8" />
         <meta name="viewport" 
