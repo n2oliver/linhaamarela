@@ -6,7 +6,7 @@
 
 ## 🚀 Demonstração
 
-👉 [Jogue agora](https://oliver.liveblog365.com/jogos/linhaamarela/)  
+👉 [Jogue agora](https://n2oliver.com/jogos/linhaamarela/)  
 🕹️ Requer navegador moderno com JavaScript habilitado.
 
 ---
@@ -86,7 +86,7 @@ Contribuições são bem-vindas! Abra uma issue ou envie um pull request com mel
 📬 Contato
 
 Desenvolvido por Óliver Silva Castilho
-📧 silva.liver@gmail.com
+📧 suporte@n2oliver.com
 📱 (21) 98669-5629
 📝 Licença
 

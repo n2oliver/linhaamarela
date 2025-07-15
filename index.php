@@ -15,7 +15,6 @@ if(isset($usuario_id)) {
 <html lang="pt-BR">
 <head>
     <?php include('../../g-tags.php'); ?>
-    <?php include('../../richads.php'); ?>
     <title>Linha Amarela | n2oliver</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -193,17 +192,7 @@ if(isset($usuario_id)) {
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
             <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
             <br>ou<br>
-            <button id="jogar" class="btn btn-warning btn-lg">Competição</button><br><br>
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '36908cd1702faba6c183fb82dc5a6c78',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {},
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
+            <button id="jogar" class="btn btn-warning btn-lg">Competição</button>
         </div>
         <?php include("../../footer.php"); ?>
     </div>
