@@ -5,8 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once('./load-env.php');
-require_once("./database/connectdb.php");
+require_once('../../load-env.php');
+require_once("../../database/connectdb.php");
 require_once("./repositories/UsuarioRepository.php");
 require_once("./generate-secure-id.php");
 require_once("./lib/phpmailer/PHPMailer.php");

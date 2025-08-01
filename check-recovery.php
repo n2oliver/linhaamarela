@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("./load-env.php");
-include("./database/connectdb.php");
+include("../../load-env.php");
+include("../../database/connectdb.php");
 include("./repositories/UsuarioRepository.php");
 
 use PHPMailer\PHPMailer\Exception;

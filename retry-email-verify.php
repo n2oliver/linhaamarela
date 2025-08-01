@@ -5,8 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-include("./load-env.php");
-include("./database/connectdb.php");
+include("../../load-env.php");
+include("../../database/connectdb.php");
 include("./repositories/UsuarioRepository.php");
 include("./generate-secure-id.php");
 include("./lib/phpmailer/PHPMailer.php");

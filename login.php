@@ -1,6 +1,6 @@
 <?php
-    include('./load-env.php');
-    include('./database/connectdb.php');
+    include('../../load-env.php');
+    include('../../database/connectdb.php');
     include('./repositories/LoginRepository.php');
     include('./repositories/UsuarioRepository.php');
     

@@ -1,6 +1,6 @@
 <?php
-include('./load-env.php');
-include('./database/connectdb.php');
+include('../../load-env.php');
+include('../../database/connectdb.php');
 
 if(isset($_SESSION['partida_rapida']) && $_SESSION['partida_rapida'] == 1) {
     $_SESSION['partida_rapida'] = null;
