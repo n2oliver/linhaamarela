@@ -105,6 +105,12 @@ if(isset($usuario_id)) {
 
     </style>
     <script type='text/javascript' src='//pl27371375.profitableratecpm.com/af/e7/3c/afe73c790e73cadb95ef255203cc5f61.js'></script>
+    <script type="text/javascript" data-cfasync="false">
+    /*<![CDATA[/* */
+    (function(){var e=window,w="d291c0275255955f30328d38291dc016",x=[["siteId",136+166+31+942+495+5213954],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],d=["d3d3LmJldHRlcmFkc3lzdGVtLmNvbS9IQ0cvZmFuZ3VsYXItY2hhcnRpc3QubWluLmpz","ZDJrazBvM2ZyN2VkMDEuY2xvdWRmcm9udC5uZXQva1lmdFMvZUZ4Yksvb2dtYWlsLm1pbi5jc3M="],z=-1,o,s,j=function(){clearTimeout(s);z++;if(d[z]&&!(1780564493000<(new Date).getTime()&&1<z)){o=e.document.createElement("script");o.type="text/javascript";o.async=!0;var y=e.document.getElementsByTagName("script")[0];o.src="https://"+atob(d[z]);o.crossOrigin="anonymous";o.onerror=j;o.onload=function(){clearTimeout(s);e[w.slice(0,16)+w.slice(0,16)]||j()};s=setTimeout(j,5E3);y.parentNode.insertBefore(o,y)}};if(!e[w]){try{Object.freeze(e[w]=x)}catch(e){}j()}})();
+    /*]]>/* */
+    </script>
+
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <div class="spinner d-none"></div>
