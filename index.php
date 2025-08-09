@@ -204,6 +204,10 @@ if(isset($usuario_id)) {
             <script async="async" data-cfasync="false" src="//pl27079464.profitableratecpm.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
             <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
         </div>
+        <div class="m-auto col-md-8">
+            <script async="async" data-cfasync="false" src="//pl27079464.profitableratecpm.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
+            <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
+        </div>
         <br>
         <?php include("../../footer.php"); ?>
     </div>
