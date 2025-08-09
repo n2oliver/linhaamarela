@@ -57,4 +57,10 @@ class UsuarioRepository {
         $result = $this->pdo->exec($sql);
         return $result;
     }
+
+    public function alterarSenhaUsuario($idUsuario, $senha) {
+        $sql = "UPDATE usuario SET senha = '" . md5($senha) . "' WHERE id = $idUsuario;";
+        $result = $this->pdo->exec($sql);
+        return $result;
+    }
 }

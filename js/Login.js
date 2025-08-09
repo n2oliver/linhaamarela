@@ -151,7 +151,7 @@ class Login {
                         this.removeNotifications();
                         this.showSpinner();
                         Toastify({
-                            text: 'Aguarde a conclusão do cadatro...',
+                            text: 'Aguarde a conclusão do cadastro...',
                             duration: 10000,
                             close: true
                         }).showToast();
@@ -389,6 +389,61 @@ class Login {
                         close: true
                     }).showToast();
                     this.codigoEnviado.val('');
+                    this.liberarCampoCadastrarSenha();
+                    this.btnCadastrar.unbind('click').click(()=>{
+                        this.removeNotifications();
+                        this.showSpinner();
+                        Toastify({
+                            text: 'Aguarde a conclusão da mudança...',
+                            duration: 10000,
+                            close: true
+                        }).showToast();
+                        const email = this.campoEmail.val();
+                        const senha = this.cadastroSenha.val();
+                        if(!senha.trim()) {
+                            this.removeNotifications();
+                            this.showSpinner('hide');
+                            Toastify({
+                                text: 'Preencha todos os campos!',
+                                duration: 10000,
+                                className: 'warning',
+                                close: true
+                            }).showToast();
+                            return;
+                        }
+                        $.ajax({
+                            url: `${this.appUrl}/password-change.php`,
+                            data: { email, senha },
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            type: 'POST',
+                            success: (response) => {
+                                this.removeNotifications();
+                                this.showSpinner('hide');
+                                Toastify({
+                                    text: JSON.parse(response).data,
+                                    duration: 10000,
+                                    className: 'success',
+                                    close: true
+                                }).showToast();
+                                this.camadaNome.addClass('d-none');
+                                this.cadastrarSenha.addClass('d-none');
+                                this.camadaEmail.removeClass('d-none');
+                                this.camadaSenha.removeClass('d-none');
+                            },
+                            error: (xhr) => {
+                                this.removeNotifications();
+                                this.showSpinner('hide');
+                                Toastify({
+                                    text: JSON.parse(xhr.responseText).error,
+                                    duration: 10000,
+                                    className: 'error',
+                                    close: true
+                                }).showToast();
+                            }
+                        });
+                    });
                 },
                 error: (xhr) => {
                     this.removeNotifications();
