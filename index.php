@@ -106,6 +106,7 @@ if(isset($usuario_id)) {
     </style>
     <script type='text/javascript' src='//pl27371375.profitableratecpm.com/af/e7/3c/afe73c790e73cadb95ef255203cc5f61.js'></script>
     <script type="text/javascript" data-cfasync="false" src="/popads-monetization.js"></script>
+    <script type='text/javascript' src='//pl27369832.profitableratecpm.com/f0/b1/79/f0b17922dcf7861be67a02cba8a9b7ee.js'></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <div class="spinner d-none"></div>
