@@ -39,6 +39,13 @@ class UsuarioRepository {
         return $result;
     }
 
+
+    public function obterUsuarioComSenha($email) {
+        $sql = "SELECT id, nome, email, senha FROM usuario WHERE email LIKE '$email' ORDER BY id DESC LIMIT 1";
+        $result = $this->pdo->query($sql)->fetch();
+        return $result;
+    }
+
     public function obterUsuarioPorId($id) {
         $sql = "SELECT nome, email FROM usuario WHERE id = '$id' ORDER BY id DESC LIMIT 1";
         $result = $this->pdo->query($sql)->fetch();

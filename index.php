@@ -135,7 +135,6 @@ if(isset($usuario_id)) {
                         <div id="camada-email" class="col-md-6 px-2">
                             <strong>E-mail:</strong>
                             <input id="email" type="text" class="form-control" placeholder="E-mail" />
-                            <small id="nao-tenho-conta" class="recovery-link m-1 text-nowrap">Não tenho uma conta</small>
                         </div>
                         <div id="camada-nome" class="col-md-6 px-2 d-none">
                             <strong>Nome:</strong>
@@ -149,9 +148,10 @@ if(isset($usuario_id)) {
                                     <small id="esqueci-senha" class="recovery-link m-1 text-nowrap">Esqueci minha senha</small>
                                 </div>
                                 <div class="col-6 px-0 py-0">
-                                    <button class="btn btn-primary" id="login">Login</button>
+                                    <button class="btn btn-success" id="login">Login</button>
                                 </div>
                             </div>
+                            <strong id="nao-tenho-conta" class="btn btn-primary">Criar conta</strong>
                         </div>
                         <div id="cadastrar-senha" class="col-md-6 px-2 d-none">
                             <strong>Criar nova senha:</strong>

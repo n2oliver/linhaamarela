@@ -18,9 +18,9 @@
             $this->usuarioRepository = $usuarioRepository;
         }
         public function credenciaisValidas($email, $senha) {
-            $usuario = $this->usuarioRepository->obterUsuario($email);
-            $usuarioSenha = isset($usuario['senha']) ? $usuario['senha'] : '';
-            return md5($usuarioSenha) == md5($senha);
+            $usuario = $this->usuarioRepository->obterUsuarioComSenha($email);
+            $usuarioSenha = isset($usuario['senha']) ? $usuario['senha'] : null;
+            return $usuarioSenha == md5($senha);
         }
         public function sair() {
             unset($_SESSION['usuario_id']);

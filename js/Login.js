@@ -26,7 +26,9 @@ class Login {
         this.removeNotifications();
         this.showSpinner();
         const email = this.campoEmail.val();
-        const senha = this.camadaSenha.val();
+        this.campoSenha.attr('type', 'text');
+        const senha = this.campoSenha.val();
+        this.campoSenha.attr('type', 'password');
         $.ajax({
             url: `${this.appUrl}/login.php`,
             data: { email, senha },
