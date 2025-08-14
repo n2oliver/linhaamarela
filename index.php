@@ -110,6 +110,8 @@ if(isset($usuario_id)) {
         data-site="e5e969e1-3c42-400f-ab17-83f62c295b9a"
         src="https://cdn.megapush.com.br/MegaPush.js">
     </script>
+
+    <script src="/gtag_dispatcher.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <div class="spinner d-none"></div>
