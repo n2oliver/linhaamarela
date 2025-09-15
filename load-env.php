@@ -19,4 +19,4 @@ function loadEnv($path) {
         $_SERVER[$name] = $value;
     }
 }
-loadEnv('./.env');
+loadEnv('/.env');
