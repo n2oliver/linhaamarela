@@ -202,26 +202,21 @@ if(isset($usuario_id)) {
             <br>ou<br>
             <button id="jogar" class="btn btn-warning btn-lg">Competição</button>
         </div>
-
-        <div class="m-auto col-md-8" style="margin-top: 14px!important;">
-            <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 9;">
-                <iframe data-aa='2406506' src='//acceptable.a-ads.com/2406506/?size=Adaptive'
-                style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
-            </div>
-        </div>
         
         <div class="container m-auto col-md-8" style="margin-top: 14px!important;">
-            <script async="async" data-cfasync="false" src="//pl27079464.profitableratecpm.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
+            <script async="async" data-cfasync="false" src="//playedsophomore.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
             <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
         </div>
         <div class="m-auto col-md-8" style="margin-top: 14px!important;">
-            <script async="async" data-cfasync="false" src="//pl27079464.profitableratecpm.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
+            <script async="async" data-cfasync="false" src="//playedsophomore.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
             <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
         </div>
 
         <br>
         <?php include("../../footer.php"); ?>
     </div>
+    
+    <?php include("../../aads.php"); ?>
     <script>
         const audioManager = new AudioManager();
         const audioButton = document.getElementById("audio-button");
