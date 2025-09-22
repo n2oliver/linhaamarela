@@ -127,13 +127,12 @@ require('./repositories/PontoRepository.php');
             <div class="presentation-container unselectable"><span id="vidas"><div class="heart"></div><div class="heart"></div><div class="heart"></div></span></div>
         </div>
         <div id="qr-code" style="display: none; color: white; z-index: 9999;" class="qr-code rotate-center">
-            <div style="display: flex; justify-content: space-around; align-content: center;">
+            <div class="bg-dark" style="display: flex; justify-content: center">
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
                     <div><img id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
                     <div>silva.liver@gmail.com</div>
-                    <div>BTC (segwit): bc1q69y8wuwm0xxwdtnuxttddha9nj460l6tc52vjn</div>
                 </div>
                 <div>
                     <script type="text/javascript">
