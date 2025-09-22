@@ -126,25 +126,16 @@ require('./repositories/PontoRepository.php');
             <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
             <div class="presentation-container unselectable"><span id="vidas"><div class="heart"></div><div class="heart"></div><div class="heart"></div></span></div>
         </div>
-        <div id="qr-code" style="display: none; color: white; z-index: 9999;" class="qr-code rotate-center">
-            <div class="bg-dark" style="display: flex; justify-content: center">
+        <div id="qr-code" style="display: none; color: white; z-index: 9999; margin: 0 auto" class="qr-code rotate-center">
+            <div style="position: fixed;
+                        display: flex; justify-content: center;
+                        background-color: rgba(33,33,33,.3);
+                        height: 100%; width: 100%">
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
                     <div><img id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
                     <div>silva.liver@gmail.com</div>
-                </div>
-                <div>
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : '36908cd1702faba6c183fb82dc5a6c78',
-                            'format' : 'iframe',
-                            'height' : 60,
-                            'width' : 468,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
                 </div>
                 <div>
                     <div>Para sair clique no<br>botão abaixo</div>

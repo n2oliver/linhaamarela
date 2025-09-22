@@ -112,6 +112,7 @@ if(isset($usuario_id)) {
     </script>
 
     <script src="/gtag_dispatcher.js"></script>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
 <?php include("/gtagmanager.php"); ?>
