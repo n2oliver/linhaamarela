@@ -46,7 +46,7 @@ $APP_URL = "/jogos/linhaamarela";
         </script>
     </head>
     <body>
-<?php include("gtagmanager.php"); ?>
+<?php include("../../gtagmanager.php"); ?>
         <div class="spinner d-none"></div>
         <div id="game-over" class="row" style="display: none">
             <div class="col-md-2"></div>

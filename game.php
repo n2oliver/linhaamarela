@@ -82,7 +82,7 @@ require('./repositories/PontoRepository.php');
         <script type="text/javascript" data-cfasync="false" src="/popads-monetization.js"></script>
     </head>
     <body>
-<?php include("gtagmanager.php"); ?>
+<?php include("../../gtagmanager.php"); ?>
         <div class="spinner d-none"></div>
         <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    

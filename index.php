@@ -115,7 +115,7 @@ if(isset($usuario_id)) {
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
-<?php include("/gtagmanager.php"); ?>
+<?php include("../../gtagmanager.php"); ?>
     <div class="spinner d-none"></div>
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
