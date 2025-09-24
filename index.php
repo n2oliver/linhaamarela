@@ -80,6 +80,14 @@ if(isset($usuario_id)) {
             animation: enemymoves 15s linear infinite;
             filter: brightness(1) hue-rotate(0deg);
         }
+        a:hover {
+            text-decoration: none;
+            color: yellow !important;
+        }
+        a:visited {
+            text-decoration: none;
+            color: white !important;
+        }
 
         @keyframes enemymoves {
             0% {
@@ -121,8 +129,12 @@ if(isset($usuario_id)) {
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
 
     <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="<?= $APP_URL ?>" style="text-decoration: none; color: yellow !important; -webkit-text-stroke: 1px black">Linha Amarela</a>
+        <nav class="navbar navbar-expand-lg navbar-dark text-light" style="background-color: rgba(25, 25, 25, 0.20); backdrop-filter: blur(10px);">
+            <a href="<?= $APP_URL ?>" style="text-decoration: none;
+                color: yellow !important;
+                -webkit-text-stroke: .7px black;
+                font-weight: bolder;
+                font-size: 26px;">Linha Amarela</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -166,7 +178,7 @@ if(isset($usuario_id)) {
                             <div class="row align-items-start">
                                 <div class="col-6 pl-0 py-0">
                                     <input id="cadastro-senha" type="password" class="form-control" placeholder="Senha" />
-                                    <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-danger">Cancelar</small>
+                                    <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-warning">Cancelar</small>
                                 </div>
                                 <div class="col-6 px-0 py-0">
                                     <button class="btn btn-success" id="cadastrar">Cadastrar</button>
@@ -184,7 +196,7 @@ if(isset($usuario_id)) {
                                 </div>
                             </div>
                             <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small>
-                            <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-danger">Cancelar</small>
+                            <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-warning">Cancelar</small>
                         </div>
                         </small>  
                     </div>

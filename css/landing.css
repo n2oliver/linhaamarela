@@ -14,6 +14,6 @@
     padding: 20px 0;
 }
 .recovery-link:hover {
-    color: #9c006c;
+    color: yellow !important;
     cursor: pointer;
 }

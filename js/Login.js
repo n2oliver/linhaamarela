@@ -98,9 +98,6 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
-                    setTimeout(()=>{
-                        window.open(`https://${email}`)
-                    }, 4000);
                 },
                 error: (xhr) => {
                     this.removeNotifications();
@@ -267,9 +264,6 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
-                    setTimeout(()=>{
-                        window.open(`https://${email}`)
-                    }, 4000);
                 },
                 error: (xhr) => {
                     this.removeNotifications();
@@ -348,9 +342,6 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
-                    setTimeout(()=>{
-                        window.open(`https://${email}`)
-                    }, 4000);
                 },
                 error: (xhr) => {
                     this.removeNotifications();
@@ -480,9 +471,6 @@ class Login {
                         className: 'success',
                         close: true
                     }).showToast();
-                    setTimeout(()=>{
-                        window.open(`https://${email}`)
-                    }, 4000);
                 },
                 error: (xhr) => {
                     this.removeNotifications();
