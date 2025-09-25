@@ -230,7 +230,6 @@ if(isset($usuario_id)) {
         <?php include("../../footer.php"); ?>
     </div>
     
-    <?php include("../../aads.php"); ?>
     <script>
         const audioManager = new AudioManager();
         const audioButton = document.getElementById("audio-button");
@@ -284,4 +283,5 @@ if(isset($usuario_id)) {
         })
     </script>
 </body>
+    <?php include("../../aads.php"); ?>
 </html>
