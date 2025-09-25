@@ -88,11 +88,11 @@ require('./repositories/PontoRepository.php');
         <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
         
         <div class="menu">
-            <div id="pause-button" class="unselectable pause-button menu-item"><img src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg"/></div>
-            <div id="play-button" class="unselectable play-button menu-item"><img src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
-            <div id="audio-button" class="unselectable audio-button menu-item"><img width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
-            <div id="logo" class="unselectable game-logo"><img src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>      
-            <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
+            <div id="pause-button" class="unselectable pause-button menu-item"><img alt="pause" src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg"/></div>
+            <div id="play-button" class="unselectable play-button menu-item"><img alt="play" src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png"/></div>
+            <div id="audio-button" class="unselectable audio-button menu-item"><img alt="audio" width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+            <div id="logo" class="unselectable game-logo"><img alt="logo-linhaamarela" alt="" src="<?= $APP_URL ?>/img/logo-linhaamarela.png"/></div>      
+            <img alt="sair" alt="" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" />
             <?php if(isset($_SESSION['usuario_id']) && !isset($_SESSION['partida_rapida'])) { ?>
                 <script>
                     window.usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'null' ?>;
@@ -134,12 +134,12 @@ require('./repositories/PontoRepository.php');
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
-                    <div><img id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
+                    <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
                     <div>silva.liver@gmail.com</div>
                 </div>
                 <div>
                     <div>Para sair clique no<br>botão abaixo</div>
-                    <img src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" />
+                    <img alt="logout" src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" />
                 </div>
             </div>
         </div>

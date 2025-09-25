@@ -58,7 +58,7 @@ $APP_URL = "/jogos/linhaamarela";
         </div>
         <div id="your-points-box" class="row" style="display: none">
             <div class="col-md-2"></div>
-            <div id="div-ranking" class="col-md-8 presentation text-white box-title title-ranking mt-3">Sua pontuação<img width="100" src="<?= $APP_URL ?>/img/logo-linhaamarela.png" style="float: right; position: relative; top: 6px";/></div>
+            <div id="div-ranking" class="col-md-8 presentation text-white box-title title-ranking mt-3">Sua pontuação<img alt="linhaamarela" width="100" src="<?= $APP_URL ?>/img/logo-linhaamarela.png" style="float: right; position: relative; top: 6px";/></div>
             <div class="col-md-2"></div>
             <div class="col-md-2"></div>
             <div id="div-ranking" class="col-md-8 box-body">

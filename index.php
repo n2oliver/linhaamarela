@@ -129,7 +129,7 @@ if(isset($usuario_id)) {
     <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
 
     <div class="container" style="z-index: 10; background-color: transparent !important; margin: 0 auto">
-        <nav class="navbar navbar-expand-lg navbar-dark text-light" style="background-color: rgba(25, 25, 25, 0.20); backdrop-filter: blur(10px);">
+        <nav class="navbar navbar-expand-lg navbar-dark text-light" style="background-color: rgba(255, 255, 255, 0.20); backdrop-filter: blur(10px);">
             <a href="<?= $APP_URL ?>" style="text-decoration: none;
                 color: yellow !important;
                 -webkit-text-stroke: .7px black;
@@ -147,7 +147,7 @@ if(isset($usuario_id)) {
                     
                 </ul>
                 <div class="menu d-flex align-content-center justify-content-center">
-                    <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+                    <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
                     <?php
                     if(!isset($usuario['email'])) {
                     ?>
@@ -204,7 +204,7 @@ if(isset($usuario_id)) {
                         <div class="nav-item align-content-center">
                             <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
                             <small><?= $usuario['email'] ?></small> <br>
-                            <img src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
+                            <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
                         </div>
                     <?php } ?>
             </div>
