@@ -316,7 +316,7 @@ class Login {
             this.cadastrarSenha.addClass('d-none');
             this.cancelarEsqueciSenhaEmail.addClass('d-none');
 
-            this.campoEmail.prop('disemailabled', false);
+            this.campoEmail.prop('disabled', false);
         });
 
         this.naoRecebiEmail.unbind('click').click(()=>{

@@ -88,6 +88,20 @@ if(isset($usuario_id)) {
             text-decoration: none;
             color: white !important;
         }
+        .login-cadastro {
+            position: fixed;
+            background: rgba(255,255,255, .93);
+            color: #000;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+            height: fit-content;
+            width: fit-content;
+            margin: auto;
+            z-index: 9999;
+        }
 
         @keyframes enemymoves {
             0% {
@@ -144,77 +158,19 @@ if(isset($usuario_id)) {
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Sobre o Desenvolvedor</a>
                     </li>
+                    <li class="nav-item">
+                        <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
+                        ou
+                        <button id="jogar" class="btn btn-warning btn-lg">Competição</button>
+                    </li>
                     
                 </ul>
-                <div class="menu d-flex align-content-center justify-content-center">
-                    <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
-                    <?php
-                    if(!isset($usuario['email'])) {
-                    ?>
-                        <small class="row text-left">
-                        <div id="camada-email" class="col-md-6 px-2">
-                            <strong>E-mail:</strong>
-                            <input id="email" type="text" class="form-control" placeholder="E-mail" />
-                        </div>
-                        <div id="camada-nome" class="col-md-6 px-2 d-none">
-                            <strong>Nome:</strong>
-                            <input id="nome" type="text" class="form-control" placeholder="Nome" />
-                        </div>    
-                        <div id="camada-senha" class="col-md-6 px-2">
-                            <strong>Senha:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 pl-0 py-0">
-                                    <input id="senha" type="password" class="form-control" placeholder="Senha" />
-                                    <small id="esqueci-senha" class="recovery-link m-1 text-nowrap">Esqueci minha senha</small>
-                                </div>
-                                <div class="col-6 px-0 py-0">
-                                    <button class="btn btn-success" id="login">Login</button>
-                                </div>
-                            </div>
-                            <strong id="nao-tenho-conta" class="btn btn-primary">Criar conta</strong>
-                        </div>
-                        <div id="cadastrar-senha" class="col-md-6 px-2 d-none">
-                            <strong>Criar nova senha:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 pl-0 py-0">
-                                    <input id="cadastro-senha" type="password" class="form-control" placeholder="Senha" />
-                                    <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-warning">Cancelar</small>
-                                </div>
-                                <div class="col-6 px-0 py-0">
-                                    <button class="btn btn-success" id="cadastrar">Cadastrar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="codigo-email" class="col-md-6 px-2 d-none">
-                            <strong>Código:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 px-0 py-0">
-                                    <input id="codigo-enviado" type="text" class="form-control" placeholder="Cole aqui" />
-                                </div>
-                                <div class="col-6 pr-0 py-0">
-                                    <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>
-                                </div>
-                            </div>
-                            <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small>
-                            <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-warning">Cancelar</small>
-                        </div>
-                        </small>  
-                    </div>
-                    <?php } else { ?>
-                        <div class="nav-item align-content-center">
-                            <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
-                            <small><?= $usuario['email'] ?></small> <br>
-                            <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
-                        </div>
-                    <?php } ?>
+                
             </div>
         </nav>
         <div class="jumbotron text-center">
             <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
             <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
-            <button id="partida" class="btn btn-danger btn-lg">Partida rápida</button>
-            <br>ou<br>
-            <button id="jogar" class="btn btn-warning btn-lg">Competição</button>
         </div>
         
         <div class="container m-auto col-md-8" style="margin-top: 14px!important;">
@@ -229,6 +185,69 @@ if(isset($usuario_id)) {
         <br>
         <?php include("../../footer.php"); ?>
     </div>
+    <div class="menu login-cadastro d-flex align-content-center justify-content-center">
+        <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+        <?php
+        if(!isset($usuario['email'])) {
+        ?>
+            <small class="d-flex flex-column text-left">
+                <div id="camada-email" class="px-2">
+                    <strong>E-mail:</strong>
+                    <input id="email" type="text" class="form-control" placeholder="E-mail" />
+                </div>
+                <div class="row text-left">
+                    <div id="camada-nome" class="px-2 d-none">
+                        <strong>Nome:</strong>
+                        <input id="nome" type="text" class="form-control" placeholder="Nome" />
+                    </div>    
+                    <div id="camada-senha" class="px-2">
+                        <strong>Senha:</strong>
+                        <div class="row align-items-start">
+                            <div class="col-6 pl-0 py-0">
+                                <input id="senha" type="password" class="form-control" placeholder="Senha" />
+                                <small id="esqueci-senha" class="recovery-link m-1 text-nowrap">Esqueci minha senha</small>
+                            </div>
+                            <div class="col-6 px-0 py-0">
+                                <button class="btn btn-success" id="login">Login</button>
+                            </div>
+                        </div>
+                        <strong id="nao-tenho-conta" class="btn btn-primary">Criar conta</strong>
+                    </div>
+                    <div id="cadastrar-senha" class="px-2 d-none">
+                        <strong>Criar nova senha:</strong>
+                        <div class="row align-items-start">
+                            <div class="col-6 pl-0 py-0">
+                                <input id="cadastro-senha" type="password" class="form-control" placeholder="Senha" />
+                                <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-warning">Cancelar</small>
+                            </div>
+                            <div class="col-6 px-0 py-0">
+                                <button class="btn btn-success" id="cadastrar">Cadastrar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="codigo-email" class="px-2 d-none">
+                        <strong>Código:</strong>
+                        <div class="row align-items-start">
+                            <div class="col-6 px-0 py-0">
+                                <input id="codigo-enviado" type="text" class="form-control" placeholder="Cole aqui" />
+                            </div>
+                            <div class="col-6 pr-0 py-0">
+                                <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>
+                            </div>
+                        </div>
+                        <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small>
+                        <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-warning">Cancelar</small>
+                    </div>
+                </div>
+            </small>  
+        </div>
+    <?php } else { ?>
+        <div class="nav-item align-content-center">
+            <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
+            <small><?= $usuario['email'] ?></small> <br>
+            <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
+        </div>
+    <?php } ?>
     
     <script>
         const audioManager = new AudioManager();
