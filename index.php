@@ -135,6 +135,7 @@ if(isset($usuario_id)) {
 
     <script src="/gtag_dispatcher.js"></script>
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <script type="text/javascript" src="/js/abrir-janela.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
 <?php include("../../gtagmanager.php"); ?>
@@ -295,9 +296,19 @@ if(isset($usuario_id)) {
                         },
                     }).showToast();
                 }
+                
+                gtag('event', 'click_jogar_agora', {
+                    'event_category': 'engagement',
+                    'event_label': 'Linha-Amarela - Clique no botão Competição'
+                });
             });
             $('#partida').click(()=>{
-                window.location.href = `${appUrl}/fast-game.php`;
+                
+                gtag('event', 'click_jogar_agora', {
+                    'event_category': 'engagement',
+                    'event_label': 'Linha-Amarela - Clique no botão Partida Rápida'
+                });
+                abrirJanela(`${appUrl}/fast-game.php`, 'https://playedsophomore.com/gi0n4mh5a?key=3e3ee1063d73d79e7ad7093df4d2a530');
             })
         })
     </script>
