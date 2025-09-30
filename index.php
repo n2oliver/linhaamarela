@@ -97,9 +97,7 @@ if(isset($usuario_id)) {
             bottom: 0;
             padding: 20px;
             height: -webkit-fill-available;
-            width: fit-content;
             margin: auto;
-            z-index: 9999;
         }
 
         @keyframes enemymoves {
@@ -163,18 +161,21 @@ if(isset($usuario_id)) {
                         ou
                         <button id="jogar" class="btn btn-warning btn-lg">Competição</button>
                     </li>
+                    <li class="nav-item">
+                        <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+                    </li>
                     
                 </ul>
                 
             </div>
         </nav>
-        <div class="d-flex">
-            <div class="menu login-cadastro d-flex align-content-center justify-content-center">
-                <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
+        <div class="row">
+            
         <?php
             if(!isset($usuario['email'])) {
             ?>
-                <small class="d-flex flex-column text-left">
+            <div class="menu col-md-6 col-lg-4 login-cadastro d-flex align-content-center justify-content-center">
+                <small class="d-flex  flex-column text-left">
                     <div id="camada-email" class="px-2">
                         <strong>E-mail:</strong>
                         <input id="email" type="text" class="form-control" placeholder="E-mail" />
@@ -226,13 +227,13 @@ if(isset($usuario_id)) {
                 </small>  
             </div>
         <?php } else { ?>
-            <div class="nav-item align-content-center">
+            <div class="login-cadastro col-md-6 col-lg-4 align-content-center">
                 <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
                 <small><?= $usuario['email'] ?></small> <br>
                 <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
             </div>
         <?php } ?>
-            <div class="jumbotron text-center">
+            <div class="jumbotron col-md-6 col-lg-8 text-center">
                 <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
                 <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
             </div>
