@@ -267,7 +267,11 @@ if(isset($usuario_id)) {
             audioButton.querySelector("img").src = `${appUrl}/img/icons8-mute-64.png`;
             mainMenuSound.pause();
         }
-        $(document).ready(()=>{
+        $(document).ready(()=>{                
+            gtag("event", "qualify_lead", {
+                currency: "USD",
+                value: 0.0004
+            });
             $('#login').click(login.login);
             
             $('#sair').click(()=>{
@@ -296,19 +300,18 @@ if(isset($usuario_id)) {
                         },
                     }).showToast();
                 }
-                
-                gtag('event', 'click_jogar_agora', {
-                    'event_category': 'engagement',
-                    'event_label': 'Linha-Amarela - Clique no botão Competição'
+                gtag("event", "close_convert_lead", {
+                    currency: "USD",
+                    value: 0.0004
                 });
             });
             $('#partida').click(()=>{
-                
-                gtag('event', 'click_jogar_agora', {
-                    'event_category': 'engagement',
-                    'event_label': 'Linha-Amarela - Clique no botão Partida Rápida'
-                });
                 abrirJanela(`${appUrl}/fast-game.php`, 'https://playedsophomore.com/gi0n4mh5a?key=3e3ee1063d73d79e7ad7093df4d2a530');
+                
+                gtag("event", "close_convert_lead", {
+                    currency: "USD",
+                    value: 0.0004
+                });
             })
         })
     </script>
