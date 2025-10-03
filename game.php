@@ -153,16 +153,6 @@ require('./repositories/PontoRepository.php');
                 <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
                 <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
             </div>
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '36908cd1702faba6c183fb82dc5a6c78',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
         </div>
 
         <div id="platform"></div>

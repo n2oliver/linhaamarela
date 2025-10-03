@@ -73,21 +73,6 @@ $APP_URL = "/jogos/linhaamarela";
                 </table>
             </div>
         </div>
-        <div class="row align-content-center justify-content-center mt-5">
-
-            <div class="col-md-2"></div>
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '36908cd1702faba6c183fb82dc5a6c78',
-                        'format' : 'iframe',
-                        'height' : 60,
-                        'width' : 468,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/36908cd1702faba6c183fb82dc5a6c78/invoke.js"></script>
-            <div class="col-md-2"></div>
-        </div>
         <div class="row">
             <div class="col-md-2"></div>
             <div id="div-ranking" class="col-md-8 presentation text-white box-title title-ranking mt-3">Recordes</div>
