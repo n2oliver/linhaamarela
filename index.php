@@ -132,7 +132,6 @@ if(isset($usuario_id)) {
 
     <script src="/gtag_dispatcher.js"></script>
     <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
-    <script type="text/javascript" src="/js/abrir-janela.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
 <?php include("../../gtagmanager.php"); ?>
@@ -301,18 +300,9 @@ if(isset($usuario_id)) {
                         },
                     }).showToast();
                 }
-                gtag("event", "close_convert_lead", {
-                    currency: "USD",
-                    value: 0.0004
-                });
             });
             $('#partida').click(()=>{
-                abrirJanela(`${appUrl}/fast-game.php`, 'https://playedsophomore.com/gi0n4mh5a?key=3e3ee1063d73d79e7ad7093df4d2a530');
-                
-                gtag("event", "close_convert_lead", {
-                    currency: "USD",
-                    value: 0.0004
-                });
+                window.location.href = `${appUrl}/fast-game.php`;
             })
         })
     </script>

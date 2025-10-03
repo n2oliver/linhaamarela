@@ -117,7 +117,7 @@ $APP_URL = "/jogos/linhaamarela";
             <div class="col-md-2"></div>
             <div class="col-md-2" id="output"></div>
         </div>
-        <script>const usuarioId = <?= $_SESSION['usuario_id'] ?>;</script>
+        <script>const usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 0 ?>;</script>
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
     </body>
 </html>
