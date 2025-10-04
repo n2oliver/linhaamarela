@@ -237,15 +237,6 @@ if(isset($usuario_id)) {
                 <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
             </div>
         </div>
-        
-        <div class="container m-auto col-md-8" style="margin-top: 14px!important;">
-            <script async="async" data-cfasync="false" src="//playedsophomore.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
-            <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
-        </div>
-        <div class="m-auto col-md-8" style="margin-top: 14px!important;">
-            <script async="async" data-cfasync="false" src="//playedsophomore.com/297c1c3c46604eb55408b6261c6dd5b3/invoke.js"></script>
-            <div id="container-297c1c3c46604eb55408b6261c6dd5b3"></div>
-        </div>
 
         <br>
         <?php include("../../footer.php"); ?>
