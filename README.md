@@ -85,7 +85,7 @@ linhaamarela/
 Contribuições são bem-vindas! Abra uma issue ou envie um pull request com melhorias, novos níveis ou sugestões.
 📬 Contato
 
-Desenvolvido por Óliver Silva Castilho
+Desenvolvido por Óliver S. Castilho
 📧 suporte@n2oliver.com
 📱 (21) 98669-5629
 📝 Licença
