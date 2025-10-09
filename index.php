@@ -121,7 +121,6 @@ if(isset($usuario_id)) {
         }
 
     </style>
-    <script type="text/javascript" data-cfasync="false" src="/popads-monetization.js"></script>
     
     <script defer
         data-site="e5e969e1-3c42-400f-ab17-83f62c295b9a"
@@ -129,7 +128,6 @@ if(isset($usuario_id)) {
     </script>
 
     <script src="/gtag_dispatcher.js"></script>
-    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
 <?php include("../../gtagmanager.php"); ?>

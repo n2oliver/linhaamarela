@@ -77,7 +77,6 @@ require('./repositories/PontoRepository.php');
                 font-size: 42px
             }
         </style>
-        <script type="text/javascript" data-cfasync="false" src="/popads-monetization.js"></script>
     </head>
     <body>
 <?php include("../../gtagmanager.php"); ?>
