@@ -94,4 +94,4 @@ Este projeto está licenciado sob a MIT License.
 💛 Curtiu?
 
 Se esse jogo te divertiu, considere fazer uma doação via PIX para ajudar no desenvolvimento de novos projetos.
-Chave PIX: silva.liver@gmail.com
+Chave PIX: suporte@n2oliver.com

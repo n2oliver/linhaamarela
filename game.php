@@ -142,8 +142,8 @@ require('./repositories/PontoRepository.php');
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
-                    <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qrcode-pix.png"/></div>
-                    <div>silva.liver@gmail.com</div>
+                    <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qr-code.jpeg" /></div>
+                    <div>suporte@n2oliver.com</div>
                 </div>
                 <div>
                     <div>Para sair clique no<br>botão abaixo</div>
