@@ -63,67 +63,188 @@
                 ? "<div style=\"display: flex; justify-content: center\"><div class=\"trofeu\"></div>$posicao"."º</div>"
                 : $posicao);
         }
-        function obterRanking(int $usuarioId) {
-            // 1. Primeiro, descubra a posição do usuário
-            $sqlPosicao = "
-                SELECT posicao FROM (
-                    SELECT 
-                        id_usuario,
-                        @pos := @pos + 1 AS posicao
-                    FROM ponto, (SELECT @pos := 0) AS init
-                    ORDER BY pontuacao DESC, id_usuario ASC
-                ) AS ranking
-                WHERE id_usuario = :usuarioId
-            ";
-            $stmtPos = $this->pdo->prepare($sqlPosicao);
-            $stmtPos->bindValue(':usuarioId', $usuarioId, PDO::PARAM_INT);
-            $stmtPos->execute();
-            $linha = $stmtPos->fetch();
-            
-            if (!$linha) return ""; // Usuário não tem pontuação ainda
+        public function obterRanking(int $usuarioId) {
+            try {
+                // 1) Posição do usuário (query segura: subselect ordenado + contador)
+                $sqlPosicao = "
+                    SELECT posicao FROM (
+                        SELECT
+                            p.id_usuario,
+                            @pos := @pos + 1 AS posicao
+                        FROM (
+                            SELECT id_usuario
+                            FROM ponto
+                            ORDER BY pontuacao DESC, id_usuario ASC
+                        ) AS p
+                        CROSS JOIN (SELECT @pos := 0) AS init
+                    ) AS r
+                    WHERE id_usuario = :usuarioId
+                    LIMIT 1
+                ";
 
-            $posicao = (int) $linha['posicao'];
-            $min = $posicao - 2;
-            $max = $posicao + 2;
+                $stmtPos = $this->pdo->prepare($sqlPosicao);
+                $stmtPos->bindValue(':usuarioId', $usuarioId, PDO::PARAM_INT);
+                $stmtPos->execute();
+                $linha = $stmtPos->fetch(PDO::FETCH_ASSOC);
 
-            // 2. Agora pega os usuários entre as posições
-            $sqlRanking = "
-                SELECT posicao, nome, pontuacao FROM (
-                    SELECT 
-                        p.id_usuario,
-                        u.nome,
-                        p.pontuacao,
-                        @pos := @pos + 1 AS posicao
+                if (!$linha) {
+                    // usuário sem pontuação
+                    return "";
+                }
+
+                $posicao = (int) $linha['posicao'];
+                $min = max(1, $posicao - 2);
+                $max = $posicao + 2;
+
+                // 2) Tenta buscar a janela de ranking usando a mesma técnica segura
+                $sqlRanking = "
+                    SELECT posicao, nome, pontuacao FROM (
+                        SELECT
+                            @r := @r + 1 AS posicao,
+                            u.nome,
+                            p.pontuacao
+                        FROM (
+                            SELECT id_usuario, pontuacao
+                            FROM ponto
+                            ORDER BY pontuacao DESC, id_usuario ASC
+                        ) AS p
+                        JOIN usuario u ON u.id = p.id_usuario
+                        CROSS JOIN (SELECT @r := 0) AS init
+                    ) AS ranking
+                    WHERE posicao BETWEEN :min AND :max
+                    ORDER BY posicao ASC
+                ";
+
+                $stmt = $this->pdo->prepare($sqlRanking);
+                $stmt->bindValue(':min', $min, PDO::PARAM_INT);
+                $stmt->bindValue(':max', $max, PDO::PARAM_INT);
+                $stmt->execute();
+                $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                // 3) Validação: garantir que pontuações vieram ordenadas numericamente desc.
+                $isOrdered = true;
+                $last = PHP_INT_MAX;
+                foreach ($resultado as $row) {
+                    // força int para comparação numérica
+                    $cur = (int) $row['pontuacao'];
+                    if ($cur > $last) { // se algum atual for maior que o anterior -> não está decrescente
+                        $isOrdered = false;
+                        break;
+                    }
+                    $last = $cur;
+                }
+
+                // 4) Se estiver tudo ok com a ordernação, monta HTML e retorna
+                if ($isOrdered && count($resultado) > 0) {
+                    return $this->montarHtmlRanking($resultado);
+                }
+
+                // 5) --- Fallback: se a query ainda retornou ordem estranha, calcula em PHP ---
+                // Carrega tudo (id, nome, pontuacao), ordena numericamente em PHP e monta janela
+                $sqlAll = "
+                    SELECT p.id_usuario, u.nome, p.pontuacao
                     FROM ponto p
-                    JOIN usuario u ON p.id_usuario = u.id,
-                    (SELECT @pos := 0) AS init
-                    ORDER BY p.pontuacao DESC, p.id_usuario ASC
-                ) AS ranking
-                WHERE posicao BETWEEN :min AND :max
-            ";
+                    JOIN usuario u ON u.id = p.id_usuario
+                ";
+                $stmtAll = $this->pdo->prepare($sqlAll);
+                $stmtAll->execute();
+                $all = $stmtAll->fetchAll(PDO::FETCH_ASSOC);
 
-            $stmt = $this->pdo->prepare($sqlRanking);
-            $stmt->bindValue(':min', $min, PDO::PARAM_INT);
-            $stmt->bindValue(':max', $max, PDO::PARAM_INT);
-            $stmt->execute();
-            $resultado = $stmt->fetchAll();
+                if (!$all) return "";
 
-            // Geração HTML
-            $registros = "";
-            foreach ($resultado as $item) {
-                $trofeu = ($item['posicao'] == 1) ? 
-                    "<div style=\"display: flex; justify-content: center\"><div class=\"trofeu\"></div>{$item['posicao']}º</div>" : 
-                    "{$item['posicao']}º";
+                // Ordena em PHP por pontuacao numericamente desc, tie-break por id_usuario asc
+                usort($all, function($a, $b) {
+                    $pa = (int)$a['pontuacao'];
+                    $pb = (int)$b['pontuacao'];
+                    if ($pa === $pb) {
+                        // tie-breaker em id (ou nome) para estabilidade
+                        return ((int)$a['id_usuario']) <=> ((int)$b['id_usuario']);
+                    }
+                    return $pb <=> $pa;
+                });
 
-                $registros .= "<tr>
-                    <td>{$trofeu}</td>
-                    <td>{$item['nome']}</td>
-                    <td>{$item['pontuacao']}</td>
-                </tr>";
+                // Atribui posições e encontra janela
+                $indexed = [];
+                $idx = 0;
+                foreach ($all as $row) {
+                    $idx++;
+                    $indexed[] = [
+                        'posicao' => $idx,
+                        'id_usuario' => $row['id_usuario'],
+                        'nome' => $row['nome'],
+                        'pontuacao' => $row['pontuacao']
+                    ];
+                }
+
+                // encontra a posição real do usuario (caso tenha mudado no entretempo)
+                $realPos = null;
+                foreach ($indexed as $r) {
+                    if ((int)$r['id_usuario'] === (int)$usuarioId) {
+                        $realPos = (int)$r['posicao'];
+                        break;
+                    }
+                }
+                if ($realPos === null) return ""; // não encontrado (sem pontuação)
+
+                $min = max(1, $realPos - 2);
+                $max = $realPos + 2;
+
+                // filtra a janela
+                $window = array_filter($indexed, function($r) use ($min, $max) {
+                    return $r['posicao'] >= $min && $r['posicao'] <= $max;
+                });
+
+                // normaliza (ordenado por posicao asc)
+                usort($window, function($a, $b) {
+                    return $a['posicao'] <=> $b['posicao'];
+                });
+
+                // transforma para o mesmo formato da query original (posicao,nome,pontuacao)
+                $resultadoFallback = array_map(function($r) {
+                    return [
+                        'posicao' => $r['posicao'],
+                        'nome' => $r['nome'],
+                        'pontuacao' => $r['pontuacao']
+                    ];
+                }, $window);
+
+                return $this->montarHtmlRanking($resultadoFallback);
+
+            } catch (\Throwable $e) {
+                // Em caso de erro qualquer, retorne string vazia (ou logue o erro conforme sua política)
+                error_log("obterRanking error: " . $e->getMessage());
+                return "";
             }
-
-            return $registros;
         }
+
+        /**
+         * Monta HTML a partir do array de resultado (posicao, nome, pontuacao)
+         */
+        private function montarHtmlRanking(array $rows): string {
+            $html = "";
+            foreach ($rows as $item) {
+                $pos = (int)$item['posicao'];
+                $trofeu = ($pos === 1)
+                    ? "<div style='display:flex; justify-content:center'><div class='trofeu'></div>{$pos}º</div>"
+                    : "{$pos}º";
+
+                $nome = htmlspecialchars($item['nome'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                $pont = htmlspecialchars((string)$item['pontuacao'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+                $html .= "
+                    <tr>
+                        <td>{$trofeu}</td>
+                        <td>{$nome}</td>
+                        <td>{$pont}</td>
+                    </tr>
+                ";
+            }
+            return $html;
+        }
+
+
+
+
         public function obterPontuacoes($page, $userId = null) {
             if($page) {
                 $limit = 10;

@@ -189,7 +189,7 @@ if(isset($usuario_id)) {
                     <div class="row text-left">
                         <div id="camada-nome" class="px-2 d-none">
                             <strong>Nome:</strong>
-                            <input id="nome" type="text" class="form-control" placeholder="Nome" />
+                            <input id="nome" maxlength="16" type="text" class="form-control" placeholder="Nome" />
                         </div>    
                         <div id="camada-senha" class="px-2">
                             <strong>Senha:</strong>
