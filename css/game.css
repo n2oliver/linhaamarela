@@ -1,5 +1,6 @@
 @font-face {
     font-family: Big John;
+    font-display: swap;
     src: url(fonts/big_john.otf);
  }
 .rotate-center {
