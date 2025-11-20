@@ -98,8 +98,9 @@
 
                 // 2) Tenta buscar a janela de ranking usando a mesma técnica segura
                 $sqlRanking = "
-                    SELECT posicao, nome, pontuacao FROM (
+                    SELECT id_usuario, posicao, nome, pontuacao FROM (
                         SELECT
+                            p.id_usuario,
                             @r := @r + 1 AS posicao,
                             u.nome,
                             p.pontuacao
@@ -136,7 +137,7 @@
 
                 // 4) Se estiver tudo ok com a ordernação, monta HTML e retorna
                 if ($isOrdered && count($resultado) > 0) {
-                    return $this->montarHtmlRanking($resultado);
+                    return $this->montarHtmlRanking($resultado, $usuarioId);
                 }
 
                 // 5) --- Fallback: se a query ainda retornou ordem estranha, calcula em PHP ---
@@ -171,7 +172,7 @@
                     $indexed[] = [
                         'posicao' => $idx,
                         'id_usuario' => $row['id_usuario'],
-                        'nome' => $row['nome'],
+                        'nome' => $usuarioId && $usuarioId == $row['id_usuario'] ? $row['nome'] . ' (Você)' : $row['nome'],
                         'pontuacao' => $row['pontuacao']
                     ];
                 }
@@ -208,7 +209,7 @@
                     ];
                 }, $window);
 
-                return $this->montarHtmlRanking($resultadoFallback);
+                return $this->montarHtmlRanking($resultadoFallback, $usuarioId);
 
             } catch (\Throwable $e) {
                 // Em caso de erro qualquer, retorne string vazia (ou logue o erro conforme sua política)
@@ -220,7 +221,7 @@
         /**
          * Monta HTML a partir do array de resultado (posicao, nome, pontuacao)
          */
-        private function montarHtmlRanking(array $rows): string {
+        private function montarHtmlRanking(array $rows, $idUsuario = null): string {
             $html = "";
             foreach ($rows as $item) {
                 $pos = (int)$item['posicao'];
@@ -228,7 +229,7 @@
                     ? "<div style='display:flex; justify-content:center'><div class='trofeu'></div>{$pos}º</div>"
                     : "{$pos}º";
 
-                $nome = htmlspecialchars($item['nome'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                $nome = htmlspecialchars($idUsuario && $idUsuario == $item['id_usuario'] ? $item['nome'] . ' (Você)' : $item['nome'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
                 $pont = htmlspecialchars((string)$item['pontuacao'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
                 $html .= "
