@@ -163,9 +163,9 @@ if(isset($usuario_id)) {
                         <a class="nav-link" href="/">Sobre o Desenvolvedor</a>
                     </li>
                     <li class="nav-item">
-                        <button id="partida" class="btn btn-danger btn-lg mb-1">Partida rápida</button>
+                        <button id="jogar" class="btn btn-danger btn-lg mb-1">Competição</button>
                         ou
-                        <button id="jogar" class="btn btn-warning btn-lg mb-1">Competição</button>
+                        <button id="partida" class="btn btn-warning btn-lg mb-1">Partida rápida</button>
                     </li>
                     <li class="nav-item">
                         <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
