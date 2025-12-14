@@ -215,7 +215,14 @@ window.onload = (e) => {
     level = 1;
     game = new Game(e, level);
     document.getElementById("restart").addEventListener('click',()=>{
-        window.location.reload();
+        window.open('https://laxativethem.com/ffga4c7z4?key=9b0193dfd0a136a88071da78968c41eb', '_blank');
+        gtag("event", "close_convert_lead", {
+            currency: "USD",
+            value: 0.0004
+        });
+        setTimeout(()=>{
+            window.location.reload();
+        }, 500);
     });
 }
 window.onclick = (e) => {

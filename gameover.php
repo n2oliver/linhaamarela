@@ -35,13 +35,21 @@ $APP_URL = "/jogos/linhaamarela";
         <script>
             window.game;
             window.onload = (e) => {
-                if(sessionStorage.pontuacao) {
-                    $("#game-over").show();
-                    $("#your-points-box").show();
-                }
-                level = 1;
-                game = new GameOver(e, level);
-                game.start(e);
+                gtag("event", "close_convert_lead", {
+                    currency: "USD",
+                    value: 0.0004
+                });
+                
+                window.open('https://laxativethem.com/ffga4c7z4?key=9b0193dfd0a136a88071da78968c41eb', '_blank');
+                setTimeout(()=>{
+                    if(sessionStorage.pontuacao) {
+                        $("#game-over").show();
+                        $("#your-points-box").show();
+                    }
+                    level = 1;
+                    game = new GameOver(e, level);
+                    game.start(e);
+                }, 500);
             }
         </script>
         <!-- Hotjar Tracking Code for n2oliver.com -->

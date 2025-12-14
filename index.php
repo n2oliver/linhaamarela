@@ -25,6 +25,7 @@ if(isset($usuario_id)) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <?php include('../../css/font-awesome/all.min.php') ?>
     <link rel="stylesheet" href="/styles-index.css" />
     <link rel="stylesheet" href="/sobre-mim.css" />
 
@@ -78,11 +79,11 @@ if(isset($usuario_id)) {
             animation: enemymoves 15s linear infinite;
             filter: brightness(1) hue-rotate(0deg);
         }
-        a:hover {
+        a:not(.social-media-icon):not(.libutton):hover {
             text-decoration: none;
             color: yellow !important;
         }
-        a:visited {
+        a:not(.social-media-icon):not(.libutton):visited {
             text-decoration: none;
             color: white !important;
         }
