@@ -46,20 +46,10 @@ if(isset($usuario_id)) {
     <link rel="stylesheet" href="<?= $APP_URL ?>/css/spinner.css" />
 
     <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
-    <script src="<?= $APP_URL ?>/js/Login.js"></script>
     <style>
         iframe {
             width: 100%;
             max-width: 468px;
-        }
-        .error {
-            background: linear-gradient(135deg,#ffa573,#f57754);
-        }
-        .warning {
-            background: linear-gradient(135deg,#ffff73,#ffa554);
-        }
-        .success {
-            background: linear-gradient(135deg,#54a554,#77f554);
         }
         .jumbotron {
             position: relative;
@@ -86,17 +76,6 @@ if(isset($usuario_id)) {
         a:not(.social-media-icon):not(.libutton):visited {
             text-decoration: none;
             color: white !important;
-        }
-        .login-cadastro {
-            background: rgba(255,255,255, .93);
-            color: #000;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 20px;
-            height: -webkit-fill-available;
-            margin: auto;
         }
 
         @keyframes enemymoves {
@@ -180,68 +159,7 @@ if(isset($usuario_id)) {
         </nav>
         <div class="row">
             
-        <?php
-            if(!isset($usuario['email'])) {
-            ?>
-            <div class="menu col-md-6 col-lg-4 login-cadastro d-flex align-content-center justify-content-center">
-                <small class="d-flex  flex-column text-left">
-                    <div id="camada-email" class="px-2">
-                        <strong>E-mail:</strong>
-                        <input id="email" type="text" class="form-control" placeholder="E-mail" />
-                    </div>
-                    <div class="row text-left">
-                        <div id="camada-nome" class="px-2 d-none">
-                            <strong>Nome:</strong>
-                            <input id="nome" maxlength="16" type="text" class="form-control" placeholder="Nome" />
-                        </div>    
-                        <div id="camada-senha" class="px-2">
-                            <strong>Senha:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 pl-0 py-0">
-                                    <input id="senha" type="password" class="form-control" placeholder="Senha" />
-                                    <small id="esqueci-senha" class="recovery-link m-1 text-nowrap">Esqueci minha senha</small>
-                                </div>
-                                <div class="col-6 px-0 py-0">
-                                    <button class="btn btn-success" id="login">Login</button>
-                                </div>
-                            </div>
-                            <strong id="nao-tenho-conta" class="btn btn-primary">Criar conta</strong>
-                        </div>
-                        <div id="cadastrar-senha" class="px-2 d-none">
-                            <strong>Criar nova senha:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 pl-0 py-0">
-                                    <input id="cadastro-senha" type="password" class="form-control" placeholder="Senha" />
-                                    <small id="sair-cadastro" class="recovery-link m-1 text-nowrap text-warning">Cancelar</small>
-                                </div>
-                                <div class="col-6 px-0 py-0">
-                                    <button class="btn btn-success" id="cadastrar">Cadastrar</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="codigo-email" class="px-2 d-none">
-                            <strong>Código:</strong>
-                            <div class="row align-items-start">
-                                <div class="col-6 px-0 py-0">
-                                    <input id="codigo-enviado" type="text" class="form-control" placeholder="Cole aqui" />
-                                </div>
-                                <div class="col-6 pr-0 py-0">
-                                    <button id="verificar" class="btn btn-success text-nowrap">Verificar</button>
-                                </div>
-                            </div>
-                            <small id="nao-recebi" class="recovery-link m-1 text-nowrap d-none">Não recebi o código</small>
-                            <small id="cancelar" class="recovery-link m-1 text-nowrap d-none text-warning">Cancelar</small>
-                        </div>
-                    </div>
-                </small>  
-            </div>
-        <?php } else { ?>
-            <div class="login-cadastro col-md-6 col-lg-4 align-content-center">
-                <small><strong>Bem vindo de volta, <?= $usuario['nome'] ?>!</strong></small> <br>
-                <small><?= $usuario['email'] ?></small> <br>
-                <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" id="sair" />
-            </div>
-        <?php } ?>
+            <?php include("../../login.php"); ?>
             <div class="jumbotron col-md-6 col-lg-8 text-center">
                 <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
                 <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
@@ -252,11 +170,11 @@ if(isset($usuario_id)) {
         <?php include("../../footer.php"); ?>
     </div>
     <script>
+        const appUrl = '<?= $APP_URL ?>';
+        const login = new Login();
         const audioManager = new AudioManager();
         const audioButton = document.getElementById("audio-button");
         const mainMenuSound = document.getElementById("main-menu-sound");
-        const login = new Login();
-        const appUrl = '<?= $APP_URL ?>';
         audioButton.onclick = () => {
             if(localStorage.mute == 'on') {
                 localStorage.setItem('mute', 'off');
@@ -273,19 +191,7 @@ if(isset($usuario_id)) {
                 currency: "USD",
                 value: 0.0004
             });
-            $('#login').click(login.login);
-            
-            $('#sair').click(()=>{
-                $.get(`${appUrl}/sair.php`,() => {
-                    window.location.href = appUrl;
-                });
-            });
-
-            $('#nao-tenho-conta').click(login.naoTenhoConta);
-
-            $('#sair-cadastro').click(login.sairCadastro);
-
-            $('#esqueci-senha').click(login.passwordRecovery);
+            login.setup(login, `${appUrl}/game.php`);
 
             $('#jogar').click(()=>{
                 if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $usuario_id ?>')) {
