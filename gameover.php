@@ -40,7 +40,7 @@ $APP_URL = "/jogos/linhaamarela";
                     value: 0.0004
                 });
                 
-                window.open('https://laxativethem.com/vs23jmys5q?key=7c2ccbc5de27850e97ac9aae68ac23a4', '_blank');
+                abrirSmartlinkUmaVez();
                 setTimeout(()=>{
                     if(sessionStorage.pontuacao) {
                         $("#game-over").show();
@@ -138,5 +138,6 @@ $APP_URL = "/jogos/linhaamarela";
         </div>
         <script>const usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'undefined' ?>;</script>
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
+        <script defer src="/js/anuncios.js"></script>
     </body>
 </html>

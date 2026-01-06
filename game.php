@@ -201,5 +201,6 @@ require('./repositories/PontoRepository.php');
         </script>
 
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
+        <script defer src="/js/anuncios.js"></script>
     </body>
 </html>
