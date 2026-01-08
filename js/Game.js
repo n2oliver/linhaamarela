@@ -215,7 +215,6 @@ window.onload = (e) => {
     level = 1;
     game = new Game(e, level);
     document.getElementById("restart").addEventListener('click',()=>{
-        abrirSmartlinkUmaVez();
         gtag("event", "close_convert_lead", {
             currency: "USD",
             value: 0.0004
@@ -224,6 +223,7 @@ window.onload = (e) => {
             window.location.reload();
         }, 500);
     });
+    abrirSmartlinkUmaVez();
 }
 window.onclick = (e) => {
     if(window.game) {
