@@ -139,5 +139,10 @@ $APP_URL = "/jogos/linhaamarela";
         <script>const usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'undefined' ?>;</script>
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
         <script defer src="/js/anuncios.js"></script>
+        <script>
+        setTimeout(()=>{
+            window.open(SMARTLINK_2, '_blank', params2);
+        }, 600);
+        </script>
     </body>
 </html>
