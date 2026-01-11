@@ -223,7 +223,9 @@ window.onload = (e) => {
             window.location.reload();
         }, 500);
     });
-    abrirSmartlinkUmaVez();
+    setTimeout(()=>{
+        abrirSmartlinkUmaVez();
+    }, 3200);
 }
 window.onclick = (e) => {
     if(window.game) {
