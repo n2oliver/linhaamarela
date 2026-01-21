@@ -201,7 +201,7 @@ if ($impressionid) {
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Sobre o Desenvolvedor</a>
+                        <a class="nav-link" href="/">n2oliver</a>
                     </li>
                     <li class="nav-item">
                         <button id="jogar" class="btn btn-danger btn-lg mb-1">Competição</button>

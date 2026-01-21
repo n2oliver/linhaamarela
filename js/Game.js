@@ -210,7 +210,7 @@ class Game extends GameBase {
     }
 }
             
-window.onload = (e) => {
+document.addEventListener("DOMContentLoaded", (e) => {
     sessionStorage.setItem('ingame', true);
     level = 1;
     game = new Game(e, level);
@@ -226,7 +226,7 @@ window.onload = (e) => {
     setTimeout(()=>{
         abrirSmartlinkUmaVez();
     }, 3200);
-}
+});
 window.onclick = (e) => {
     if(window.game) {
         window.game.audioManager.playAsBgMusic();

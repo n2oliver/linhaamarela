@@ -5,18 +5,6 @@ class AudioManager {
         }
         this.mainMenuAudio = document.getElementById('main-menu-sound');
         if(this.mainMenuAudio) {
-            localStorage.setItem('mute', 'off');
-            bootbox.confirm("Deseja ativar o som do jogo?", (result) => {
-                if(result) {
-                    this.mainMenuAudio.play();
-                    localStorage.setItem('mute', 'off');
-                } else {
-                    this.mainMenuAudio.pause();
-                    this.mainMenuAudio.currentTime = 0;
-                    localStorage.setItem('mute', 'on');
-                    document.getElementById("audio-button").querySelector("img").src = "/jogos/linhaamarela/img/icons8-mute-64.png";
-                }
-            });
             document.body.onclick = () => {
                 if(localStorage.mute != 'on') {
                     this.mainMenuAudio.play();
