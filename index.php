@@ -175,8 +175,6 @@ if ($impressionid) {
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <script async src="https://appsha-pnd.ctengine.io/js/script.js?wkey=97NjKiTr7b"></script>
-
-  <script src="/js/anuncios.js"></script>
 <?php include("../../gtagmanager.php"); ?>
     <div class="spinner d-none"></div>
     <audio id="main-menu-sound" src="<?= $APP_URL ?>/mp3/try-infraction-main-version.mp3" controls style="display: none" preload="auto"></audio>
