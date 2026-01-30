@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
     setTimeout(()=>{
         abrirSmartlinkUmaVez();
-    }, 30000);
+    }, 20000);
 });
 window.onclick = (e) => {
     if(window.game) {
