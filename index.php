@@ -334,7 +334,7 @@ if ($impressionid) {
                 }
             });
             $('#partida').click(()=>{
-                window.location.href = `${appUrl}/fast-game.php`;
+                window.location.href = `${appUrl}/game.php?partida_rapida=1`;
             })
         })
     </script>

@@ -2,6 +2,9 @@
 $APP_URL = '/jogos/linhaamarela';
 include('../../load-env.php');
 require('../../database/connectdb.php');
+if (isset($_GET['partida_rapida']) && $_GET['partida_rapida'] == '1') {
+    $_SESSION['partida_rapida'] = true;
+}
 require('./verifica-login.php');
 require('./repositories/PontoRepository.php');
 ?>
