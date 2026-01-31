@@ -15,11 +15,11 @@ class LevelsCounter extends Counter  {
 
         this.increaseCounter = (points, previousLevel, demo) => {
             this.demo = demo;
-            window.game.levelsCounter.level = parseInt((points + 250) / 250);
+            window.game.levelsCounter.level += 1// parseInt((points + 250) / 250);
 
-            if(previousLevel < parseInt((points + 250) / 250)) {
+            //if(previousLevel < parseInt((points + 250) / 250)) {
                 document.dispatchEvent(this.levelUp);
-            }
+            //}
         }
         this.setLevelUp();
     }

@@ -81,6 +81,10 @@ class SpaceInvader {
                                     if(localStorage.mute == 'off') {
                                         game.audioManager.playCreatureDie();
                                     }
+                                    if(document.querySelectorAll('.invader').length == 0) {
+                                        window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
+                                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
+                                    }
                                 }, 1000);
                             } else {
                                 window.game.livesCounter.increaseCounter();
