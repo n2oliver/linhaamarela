@@ -103,7 +103,7 @@ class Game extends GameBase {
         }
     }
     start = (e) => {
-        if(typeof window.gameOver != 'undefined' && window.gameOver === false) {
+        if((typeof window.gameOver != 'undefined' && window.gameOver === false) || typeof window.gameOver == 'undefined') {
             window.game.setEvents(e);
             window.pause = false;
 
@@ -112,7 +112,7 @@ class Game extends GameBase {
             window.spaceInvader.top = window.game.top;
             window.spaceInvader.totalDeMonstros = window.game.totalDeMonstros;
             
-            clearInterval(window.game.invaderInterval);
+            clearInterval(this.invaderInterval);
             this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*5);
 
             $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
@@ -134,12 +134,9 @@ class Game extends GameBase {
                 }
                 if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                     clearInterval(ballInterval);
-                    if(window.game.invaderInterval) {
-                        clearInterval(window.game.invaderInterval);
-                    }
-                    clearInterval(window.game.interval);
+                    clearInterval(this.invaderInterval);
+                    clearInterval(this.interval);
                     window.spaceInvader.destroy();
-                    document.onmousemove = null;
                     
                     game.livesCounter.decreaseCounter();
                     if(window.game.livesCounter.lives < 0) {
