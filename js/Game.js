@@ -113,7 +113,7 @@ class Game extends GameBase {
             window.spaceInvader.totalDeMonstros = window.game.totalDeMonstros;
             
             clearInterval(this.invaderInterval);
-            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*5);
+            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*2);
 
             $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
             setTimeout(()=> {

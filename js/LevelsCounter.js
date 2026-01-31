@@ -34,8 +34,10 @@ class LevelsCounter extends Counter  {
             }, 3000);
             
             window.spaceInvader.destroy();
-            clearInterval(window.game.invaderInterval);
-            window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*2)
+            if(window.game.invaderInterval) {
+                clearInterval(window.game.invaderInterval);
+                window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*2)
+            }
             const random = Math.floor(Math.random() * window.game.backgroundImages.length);
             window.game.background.set(window.game.backgroundImages[random]);
         }, false);
