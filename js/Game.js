@@ -27,7 +27,7 @@ class Game extends GameBase {
             strokeDepth: "1px",
             position: "fixed",
             positionY: "76",
-            positionX: "50%",
+            positionX: "49%",
             velocity: window.ball ? window.ball.attributes.velocity : 1
         });
 

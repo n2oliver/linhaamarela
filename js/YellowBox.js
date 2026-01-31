@@ -46,14 +46,25 @@ class YellowBox extends GameObject {
             }
             if(xOffset) {
                 let positionX = xOffset;
-                positionX = xOffset > 8 ? positionX : 8;
-                
+                positionX = (xOffset > 8 ? positionX : 8);
+                let positionY = (window.innerHeight - gameObject.attributes.positionY)
                 const styles = {
-                    top: (window.innerHeight - gameObject.attributes.positionY) + "px",
+                    top: positionY + "px",
                     left: positionX + "px",
                 }
                 Object.assign(document.getElementById(gameObject.attributes.id).style, styles);
                 Object.assign(this.shotType, styles);
+                
+            
+                if(!window.game.invaderInterval) {
+                    window.ball.attributes.positionX = positionX;
+                    window.ball.attributes.positionY = positionY;
+                    const stylesBall = {
+                        top: (window.ball.attributes.positionY - 16) + "px",
+                        left: (window.ball.attributes.positionX - 10) + "px"
+                    }
+                    Object.assign(document.getElementById(window.ball.attributes.id).style, stylesBall);
+                }
             }
             
         }
