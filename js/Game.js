@@ -113,7 +113,7 @@ class Game extends GameBase {
             window.spaceInvader.totalDeMonstros = window.game.totalDeMonstros;
             
             clearInterval(window.game.invaderInterval);
-            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.level)*5);
+            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*5);
 
             $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
             setTimeout(()=> {
@@ -161,7 +161,9 @@ class Game extends GameBase {
 
                     }
                     if(!window.gameOver) {
+                        window.level = window.game.levelsCounter.level
                         window.game = new Game(event, window.game.levelsCounter.level, window.spaceInvader.totalDeMonstros, window.spaceInvader.top, window.game.pointsCounter.points, window.game.livesCounter.lives);
+                        window.level = window.game.levelsCounter.level = window.level
                         window.onclick = window.game.start;
                     }
                     

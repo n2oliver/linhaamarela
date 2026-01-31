@@ -20,10 +20,10 @@ class PointsCounter extends Counter {
                             url: './registrar-pontos.php',
                             method: 'POST',
                             type: 'json/application',
-                            data: { pontos: this.points, nivel: window.game.level },
+                            data: { pontos: this.points, nivel: window.game.levelsCounter.level },
                             success: (data)=>{
                                 sessionStorage.setItem('pontuacao', this.points);
-                                sessionStorage.setItem('nivel', window.game.level);
+                                sessionStorage.setItem('nivel', window.game.levelsCounter.level);
                                 $.ajax({
                                     url: './obter-pontos.php',
                                     method: 'POST',
@@ -31,7 +31,7 @@ class PointsCounter extends Counter {
                                     data: { page: 1 },
                                     success: (data)=>{
                                         sessionStorage.setItem('pontuacao', this.points);
-                                        sessionStorage.setItem('nivel', window.game.level);
+                                        sessionStorage.setItem('nivel', window.game.levelsCounter.level);
                                         obterRanking(usuarioId);
                                     },
                                     error: (error)=>{
@@ -45,7 +45,7 @@ class PointsCounter extends Counter {
                         });
                     } else {
                         sessionStorage.setItem('pontuacao', this.points);
-                        sessionStorage.setItem('nivel', window.game.level);
+                        sessionStorage.setItem('nivel', window.game.levelsCounter.level);
                     }
                 },1000); 
             }
