@@ -9,7 +9,6 @@ class SpaceInvader {
     totalDeMonstros = 0;
     top = 100;
     novaLinhaTimer = 0;
-    nivelIncrementado = false; // Adicionando a variável nivelIncrementado no escopo da classe
 
     init = function (enemyLevel) {
         const spaceInvaders = ['spaceinvaders-red', 'spaceinvaders-green', 'spaceinvaders-yellow', 'spaceinvaders-blue'];
@@ -81,13 +80,6 @@ class SpaceInvader {
 
                                     if(localStorage.mute == 'off') {
                                         game.audioManager.playCreatureDie();
-                                    }
-                                    if(document.querySelectorAll('.invader').length == 0 && !this.nivelIncrementado) {
-                                        this.nivelIncrementado = true; // Marca o nível como já incrementado
-                                        window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
-                                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
-                                    } else if (document.querySelectorAll('.invader').length > 0) {
-                                        this.nivelIncrementado = false; // Reseta a flag quando ainda há inimigos
                                     }
                                 }, 1000);
                             } else {
