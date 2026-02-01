@@ -31,7 +31,7 @@ require('./repositories/PontoRepository.php');
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/enemies.css"/>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/game.css"></style>
         <link rel="stylesheet" href="<?= $APP_URL ?>/css/game-over.css"></style>
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="<?= $APP_URL ?>/css/intro.css"></style>
         <link rel="stylesheet" href="/styles-index.css" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -205,5 +205,6 @@ require('./repositories/PontoRepository.php');
 
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
         <script defer src="/js/anuncios.js"></script>
+        <div class="intro"><div>Clique ou toque na tela para iniciar<div></div>
     </body>
 </html>

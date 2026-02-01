@@ -224,10 +224,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
     setTimeout(()=>{
         abrirSmartlinkUmaVez();
-    }, 20000);
+    }, 4000);
 });
 window.onclick = (e) => {
     if(window.game) {
+        document.querySelector('.intro').style.display = 'none';
         window.game.audioManager.playAsBgMusic();
         game.start(e);
     }
