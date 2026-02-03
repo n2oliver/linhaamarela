@@ -205,6 +205,6 @@ require('./repositories/PontoRepository.php');
 
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
         <script defer src="/js/anuncios.js"></script>
-        <div class="intro"><div>Clique ou toque na tela para iniciar<div></div>
+        <div class="intro container"><div class="col-6">Clique ou toque na tela para iniciar!</div></div>
     </body>
 </html>

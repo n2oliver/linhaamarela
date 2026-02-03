@@ -1,7 +1,9 @@
 .pause, .qr-code {
     margin: 0 auto;
     padding: 20px;
-    display: contents;
+    display: flex;
+    justify-content: center;
+    width: auto;
 }
 .pause {
     color: yellow;

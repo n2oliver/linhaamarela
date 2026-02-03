@@ -36,7 +36,7 @@ class LevelsCounter extends Counter  {
             window.spaceInvader.destroy();
             if(window.game.invaderInterval) {
                 clearInterval(window.game.invaderInterval);
-                window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*2)
+                window.game.invaderInterval = new SpaceInvader().init(window.game.levelsCounter.level*5)
             }
             const random = Math.floor(Math.random() * window.game.backgroundImages.length);
             window.game.background.set(window.game.backgroundImages[random]);

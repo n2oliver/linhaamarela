@@ -103,17 +103,17 @@ class Game extends GameBase {
         }
     }
     start = (e) => {
+        document.querySelector('.intro').style.display = 'none';
         if((typeof window.gameOver != 'undefined' && window.gameOver === false) || typeof window.gameOver == 'undefined') {
             window.game.setEvents(e);
             window.pause = false;
-
 
             window.spaceInvader = new SpaceInvader();
             window.spaceInvader.top = window.game.top;
             window.spaceInvader.totalDeMonstros = window.game.totalDeMonstros;
             
             clearInterval(this.invaderInterval);
-            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*2);
+            this.invaderInterval = window.spaceInvader.init(parseInt(window.game.levelsCounter.level)*5);
 
             $(".nivel").text("Nivel " + window.game.levelsCounter.level).show();
             setTimeout(()=> {
@@ -222,14 +222,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
             window.location.reload();
         }, 500);
     });
-    setTimeout(()=>{
-        abrirSmartlinkUmaVez();
-    }, 4000);
 });
 window.onclick = (e) => {
     if(window.game) {
-        document.querySelector('.intro').style.display = 'none';
         window.game.audioManager.playAsBgMusic();
         game.start(e);
+        
+        setTimeout(()=>{
+            abrirSmartlinkUmaVez();
+        }, 5000);
     }
 }

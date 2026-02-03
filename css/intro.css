@@ -1,13 +1,9 @@
 .intro {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    margin: 0 !important;
+    padding: 0 !important;
     width: 100vw;
     height: 100vh;
-    background: url('../img/intro-bg.jpg') no-repeat center center;
-    background-size: contain;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.5);
-    background-blend-mode: hard-light;
     position: fixed;
     top: 0;
     left: 0;
@@ -17,8 +13,16 @@
     color: white;
     justify-content: center;
     display: flex;
-    align-items: end
 }
 .intro div {
     padding-bottom: 100px;
+    height: 100%;
+    background: url('../img/intro-bg.jpg') no-repeat center center;
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: hard-light;
+    max-height: 80%;
+    align-self: center;
 }
