@@ -126,11 +126,6 @@ class Game extends GameBase {
                 if(document.onmousemove == window.game.yellowBox.mouseMove && document.getElementById(window.ball.attributes.id).offsetTop >= window.innerHeight - 90 &&
                     document.getElementById(window.ball.attributes.id).offsetTop <= window.innerHeight - 60){
                     window.game.pointsCounter.increaseCounter(5);
-
-                    if(document.querySelectorAll('.invader').length == 0) {
-                        window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
-                        window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
-                    }
                 }
                 if(document.getElementById(window.ball.attributes.id).offsetTop > window.innerHeight) {
                     clearInterval(ballInterval);

@@ -50,6 +50,10 @@ class SpaceInvader {
         }, 5000);
         let interval = setInterval(function () {
             if (!window.pause) {
+                if(document.querySelectorAll('.invader').length == 0) {
+                    window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
+                    window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
+                }
                 for (let invader of document.getElementsByClassName('invader')) {
                     if (invader.offsetLeft > window.innerWidth - 64) {
                         left = false;

@@ -26,3 +26,9 @@
     max-height: 80%;
     align-self: center;
 }
+@media screen and (max-width: 768px) {
+    .intro div {
+        background-size: 100% auto !important;
+        background: url('../img/intro-bg-mobile.jpg') no-repeat center center;
+    }
+}
