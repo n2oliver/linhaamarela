@@ -50,9 +50,7 @@ class SpaceInvader {
         }, 5000);
         let interval = setInterval(function () {
             if (!window.pause) {
-                let direction = 1;
                 for (let invader of document.getElementsByClassName('invader')) {
-                    
                     if (invader.offsetLeft > window.innerWidth - 64) {
                         left = false;
                     }
@@ -60,25 +58,38 @@ class SpaceInvader {
                         left = true;
                     }
                     if (left == true) {
-                        invader.style.left = (invader.offsetLeft + 10) + "px"
+                        invader.style.left = (invader.offsetLeft + 10) + "px";
                     } else {
-                        invader.style.left = (invader.offsetLeft - 10) + "px"
+                        invader.style.left = (invader.offsetLeft - 10) + "px";
                     }
+
+                    // Add vertical movement using translateY while preserving horizontal movement
+                    let translateY = invader.dataset.direction === "down" ? 5 : -5;
+                    let currentTransform = invader.style.transform.match(/translateY\((-?\d+)px\)/);
+                    let currentY = currentTransform ? parseInt(currentTransform[1]) : 0;
+                    invader.style.transform = `translateY(${currentY + translateY}px)`;
+
+                    // Reverse direction if it moves too far vertically
+                    if (currentY + translateY > 50 || currentY + translateY < -50) {
+                        invader.dataset.direction = invader.dataset.direction === "down" ? "up" : "down";
+                    }
+
                     Array.from(document.body.children).filter((elem) => {
-                        if (elem.nodeType == Node.ELEMENT_NODE && elem.classList.contains("capsule")
-                            && (elem.offsetLeft < invader.offsetLeft + invader.clientWidth) &&
-                            (elem.offsetLeft + elem.clientWidth > invader.offsetLeft)
-                            &&
-                            (elem.offsetTop < invader.offsetTop + invader.clientHeight) &&
-                            (elem.offsetTop + elem.clientHeight > invader.offsetTop)
+                        if (
+                            elem.nodeType == Node.ELEMENT_NODE &&
+                            elem.classList.contains("capsule") &&
+                            elem.offsetLeft < invader.offsetLeft + invader.clientWidth &&
+                            elem.offsetLeft + elem.clientWidth > invader.offsetLeft &&
+                            elem.offsetTop < invader.offsetTop + invader.clientHeight &&
+                            elem.offsetTop + elem.clientHeight > invader.offsetTop
                         ) {
-                            if(!invader.classList.contains('help-box')) {
+                            if (!invader.classList.contains('help-box')) {
                                 invader.classList.add('anim-alien-die');
                                 invader.classList.add('anim-alien-fall');
-                                setTimeout(()=>{
+                                setTimeout(() => {
                                     invader.remove();
 
-                                    if(localStorage.mute == 'off') {
+                                    if (localStorage.mute == 'off') {
                                         game.audioManager.playCreatureDie();
                                     }
                                 }, 1000);
@@ -86,20 +97,27 @@ class SpaceInvader {
                                 window.game.livesCounter.increaseCounter();
                                 invader.remove();
                             }
-                            
+
                             window.game.pointsCounter.increaseCounter(5);
 
-                            if(invader.classList.contains('help-box')) {
+                            if (invader.classList.contains('help-box')) {
                                 Object.assign(window.game.yellowBox.shotType, window.game.yellowBox.greatShotType);
                                 game.audioManager.mudarParaLaser(game.audioManager.tipoLaser.forte);
-                                setTimeout(()=>{
+                                setTimeout(() => {
                                     Object.assign(window.game.yellowBox.shotType, window.game.yellowBox.defaultShotType);
                                     game.audioManager.mudarParaLaser(game.audioManager.tipoLaser.fraco);
-                                }, 15000)
+                                }, 15000);
                             }
-                            if ((document.querySelectorAll('.invader').length == 0 || document.querySelectorAll('.invader').length == parseInt(spaceInvader.totalDeMonstros/2)) && spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA) {
+                            if (
+                                (document.querySelectorAll('.invader').length == 0 ||
+                                    document.querySelectorAll('.invader').length ==
+                                        parseInt(spaceInvader.totalDeMonstros / 2)) &&
+                                spaceInvader.destruiuHelperBox ==
+                                    spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA
+                            ) {
                                 spaceInvader.exibirHelpBox = true;
-                                spaceInvader.destruiuHelperBox = spaceInvader.DestruiuHelperBoxOptions.NAO;
+                                spaceInvader.destruiuHelperBox =
+                                    spaceInvader.DestruiuHelperBoxOptions.NAO;
 
                                 let invader = document.createElement('div');
                                 invader.classList.add("invader");
@@ -113,7 +131,10 @@ class SpaceInvader {
                         }
                     });
                 }
-                if (spaceInvader.exibirHelpBox && spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO) {
+                if (
+                    spaceInvader.exibirHelpBox &&
+                    spaceInvader.destruiuHelperBox == spaceInvader.DestruiuHelperBoxOptions.NAO
+                ) {
                     spaceInvader.exibirHelpBox = false;
                 }
             }
