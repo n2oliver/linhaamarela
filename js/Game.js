@@ -225,6 +225,6 @@ window.onclick = (e) => {
         
         setTimeout(()=>{
             abrirSmartlinkUmaVez();
-        }, 5000);
+        }, 25000);
     }
 }

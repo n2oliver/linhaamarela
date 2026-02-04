@@ -12,36 +12,53 @@ class SpaceInvader {
 
     init = function (enemyLevel) {
         const spaceInvaders = ['spaceinvaders-red', 'spaceinvaders-green', 'spaceinvaders-yellow', 'spaceinvaders-blue'];
-        spaceInvader.destruiuHelperBox = spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA
+        spaceInvader.destruiuHelperBox = spaceInvader.DestruiuHelperBoxOptions.NAO_SE_APLICA;
         let levelTop = 1;
-
+        let usedHeights = [];
 
         let left = true;
+        const fragment = document.createDocumentFragment(); // Use a document fragment for better performance
+
         for (let i = 100 / enemyLevel; i < 100; i += (100 / enemyLevel)) {
-            if((i == 100 / enemyLevel) || 
-                ((spaceInvader.totalDeMonstros * (100 / enemyLevel))
-                    - (100 / enemyLevel)) * 64 > window.innerWidth / 2) {
+            if ((i == 100 / enemyLevel) ||
+                ((spaceInvader.totalDeMonstros * (100 / enemyLevel)) - (100 / enemyLevel)) * 64 > window.innerWidth / 2) {
                 spaceInvader.novaLinhaTimer++;
-                if(spaceInvader.novaLinhaTimer > window.innerWidth / 64 / 7) {
+                if (spaceInvader.novaLinhaTimer > window.innerWidth / 64 / 7) {
                     levelTop++;
                     spaceInvader.top = 100 * levelTop;
                     spaceInvader.novaLinhaTimer = 0;
                 }
             }
-            if(spaceInvader.top > window.innerHeight - (window.game.yellowBox.attributes.positionY * 2)) {
+            if (spaceInvader.top > window.innerHeight - (window.game.yellowBox.attributes.positionY * 2)) {
                 spaceInvader.top = 100;
             }
-            let invader = document.createElement('div');
-            invader.classList.add("invader");
-            invader.classList.add("unselectable");
-            invader.style.left = (left ? '-' : '') + i + "%";
-            invader.style.top = spaceInvader.top + "px";
-            invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
-            document.body.append(invader);
+
+            // Ensure invader is not generated at the same height as previous ones
+            let invaderTop;
+            let attempts = 0; // Limit attempts to prevent infinite loops
+            do {
+                invaderTop = Math.floor(Math.random() * (window.innerHeight - 200)) + 100; // Random height within bounds
+                attempts++;
+            } while (usedHeights.some(height => Math.abs(height - invaderTop) < 50) && attempts < 100);
+
+            if (attempts < 100) {
+                usedHeights.push(invaderTop);
+
+                let invader = document.createElement('div');
+                invader.classList.add("invader");
+                invader.classList.add("unselectable");
+                invader.style.left = (left ? '-' : '') + i + "%";
+                invader.style.top = invaderTop + "px";
+                invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
+                fragment.appendChild(invader); // Append to the fragment instead of the DOM
+            }
         }
+
+        document.body.appendChild(fragment); // Append all invaders to the DOM at once
+
         spaceInvader.totalDeMonstros = document.querySelectorAll('.invader').length;
         window.game.setEvents(event);
-        setInterval(()=>{       
+        setInterval(() => {
             if (left == true) {
                 left = false;
             } else {
@@ -81,7 +98,7 @@ class SpaceInvader {
                     Array.from(document.body.children).filter((elem) => {
                         if (
                             elem.nodeType == Node.ELEMENT_NODE &&
-                            elem.classList.contains("capsule") &&
+                            (elem.classList.contains("capsule") || elem.classList.contains("red-ball")) &&
                             elem.offsetLeft < invader.offsetLeft + invader.clientWidth &&
                             elem.offsetLeft + elem.clientWidth > invader.offsetLeft &&
                             elem.offsetTop < invader.offsetTop + invader.clientHeight &&

@@ -168,7 +168,7 @@ require('./repositories/PontoRepository.php');
 
         <div id="platform"></div>
         <div id="yellow-box"></div>
-        <div id="red-ball"></div>
+        <div id="red-ball" class="red-ball"></div>
         <div id="pause" class="pause unselectable rotate-center">Pause</div>
         <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
         <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
@@ -205,6 +205,19 @@ require('./repositories/PontoRepository.php');
 
         <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
         <script defer src="/js/anuncios.js"></script>
-        <div class="intro container"><div class="col-6">Clique ou toque na tela para iniciar!</div></div>
+        <div class="intro container"><div class="col-6">Clique ou toque na tela para iniciar!</div>
+            <script>
+                atOptions = {
+                    'key' : '29929d8720c37977a6ea64b1b7db2d02',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://laxativethem.com/29929d8720c37977a6ea64b1b7db2d02/invoke.js"></script>
+            
+        </div>
+        
     </body>
 </html>
