@@ -230,26 +230,30 @@ require('./repositories/PontoRepository.php');
 
     <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
     <script defer src="/js/anuncios.js"></script>
-    <div class="intro container">
-        <div class="col-6">
-            <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-                <iframe data-aa='2426535' src='//acceptable.a-ads.com/2426535/?size=Adaptive'
-                    style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+    <div class="intro overflow-auto">
+        <div class="container d-flex row justify-content-end align-items-end align-content-end text-center bg">
+            
+            <div class="col ads">
+                <script>
+                    atOptions = {
+                        'key': '29929d8720c37977a6ea64b1b7db2d02',
+                        'format': 'iframe',
+                        'height': 50,
+                        'width': 320,
+                        'params': {}
+                    };
+                </script>
+                <script src="https://laxativethem.com/29929d8720c37977a6ea64b1b7db2d02/invoke.js"></script>
+
+                <div>
+                    Clique ou toque na tela para iniciar!
+                </div>
+                <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+                    <iframe data-aa='2410752' src='//acceptable.a-ads.com/2410752/?size=Adaptive'
+                        style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+                </div>
             </div>
-            <script>
-                atOptions = {
-                    'key': '29929d8720c37977a6ea64b1b7db2d02',
-                    'format': 'iframe',
-                    'height': 50,
-                    'width': 320,
-                    'params': {}
-                };
-            </script>
-            <script src="https://laxativethem.com/29929d8720c37977a6ea64b1b7db2d02/invoke.js"></script>
-
-            <div>Clique ou toque na tela para iniciar!</div>
         </div>
-
     </div>
 
 </body>

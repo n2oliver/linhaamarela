@@ -14,9 +14,8 @@
     justify-content: end;
     display: flex;
 }
-.intro div {
-    padding-bottom: 100px;
-    height: 100%;
+.intro div.bg {
+    height: 80%;
     background: url('../img/intro-bg.jpg') no-repeat center center;
     background-size: contain;
     background-attachment: fixed !important;
@@ -25,9 +24,16 @@
     background-blend-mode: hard-light !important;
     max-height: 80%;
     align-self: center;
+    width: 100vw;
+}
+
+.intro div.ads {
+    align-self: flex-end;
+    width: 100vw;
 }
 @media screen and (max-width: 768px) {
-    .intro div {
+    .intro div.bg {
+        height: 60%;
         background-size: 100% auto !important;
         background: url('../img/intro-bg-mobile.jpg') no-repeat center center;
     }
