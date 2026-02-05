@@ -11,7 +11,7 @@
     bottom: 0;
     z-index: 1000;
     color: white;
-    justify-content: center;
+    justify-content: end;
     display: flex;
 }
 .intro div {
@@ -19,10 +19,10 @@
     height: 100%;
     background: url('../img/intro-bg.jpg') no-repeat center center;
     background-size: contain;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-blend-mode: hard-light;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-blend-mode: hard-light !important;
     max-height: 80%;
     align-self: center;
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $APP_URL = '/jogos/linhaamarela';
 include('../../load-env.php');
 require('../../database/connectdb.php');
@@ -10,214 +10,248 @@ require('./repositories/PontoRepository.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <?php include('../../g-tags.php'); ?>
 
-        <title>Linha Amarela | n2oliver</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" 
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <link rel="preload" as="style" href="<?= $APP_URL ?>/css/game.css" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-blue.png" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-green.png" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-red.png" />
-        <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-yellow.png" />
-        <link rel="shortcut icon" href="<?= $APP_URL ?>/iconlinhaamarela.ico" type="image/x-icon"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/logo.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/nivel.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/markers.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/enemies.css"/>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/game.css"></style>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/game-over.css"></style>
-        <link rel="stylesheet" href="<?= $APP_URL ?>/css/intro.css"></style>
-        <link rel="stylesheet" href="/styles-index.css" />
+<head>
+    <?php include('../../g-tags.php'); ?>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="<?= $APP_URL ?>/js/vendor/hammer.min.js"></script>
-        <script src="<?= $APP_URL ?>/js/Background.js"></script>
-        <script src="<?= $APP_URL ?>/js/Counter.js"></script>
-        <script src="<?= $APP_URL ?>/js/PointsCounter.js"></script>
-        <script src="<?= $APP_URL ?>/js/LevelsCounter.js"></script>
-        <script src="<?= $APP_URL ?>/js/LivesCounter.js"></script>
-        <script src="<?= $APP_URL ?>/js/GameObject.js"></script>
-        <script src="<?= $APP_URL ?>/js/Platform.js"></script>
-        <script src="<?= $APP_URL ?>/js/YellowBox.js"></script>
-        <script src="<?= $APP_URL ?>/js/Ball.js"></script>
-        <script src="<?= $APP_URL ?>/js/SpaceInvader.js"></script>
-        <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
-        <script src="<?= $APP_URL ?>/js/GameBase.js"></script>
-        <script src="<?= $APP_URL ?>/js/Game.js"></script>
+    <title>Linha Amarela | n2oliver</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="preload" as="style" href="<?= $APP_URL ?>/css/game.css" />
+    <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-blue.png" />
+    <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-green.png" />
+    <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-red.png" />
+    <link rel="preload" as="image" href="<?= $APP_URL ?>/img/spaceinvaders-yellow.png" />
+    <link rel="shortcut icon" href="<?= $APP_URL ?>/iconlinhaamarela.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/logo.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/pause.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/audio.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/nivel.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/markers.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/enemies.css" />
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/game.css">
+    </style>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/game-over.css">
+    </style>
+    <link rel="stylesheet" href="<?= $APP_URL ?>/css/intro.css">
+    </style>
+    <link rel="stylesheet" href="/styles-index.css" />
 
-        <style>
-            .d-none {
-                display: none !important;
-            }
-            .d-flex {
-                display: flex !important;
-            }
-            .mb-3 {
-                margin-bottom: 15px;
-            }
-            #game-over {
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                margin: 0 auto;
-                position: fixed;
-                left: 0;
-                right: 0;
-            }
-            #game-over h1 {
-                font-size: 64px;
-                color: yellow;
-                -webkit-text-stroke: gray 2px;
-            }
-            #game-over .box-title {
-                font-size: 42px
-            }
-        </style>
-        <!-- Hotjar Tracking Code for n2oliver.com -->
-        <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:6543030,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
-    </head>
-    <body>
-<?php include("../../gtagmanager.php"); ?>
-        <div class="spinner d-none"></div>
-        <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
-        <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>    
-        
-        <div class="menu">
-            <div id="pause-button" class="unselectable pause-button menu-item"><img alt="pause" src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg" loading="lazy"/></div>
-            <div id="play-button" class="unselectable play-button menu-item"><img alt="play" src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png" loading="lazy"/></div>
-            <div id="audio-button" class="unselectable audio-button menu-item"><img alt="audio" width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png" loading="lazy"/></div>
-            <div id="logo" class="unselectable game-logo"><img alt="logo-linhaamarela" src="<?= $APP_URL ?>/img/logo-linhaamarela.png" loading="lazy"/></div>      
-            <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" loading="lazy" />
-            <?php if(isset($_SESSION['usuario_id']) && !isset($_SESSION['partida_rapida'])) { ?>
-                <script>
-                    window.usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'null' ?>;
-                    window.partidaRapida = <?= isset($_SESSION['partida_rapida']) ? $_SESSION['partida_rapida'] : 'null' ?>;
-                </script>
-                <hr>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="<?= $APP_URL ?>/js/vendor/hammer.min.js"></script>
+    <script src="<?= $APP_URL ?>/js/Background.js"></script>
+    <script src="<?= $APP_URL ?>/js/Counter.js"></script>
+    <script src="<?= $APP_URL ?>/js/PointsCounter.js"></script>
+    <script src="<?= $APP_URL ?>/js/LevelsCounter.js"></script>
+    <script src="<?= $APP_URL ?>/js/LivesCounter.js"></script>
+    <script src="<?= $APP_URL ?>/js/GameObject.js"></script>
+    <script src="<?= $APP_URL ?>/js/Platform.js"></script>
+    <script src="<?= $APP_URL ?>/js/YellowBox.js"></script>
+    <script src="<?= $APP_URL ?>/js/Ball.js"></script>
+    <script src="<?= $APP_URL ?>/js/SpaceInvader.js"></script>
+    <script src="<?= $APP_URL ?>/js/AudioManager.js"></script>
+    <script src="<?= $APP_URL ?>/js/GameBase.js"></script>
+    <script src="<?= $APP_URL ?>/js/Game.js"></script>
+
+    <style>
+        .d-none {
+            display: none !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+
+        #game-over {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 0 auto;
+            position: fixed;
+            left: 0;
+            right: 0;
+        }
+
+        #game-over h1 {
+            font-size: 64px;
+            color: yellow;
+            -webkit-text-stroke: gray 2px;
+        }
+
+        #game-over .box-title {
+            font-size: 42px
+        }
+    </style>
+    <!-- Hotjar Tracking Code for n2oliver.com -->
+    <script>
+        (function(h, o, t, j, a, r) {
+            h.hj = h.hj || function() {
+                (h.hj.q = h.hj.q || []).push(arguments)
+            };
+            h._hjSettings = {
+                hjid: 6543030,
+                hjsv: 6
+            };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+</head>
+
+<body>
+    <?php include("../../gtagmanager.php"); ?>
+    <div class="spinner d-none"></div>
+    <audio id="game-sound" src="<?= $APP_URL ?>/mp3/residence-tatami-main-version.mp3" controls style="display: none" preload="auto"></audio>
+    <div id="bg-transparent" style="width: 100%; height: 100%; position: fixed; z-index: -1;"></div>
+
+    <div class="menu">
+        <div id="pause-button" class="unselectable pause-button menu-item"><img alt="pause" src="<?= $APP_URL ?>/img/pause-icon-png-12.jpg" loading="lazy" /></div>
+        <div id="play-button" class="unselectable play-button menu-item"><img alt="play" src="<?= $APP_URL ?>/img/png-clipart-digital-marketing-implementation-business-computer-programming-play-button-electronics-text.png" loading="lazy" /></div>
+        <div id="audio-button" class="unselectable audio-button menu-item"><img alt="audio" width="100%" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png" loading="lazy" /></div>
+        <div id="logo" class="unselectable game-logo"><img alt="logo-linhaamarela" src="<?= $APP_URL ?>/img/logo-linhaamarela.png" loading="lazy" /></div>
+        <img alt="sair" src="<?= $APP_URL ?>/img/logout.png" width="32" height="32" class="sair" loading="lazy" />
+        <?php if (isset($_SESSION['usuario_id']) && !isset($_SESSION['partida_rapida'])) { ?>
+            <script>
+                window.usuarioId = <?= isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : 'null' ?>;
+                window.partidaRapida = <?= isset($_SESSION['partida_rapida']) ? $_SESSION['partida_rapida'] : 'null' ?>;
+            </script>
+            <hr>
+            <div>
+                <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+
+                <h1>Ranking</h1>
                 <div>
-                    <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
-                    
-                    <h1>Ranking</h1>
-                    <div>
-                        <table id="all-points" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Posição</th><th>Usuário</th><th>Pontuação</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ranking">
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="all-points" class="table">
+                        <thead>
+                            <tr>
+                                <th>Posição</th>
+                                <th>Usuário</th>
+                                <th>Pontuação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking">
+                        </tbody>
+                    </table>
                 </div>
-            <?php } else { ?>
-                <hr>
-                <div>
-                    <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
-                </div>
-            <?php } ?> 
-        </div>
-        <div class="menu-item markers">
-            <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
-            <div class="presentation-container unselectable"><span id="vidas"><div class="heart"></div><div class="heart"></div><div class="heart"></div></span></div>
-        </div>
-        <div id="qr-code" style="display: none; color: white; z-index: 9999; margin: 0 auto" class="qr-code rotate-center">
-            <div style="position: fixed;
+            </div>
+        <?php } else { ?>
+            <hr>
+            <div>
+                <div class="presentation-container unselectable">Pontos: <span id="points-counter">0</span></div>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="menu-item markers">
+        <div class="presentation-container unselectable">Nivel: <span id="levels-counter">1</span></div>
+        <div class="presentation-container unselectable"><span id="vidas">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </span></div>
+    </div>
+    <div id="qr-code" style="display: none; color: white; z-index: 9999; margin: 0 auto" class="qr-code rotate-center">
+        <div style="position: fixed;
                         display: flex; justify-content: center;
                         background-color: rgba(33,33,33,.3);
                         height: 100%; width: 100%">
-                <div>
-                    <div>Aceitamos doações:</div>
-                    <div>Chave PIX:</div>
-                    <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qr-code.jpeg" loading="lazy"/></div>
-                    <div>suporte@n2oliver.com</div>
-                </div>
-                <div>
-                    <div>Para sair clique no<br>botão abaixo</div>
-                    <img alt="logout" src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" loading="lazy" />
-                </div>
+            <div>
+                <div>Aceitamos doações:</div>
+                <div>Chave PIX:</div>
+                <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qr-code.jpeg" loading="lazy" /></div>
+                <div>suporte@n2oliver.com</div>
+            </div>
+            <div>
+                <div>Para sair clique no<br>botão abaixo</div>
+                <img alt="logout" src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" loading="lazy" />
             </div>
         </div>
-        <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
+    </div>
+    <div id="nivel" class="nivel unselectable rotate-center">Nivel</div>
 
-        <div id="game-over" class="d-none">
-            <h1>Game Over</h1>
-            <div class="box-title game-over-ending mt-3">Ah, não!</div>
-            <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
-            <div class="d-flex mb-3">
-                <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
-                <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
-            </div>
+    <div id="game-over" class="d-none">
+        <h1>Game Over</h1>
+        <div class="box-title game-over-ending mt-3">Ah, não!</div>
+        <div class="box-body game-over-ending text-danger mb-3"><strong>O extraterrestres invadiram a Terra!</strong></div>
+        <div class="d-flex mb-3">
+            <div><button id="restart" style="background: darkorange; margin-top: 20px;">Reiniciar</button></div>
+            <div><a href='<?= $APP_URL ?>/sair.php'><button class="sair" style="margin-top: 20px;">Sair</button></a></div>
         </div>
+    </div>
 
-        <div id="platform"></div>
-        <div id="yellow-box"></div>
-        <div id="red-ball" class="red-ball"></div>
-        <div id="pause" class="pause unselectable rotate-center">Pause</div>
-        <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
-        <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
-        <audio id="creature-die" src="<?= $APP_URL ?>/mp3/creature-die.mp3" controls autoplay="false" style="display: none"></audio>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(()=>{
-                $('.sair').click(()=>{
-                    window.location.href = '<?= $APP_URL ?>/sair.php';
-                });
-                if(typeof usuarioId !== 'undefined') obterRanking(usuarioId);
+    <div id="platform"></div>
+    <div id="yellow-box"></div>
+    <div id="red-ball" class="red-ball"></div>
+    <div id="pause" class="pause unselectable rotate-center">Pause</div>
+    <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
+    <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
+    <audio id="creature-die" src="<?= $APP_URL ?>/mp3/creature-die.mp3" controls autoplay="false" style="display: none"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $('.sair').click(() => {
+                window.location.href = '<?= $APP_URL ?>/sair.php';
             });
-            function obterRanking(idUsuario) {
-                $('.spinner').removeClass('d-none');
-                $.ajax({
-                    url: './obter-ranking.php',
-                    method: 'POST',
-                    type: 'json/application',
-                    data: { id_usuario: idUsuario },
-                    success: (data) => {
-                        $('.spinner').addClass('d-none');
-                        const pontuacoes = data;
-                        const ranking = $('#ranking');
-                        ranking.html(pontuacoes);
-                    },
-                    error: (error) => {
-                        $('.spinner').addClass('d-none');
-                        console.log(error.responseText);
-                    }
-                });
-            }
-        </script>
+            if (typeof usuarioId !== 'undefined') obterRanking(usuarioId);
+        });
 
-        <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
-        <script defer src="/js/anuncios.js"></script>
-        <div class="intro container"><div class="col-6">Clique ou toque na tela para iniciar!</div>
+        function obterRanking(idUsuario) {
+            $('.spinner').removeClass('d-none');
+            $.ajax({
+                url: './obter-ranking.php',
+                method: 'POST',
+                type: 'json/application',
+                data: {
+                    id_usuario: idUsuario
+                },
+                success: (data) => {
+                    $('.spinner').addClass('d-none');
+                    const pontuacoes = data;
+                    const ranking = $('#ranking');
+                    ranking.html(pontuacoes);
+                },
+                error: (error) => {
+                    $('.spinner').addClass('d-none');
+                    console.log(error.responseText);
+                }
+            });
+        }
+    </script>
+
+    <script src="<?= $APP_URL ?>/js/pontuacao.js"></script>
+    <script defer src="/js/anuncios.js"></script>
+    <div class="intro container">
+        <div class="col-6">
+            <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+                <iframe data-aa='2426535' src='//acceptable.a-ads.com/2426535/?size=Adaptive'
+                    style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+            </div>
             <script>
                 atOptions = {
-                    'key' : '29929d8720c37977a6ea64b1b7db2d02',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
+                    'key': '29929d8720c37977a6ea64b1b7db2d02',
+                    'format': 'iframe',
+                    'height': 50,
+                    'width': 320,
+                    'params': {}
                 };
             </script>
             <script src="https://laxativethem.com/29929d8720c37977a6ea64b1b7db2d02/invoke.js"></script>
-            
+
+            <div>Clique ou toque na tela para iniciar!</div>
         </div>
-        
-    </body>
+
+    </div>
+
+</body>
+
 </html>
