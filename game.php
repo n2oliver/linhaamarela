@@ -89,6 +89,8 @@ require('./repositories/PontoRepository.php');
             font-size: 42px
         }
     </style>
+    <link rel="stylesheet" href="/css/games.css" />
+    <script src="/js/games.js"></script>
 </head>
 
 <body>
@@ -143,19 +145,34 @@ require('./repositories/PontoRepository.php');
             </span></div>
     </div>
     <div id="qr-code" style="display: none; color: white; z-index: 9999; margin: 0 auto" class="qr-code rotate-center">
-        <div style="position: fixed;
+        <div class="container" style="position: fixed;
                         display: flex; justify-content: center;
-                        background-color: rgba(33,33,33,.3);
-                        height: 100%; width: 100%">
-            <div>
-                <div>Aceitamos doações:</div>
-                <div>Chave PIX:</div>
-                <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qr-code.jpeg" loading="lazy" /></div>
-                <div>suporte@n2oliver.com</div>
+                        background-color: rgba(33,33,33,.5);
+                        height: fit-content; width: 100%;
+                        padding: 0;
+                        margin: 0;
+                        z-index: 21000000;
+                        top: 100px">
+            <div class="col-md-6" style="height: fit-content">
+                <div>
+                    <div>Aceitamos doações:</div>
+                    <div>Chave PIX:</div>
+                    <div><img alt="qr-code" id="qr-code" src="<?= $APP_URL ?>/img/qr-code.jpeg" loading="lazy" /></div>
+                    <div>suporte@n2oliver.com</div>
+                </div>
+                <div>
+                    <div>Para sair clique no<br>botão abaixo</div>
+                    <img alt="logout" src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" loading="lazy" />
+                </div>
             </div>
-            <div>
-                <div>Para sair clique no<br>botão abaixo</div>
-                <img alt="logout" src="<?= $APP_URL ?>/img/logout.png" width="100" height="100" class="sair" loading="lazy" />
+            <div class="col-md-6" style="height: fit-content">
+                <div class="d-flex justify-content-start col-md-10 m-auto text-light mt-2" style="font-family: Ubuntu">
+                    <strong>
+                        <h2>Você também pode gostar de</h2>
+                        <div id="jogos" class="d-flex justify-content-center col-md-10 m-auto">
+                        </div>
+                    </strong>
+                </div>
             </div>
         </div>
     </div>
@@ -174,7 +191,7 @@ require('./repositories/PontoRepository.php');
     <div id="platform"></div>
     <div id="yellow-box"></div>
     <div id="red-ball" class="red-ball"></div>
-    <div id="pause" class="pause unselectable rotate-center container bg-dark">Pause</div>
+    <div id="pause" class="pause unselectable rotate-center container bg-dark" style="display: none">Pause</div>
     <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
     <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
     <audio id="creature-die" src="<?= $APP_URL ?>/mp3/creature-die.mp3" controls autoplay="false" style="display: none"></audio>
