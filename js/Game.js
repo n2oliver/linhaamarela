@@ -105,6 +105,7 @@ class Game extends GameBase {
     start = (e) => {
         document.querySelector('.intro').style.display = 'none';
         if((typeof window.gameOver != 'undefined' && window.gameOver === false) || typeof window.gameOver == 'undefined') {
+            abrirSmartlinkUmaVez();
             window.game.setEvents(e);
             window.pause = false;
 
@@ -205,6 +206,7 @@ class Game extends GameBase {
 }
             
 document.addEventListener("DOMContentLoaded", (e) => {
+
     sessionStorage.setItem('ingame', true);
     level = 1;
     game = new Game(e, level);
@@ -221,10 +223,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 window.onclick = (e) => {
     if(window.game) {
         window.game.audioManager.playAsBgMusic();
-        game.start(e);
-        
-        setTimeout(()=>{
-            abrirSmartlinkUmaVez();
-        }, 25000);
+        game.start(e);      
     }
 }

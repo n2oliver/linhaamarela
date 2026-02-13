@@ -89,23 +89,6 @@ require('./repositories/PontoRepository.php');
             font-size: 42px
         }
     </style>
-    <!-- Hotjar Tracking Code for n2oliver.com -->
-    <script>
-        (function(h, o, t, j, a, r) {
-            h.hj = h.hj || function() {
-                (h.hj.q = h.hj.q || []).push(arguments)
-            };
-            h._hjSettings = {
-                hjid: 6543030,
-                hjsv: 6
-            };
-            a = o.getElementsByTagName('head')[0];
-            r = o.createElement('script');
-            r.async = 1;
-            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    </script>
 </head>
 
 <body>
@@ -191,7 +174,7 @@ require('./repositories/PontoRepository.php');
     <div id="platform"></div>
     <div id="yellow-box"></div>
     <div id="red-ball" class="red-ball"></div>
-    <div id="pause" class="pause unselectable rotate-center">Pause</div>
+    <div id="pause" class="pause unselectable rotate-center container bg-dark">Pause</div>
     <audio id="toque-linha-amarela" src="<?= $APP_URL ?>/mp3/toque-linha-amarela.mp3" controls autoplay="false" style="display: none"></audio>
     <audio id="shot-audio" src="" controls autoplay="false" style="display: none"></audio>
     <audio id="creature-die" src="<?= $APP_URL ?>/mp3/creature-die.mp3" controls autoplay="false" style="display: none"></audio>
@@ -234,24 +217,16 @@ require('./repositories/PontoRepository.php');
         <div class="container d-flex row justify-content-end align-items-end align-content-end text-center bg">
             
             <div class="col ads">
-                <script>
-                    atOptions = {
-                        'key': '29929d8720c37977a6ea64b1b7db2d02',
-                        'format': 'iframe',
-                        'height': 50,
-                        'width': 320,
-                        'params': {}
-                    };
-                </script>
-                <script src="https://laxativethem.com/29929d8720c37977a6ea64b1b7db2d02/invoke.js"></script>
-
-                <div>
-                    Clique ou toque na tela para iniciar!
+                <div style="margin-bottom: 10px;
+                        cursor: pointer">
+                    Toque na tela para iniciar!
                 </div>
-                <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-                    <iframe data-aa='2410752' src='//acceptable.a-ads.com/2410752/?size=Adaptive'
-                        style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
-                </div>
+                <div style="width: 320px; height: 50px; 
+                        background: rgba(0,155,155,.7); 
+                        align-self: center;
+                        justify-self: center;
+                        align-content: center;
+                        cursor: pointer" onclick="abrirSmartlinkUmaVez();">Toque para apoiar o projeto</div>
             </div>
         </div>
     </div>

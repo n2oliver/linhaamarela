@@ -172,6 +172,7 @@ if ($impressionid) {
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    <script src="https://laxativethem.com/f0/b1/79/f0b17922dcf7861be67a02cba8a9b7ee.js"></script>
 </head>
 <body style="background: url(<?= $APP_URL ?>/img/fundo.png)">
     <script async src="https://appsha-pnd.ctengine.io/js/script.js?wkey=97NjKiTr7b"></script>
