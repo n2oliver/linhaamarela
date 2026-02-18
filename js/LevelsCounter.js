@@ -1,5 +1,3 @@
-
-
 class LevelsCounter extends Counter  {
     level = 1;
     levelUp = new Event("levelup");
@@ -7,6 +5,7 @@ class LevelsCounter extends Counter  {
     constructor(attributes) {
         super(attributes);
         this.attributes = attributes;
+        this.levelsSinceLastAd = 0; // Contador de níveis desde o último anúncio
         const styles = {
             top: "32px",
             left: "32px"
@@ -15,11 +14,16 @@ class LevelsCounter extends Counter  {
 
         this.increaseCounter = (points, previousLevel, demo) => {
             this.demo = demo;
-            window.game.levelsCounter.level += 1// parseInt((points + 250) / 250);
+            window.game.levelsCounter.level += 1;
+            this.levelsSinceLastAd++;
 
-            //if(previousLevel < parseInt((points + 250) / 250)) {
-                document.dispatchEvent(this.levelUp);
-            //}
+            // Exibir anúncio apenas a cada 3 níveis
+            if (this.levelsSinceLastAd >= 3 && typeof abrirSmartlinkUmaVez === 'function') {
+                abrirSmartlinkUmaVez();
+                this.levelsSinceLastAd = 0; // Resetar contador após exibir anúncio
+            }
+
+            document.dispatchEvent(this.levelUp);
         }
         this.setLevelUp();
     }

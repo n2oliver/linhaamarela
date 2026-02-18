@@ -12,6 +12,11 @@ class GameOver extends GameBase {
             // });
             window.spaceInvaderNpc = new SpaceInvaderNPC();
             this.invaderInterval = window.spaceInvaderNpc.init();
+
+            // Exibir anúncio ao final do jogo
+            if (typeof abrirSmartlinkUmaVez === 'function') {
+                abrirSmartlinkUmaVez();
+            }
         }
     };
 }

@@ -19,25 +19,16 @@ class SpaceInvader {
         let left = true;
         const fragment = document.createDocumentFragment(); // Use a document fragment for better performance
 
-        for (let i = 100 / enemyLevel; i < 100; i += (100 / enemyLevel)) {
-            if ((i == 100 / enemyLevel) ||
-                ((spaceInvader.totalDeMonstros * (100 / enemyLevel)) - (100 / enemyLevel)) * 64 > window.innerWidth / 2) {
-                spaceInvader.novaLinhaTimer++;
-                if (spaceInvader.novaLinhaTimer > window.innerWidth / 64 / 7) {
-                    levelTop++;
-                    spaceInvader.top = 100 * levelTop;
-                    spaceInvader.novaLinhaTimer = 0;
-                }
-            }
-            if (spaceInvader.top > window.innerHeight - (window.game.yellowBox.attributes.positionY * 2)) {
-                spaceInvader.top = 100;
-            }
+        // Define quantidade inicial fixa e progressão baseada no nível
+        const initialEnemies = 5; // Quantidade inicial fixa
+        const progressiveEnemies = Math.min(initialEnemies + enemyLevel, 50); // Limita o máximo de inimigos
 
-            // Ensure invader is not generated at the same height as previous ones
+        for (let i = 0; i < progressiveEnemies; i++) {
+            // Gera posições aleatórias para os inimigos
             let invaderTop;
-            let attempts = 0; // Limit attempts to prevent infinite loops
+            let attempts = 0; // Limita tentativas para evitar loops infinitos
             do {
-                invaderTop = Math.floor(Math.random() * (window.innerHeight - 200)) + 100; // Random height within bounds
+                invaderTop = Math.floor(Math.random() * (window.innerHeight - 200)) + 100; // Altura aleatória dentro dos limites
                 attempts++;
             } while (usedHeights.some(height => Math.abs(height - invaderTop) < 50) && attempts < 100);
 
@@ -47,27 +38,24 @@ class SpaceInvader {
                 let invader = document.createElement('div');
                 invader.classList.add("invader");
                 invader.classList.add("unselectable");
-                invader.style.left = (left ? '-' : '') + i + "%";
+                invader.style.left = (left ? '-' : '') + (Math.random() * 90 + 5) + "%"; // Posição horizontal aleatória
                 invader.style.top = invaderTop + "px";
                 invader.style.backgroundImage = "url(img/" + spaceInvaders[Math.floor(Math.random() * spaceInvaders.length)] + ".png)";
-                fragment.appendChild(invader); // Append to the fragment instead of the DOM
+                fragment.appendChild(invader); // Adiciona ao fragmento
             }
         }
 
-        document.body.appendChild(fragment); // Append all invaders to the DOM at once
+        document.body.appendChild(fragment); // Adiciona todos os inimigos ao DOM de uma vez
 
         spaceInvader.totalDeMonstros = document.querySelectorAll('.invader').length;
         window.game.setEvents(event);
         setInterval(() => {
-            if (left == true) {
-                left = false;
-            } else {
-                left = true;
-            }
+            left = !left;
         }, 5000);
+
         let interval = setInterval(function () {
             if (!window.pause) {
-                if(document.querySelectorAll('.invader').length == 0) {
+                if (document.querySelectorAll('.invader').length == 0) {
                     window.ball.attributes.velocity = window.game.levelsCounter.level <= 11 ? window.game.levelsCounter.level : 11;
                     window.game.levelsCounter.increaseCounter(window.game.pointsCounter.points, window.game.levelsCounter.level);
                 }
@@ -78,19 +66,29 @@ class SpaceInvader {
                     if (invader.offsetLeft < 0) {
                         left = true;
                     }
-                    if (left == true) {
-                        invader.style.left = (invader.offsetLeft + 10) + "px";
+
+                    // Alterações nos movimentos a cada 10 níveis
+                    if (enemyLevel >= 10 && enemyLevel % 10 === 0) {
+                        // Movimento em zigue-zague
+                        invader.style.left = (invader.offsetLeft + (left ? 15 : -15)) + "px";
+                        invader.style.top = (invader.offsetTop + (Math.random() > 0.5 ? 10 : -10)) + "px";
+                    } else if (enemyLevel >= 20 && enemyLevel % 10 === 0) {
+                        // Movimento circular
+                        let angle = (Date.now() / 100) % 360;
+                        invader.style.left = (invader.offsetLeft + Math.sin(angle) * 10) + "px";
+                        invader.style.top = (invader.offsetTop + Math.cos(angle) * 10) + "px";
                     } else {
-                        invader.style.left = (invader.offsetLeft - 10) + "px";
+                        // Movimento padrão
+                        invader.style.left = (invader.offsetLeft + (left ? 10 : -10)) + "px";
                     }
 
-                    // Add vertical movement using translateY while preserving horizontal movement
+                    // Movimento vertical com translateY
                     let translateY = invader.dataset.direction === "down" ? 5 : -5;
                     let currentTransform = invader.style.transform.match(/translateY\((-?\d+)px\)/);
                     let currentY = currentTransform ? parseInt(currentTransform[1]) : 0;
                     invader.style.transform = `translateY(${currentY + translateY}px)`;
 
-                    // Reverse direction if it moves too far vertically
+                    // Inverte direção vertical se ultrapassar limites
                     if (currentY + translateY > 50 || currentY + translateY < -50) {
                         invader.dataset.direction = invader.dataset.direction === "down" ? "up" : "down";
                     }

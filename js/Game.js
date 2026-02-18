@@ -105,7 +105,6 @@ class Game extends GameBase {
     start = (e) => {
         document.querySelector('.intro').style.display = 'none';
         if((typeof window.gameOver != 'undefined' && window.gameOver === false) || typeof window.gameOver == 'undefined') {
-            abrirSmartlinkUmaVez();
             window.game.setEvents(e);
             window.pause = false;
 
