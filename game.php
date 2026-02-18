@@ -144,16 +144,17 @@ require('./repositories/PontoRepository.php');
                 <div class="heart"></div>
             </span></div>
     </div>
-    <div id="qr-code" style="display: none; color: white; z-index: 9999; margin: 0 auto" class="qr-code rotate-center">
-        <div class="container" style="position: fixed;
-                        display: flex; justify-content: center;
+    <div id="qr-code" style="color: white; z-index: 9999; margin: 0 auto" class="qr-code d-none">
+        <div class="container" style="
+                        display: flex;
                         background-color: rgba(33,33,33,.5);
                         height: fit-content; width: 100%;
                         padding: 0;
                         margin: 0;
                         z-index: 21000000;
-                        top: 100px">
-            <div class="col-md-6" style="height: fit-content">
+                        top: 100px;
+                        overflow-x: scroll">
+            <div class="col-md-6" style="display: flex; height: fit-content; justify-content: center; position: sticky; left: 0px">
                 <div>
                     <div>Aceitamos doações:</div>
                     <div>Chave PIX:</div>
@@ -168,8 +169,8 @@ require('./repositories/PontoRepository.php');
             <div class="col-md-6" style="height: fit-content">
                 <div class="d-flex justify-content-start col-md-10 m-auto text-light mt-2" style="font-family: Ubuntu">
                     <strong>
-                        <h2>Você também pode gostar de</h2>
-                        <div id="jogos" class="d-flex justify-content-center col-md-10 m-auto">
+                        <h3 style="width: fit-content; position: sticky; left: 0px; text-align: left">Você também pode gostar de</h3>
+                        <div id="jogos" class="col-md-10 m-auto d-flex justify-content-start">
                         </div>
                     </strong>
                 </div>

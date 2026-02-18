@@ -79,19 +79,19 @@ class Game extends GameBase {
             } else {
                 window.pause = true
             }
-            const qrCodeStyle = document.getElementById("qr-code").style;
+            const qrCodeStyle = document.getElementById("qr-code");
             const pauseStyle = document.getElementById("pause").style;
             const playButtonStyle = document.getElementById("play-button").style;
             const pauseButtonStyle = document.getElementById("pause-button").style;
             const audio = document.getElementById("game-sound");
             if(window.pause) {
-                qrCodeStyle.display = "contents";
+                qrCodeStyle.classList.remove("d-none");
                 pauseStyle.display = "contents";
                 pauseButtonStyle.display = "none";
                 playButtonStyle.display = "contents";
                 audio.pause();
             } else {
-                qrCodeStyle.display = "none";
+                qrCodeStyle.classList.add("d-none");
                 pauseStyle.display = "none";
                 pauseButtonStyle.display = "contents";
                 playButtonStyle.display = "none";
