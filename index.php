@@ -198,11 +198,6 @@ if ($impressionid) {
                         <a class="nav-link" href="/">n2oliver</a>
                     </li>
                     <li class="nav-item">
-                        <button id="jogar" class="btn btn-danger btn-lg mb-1">Competição</button>
-                        ou
-                        <button id="partida" class="btn btn-warning btn-lg mb-1">Partida rápida</button>
-                    </li>
-                    <li class="nav-item">
                         <div id="audio-button" class="unselectable audio-button menu-item mx-2"><img alt="auto-falante" width="32" height="32" src="<?= $APP_URL ?>/img/icons8-alto-falante-100.png"/></div>
                     </li>
                     
@@ -277,6 +272,10 @@ if ($impressionid) {
             <div class="jumbotron col-md-6 col-lg-8 text-center">
                 <h1 class="display-4" style="color: white; word-wrap: normal;">Eles iniciaram, a invasão começou!</h1>
                 <p class="lead" style="color: white">Ajude-nos a defender Long Trek de uma catástrofe alienígena!</p>
+                
+                <button id="jogar" class="btn btn-danger btn-lg mb-1">Competição</button>
+                ou
+                <button id="partida" class="btn btn-warning btn-lg mb-1">Partida rápida</button>
             </div>
         </div>
 
