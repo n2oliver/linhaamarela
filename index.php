@@ -320,7 +320,7 @@ if ($impressionid) {
 
             $('#jogar').click(()=>{
                 if(!($('.navbar-toggler').attr('aria-expanded') == 'true') && !Boolean('<?= $usuario_id ?>')) {
-                    document.querySelector('.navbar-toggler').click();
+                    $('input:visible').first().focus()
                 } else if(Boolean('<?= isset($usuario_id) ? $usuario_id : 'false' ?>')) {
                     window.location.href = `${appUrl}/game.php`;
                 } else {
